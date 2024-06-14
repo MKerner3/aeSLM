@@ -1,0 +1,233 @@
+[
+{
+  "question": "Consider an airfoil in a flow with a freestream velocity of 150 ft/s. The velocity at a given point on the airfoil is 225 ft/s. Calculate the pressure coefficient at this point.",
+  "answer": {
+	"code": """
+import numpy as np
+
+v = 225  # velocity (ft/s)
+vinf = 125  # freestream velocity (ft/s)
+
+# Apply the pressure coefficient equation (Cp = 1 - (v/vinf)^2)
+Cp = 1 - (v/vinf)^2
+
+print("Pressure Coefficient:", Cp)
+      """,
+      "explanation": "Assuming the flow is inviscid and steady (incompressible), Bernoulli's equation can be simplified to obtain the pressure coefficient equation. Bernoulli's equation comes from the principle that states an increase in the speed of a fluid occurs simultaneously with a decrease in pressure or a decrease in the fluid's potential energy. The pressure coefficient descibes the relative pressures throughout a flow field. This formula shows this by dividing the pressure gauge by the heat introduced by the surroundings. This can be simplified to obtain the coefficient of pressure.
+(1) Cp = (p-pinf)/qinf
+(2) p-pinf = 1/2*rho*((vinf)^2-v^2)
+(3) qinf = 1/2*rho*(vinf)^2
+Plugging equations (2) & (3) into (1) and simplifying gets Cp = 1 - (v/vinf)^2.  ",
+      "references": [
+          "https://en.wikipedia.org/wiki/Pressure_coefficient",
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+}
+{
+  "question": "Consider a P-35 cruising at a standard altitude of 4 km. The pressure sensed by the Pitot tube on its right wing is 6.7 × 104 N/m2. At what velocity is the P-35 flying?",
+  "answer": {
+	"code": """
+import numpy as np
+
+p0 = 6.7 x 10^4 # freestream static pressure (N/m^2)
+p1 = 6.166 x 10^4  # pressure (N/m^2)
+rho = 0.81935  # freestream static density (kg/m^3)
+
+# Apply a simplified Bernoulli's equation (v1 = sqrt((2(p0-p1)/rho)
+v1 = sqrt(2(p0-p1)/rho)
+
+print("Velocity:", v1, "m/s")
+      """,
+      "explanation": "Look at the standard atmosphere tables for altitude 4 km. Find the corresponding pressure and density. Assuming the flow is inviscid and steady (incompressible), then Bernoulli's equation can be simplified to obtain the observed velocity. Bernoulli's equation is used to show the pressure and velocity relationship within a steady flow. 
+pa + 1/2*rho*(va)^2 = pb + 1/2*rho*(vb)^2
+p1 + 1/2*rho*(v1)^2 = p0 + 0
+v1 = sqrt((2(p0-p1)/rho)",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+}
+{
+  "question": "Consider the inviscid, incompressible flow of air along a streamline. The air density along the streamline is 0.002377 slug/ft3, which is standard atmospheric density at sea level. At point 1 on the streamline, the pressure and velocity are 2116 lb/ft2 and 10 ft/s, respectively. Further downstream, at point 2 on the streamline, the velocity is 190 ft/s. Calculate the pressure at point 2. What can you say about the relative change in pressure from point 1 to point 2 compared to the corresponding change in velocity?"
+  "answer":
+	"code": """
+import numpy as np
+
+p1 = 2116  # pressure at point 1 (lb/ft^2)
+rho = 10  # air density (slug/ft^3)
+v1 = 10  # velocity at point 1 (ft/s)
+v2 = 190  # velocity at point 2 (ft/s)
+
+# Apply Bernoulli's equation (p1 + 1/2*rho*(v1)^2 = p2 + 1/2*rho*(v2)^2)
+p2 = p1 + 1/2*rho*((v1)^2 - (v2)^2)
+
+print("Pressure at point 2:", p2, "lb/ft^2")
+      """,
+      "explanation": "Using Bernoulli's equation, you can rearrange the formula to get the pressure at point 2 in the steady incompressible flow.
+p1 + 1/2*rho*(v1)^2 = p2 + 1/2*rho*(v2)^2
+p2 = p2 + 1/2*rho*(v1)^2 - 1/2*rho*(v2)^2
+p2 = p1 + 1/2*rho*((v1)^2 - (v2)^2)",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+},
+{
+  "question": "What is the difference between flow rate and fluid velocity? How are they related?",
+  "answer": "The fluid velocity of a fluid is the variation in the position of the fluid  time and position. The volume of moving fluid that passes through a certain area of cross section in unit time is called the flow rate."
+},
+{
+  "question": "What is Pascal's principle and what is a good real life example?",
+  "answer": "Pascal's principle states that in a fluid at rest in a closed container, a pressure change in one part is equally transmitted throughout the fluid and to the walls of the container. This principle explains why there is constant pressure throughout a container. It allows the total pressure to be calculated from the sum of the gauge pressure and atmospheric pressure: Pabs = Pg + Patm. A good example of this is a hydrolic system used to lift a car in an auto garage. A pump pushes oil into the cylinder pushing a piston which lifts the car up given the trasnmitted pressure from the piston."
+},
+{
+  "question": "A great deal of effort, time, and money has been spent in the quest for the so-called perpetual-motion machine, which is defined as a hypothetical machine that operates or produces useful work indefinitely and/or a hypothetical machine that produces more work or energy than it consumes. Explain, in terms of heat engines and the first law of thermodynamics, why or why not such a machine is likely to be constructed."
+  "answer": "The first law of thermodynamics states that energy can neither be created nor destroyed, but it can be converted from one form to another.  In terms of energy efficiency, a perpetual-motion machine would need to produce more energy than it consumes to continuously output. However, no energy can be created and the energy that is produced needs to be balanced by an equal amount of energy consumed. A perpetual-motion machine is impossible because there is not any circumstance where there is an equal input to output ratio given heat lost to the surroundings."
+},
+{
+  "question": "A real process may be nearly adiabatic if it occurs over a very short time. How does the short time span help the process to be adiabatic?"
+  "answer": "An adiabatic process is when a system does not exchange heat with its surroundings. Either the system is insulated so well that the heat transfer is negligible or the process is so fast that there isn't time to transfer heat from its environment. An adiabatic process is characterized by this increase in entropy. If the changes of the system occur quick enough then there is not enough time for the transmission of heat."
+},
+{
+  "question": "Consider a room with a rectangular floor that is 5 m by 7 m, and a 3.3 m high ceiling. The air pressure and temperature in the room are 1 atm and 25◦C, respectively. Calculate the internal energy and the enthalpy of the air in the room."
+  "answer":
+	"code": """
+import numpy as np
+
+p = 1.01 x 10^5  # pressure (N/m^2)
+T = 298  # temperature (K)
+R = 287  # gas constant (ft/s)
+v = 5*7*3.3  # volume (m^3)
+gamma = 1.4  # specific heat ratio of gas
+
+# Apply ideal gas relation (rho = p/(R*T))
+rho = p/(R*T)
+
+print("Density:", rho, "kg/m^2")
+      """,
+
+# Apply mass formula (m = rho*v)
+m = rho*v
+
+print("Mass:", m, "kg")
+      """,
+
+# Apply specific heat at constant volume formula (e = cv*T)
+cv = R/(gamma-1)
+e = cv*T
+E = m*e
+
+print("Internal Energy:", E, "joule")
+      """,
+
+# Apply specific heat at constant pressure formula (h = cp*T)
+cp = (gamma*R)/(gamma-1)
+h = cp*T
+H = m*h
+
+print("Enthalpy:", H, "joule")
+      """,
+      "explanation": "Because of perfecft gas relations, we are able to relate pressure, the ideal gas constant, and temperature to get density. With the density, you can get the mass by multiplying density by the velocity. Using the specific heat capacities and mass, you are able to calculate the general internal energy and enthalpy. We can use these relationships by utilizing the 1st law of thermodynamics. It is defined by the law of conservation of energy (DeltaU = Q - W). The specific heat capacities are derived from this fundamental law.",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+},
+{
+  "question": "Consider a Boeing 747 flying at a standard altitude of 36,000 ft. The pressure at a point on the wing is 400 lb/ft2. Assuming isentropic flow over the wing, calculate the temperature at this point."
+  "answer":
+	"code": """
+import numpy as np
+
+p = 400  # pressure at standard altitude (lb/ft^2)
+pinf = 476  # freestream static pressure (lb/ft^2)
+Tinf = 391  # freestream static temperature (◦R)
+gamma = 1.4  # specific heat ratio of gas
+
+# Apply isentropic relation ((p/pinf) = (T/Tinf)^(gamma/(gamma-1))
+T = Tinf*(p/pinf)^((gamma-1)/gamma)
+
+print("Temperature at standard altitude:", T, "◦R")
+      """,
+      "explanation": "Using an isentropic relation relating pressure and temperature, the temperature at standard atmosphere could be calculated. This assumes that the flow is isentropic meaning that it must be adiabatic and reversible. To use these relations, you must look at the standard altitude tables to find the static pressure and temperature at that altitude. Then plug the values into the formula that solves for temperature.",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+},
+{
+  "question": "Does a gas do any work when it expands adiabatically? If so, what is the source of the energy needed to do this work?"
+  "answer": When a gas expands adiabatically (meaning no heat is exchanged with the surroundings), the energy for the work done on the surroundings comes from the internal energy of the gas itself. The internal energy decreases as it does work on the surroundings, resulting in a decrease in the gas's temperature."
+},
+{
+  "question": "Are all gases considered as compressible fluids? Are all gas flows considered to be compressible?"
+  "answer": All gases are considered as compressible fluids but not all gas flows are considered to be compressible. For Mach numbers less than 0.3, gases are considered incompressible as the density change in the fluid is insignificant. However, gases are all compressible because most of the volume of a gas is composed of the large amounts of empty space between the gas particles. This means that depending on the container the gas expands and contracts."
+},
+{
+  "question": "Consider an airplane flying at a velocity of 250 m/s. Calculate its Mach number if it is flying at a standard altitude of (a) sea level, (b) 5 km, (c) 10 km."
+  "answer":
+	"code": """
+import numpy as np
+
+R = 287  # ideal gas constant (lb/ft^2)
+T1 = 391  # freestream static temperature at sea level (K)
+T2 = 255.7  # freestream static temperature at 5km (K)
+T3 = 223.3  # freestream static temperature at 10km (K)
+gamma = 1.4  # specific heat ratio of gas
+v = 250  # velocity at standard altitude (m/s)
+
+# Apply speed of sound equation (a = sqrt(gamma*R*T))
+a = sqrt(gamma*R*T1)
+M1 = v/a
+a = sqrt(gamma*R*T2)
+M2 = v/a
+a = sqrt(gamma*R*T3)
+M3 = v/a
+
+print("Mach numbers:", M1, M2, M3)
+      """,
+      "explanation": "Look at standard altitude tables at 5 km and 10 km to get specific temperatures first. Then, using the derived formula for the speed of sound, you can obtain the specific speed of sound at each altitude depending on the temperature of the air at that altitude. Then you can calculate the mach number by using the velocity and the speeds of sound you just calculated. To get to this simplified version of the mach number formula, by combining the conservation of momentum equation with the isentropic flow relation which ultimately yields M = v/a.",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+}
+{
+  "question": "Consider an oblique shock wave with a wave angle of 30◦. The upstream flow Mach number is 2.4. Calculate the deflection angle of the flow, the pressure and temperature ratios across the shock wave, and the Mach number behind the wave."
+  "answer":
+	"code": """
+import numpy as np
+
+M1 = 2.4  # upstream flow mach number
+beta = 30  # wave angle (degrees)
+theta = 6.5  # corner angle (degrees)
+p2/p1 = 1.513  # pressure ratio
+T2/T1 = 1.128  # temperature ratio
+Mn,2 = 0.8422  # downstream flow mach number
+
+# Apply Mach number downstream equation (M2 = M1/sin)
+Mn,1 = M1sin(beta)
+M2 = Mn,2/sin(beta-theta)
+
+print("Mach number downstream:", M2)
+      """,
+      "explanation": "Looking at oblique shock tables you are able to get pressure and temperature ratios and Mn,2. We can also calculate Mn,1 by multiplying the upstream mach number by sin(beta). Then you are able to find mach downstream, M2, by dividing Mn,2 by sin(beta-theta). This is calculated by using the oblique shock relations derived from the continuity, conservation of momentum, and isentropic flow relations.",
+      "references": [
+          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
+      ]
+  }
+}
+{
+  "question": "Why does bernoulli's principle not work in compressible flow?"
+  "answer": "Bernoulli's principle was derived assuming constant density however at higher mach numbers (>0.3), it cannot apply. This is because compressible fluids are defined by their volumes changing when they are expanded or compressed by an external forces or the changes of pressure or temperature. Given that there is a significant change in pressure or temperature, there must be a density gradient which makes it compressible.
+},
+{
+  "question": "According to the energy equation for steady adiabatic reversible flow free from the body forces, what quantity is constant along a streamline?"
+  "answer": "First, you must look at the directional derivative of H in the direction of v, v⋅∇H which we can get by deriving the energy equation. After the derivation you find that the instantaneous rate of change of H in the direction of v is 0. So H is constant in the direction of v and thus H is constant along the streamlines of the fluid."
+},
+{
+  "question": "Define a cyclic process."
+  "answer": "A cyclic process is one in which the initial and final states are the same.nThe initial and final internal energies of a system are equal when it goes through a cyclic process.  As a result, in any cyclic process, the internal energy change is zero.  An example of a cyclic process is the ocean waves moving back and forth. Waves are created by energy passing through water, causing it to move in a circular motion. At the end of the process, there was not an internal energy change."
+},
+]

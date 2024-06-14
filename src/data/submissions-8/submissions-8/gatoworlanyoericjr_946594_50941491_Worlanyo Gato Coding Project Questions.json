@@ -1,0 +1,296 @@
+[
+{
+  "question": "Find the mass of air vented out of a fan in a day given that the density of the air is 1.2 kg/m^3 and Vdot of the air is .050 m^3/s",
+  "answer": {
+      "code": """
+import numpy as np
+
+rho = 1.2  # Density (kg/m^3)
+Vdot = .030  # Vdot (m^3/s)
+
+# Manipulate mass flow equation
+mdot = (rho * Vdot)  
+
+print("Mdot equals:", mdot, "kg/s")
+      """,
+      "explanation": "This code uses a different version of the mass flow equation given that Area * velocity is equal to Vdot.",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill.",
+          
+      ]
+  }
+}
+
+
+
+
+{
+  "question": "Find the initial and final temperatures of helium gas and the work required to compress it given that the initial and final specific volumes are 7 and 2 respectively and that it is compressed at 180 KPa.In addition, the gas constant of helium is 2.0769 ",
+  "answer": {
+      "code": """
+import numpy as np
+
+sv1 = 7  # Specific Volume (m^3/kg)
+sv2 = 2
+p1 = 180   #pressure (kPa)
+R = 2.0769 # Gas constant for Helium (kJ/Kg*k)
+
+# Manipulate the ideal gas equation (p*v = mRT)--> divide by m ---> (p*v/m = RT)
+#v/m = specific volume = sv
+T1 = (p1 * v1)/R # Temperature (K)
+
+#Pressure is constant (T2/T1 = V2/V1)
+T2 = (sv2/sv1)*T1
+
+# Pressure is constant, work integral  = integral(pdv) = P(v2-v1)
+work = p1 * (sv2-sv1)
+
+print("Initial temperature is:", T1, "K", "Final Temperature is:", T2, "K", "and work equals:", work, "kJ")
+      """,
+      "explanation": "This code uses the Ideal Gas Laws and the work equation to find the intial and final temperatures and the work done on the gas.",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
+      ]
+  }
+}
+
+
+
+
+
+{
+  "question": "Find the power output and thermal efficiency of a power plant given that the rate of heat supply is 290 GJ/h and the heat loss is 139 GJ/h"
+  "answer": {
+      "code": """
+import numpy as np
+
+Qdoth = 290 # Rate of heat in (GJ/h)
+Qdotl # Rate of heat out(GJ/h)
+
+#Net power output is Qdotin - Qdotout
+Wnet = Qdoth - Qdotl
+
+# Find thermal efficiency (useful work/heat input)
+nth = Wnet / Qdoth * 
+
+print("Net work is:", Wnet, "GJ/h", "Thermal efficiency is:", nth, "%")
+      """,
+      "explanation": "This code uses the thermal efficiency equation and heat exchange theorems to calculate the work output and thermal efficiencies. ",
+      "references": [
+	Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill.
+    ]
+  }
+}
+
+
+
+
+
+{
+  "question": "A plastic tank is filled with water. Determine the total weight given that the density of the water is 1000 kg/m^3, volume of the water is .4 m^3 and weight of the tank is 5kg",
+  "answer": {
+      "code": """
+import numpy as np
+
+rho = 1000  # Density (kg/m^3)
+Mtank = 3  # Mass of the tank (kg)
+V = .4  # Volume (m^3)
+
+# Use the mass equation; m = rho*v
+mw = rho * V
+
+#Find total mass
+mtot = mw + mtank
+
+print("Total mass:", mtot, "kg")
+      """,
+      "explanation": "This code utilizes the equation for mass and finds the total mass for the system.",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
+      ]
+  }
+}
+
+
+
+
+
+{
+  "question": "Air is compressed steadily by a compressor. The air temp is maintained constant by heat rejection to the surroundings.Determine the rate of entropy change given that the work in is 15 kW and the temperature is 25 degrees celcius.",
+  "answer": {
+      "code": """
+import numpy as np
+
+T = 25  # Temperature  (degrees Celcius)
+Win = 15 # Work (kW)
+
+# The work in is equal to the heat out
+Qdot = Win
+
+# Use the equation for change in entropy equation. ds = dq/T + ds_irrev
+ds = -Qdot / (T + 273.15)
+
+print("Final change in entropy is :", ds, "W/K")
+      """,
+      "explanation": "This code uses the formula for entropy of a system. This is underlined by the assumptions that this is a steady flow process, kinetic and potential energy changes are negligible, and there are no irreversibilities due to friction.",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
+      ]
+  }
+}
+
+
+
+
+
+
+{
+  "question": "A 7 meter high cylindrical container is filled with equal volumes of water and oil. Find the gauge pressure between the top and bottom of the container. The density of the oil is 800 kg/m^3 and the density of the water is 1000 kg/m^3",
+  "answer": {
+      "code": """
+import numpy as np
+
+rhow = 1000  # Density (kg/m^3)
+rhoo = 800  # Density (kg/m^3)
+grav = 9.81
+
+# equal volumes of each so heights are evenly split
+h = 7 / 2
+
+# Find the gauge pressure for each piece (delp = rho * g * delh)
+delpw = rhow * grav * h / 1000
+delpo = rhoo * grav * h / 1000
+
+#Add to get the total pressure
+gaugepressure = delpw + delpo
+
+print("Final gauge pressure:", gaugepressure, "kPa")
+      """,
+      "explanation": "This code uses the equation for pressure given a height, delp = rho * g * h. The assumption is that the density is uniform throughout each piece.",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
+      ]
+  }
+}
+
+
+
+
+
+{
+  "question": "Find the power generation potential from a hydraulic turbine-generator that is generating electricity from a large reservoir. The reservoir is 120m high and the mass flow rate through the generator is 2500 kg/s. ",
+  "answer": {
+      "code": """
+import numpy as np
+
+z = 120 # Height (m)
+mdot = 2500 # Mass flow rate (kg/s)
+grav = 9.81  # Velocity 1 (m/s)
+
+# Assume all the potential energy can be turned into kinetic energy (total energy = 
+# potential energy = gz
+totenergy = grav * z
+
+#Use work equation (Qdot - Wx = E_cv + mdot_out(h_e + 1/2v_e^2 + gz_e) - 
+# mdot_in(h_i + 1/2v_i^2 + gz_i))
+# energy in is only gz_i. so -Wx = -mdot * gz_i
+Powerpot = mdot * totenergy
+
+print("Power potential is:", Powerpot, "m/s")
+      """,
+      "explanation": "This code uses the shaft work equation to find the maximum power output for a generator given some height of a reservoir.The underlying assumption is that the entire amount of energy can be converted.  ",
+      "references": [
+          "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
+      ]
+  }
+}
+
+
+
+
+
+{
+  "question": "What is the difference between gauge pressure and absolute pressure?",
+  "answer": "Gauge pressure is the difference between the pressure you have and atmospheric pressure and absolute pressure is the total pressure you have."
+}
+
+
+
+
+
+{
+  "question": "What is the difference between Cp and Cv and how do they change?",
+  "answer": "Cp and Cv are specific heat constants under two different constraints. Cv is the specific heat constant under a constant volume, and Cp is the specific heat constant under constant pressure. The equations for Cv and Cp respectively are (du/dt)_v and (dh/dt)_p. When a gas is semi-perfect, Cp and Cv are functions of temperature, but when a  gas is perfect, Cp and Cv are constants.  "
+
+
+
+
+
+{
+  "question": "What is entropy?",
+  "answer": "Entropy is an extensive property that defines the limit on extracting useful work from a system. It increases with irreversibility and increases in temperature."
+}
+
+
+
+
+
+{
+  "question": "What can affect the energy of a system?",
+  "answer": "Doing work on a system and adding heat to a system can raise the energy of that system. In addition, you can raise or lower the height, speed up or slow down the system, or change the enthalpy. You can see this in the steady flow momentum equation: (Qdot - Wx = E_cv + mdot_out(h_e + 1/2v_e^2 + gz_e) - 
+mdot_in(h_i + 1/2v_i^2 + gz_i))"
+}
+
+
+
+
+
+{
+  "question": "What is the difference between a control volume and a system boundary?",
+  "answer": "Mass cannot cross a system boundary. Energy in the form of work or heat however can cross that boundary. The mass of the things in the boundary do not change but the size can change. In a control volume, the size is fixed but because of this, mass is permitted to cross its boundaries. A control volume can also move at a constant speed. "
+}
+
+
+
+
+
+{
+  "question": "What is work and what does it represent?",
+  "answer": "Work is a mode of transfering energy to a system from its surroundings. It can take many forms, such as magnetic, mechanical, or electric work. Mechanical work is when a system is moved by forces acting on the boundary. This work is very common."
+}
+
+
+
+
+{
+  "question": "What makes a process reversible or irreversible?",
+  "answer": "A process is reversible if the system and surroundings can be returned to the states they were originally at. All reversible processes are quasi-equilibrium processes meaning that they are done in very small steps and take place slowly. Some examples of irreversible processes are turbulence and heat transfer without a heat source. "
+}
+
+
+
+
+
+{
+  "question": "What does Bernoulli's equation represent and when can it not be used?",
+  "answer": "Bernoulli's equation gives the pressure change along a streamline in terms of height change and velocity change. This is only valid along streamlines and it cannot be used when the flow is compressiple, viscid or unsteady."
+}
+
+
+
+
+
+{
+  "question": "How does friction change the velocity profile in a pipe?",
+  "answer": "Friction causes the speed profile to reflect a parabola where the center of the pipe has the greatest speed and the ends are lower. This is termed a favorable profile."
+}
+
+
+
+
+
+{
+  "question": "What is the difference between Couette flow and Pouseille flow and what happens when they are combined?",
+  "answer": "Couette flow is a type of viscous flow where one plate is moving an another is stationary. In that case, the flow moves at the speed of the moving plate near it and the flow is near zero at the stationary plate. On the contrary Pouseille flow is flow where both plates are stationary. This results in a parabolic flow where speed is maximum halfway between both plates. When they are combined, you can have an adverse or favorable pressure gradient. Favorable flow happens when dp/dx is less than zero so as you move from one side to the next pressure drops. This velocity profile has a direction of the moving plate. An adverse pressure gradient happens when dp/dx is greater than 0 so pressure increases as you move from one side to another. That results in a velocity profile generally pointing in the opposite side of the plate movement. "
+}
+]

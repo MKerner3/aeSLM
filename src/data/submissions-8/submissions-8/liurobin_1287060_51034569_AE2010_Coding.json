@@ -1,0 +1,184 @@
+[
+{
+    "question": "Bob had a flat tire on one of the wheels of his car. After the car mechanic patched up the leakage, he proceeded to pump up the tire. While the mechanic was pumping the tire, Bob noticed that the pressure meter on the pump rose from 0 to 40 psi. He exclaimed, "How was my tire reading 0 psi at first?! There is no way my tire was in a vacuum state at the beginning! Your pump meter is broken!" Was the mechanic's pressure meter broken?",
+    "answer": "The pressure meter was not broken. The pressure reading was gauge pressure, it is zero at atmospheric pressure. Bob was thinking of absolute pressure where the value is zero at vacuum state."
+},
+{
+    "question": "Fireman is puttin off a fire using a water hose. Water flows through a hose at a constant velocity with a convergin nozzle at the end. Given the water is incompressible fluid, does the flow increase or decrease in velocity at the exit of the hose? Explain using conservation of mass.",
+    "answer": "Flow increases in velocity at the exit of the nozzle. Since mass is conserved, mass flow rate in equals to mass flow rate out. Since the mass flow rate is rho*v*A, if A decreases and rho holds constant due to incompressibility, v has to increase."
+},
+{
+    "question": "It's Evan's first time in the Aviation Museum, as he is excitely walking around the MD-11 plane, he noticed there are some pins sticking out from the nose of the aircraft under the cockpit window for measuring wind speed. If you are the tour guide, how would you explain this feature to Evan? Make sure to include the name of this feature and the principle the operation is based on.",
+    "answer": "This is a pitot tube, and it is operating based on Bernoulli's principle (p + 1/2*rho*v^2 = Stagnation Pressure). There are two holes on this tube, one in the front and one on the side. the hole in the front makes head on collision with the incoming air flow. Therefore the pressure it measures is called stagnation pressure. The hole on the side doesn't make head on collision witht he airflow, therefore it measures the pressure called static pressure. If we subtract static pressure from the stagnation pressure. We have the 0.5*rho*v^2 term. Since we can determine what density of the air is at the moment, we can calculate the velocity of the aircraft at the moment."
+},
+{
+    "question": "Imagine you leave a pan of water outside under the bright sun. Soon after the sunlight heats up the pan from bottom and the water starts boiling. Since this is a cast iron pan, as you touch the pan handle you can feel the heat of the pan. Explain all three mechanism of heat transfers using this senario",
+    "answer": "The process of sun heating up the pan is through radiation. Where the sun's heat travels through vacuum in the form of radiation. As the pan heats up on the bottom, the bottom part of the water heats up and rise. Therefore, over time, water got heated up uniformly through convection. At last, the heat transfers from the pan body to the pan handle through conduction as the cast iron pan is made from solid iron."
+},
+{
+    "question": "Which law of thermodyamics leads to the development of Clausius inequality? Explain this law and Clausius inequality.",
+    "answer": "Second law of thermodynamics can be expressed in terms of Kelvin-Planck statement, which states that it is impossible to construct a heat engine that operates in a complete cycle and extracts heat from a single reservoir, converting it entirely into work. Buidling off of Second Law, Clausius inequality states that total heat transfer divided by the temperature at which the heat transfer occurs is always less than or equal to zero. Equality holds only for reversible processes, while for irreversible processes, the inequality is strict (less than zero)."
+},
+{
+    "question": "Imagine two rooms are separated by a door. One room is fill with balloons and other one is empty. Upon opening the door, the ballon of one room rushed to the empty room, until two rooms are in equilibrium of ballons. In order to restore to the original condition, you have to physically go in and move the ballons from the second room to the first. Using the terms of thermodynamics, explain this process.",
+    "answer": "This senario represents an irreverable process. The ballon flow from one room to the other symbolizes the process. In order to return to the original state of the process, work needs to be done to the system (you picking up the ballons and moving them back to the orignal room)."
+},
+{
+    "question": "In a recent trip to Kennedy Space Center, Amanda was walking in the Rocket Garden where she saw different rockets. One thing in common is the iconic bell shape nozzles these rocket have. Could you explain the design of these A de Laval nozzles (converging-diverging) nozzles in terms of increasing the speed of propellant flow out of the nozzles?",
+    "answer": "A de Laval nozzle is the application of speeding up the fluid to a supersonics speed. In the converging section of the nozzle, the fluid speeds up to a subsonic speed. At the throat of the nozzle, the fluid reaches sonic. In other words, the nozzle is "choked." Upon entering the diverging section of the nozzle, the supersonic fluid go accelerated even more as the diverging nozzle speeds up supersonics flow while converging nozzle speeds up subsonic flow."
+},
+{
+    "question": "When suerpsonics air flows along the surface of an object where the surface turns sharply downwards at a certain degrees. What type of shock is formed? Is the flow through it isentropic? Why?",
+    "answer": "An expansion fan is formed. The process is isentropic (stagnation pressure and stagnation temperature doesn't change across the shock). It is an isentropic process because the flow makes infinitesmally small angle d(theta) turns, making the process gradual and adiabatic, unlike normal shocks."
+},
+{
+    "question": "A flow is flowing though a pipe with friction. Explain what happens if the inital velocity of the flow is subsonic and supersonic. And why the phenomenon you described happens? Assume the pipe is long enough.",
+    "answer": "If the intial flow is subsonic, the flow will reach the speed of sound (choked). If the inital velocity of the flow is supersonic, the flow will slow down. The phenomenon happens because the friction causes inconsistency of flow velocity across the cross sectional area of the tube, forming a converging nozzle. Which speeds up the subsonics flow and slows down the supersonics flow."
+},
+{
+    "question": "The Reaction Control System (RCS) uses compressed nitrogen (Density = 1.251 kg/m^3) to propel spacecraft and correct their orientation in space (vacuum). The gauge pressure behind the converging RCS nozzle is 690,000 Pa. Consider the system to be at a steady state. Nitrogen is ejected from the nozzle at a rate of 80 m/s. Consider the nozzle to have a circular cross-section throughout. The diameter of the nozzle inlet is 5 cm, and the outlet diameter is 2 cm. Calculate the moment exerted on the spacecraft's center of mass (given that the moment arm is 1 m). Assume the nozzle is frictionless on the inside",
+    "answer": {
+        "code": """
+import numpy as np
+
+rho = 1.251                     # kg/m^3
+p_1 = 690000+101325             # N/m^2 
+A_in = np.pi/4 * 0.05**2        # m^2
+A_out = np.pi/4 * 0.02**2       # m^2
+v_out = 80                      # m/s
+v_in = (A_out / A_in) * v_out   # m/s
+R_arm = 1                       # m
+
+# Apply Steady Flow Momentum Equation (F = MassFlowrRateOut*v_out - MassFlowrRateIn*v_in) and principle of continuity (A1*v1 = A2*v2)
+F = rho * A_in * v_in * (v_out - v_in) - p_1 * A_in
+M = F*R_arm
+print(str(np.round(M,3))+' N*M')
+        """,
+        "explanation": "This code utilizes the principle of continuity and steady flow momentum equation for incompressible flow, which states that the mass flow rate remains constant and net force is the difference in inlet-outlet mass flow rate times velocity. The equation A1*v1 = A2*v2 and F = MassFlowrRateOut*v_out - MassFlowrRateIn*v_in expresses this, where A represents cross-sectional area and v represents velocity. We have to be careful that the exit ambient pressure is zero Pa and we have to convert inlet gauge pressure to absolute pressure by adding the atmospheric pressure",
+    }
+},
+{
+    "question": "Imagine a T-shaped tube with the bottom of the T connected to a water reservoir with water density rho = 1000 kg/m^3, and atmospheric pressure exerting on the surface of the water. Airflow with density rho = 1.293 kg/m^3 is flowing at 100 m/s in the horizontal section of the T tube. How high will the water rise in the vertical section of the T tube? Assume the vertical section of the tube is long enough, and water won't flow into the horizontal section of the tube.",
+    "answer": {
+        "code": """
+import numpy as np
+
+rho_water = 1000                # kg/m^3
+rho_air = 1.293                 # kg/m^3
+v_air = 100                     # m/s
+g = 9.81                        # m/s^2
+
+# Apply Bernoulli's principle with two points, one in the moving air in the horizontal section of the tube and the second one in the still air region in the vertical section of the tube.
+delta_p = 0.5*rho_air*v_air**2  # Pa, difference in static pressure of the moving air and the still air in the horizontal and vertical section of the tube
+delta_h = delta_p/(rho_water*g) # m^2
+print(str(np.round(delta_h,3))+' M')
+        """,
+        "explanation": "This problem utilizes Bernoulli's equation for incompressible flow, which states that the total pressure along a streamline of incompressible flow remains constant. The equation p_1 + 1/2*rho*v_1^2 = p_2 + 1/2*rho*v_2^2 expresses this principle. Then we utilize fluids statics equation. The equation delta_p = rho*g*delta_h expresses this",
+    }
+},
+{
+    "question": "Continuing with the previous RCS thruster scenario, after the nitrogen thruster tank is depleted (0 Pa), a replenishing valve that connects the thruster tank to a reservoir tank (P = 690,000 Pa, T = 273 K) opens. The thruster tank is filled adiabatically until it matches the pressure of the reservoir. Assuming nitrogen behaves as a perfect gas with R = 0.2968 kJ/(kg*K) and gamma = 1.470, and given that the volume of the tank is 0.01 m^3, find the final temperature of the gas and its mass inside the thruster tank.",
+    "answer": {
+        "code": """
+import numpy as np
+
+gamma = 1.470
+R = 0.2968          # kJ/(kg*K)
+P = 690000          # Pa
+T_initial = 273     # K
+V = 0.01            # m^3
+
+# First Law: Q - W = delta(U) = c_v*delta(T)
+T_final = gamma*T_initial
+
+# Ideal Gas Law: PV = mRT
+mass = P*V/(R*1000*T_final)
+print('Raise in temperature: '+str(np.round(T_final,3))+' K, '+'mass: '+str(np.round(mass,3))+' kg')
+        """,
+        "explanation": "We approach this problem by finding the work done by the reservoir tank to the control volume of the gas entering the thruster tank, which is p*delta(V). Then we can utilize First Law in Thermodynamics and set Q to be 0 due to adiabatic process and delta(U) to be m*c_v*delta(T). Since we know c_v - c_p = R and c_p/c_v = gamma, we can find T_final using these relationships. Finally, knowing T_final, we can utilize ideal gas law (PV = mRT) to find the mass inside the thruster tank",
+    }
+},
+{
+    "question": "A cyclic machine is designed to take in heat from two heat sources: A at 1K and B at 1000K and reject the heat into the environment at 300K. If source A is supplying the machine with a power of 200 kW, will that be enough for the machine to remove heat from source B at a power of 5 kW?",
+    "answer": {
+        "code": """
+import numpy as np
+
+T_A = 1000      #K
+T_B = 1         #K
+T_EN = 300      #K
+BDot = 5        #kW
+ADot = (1./T_B - 1./T_EN)/(1./T_EN - 1./T_A) * BDot
+print('No, the power supplied by A is not enough. The minimum power from A is '+str(np.round(ADot, 3))+' kW')
+
+        """,
+        "explanation": "Since the machine is cyclic, the power input should equal the power output. In other words, ADot + BDot = ENDot. We can utilize the Clausius inequality, namely sum(dot(Q_i)/T_i) ≤ 0. With this inequality given, we can calculate the minimum power needed from source A to achieve the extraction power from source B.",
+    }
+},
+{
+    "question": "For a long cylindrical pipe with friction and a convergent-divergent nozzle installed at the front, given that the nozzle is choked and with the right back pressure, the nozzle is able to achieve an exit velocity of Mach 2. What is the maximum length of the pipe to accelerate/decelerate the flow, given the nozzle capability and a pipe skin coefficient of 0.1, and a diameter of 0.5m?",
+    "answer": {
+        "code": """
+import numpy as np
+
+c_f = 0.1 
+D = 0.5 # m
+mach_lowBackPressure = 2
+
+# look up flowCapacity in given mach number
+flowCapacity = 0.7591
+
+# look up 4*c_f*L_{max}/D in given mach number
+LmaxConst_lowBackPressure = 0.305
+
+# look up same flowCapacity in subsonic flow condition
+mach_highBackPressure = 0.37;
+
+# look up 4*c_f*L_{max}/D in given mach number
+LmaxConst_highBackPressure = 2.93
+
+#calculate length
+L = LmaxConst_highBackPressure*D/(4*c_f)
+
+print('The maximum length of the pipe is '+str(np.round(L, 3))+' M')
+
+        """,
+        "explanation": "In this question, we should notice that when the nozzle is choked, the flow can be either supersonic or subsonic at the exit for the convergent-divergent nozzle, and these two flow conditions have the same flow capacity. However, the subsonic flow condition should have a higher length.",
+    }
+},
+{
+    "question": "Continuing with the previous RCS thruster scenario, what is the maximum mass flow rate this nozzle can support? Given that c_p of N2 is 1040 J/(kg*K) when the tank temperature is 300K, and assuming gamma = 1.4.",
+    "answer": {
+        "code": """
+import numpy as np
+
+A_out = np.pi/4 * 0.02**2       # m^2
+p_0 = 690000+101325             # N/m^2 
+T_0 = 300                       # K
+c_p = 1040                      # J/(kg*K)
+
+# the nozzle is choked at Mach 1
+MDot = 1.281*A_out*p_0/(np.sqrt(T_0*c_p))
+print(str(np.round(MDot,3))+' kg/s')
+        """,
+        "explanation": "The nozzle reaches the maximum mass flow rate when the flow is choked. Since P_0 at the tank is the same as P_0 at the nozzle, we can use a lookup table to find the flow capacity at Mach 1 and plug in the given constants to find the mass flow rate at that point, which is the maximum mass flow rate.",
+    }
+},
+{
+    "question": "Imagine a convergent-divergent nozzle. The inlet stagnation pressure is 500,000 Pa, and the outlet stagnation pressure is 250,000 Pa. What is the strength of the shock at the divergent section of the nozzle? What happens to the position of the shock if we decrease the back pressure?",
+    "answer": {
+        "code": """
+import numpy as np
+
+p0s = 250000 #Pa
+p0 = 500000  #Pa
+ratio = p0s/p0
+
+#find ratio on the lookup table
+strength = 0.514 # mach number
+print('Strength of shock is '+str(strength)+' Mach. If we reduce the back pressure, the shock will move backwards along the nozzle')
+        """,
+        "explanation": "Given the pre-shock and post-shock stagnation pressure, we can use the ratio to find the Mach number when the shock occurs and determine the strength of the shock. If the back pressure is decreased, the flow reaches a higher velocity before the shock forms. In other words, the flow has more time to accelerate in the nozzle before the shock slows it down.",
+    }
+},
+]

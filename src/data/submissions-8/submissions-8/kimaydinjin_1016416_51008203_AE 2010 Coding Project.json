@@ -1,0 +1,298 @@
+[
+  {
+    "question": "What are stagnation pressure and temperature and why are they important in analyzing compressible flow through nozzles?",
+    "answer": "Stagnation pressure is measured when the fluid is brought to zero velocity by a steady isentropic process with no external work. Likewise, stagnation temperature is the temperature under the same conditions. These properties are important in assessing flow conditions which can be used to analyze phenomena such as shock waves and flow choking."
+  },
+  {
+    "question": "How does the concept of entropy relate to the second law of thermodynamics?",
+    "answer": "Entropy represents the inability of a systems thermal energy to yield useful mechanical work. It's directly related to the second law of thermodynamics, as the law states that the total entropy of an isolated system always increases over time since not all heat can be transformed to work. Entropy helps characterize the direction of spontaneous processes and the efficiency of energy conversion."
+  },
+  {
+    "question": "If you have a supersonic converging-diverging nozzle with a shock in the throat, how would you move the shock to the exit plane?",
+    "answer": "You would decrease the exit static pressure. This is because the pressure ratio plays a crucial role in determining the position of the shock wave: a lower exit static pressure results in a lower pressure ratio across the nozzle."
+  },
+  {
+    "question": "How and why are the units of enthalpy the same as energy, but enthalpy is not energy?",
+    "answer": "Enthalpy is a measure of the total energy content of a system, incorporating both its internal energy and the energy required to overcome pressure-volume work. While the units of enthalpy are the same as energy (joules), enthalpy is not simply energy but rather a form of it. It is distinct from internal energy in that it accounts for both the system's molecular motion and the work done against external pressure."
+  },
+  {
+    "question": "In what way do reversible and irreversible processes differ in terms of energy losses and efficiency?",
+    "answer": "Entropy represents the inability of a systems thermal energy to yield useful mechanical work. It's directly related to the second law of thermodynamics, as the law states that the total entropy of an isolated system always increases over time since not all heat can be transformed to work. Entropy helps characterize the direction of spontaneous processes and the efficiency of energy conversion."
+  },
+  {
+    "question": "How and why does the curvature of streamlines affect the application of Bernoulli's principle?",
+    "answer": "According to Bernoulli's principle, when velocity increases, pressure decreases, and vice versa. So changes in velocity along curved streamlines directly influence the pressure distribution. The curvature of streamlines results in a pressure gradient across the streamlines and in regions where the streamlines curve more sharply (i.e. the center), the velocity of the fluid increases, leading to lower pressure according to Bernoulli's principle."
+  },
+  {
+    "question": "Why is the pressure gradient equal to 0 in a Couette flow and how is this important?",
+    "answer": "The pressure gradient in Couette flow is zero because the flow is driven solely by the shearing motion of the plates, rather than by pressure differences. Since there is no driving pressure gradient in the horizontal direction, then the momentum equation involving viscosity is equal to 0."
+  },
+  {
+    "question": "What is the relationship between the Mach angle and the angle of oblique shocks, and how do variations in these angles affect the Mach speed and flow?",
+    "answer": "The relationship between the Mach angle and the oblique shock angle is described by the Prandtl-Meyer equation, which relates the angle of a Mach wave to the local Mach number of the flow. Higher Mach angles and larger oblique shock angles lead to greater flow deflection and pressure recovery downstream of the shock wave. This results in a reduction in Mach speed and increased deceleration of flow."
+  },
+  {
+    "question": "What is the effect of friction on flow velocity on subsonic and supersonic Fanno flow and why can the lower and upper branches of a Fanno flow not be transversed by the same flow?",
+    "answer": "In subsonic Fanno flow, friction serves to reduce the effective area and increase the flow velocity, but in supersonic flow, the flow velocity is decreased due to friction-induced heating. On a T-S diagram, the flow starting on the upper branch is in subsonic flow, and moving downstream to the sonic state means that as entropy increases, enthalpy decreases, velocity increases, and static pressure decreases. In contrast, if the flow starts on the lower branch in supersonic flow, moving downstream means that as entropy increases, enthalpy increases, velocity decreases, and static pressure increases. These irreversible changes in flow properties exhibit why you can not transverse both branches without violating the 2nd law."
+  },
+  {
+    "question": "A piston system containing 1.25 kg of N2O is initally at 298 K and 1.00 bar. The system then goes through a process where heat transfer adds 101 kJ to the gas, and simultaneously the piston is moved in such a way that the product of pressure and volume in the cylinder is unchanged. After the process has ended, the pressure of the N2O in the cylinder is 0.130 bar. N2O has a molecular weight of 44. (a) What is the entropy change of the gas due to this process. (b) Was this process reversible.", 
+    "answer": {
+      "code": """
+import numpy as np 
+
+# Note: The problem indicates that pV is constant during the heat addition and thus temperature also remains constant.
+
+m = 1.25 # Mass of the gas (kg)
+R = 8314/44 # Gas constant 
+T1 = 298 # Inital temperature (K)
+p1 = 1*(10**5) # Inital pressure (N/m^2)
+p2 = 0.130*(10**5) # Final pressure (N/m^2)
+
+# First law of thermodynamics in the "Tds" equations: Tds = du + pdv leads to ds = du/T + mR(dv/v)
+
+# Integrating the first law leads to the equations for entropy for a perfect gas: s2 - s1 = cvln(T2/T1) + Rln(v2/v1)
+
+# Using Boyle's gas law: p1v1 = p2v2 and noting that T1 = T2 which cancels out the cv term
+delta_s = m*R*np.log(p1/p2)
+
+print("The entropy change is", round(delta_s, ndigits=3), "J/k")
+if delta_s != 0:
+print("This process is not reversible as we can see that the entropy change is", delta_s, "Thus per the definition of irreversible processes it is not possible to attain or reverse the direction of process by extracting heat from the system")
+    """
+    "explanation": "This code calculates the entropy change in a perfect gas. It uses the Tds formulas and its specific properties. Through these calculations we are able to decide whether or not the system is reversible",
+      "references": [
+          "AE 2010 Homework 6 - Turab Zaidi"
+      ]
+    }
+  }
+  {
+    "question": "Air flows isentropically through a duct where the area is changing from point 1 to 2, with no heat transfer or shaft work. The area ratio is (A2/A1 = 2.5), the flow starts at M1 = 0.5, and 4 bar. Find the Mach number and pressure at the second point in the duct.",
+    "answer": {
+        "code": """
+import numpy as np 
+
+gamma = 1.4
+mach_1 = 0.5
+
+A2_A1 = 2.5
+A1star_A2star = 1.0 # isentropic
+
+A1_A1star = (1.0/mach_1) * ((1 + 0.5*(gamma-1)*mach_1**2) / ((gamma + 1)/2))**((gamma+1) / (2*(gamma-1)))
+print(f'A1/A1^* = {A1_A1star:.4f}')
+
+A2_A2star = A2_A1 * A1_A1star * A1star_A2star
+
+print(f'A2/A2star = {A2_A2star:.4f}')
+
+# Using the tables we can see that at A2/A2_A2star, M = 0.17 and at A1_A1star, M = 0.18. Using these values we must interpolate to find the precise M2
+
+machs = np.array([0.17, 0.18])
+areas = np.array([3.46351, 3.27793])
+mach_2 = (machs[0] * (areas[1] - A2_A2star) + machs[1] * (A2_A2star - areas[0])) / (areas[1] - areas[0])
+
+print(f'M2 = {mach_2:.4f}')
+    """,
+      "explanation": "This code utilizes the relations held by the isentropic tables. By using ratios, such as the area ratio here we can figure out the stagnation pressure ratio for calculations and eveuntally the mach number.",
+      "references": [
+            "https://kyleniemeyer.github.io/gas-dynamics-notes/compressible-flows/isentropic.html,", 
+      ]
+    }
+  }
+  {
+    "question": "A turbine produces shaft power from a gas that enters the turbine with a static temperature of 628 K, a velocity of 143 m/ and a stagnation pressure of 14 atm. The gas exits the turbine with a stagnation temperature of 275 K and a stagnation pressure of 0.95 atm. The gas passing through the turbine has a molecular weight of 16 and a specific heat ratio of 1.45. What is the stagnation pressure of the gas entering the turbine. Assuming the turbine is adiabatic, is it also reversible?",
+    "answer": {
+        "code": """
+import numpy as np
+
+T1 = 628 # Temperature (K)
+g = 1.45 # Gamma
+v1 = 143 # Velocity 1 (m/s)  
+R1 = 8.314  # Gas constant (J/mol*K)
+mw = 16 # Molecular Weight (kg/mol)
+
+# Calculate the specific gas constant
+R = R1/mw
+
+# Use the specific heat derivation 
+Cp = ((g*R)/(g-1)) * 1000
+
+# Apply the formula for stagnation temperature 
+T01 = T1 + (v1**2)/(2*Cp)
+
+print("The stagnation temperature entering the turbine:", T01, "K")
+
+T_out = 275 # Temperature (K)
+T0_in = T01 
+P0_in = 14 * (101.325) # Stagnation pressure in (pa)
+P0_out = 0.95 * (101.325) # Stagnation pressure out (pa)
+
+# Change of entropy is 0
+delta_S = 0
+
+# Using the isentropic temperature vs. pressure relations
+P = (P0_out/P0_in)**(1/g)
+T = (T_out/T0_in)**(1/(g-1))
+
+if round(P, ndigits=3) == round(T, ndigits=3):
+print('Yes, it is reversible')
+else:
+print('No, it is not reversible')
+      """,
+      "explanation": "This code calculates the stagnation temperature enetering the turbine with the given values and proves the process is reversible. It makes use of the fact that the process is adiabatic to then utilize the isentropic relations to show that it is reversible.",
+      }
+  },
+  {
+    "question": "A venturi with a throat to inlet ratio of 0.75 is mounted to the side of an airplane fuselage. The airplane is in flight at standard sea level. If the static pressure at the throat is 2050 lb/ft^2, what is the velocity of the airplane?",
+    "answer": {
+      "code": """
+import numpy as np
+
+import math
+        
+# The flow is incompressible and is assumed to be uniform, allowing us to use Bernoulli's equation.
+        
+p1 = 2050 # Static pressure (lb/ft^2) 
+p2 = 2116 # Sea level air pressure (lb/ft^2)
+rho = 0.002377 # Sea level density (slugs*ft^3)
+A1 = 1 
+A2 = 0.75
+        
+# Apply the principle of continuity (A1*v1 = A2*v2) to get v2 = (A1 * v1) / A2
+        
+# Derive Bernoulli's Equation to isolate the variable v1 and utilize continuity, p1 + 1/2(rho)(v1^2) = p2 + 1/2(rho)(v2^2)
+v1 = math.sqrt((2*(p2-p1))/(rho*(((A1/A2)**2)-1)))
+        
+print(f'v1 = {v1:.3f}')
+    """,
+    "explanation": "This code makes use of the principle of countinuty for incompressible flow, where mass flow rate remains constant. Utilizing this principle, we are able to sub the cross sectional areas and v1 for v2 in Bernoulli's equation. Ultimately allowing us to solve for the velocity of the airplane.",
+    "references": [
+        "AE 2010 Homework 4, Turab Zaidi"
+        "https://scorec.rpi.edu/~kjansen/AeroD/Fall_09/Homework_Solutions/HW_3.pdf (Problem 1)",
+      ]
+    }
+  }
+  {
+    "question": "Consider an oblique shock that forms in air at an angle 45 degrees. The conditions before the shock are 40 Celsius, 1.2 bar, and a Mach number of 3.0. What are the Mach number and flow direction after the shock?",
+    "answer": {
+      "code": """
+import numpy as np 
+
+mach1 = 3.0
+gamma = 1.4
+beta = 45 * np.pi/180
+
+# Calculate the oblique shock deflection from shock angle and Mach
+
+theta = np.arctan((2.0/np.tan(beta)) * ((mach1**2 * np.sin(beta)**2 - 1) /(2 + mach1**2 * (gamma + np.cos(2*beta)))))
+
+print(f'Deflection angle = {theta*180/np.pi: .2f}°')
+
+mach_1n = mach1 * np.sin(beta)
+
+# Calculate Mach number after a normal shock 
+
+mach_2n = np.sqrt((mach_1n**2 + 2/(gamma - 1))/(2 * gamma * mach_1n**2/(gamma - 1) - 1))
+mach2 = mach_2n / np.sin(beta - theta)
+print(f'Downstream Mach number = {mach2: .3f}')
+  """,
+    "explanation": "This code utilizes the normal mach number componenets seen by a moving observor to calculate the angle for the oblique shock. Calcualting the oblique shock deflection required us to use the impliction definition of beta(theta,mach). From there we were able to use the normal componenets of a normal shock to evaluate the mach number and flow direction of the oblique shock."
+    }
+  },
+  {
+  "question": "A supersonic air flow at M1 = 2.4 and p1 = 1 bar encounters a normal shock. Compute the Mach number in the post-shock flow M2 as well as the relative variation in the stagnation pressure and specific entropy. Plot the downstream mach number to the upstream mach number too.",
+  "answer": {
+    "code": """
+import numpy as np 
+
+from matplotlib import pyplot as plt 
+
+M1 = 2.4 # Mach number downstream
+P01 = 1 # Stagnation pressure (bar)
+gamma = 1.4
+
+# Use the quadratic equation for M1 in terms of M2:
+
+M2 = (((2+(gamma-1)*(M1**2)))/(2*gamma*(M1**2)+1-gamma))**(1/2)
+print(f'M2 = {M2: .3f}')
+
+# Apply the normal shock relations to obtain P1
+
+P1 = 1 + ((2*gamma)/(gamma+1))*(M1**2-1)
+
+# Employ the equation used for pressure ratio across a shock
+
+P02 = ((((gamma+1)*(M1**2))/(2+(gamma-1)*(M1**2)))**(gamma/(gamma-1)))/(((2*gamma)/(gamma+1))*(M1**2)-((gamma-1)/(gamma+1)))**(1/(gamma-1))
+
+# Now use the relative variation in the stagnation pressure formula:
+delta_P0 = (P01-P02)/P01
+
+print(f'delta_P0 = {delta_P0: .3f}')
+
+# Specific entropy can be found through S1-S2/Cv = -ln[(P2/P1) * (P1/P2^gamma)]
+
+P2 = (((gamma+1)*(M1**2))/((gamma-1)*(M1**2)+2))
+
+specific_entropy = -np.log(P1/(P2**gamma))
+
+print(f'specific_entropy = {specific_entropy: .3f}')
+
+gamma = 1.4
+mach1 = np.linspace(2.4, 5.4, num=10, endpoint=True)
+mach2 = np.sqrt((mach1**2 + 2/(gamma-1))/(2*gamma*mach1**2/(gamma-1) - 1))
+
+plt.plot(mach1, mach2)
+plt.xlabel(r'$M_1$')
+plt.ylabel(r'$M_2$')
+plt.title('Downstream Mach number versus upstream Mach number for normal shocks')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+        """,
+    "explanation": "This equation uses the normal shock relations to figure out the required mach number, stagnation pressure and specifc entropy. It also plots the downstream mach versus the upstream mach number to showcase
+    how the mach number upstream (M1) will always be greater than the mach number downstream (M2) for a normal shock.",
+    "references": [
+      "https://web.stanford.edu/~jurzay/ME355_files/HW2.pdf (Problem 1)",
+      ]
+    }
+  }
+  {
+    "question": "A system executes a power cycle while receiving 1050 kJ by heat transfer at a temperature of 525 K and
+    discharging 700 kJ by heat transfer at 350 K. There are no other heat transfers.
+    a. Determine if the cycle is internally reversible, irreversible, or impossible.
+    b. Determine the thermal efficiency. Compare this value with the maximum possible efficiency.",
+    "answer": {
+    "code": """
+import numpy as np
+
+Qh = 1050 # Energy received by heat reservoir (KJ)
+Qc = 700 # Energy lost to cold reservoir (KJ)
+Th = 525 
+Tc = 350 
+    
+# To determine if the cycle is internally reversible, irreversible or impossible, consider the Clausius Inequality,
+# where Qh/Th = (1050 KJ)/(525K) = 2KJ/Kg and Qc/Tc = 2 KJ/kg leading to Qh/Th - Qc/Tc = delta_S
+delta_S = 2 - 2 
+    
+# Note since Qc < 0 since heat leaves the system. We're also assuming that the temperature at the boundaries to the system where the heat is added/removed is the same as the adjacent reservoir. 
+# Thus, we see that the cycle is internally reversible
+    
+# The thermal efficiency is mu = 1 - Qc/Qh 
+    
+mu = 1 - Qc/Qh 
+    
+print(f'mu = {mu: .3f}')
+    
+mu_max = 1 - Tc/Th
+    
+print(f'mu_max = {mu_max: .3f}')
+    
+# The cycle is operating at the maximum possible efficiency since it is internally reversible.
+    """,
+  "explanation": "This code utilizes the Clausiuus Inequality to exhibit the cycle is reversible, it accounts for the heat being taken in and extracted. The thermal efficencies being the same further exhibit the cycle being reversible",
+  "references": [
+      "https://engineering.purdue.edu/~wassgren/notes/NotesOnThermodynamicsFluidMechanicsAndGasDynamics_Wassgren.pdf (Page 274)",
+    ]
+    }
+  }
+]

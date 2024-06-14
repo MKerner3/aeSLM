@@ -1,0 +1,147 @@
+[
+    {
+        "question": "Why is the pressure the same at all depths of a connected (barrierless) fluid, regardless of shape?",
+        "answer": "To answer this question, we can look at the general equation for pressure in a fluid: p = rgh + pa, where r represents density, g represents gravity, and h represents the depth we are measuring. pa is atmospheric pressure, which will be the same across all points, so it can be ignored. As for rgh, we can see that this value only ever changes depending on the height and density of the fluid. In a connected fluid, the density will be the same at all points, therefore if we establish h to be the same at all points, they will return the same total pressure, regardless of the shape of the fluid."
+    },
+    {
+        "question": "What does it mean for a process to be 'quasi - equilibrium', and why is this statement so important to applying thermodynamic relations to fluids?",
+        "answer": "A process can be called 'quasi - equilibrium' if the rate of change of the process is extremely large compared to the time it takes for a system to reach thermodynamic equilibrium. This statement holds value when applying thermodynamic relations, as it allows us to be sure that only one 'state' of a system exists at a single point in time. Many thermodynamic relations directly affect the state of a system, so being sure that there is only one option is integral to applying these relations confidently."
+    },
+    {
+        "question": "Can a fluid going through an isochoric process have work done on it or do work?",
+        "answer": "An isochoric process is one where the volume of the fluid being studied is kept constant. We can assume shaft work is zero and use the definition of pressure to define the relation between work (W) and volume (V). Pressure (p) is equal to Force (F) over Area (A). Therefore, F = pA. Since W is equal to F along an infinitesimal distance (dx), and pressure always acts normal to a surface, we can get W = pAdx. Adx is equal to dV, or the change in volume. Therefore W = pdV. Since an isochoric process means that dV is 0, that means W must be 0, and work cannot be created from an isochoric process."
+    },
+    {
+        "question": "What does it mean for a process to be 'path-dependent'? Which terms of the first Law of Thermodynamics are path-dependent? ",
+        "answer": "Path dependency means that the method (path) by which a system is taken from one state to another affects the end state of the system. The first law of thermodynamics can be defined as follows: Q = W + dU. Work is path dependent because it can be thought of as the area under a Pressure - Volume graph. Multiple lines can be taken between any two points (states), and the area under their curves can be drastically different. The internal energy of a system depends on state variables, i.e. the change in energy is only defined by the values of the initial and final state, not the path between the two. Since Q is in part defined by a path-dependent variable (W) , it is also logical to conclude that Q is a path-dependent variable, which it is."
+    },
+    {
+        "question": "If a system is taken to a Pressure-Volume (pV) curve by stirring at a constant volume and reversibly compressing or expanding, can it be adiabatically taken off that curve?",
+        "answer": "An adiabatic process is one where no heat is extracted or added to the system from the surroundings. When a fluid system is stirred, this is the same as adding work to a system. Using the first Law of Thermodynamics we know that since Q = W + dU, therefore in this scenario, Q must increase. In order to leave this new state then, heat must taken out, as the work cannot be removed by 'unstirring', however this isn't possible in an adiabatic process, where heat cannot be added or removed. Therefore a system cannot be adiabatically shifted off a pV curve."
+    },
+    {
+        "question": "Explain why an Adiabatic and Reversible process must be Isentropic?",
+        "answer": "For this, lets take a look at the fundamental differential equation for entropy: ds = dQ/T + ds(irreversible). For an irreversible process, ds(irreversible) goes to zero, as no irreversible entropy is generated. In an adiabatic process, no heat is transfered, so dQ is also zero. Plugging these values into the differential equation, we can see that ds will be 0, or there will be no change in entropy, which is what characterizes an isentropic equation. Therefore, a reversible and adiabatic process must be isentropic."
+    },
+    {
+        "question": "At the exit of a nozzle, the static pressure is 5.28 kPa, while at the entrace, the stagnation pressure is 10.00 kPa. Would decreasing the pressure at the exit increase the mass flow rate?",
+        "answer": "No. This is because the ratio of static pressure to stagnation pressure is 0.528. At this ratio, the flow is choked, meaning that further decreasing the exit static pressure would not increase the mass flow rate through the nozzle."
+    },
+    {
+        "question": "What happens to static temperature, static pressure, and density across a shock and why?",
+        "answer": "Static temperature, static pressure, and density all increase almost instantaneously across a shock. This is because shocks are created by objects moving faster than the speed of sound, i.e. the speed at which fluid blobs can communicate and react to changes in the environment. Because of this, the variations cause a high pressure shock wave to build up and release in a very short amount of time."
+    },
+    {
+        "question": "What is the difference between supersonic and subsonic Fanno flow in a piper with friction? Why does this occure?",
+        "answer": "In a pipe with friction, supersonic flow starts decreasing in speed, while subsonic flow increases in speed. This occurs because Fanno flow always increases in entropy. For a supersonic flow, this is shown by the Mach number decreasing until the flow is choked. Conversely subsonic flow increases in Mach number until the flow is choked."
+    },
+    {
+        "question": "A rectangular window of height 4m and unknown width is used to seal up a tank of water. The top of the window is 3m deep in the tank. What is the ratio of the the total force due to pressure on the bottom half of the window over the top half?",
+        "answer": {
+            "code": """
+            h = 4  # height of window
+            i = 3  # depth of top of window
+            h1 = h/2  # height of each of the two pieces of window after being split in half
+            i1 = i + h1  # depth of top of lower half of window
+            F1 = h1 * h1 * (i + (h1/2))  # top half force, equation found by solving out integral in the explanation
+            F2 = h1 * h1 * (i1 + (h1/2))  # bottom half force
+            ratio = F2/F1  # ratio of bottom half force to top half force
+            print("The ratio of force on the bottom half of window over the top half of window is:", ratio)
+            """,
+            "explanation": "In order to figure out the ratio, we can split the window into two separate windows and calculate the force on them equally. The force of pressure on a window can be found by the summation of force on all small sections of the window. For a single window, this can be shown by rgh times the integral of z dz along the path from i to i + h, where r is the density, g is gravity, i is the depth of the top of the window, and h is the height of the window. r and g can be ignored because they are constants and will divide out in the ratio regardless."
+        }
+    },
+    {
+        "question": "An aircraft moving at Mach 3 with an atmospheric temperature of 217K. What is the stagnation temperature of the flow of air at the inlet of the engine?",
+        "answer": {
+            "code": """
+            M = 3  # Mach Number
+            y = 1.4  # Gamma value for air
+            T = 217  # Atmospheric Temperature
+            ratio = 1 + (y-1)/2 * (M**2)
+            print("The stagnation temperature at the inlet of engine flow is:", round(T * ratio,3))
+            """,
+            "explanation": "This can be solved using the equation T0/T = 1 + (y-1)M^2/2, where T0 is the stagnation temperature, M is the mach number, and y is the ratio of cp/cv for the fluid, where in this case it can be assumed as 1.4 for air."
+        }
+    },
+    {
+        "question": "Water is flowing into a tank with an area of 3 m^2 and an inlet velocity of 10 m/s, and an outlet area of 2 m^2 and an outlet velocity of 5 m/s. What is the rate of mass accumulation in the tank?",
+        "answer": {
+            "code": """
+            Ain = 3  # Area of inlet pipe
+            Vin = 10  # Velocity of inlet flow
+            Aout = 2  # Area of outlet pipe
+            Vout = 5  # Velocity of outlet flow
+            p = 1000  # Density of water
+            mIN = p * Ain * Vin  # Massflow rate in
+            mOUT = p * Aout * Vout  # Massflow rate out
+            mA = mIN - mOUT  # Mass accumulation
+            print("The mass accumulation rate is:", mA,"kg/s")
+            """,
+            "explanation": "We can use the equation mf = pAv for both the inflow and the outflow, and then we can subtract the outflow from the inflow to find the mass accumulation in the tank. We can assume p is 1000 kg/m^3"
+        }
+    },
+    {
+        "question": "1000 kJ of energy is added to 2m^3 of air at a pressure of 10 bar. The temperature of the system is 100K, and the specific heat at constant volume is 0.74 kJ/(kgK). What is the change in temperature of the system?",
+        "answer": {
+            "code": """
+            import numpy as np
+            cv = 0.74  # specific heat at constant volume
+            Q = 1000  # Added heat
+            V = 2  # Volume of air
+            T = 100  # Temperature in Kelvin
+            p = 10  # Pressure
+            R = 287  # Constant
+            m = (p * (10**5) * V/(R * T))  # mass from ideal gas law
+            dT = Q/(m * cv) # change in temperature
+            print("The change in temperature is: ", round(dT,3),"K")
+            """,
+            "explanation": "First, we use pV = mRT to find the mass of the air in the system. Then we use the Q - W = dU, and set du equal to mcvdT and solve for dT"
+        }
+    },
+    {
+        "question": "At mach 1.050, a skin friction coefficient of 0.05, and a diameter of 2m, what length of pipe is needed to choke a viscous flow?",
+        "answer": {
+            "code": """
+            cf = 0.05  # skin frction coefficient
+            D = 2  # Diameter of pipe
+            Val = 0.0027  # value of 4cfL/D for mach 1.050
+            L = Val * D/(4 * cf)  # length to chock pipe
+            print("The length of pipe needed to choke the flow would be:", L,"m")
+            """,
+            "explanation": "We can use the supersonice mach relation tables to find the value of 4cfL/D. This is 0.0027, we can use this to solve for L."
+        }
+    },
+    {
+        "question": "A system extracts heat from a heat source at 1000K and the atmosphere at 200K in order to deliver 13kW of energy to a building at 500K. What rate is the heat being extracted from the heat source?",
+        "answer": {
+            "code": """
+            T1 = 1000  # Temperature of source 1
+            T2 = 200  # Temperature of source 2
+            T3 = 500  # Temperature of source 3
+            Q3 = 13  # Rate of heat transfer
+            ratio = (1/T2 - 1/T1)/(1/T2 - 1/T3)  # ratio of Q3/Q1
+            print("The rate of heat extraction from the heat source is:", round(Q3/ratio,3),"kW")
+            """,
+            "explanation": "We can use the Clausius inequality to solve for Q1 in Q1 + Q2 = Q3, and Q1/T1 + Q2/T2 - Q3/T3 <= 0. By doing some algebra on these equations, we can set Q2 = Q3 - Q1 and solve for the ratio of Q3/Q1 and then divide the value of Q3 to get Q1."
+        }
+    },
+    {
+        "question": "Water is flowing through a tube with an area of π/4m^2 at a rate of 2m^3/s and a pressure of 80 kPa. What is the pressure after the area becomes π/16 m^2?",
+        "answer": {
+            "code": """
+            import numpy as np
+            vF = 2 # Volumetric flow rate
+            p = np.pi # pi
+            Ain = p/4 # Area of inlet
+            Aout = p/16 # Area of second point
+            pIn = 80 # Pressure of inlet
+            v1 = vF/Ain # Velocity at point one
+            v2 = vF/Aout # Velocity at point two
+            p2 = (80 * 1000) + (0.5 * 1000 * ((v1**2) - (v2**2))) # Pressure at point two
+            print("The pressure at the second point is:", round(p2/1000,3),"kPa")
+            """,
+            "explanation": "Use bernoulli's equation, assuming a steady, incompressible, and inviscid flow as it is not mentioned. the rgz component can also be neglected as no change in height is mentioned. First, use the volumetric flow rate to find the velocity at both points by dividing by area. Then, simply solve for the constant at the initial point and use the value to find the pressure at the second point. "
+        }
+    }
+]

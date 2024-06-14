@@ -1,0 +1,246 @@
+[
+    {
+        "Question" : "Explain the difference between Poiseuille and Couette Flow." ,
+        "Answer" : "Poiseulle flow is characterized by a constant pressure gradient causing the laminar flow of an incompressible fluid moving between two fixed plates (such as a pipe). Couette flow, however, involves one stagnant plate and one moving plate that drives the flow of the fluid through shear stress, rather than a pressure gradient."
+    },
+    {
+        "Question" : "How can there be a temperature change within an adiabatic process?",
+        "Answer" : "An adiabatic process refers to that fact that there is no heat exchange between the system and its surroundings. However, a temperature change within the system itself is allowed. In other words, the temperature can be altered by work, but there is no exchange with the surroundings."
+    },
+    {
+        "Question" : "How do you distinguish between a reversible and irreversible process?",
+        "Answer" : "A reversible process is a process where both the system and the surroundings can be returned to their initial states. This means that the net heat and net work exhchange between the system and the surroundings is zero. Irreversibilites are caused by factors such as friction, unrestrained expansion, and heat transfer across a finite temperature difference."
+    },
+    {
+        "Question" : "Can the Clausis inequality be used on both reversible and irreversible processes?",
+        "Answer" : "The cyclic integral of SQ/T is always less than or equal to zero. This is valid for reversible and irreversible cycles. If a cycle is reversible, the integral will be equal to zero. The Kelvin-Plank statement tells us that no system can produce a net amount of work while operating in a cycle and exchanging heat with a single thermal energy reservoir. Due to this statement, we know that the total work of the system cannot be greater than 0. However it can be less than 0, allowing us to utilize the Clausius Inequality for irreversible processes."
+    },
+    {
+        "What does it mean for a process to be both internally reversible and adiabatic?",
+        "When a process is both reversible and adiabatic, it can be deduced that the process also has constant entropy. This is known as an isentropic process."
+    },
+    {
+        "Question" : "What are the implications of using a control volume on a steady flow process?", 
+        "Answer": "The rate of entropy change within a control volume during a process is equal to the sum of the rate of entropy transfer through the control volume boundary by heat transfer and mass flow, and entropy generation within the boundaries by irreversiblities. Therefore, many control volumes acting in steady flow processes experience no change in their entropy. This makes it possible to use isentropic relations, and assume constant conditions through the control volume."
+    },
+    {
+        "Question" : "What happens to the Mach number downstream of a normal shock vs an oblique shock?",
+        "Answer" : "Similar to normal shocks, the mach number decreases across an oblique shock and is only possible if the upstream flow is supersonic. However, unlike normal shocks which always have a subsonic downstream mach number, oblique shocks may have a subsonic, sonic, or supersonic downstream Mach number depending on the upstream value."
+    },
+    {
+        "Question" : "Explain when supersonic processes are irreversible.",
+        "Answer" : "When flow moves faster than the speed of sound (Mach 1), there is a very sudden decrease in the flow area, and shock waves are generated in the flow. Across a shock wave, the static pressure, temperature, and density change drastically and nearly instantaneously, meaning the flow properities occur non-isentropically."
+    },
+    {
+        "Question" : "How does the first law of thermodynamics define the property total energy?",
+        "Answer" : "Consider the statement 'for all adiabatic processes between two specified states of a closed system, the net work done is the same regardless of the nature of the closed system and the details of the process'. If net work is the same for all adiabatic processes of a closed system between two defined states, then the value of the net work must depend soley on the end states of the system, which corresponds to a change in property called total energy. The different forms that constitute total energy are kinetic, potential, and internal energy." 
+    },
+    {
+        "Question" : "What does the area under the process curve represent on a P-v diagram?",
+        "Answer" : "The area under the process curve on a P-V diagram is equal to the work done during a quasi-equilibrium expansion or compression process of a closed system. It represents the boundary work done per unit mass, therefore if the system is isochoric, the boundary work associated is always zero."
+    },
+    {
+        "Question" : "A frictionless piston-cylinder system contains 2kg of an ideal gas at 100 kPa and 300 K. The gas is slowly compressed, undergoing a polytropic process, until it reaches a final temperature of 360 K. Calculate the work input during this process. Assume n = 1.4",
+        "Answer" : {
+            "Code" : """
+            import numpy as np
+            m = 2 # kg
+            P1 = 100 # kpa
+            T1 = 300 # K
+            T2 =360 # K
+            R = 0.287 # gas constant
+            n = 1.4 # ideal gas
+
+            #calculate work for a polytropic process
+            W = (m * R * (T2-T1))/(1-n)
+
+            print("The work input during this process is", W, "kJ")
+                """,
+                "Explanation" : "We know the process is polytropic, therefore utilzing the work formula for a polytropic process W = (P1*V1-P2*V2)/(n-1). We can rearrange this formula to W = (m*R*(T1-T2))/(n-1) to fit the parameters given.",
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+        }
+    }
+    {
+        "Question" : "A piston-cylinder device initially contains 0.4 m^3 of air at 100 kPa and 80*C. The air is compressed to 0.1 m^3 in such a way that the temperature inside the cylinder remains constant. Determine the work done during this process and graph the process on a P-V diagram.",
+        "Answer" : {
+            "Code" : """
+            import numpy as np 
+            import matlablib.pyplot as plot
+            V1 = 0.4 # m^3
+            V2 = 0.1 # m^3
+            P1 = 100 # kPa
+            T0 = 80 # C
+
+            #calculate work by using ideal gas law and integrating
+            W = (P1*V1)*np.log(V2/V1)
+
+            print("The work done during this process is", W, "kJ")
+
+            #plot diagram
+            T_K = T0 + 273.15
+            P2 = (P1*V1)/V2
+            V_range = np.linspace(V1, V2, 100)
+            P_range = (P1*P2)/V_range
+            plt.figure(figsize=(8, 5))
+            plt.plot(V_range, P_range, label='Isothermal Compression')
+            plt.xlabel('Volume (m³)')
+            plt.ylabel('Pressure (Pa)')
+            plt.title('PV Diagram of an Isothermal Compression')
+            plt.legend()
+            plt.grid(True)
+            plt.show()
+                """,
+                "Explanation" : "Assume the compression process is quasi-equilibrium, and that the gas is ideal due to high temperature and low pressure. Using the ideal gas law, find that P = constant / V. To find the work done, substitute C/V into the Pdv integral, and compute the integral from state 1 to 2. This yields P1*V1*ln(V2/V1).",
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+            
+        }
+    }
+    {
+        "Question" : "An ideal gas flows steadily in a pipe at 300kPa, 77*C, and 25 m/s at a rate of 18 kg/s. Determine the diameter of the pipe.",
+        "Answer" : {
+            "code" : """
+            import numpy as np
+            P = 300 # pressure
+            T = 77 # temp in celcius
+            v = 25 # velocity m/s
+            m = 18 # mass flow rate kg/s
+            R = 287 # gas constant j/(K*kg)
+            pi = 3.14159
+
+            # find density using ideal gas law
+            rho = P / (R*T)
+            # use mass flow rate formula to calculate area --> diameter
+            d = ((4*m)/(pi*rho*v))**(-1/2)
+
+            print("The diamater of the pipe is: ", d, "meters")
+                """,
+                "Explanation" : "Assume that this is a steady flow process, where mass in = mass out. Recognizing that the gas is ideal, we are able to rearrange the formula P = rho*R*T to find rho. Once rho is found, we are able to substitute this into the mass flow rate formula m = rho*A*v. Rearranging for diameter yields: d = ((4*m)/(pi*rho*v))**(-1/2)",
+                "References" : [
+                        "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                    ]
+        }
+    }
+    {
+        "Question" : "Air enters an adiabatic nozzle steadily at 300kPa, 200*C, and 30 m/s. It leaves at 100kPa and 180 m/s. The inlet area of the nozzle is 80cm^2. Determine the mass flow rate through the nozzle and the exit temperature of the air. Assume Cp = 1.005 kJ/kg*K"
+        "Answer" : {
+            "code" : """
+            import numpy as np
+            P1 = 300 #kPa
+            T_C = 200
+            T = T_C + 273.15
+            v1 = 30 # m/s
+            A1 = 80 * 10**(-4)
+            P2 = 100 # kPa
+            v2 =180 # m/s
+            R = 0.287
+            Cp = 1005
+
+            # find mass flow rate:
+            m = (P1/(R*T)) * A1 * v1
+            # find exit temp of air
+            T2 = ((Cp*T_C)+((v1**2)/2)-((v2**2)/2))/Cp
+            print("The mass flow rate through the nozzle is ", m)
+            print("The temperature at the exit of the nozzle is ", T2)
+                """,
+                "Explanation" : "Assuming that this is a steady flow, adiabatic process with only one inlet and exit, we can use the mass flow rate formula by substituting in rho = P/R*T. ",
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+
+        }
+    }
+    {
+        "Question" : "A heat engine with a thermal efficiency of 40 percent rejects 1000kJ/kg of heat. How much heat does it receive?"
+        "Answer" : {
+            "code" : """
+            import numpy as np
+            n = 0.4
+            Q2 = 1000 # kJ/kg
+
+            #using efficency formula
+            Q1 = (-Q2)/(n-1)
+
+            print("The heat engine receives", Q1, "kJ/kg of heat.")
+                """,
+                    "Explanation" : "Utilizing the efficiency formula where n = 1 - Q2/Q1, rearrange for Q1. This formula represents the fration of heat that becomes useful work, where Q2 is heat rejected and Q1 is heat received.",
+                    "References" : [
+                        "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                    ]
+        }
+    }
+    {
+        "Question" : "A 3-ft^3 adiabatic rigid container is divided into two equal volumes by a thin membrane. Initially, one of these chambers is filled with air at 100 psia and 100*F, while the other chamber is evacuated. Determine the internal energy change of the air when the membrane is ruptured and the final air pressure in the container."
+        "Answer" : {
+            "Code" : """
+            import numpy as np
+            P1 = 100 #psia
+            T1 = 100 # F
+            V1 = 1.5
+            V2 = 3
+
+            #change in internal energy
+            dU = 0 
+            #use isothermal properties because no change in temperature
+            P2 = P1*V1/V2
+            print("The change in internal energy of the system is", dU, "and the final air pressure of the container is", P2)
+                """,
+                "Explanation" : "The system is stationary, therefore the potential and kinetic enrgy changes are 0, leaving dU = 0 as the system is not doing any work or exchanging heat with the surroundings. As the container is adiabatic, we can use isothermal relations as no heat is lost to the surroundings. Rearranging for P2, we get the equation P2 = P1*V1/V2.", 
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+
+        }
+    }
+    {
+        "Question" : "Air expands isentropically from 1.5 MPa and 60*C to 0.4 MPa. Calculate the ratio of the initial to final speed of sound. Assume gamma = 1.4"
+        "Answer" : {
+            "Code" : """
+            import numpy as np
+            T1 = 60 + 273.15 # celcius to kelvin
+            P1 = 1.5 # MPa
+            P2 = 0.4 # MPa
+            ga = 1.4
+            R = 287
+
+            #using isentropic relations, find T2
+            T2 = (T1)*(P2/P1)**((ga-1)/ga)
+            #find speed of sound at inlet and outlet
+            a1 = np.sqrt(ga*R*T1)
+            a2 = np.sqrt(ga*R*T2)
+            #find ratio of inlet to outlet
+            ratio = a1/a2
+
+            print("The ratio of the initial to final speed of sound is", ratio)
+                """,
+                "Explanation" : "The problem states the air expands isentropically, therefore use isentropic relations between pressure and temperature to find T2. From this, use the formula (square root of gamma*R*T) to calculate the acceleration for initial and final speed.",
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+        }
+    }
+    {
+        "Question" : "A 50kg block of iron at 500K is thrown into a body of water that is at a temperature of 285K. When the iron block reaches thermal equilibrium with the water, determine the entropy change of the iron block. Assume the average specific heat to be 0.45 kJ/kg*K"
+        "Answer" {
+            "Code" : """
+            import numpy as np
+            m = 50 # kg
+            T_b = 500 # K
+            T_L = 285 # K
+            C = 0.45 #kJ/kg*K
+
+            #change in entropy
+            dS = m*C*np.log(T_L/T_b)
+
+            print("The change in entropy of the iron block when in equilibrium with the lake is", dS)
+                """,
+                "Explanation" : "Assume the rock and the water are both incompressible. The kinetic and potential energy changes of the block are negligible once the block is in the water, therefore dE=dU. Given that a lake is very large in reference to a rock, the final temperature of the lake and rock will be that of the lake initially. By integrating the entropy formula m(s2-s1), we get m*C*ln(T_f/T_i).", 
+                "References" : [
+                    "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+                ]
+        }
+    }
+]

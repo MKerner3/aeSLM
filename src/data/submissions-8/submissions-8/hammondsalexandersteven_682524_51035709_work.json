@@ -1,0 +1,87 @@
+[
+  {
+    "question": "How would you determine the amount of work done in a given system by a shock wave?",
+    "answer": "Shock waves do not do work on the surrounding system."
+  },
+  {
+    "question": "Explain the difference between heat transfer through conduction and heat transfer through convection.",
+    "answer": "Conduction is when energy from more highly energetic particles is transferred to particles with less energy from inter-particle interactions. Convection is when heat moves with particles as they flow as a part of a fluid. There is no redistribution of heat during convection."
+  },
+  {
+    "question": "An incompressible fluid with a constant density is flowing at 10 meters per second through a circular pipe with a radius of 0.5 meters. The pipe then decreases in size so that it now has a radius of 0.15 meters. Find the velocity of the fluid in the section of the pipe with reduced size.",
+    "answer": {
+      "code": "\n\t    import numpy as np\n\t\n\t    v1 = 0.5\n\t    r2 = 0.15\n\t    v1 = 10\n\t    A1 = r1*2*3.14   #Calculating the area of the large pipe\n\t    A2 = r2*2*3.14   #Calculating the area of the small pipe\n\t    v2 = (A1*v1)/A2.  #Calculating the second velocity\n\t\n\t    print(\"Velocity through the smaller pipe section:\", V2, \"meters per second\")\n\t    ",
+      "explanation": "This code calculates the velocity of flow of an incompressible fluid in a circular pipe after the radius changes. This is done by using the mass flow rate equation m=pvA where m is the mass flow rate (which is the same in both sections of the pipe), p is the density (which is also the same in both pipe sections), v is the flow velocity, and A is the area of the pipe."
+    }
+  },
+  {
+    "question": "After a system undergoes an irreversible process can it be returned to its original state? If so, how?",
+    "answer": "A system that undergoes an irreversible process can be returned to its original state by undergoing the appropriate heat transfer."
+  },
+  {
+    "question": "What is a heat reservoir and what assumption is often made regarding them?",
+    "answer": "A heat reservoir is a body that acts as either a source or sink of heat and they are often assumed to have an infinite heat capacity."
+  },
+  {
+    "question": "In what range of Mach numbers is flow assumed to be incompressible?",
+    "answer": "Fluids are assumed to be incompressible for Mach numbers less than 0.3."
+  },
+  {
+    "question": "If the temperature of a gas in an enclosed space increases, what is likely to happen to the pressure and volume of said gas?",
+    "answer": "The pressure of the gas would likely increase since a higher temperature is the result of particles having more energy. This results in the particles wanting to move more, creating more inter-molecular collisions, increasing the pressure inside the space. The volume of the gas would not change due to the gas being held in an enclosed space."
+  },
+  {
+    "question": "What is the Magnus effect?",
+    "answer": "The Magnus effect is the term for the lift force that is applied to an object moving through a fluid while undergoing rotation. The direction of this lift force is dependent upon the direction of the rotation."
+  },
+  {
+    "question": "What are possible explanations for an airfoil experiencing flow separation?",
+    "answer": "The airfoil could be at a high angle of attack, the airfoil could be accelerating, the flow could be non-uniform, or the airfoil\u2019s angle of attack could be varying."
+  },
+  {
+    "question": "A stream of air at a constant velocity of 25 meters per second is attached to a circular object with a radius of 3 meters for a period of time at sea level. Assuming the stream has a constant height of 0.2 meters and a constant area, what is the surface pressure of the circular object? Assume the air density is 1.23 kg per meter^3.",
+    "answer": {
+      "code": "\n\t    import numpy as np\n\t\n\t    v = 25\n\t    r = 3\n\t    h = 0.2\n\t    rho = 1.23\n\t    atm_pressure = 101325\n\t    surface_pressure = atm_pressure - (rho * (v^2) * np.ln((r + h)/r))\n\t\n\t    print(\u201cSurface pressure on the face of the circular object:\u201d, surface_pressure, \u201cPascals\u201d)\n\t    ",
+      "explanation": "The equation to solve this question is obtained by rearranging and integrating the equation for the pressure gradient in the normal direction along a curve which is given as dp/dn = rho*(v^2)/r."
+    }
+  },
+  {
+    "question": "A chamber contains a gas with at a pressure of 15 MPa, a volume of 0.1 m^3, and a mass of 10 kg. What is the temperature of this gas?",
+    "answer": {
+      "code": "\n\t    import numpy as np\n\t\n\t    m = 25\n\t    P = 15 * 10^6\n\t    V = 0.1\n\t    R = 287\n\t    T = (P * V) / (R * m)\n\t\n\t    print(\u201cTemperature of the gas:\u201d, T, \u201cKelvin\u201d)\n\t    ",
+      "explanation": "This problem is solved by using the ideal gas equation PV = mRT where R is the ideal gas constant."
+    }
+  },
+  {
+    "question": "A powerplant is built that cycles between a natural hot spring and a cool pond nearby. The temperature of the hot spring is 90 degrees Celsius while the temperature of the pond is 45 degrees. Assuming no heat is lost during the transition between the two bodies of water, what is the maximum thermal efficiency?",
+    "answer": {
+      "code": "\n\t    import numpy as np\n\t\n\t    T1 = 90 + 273.15\n\t    T2 = 45 + 273.15\n\t    thermal_eff = (1 - (T2 / T1)) * 100\n\t\n\t    print(\u201cMaximum Thermal Efficiency:\u201d, thermal_eff, \u201c%\u201d)\n\t    ",
+      "explanation": "The max thermal efficiency assumes all heat loss is used to create work. This means that after converting from Celsius to Kelvin all that is required is subtracting the ratio between the lower heat and the heat source from 1."
+    }
+  },
+  {
+    "question": "According to Laplace, how does the temperature of a fluid react when exposed to a strong sound wave?",
+    "answer": "The temperature will change adiabatically. The pressure changes as well."
+  },
+  {
+    "question": "What is the Mach number of a flow downstream of a normal shock if the flow had a Mach number of 0.8 upstream of the shock? Assume gamma equals 1.4.",
+    "answer": {
+      "code": "\n        import numpy as np\n\t\n\t    M1 = 0.8\n\t    gamma = 1.4\n\t\n\t    M2 = ((1 + ((gamma \u2013 1) / 2) * M1^2) / (gamma * (M1^2) \u2013 (gamma \u2013 1) / 2))^(1/2)\n\t\n\t    print(\u201cMach number downstream:\u201d, M2)\n\t    ",
+      "explanation": "To find the answer the Mach number normal shock formula was used."
+    }
+  },
+  {
+    "question": "Calculate the specific gas constant of a gas inside of a container if that gas is 35% Helium (4.003 g/mol) and 65% Nitrogen (14.007 g/mol).",
+    "answer": {
+      "code": "\n        import numpy as np\n\t\n\t    mH = 4.003\n\t    pH = 0.35\n\t    mN = 14.007\n\t    pN = 0.65\n\t    R = 8.314\n\t\n\t    m = pH * mH + pN * mN\n\t\n\t    R_gas = R / m\n\t\n\t    print(\u201cSpecific gas constant:\u201d, R_gas, \u201cJ / (kg * K)\u201d)\n\t    ",
+      "explanation": "By adding together the percent masses of both elements present the molecular mass of the gas can be found. Dividing the ideal gas constant by the found molecular mass of the gas gives the specific gas constant."
+    }
+  },
+  {
+    "question": "What is the drop in pressure across a pipe if the pipe has a length of 700 meters and a radius of 0.25 meters? The velocity is 34 meters per second and the fluid has a viscosity of 2.5 kilograms / (meters * seconds).",
+    "answer": {
+      "code": "\n\t    import numpy as np\n\t\n\t    L = 700\n\t    r = 0.25\n\t    v = 34\n\t    visc = 2.5\n\t\n\t    P = (8 * L * visc * v) / (r^2)\n\t\n\t    print(\u201cPressure Drop:\u201d, P, \u201cPascals\u201d)\n\t    ",
+      "explanation": "To find the answer the Mach number normal shock formula was used."
+    }
+  }
+]

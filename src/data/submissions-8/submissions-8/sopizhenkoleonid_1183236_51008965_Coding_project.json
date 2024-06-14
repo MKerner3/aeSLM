@@ -1,0 +1,302 @@
+# QUESTIONS
+[
+#1
+{
+  "question": "Can we apply Bernoulli's principle for shocks?",
+  "answer": "Shocks occur as the object reaches transsonic or supersonic flow (M>1) while Bernoulli's principle works effectively at M<0.3. One can apply afore mentioned principle but a several assumptions have to be applied: incompressiblility, steady inviscid flow along the streamlines, and no external forces acting on the flow. Under all assumptions, we can use Bernoulli's principle, but results would be far off from a reality, making it highly inefficient."
+},
+ #2   
+{
+  "question": "How is the internal energy of an ideal gas affected during an adiabatic process, where no heat is exchanged with the surroundings?",
+  "answer": "During an adiabatic process, the internal energy decreases. This decrease occurs because work done by the gas against external forces results in reduction of its internal energy which is explained by the First Thermodynamics Law."
+},
+    #3
+{
+  "question": "Under what circumstances can the assumption of negligible shaft work be made?",
+  "answer": "Such assumption can be made for steady state processses with little to none mechanical effects, processes where only interaction is through the heat transfer or during ideal gas expansions/compressions."
+},
+    #4
+{
+  "question": "Why do pressure lines exhibit curvature on an enthalpy-entropy (h-s) graph?",
+  "answer": "The curvature of pressure lines on an enthalpy-entropy (h-s) graph occurs because specific enthalpy is a function of both pressure and temperature. When pressure is held constant, changes in temperature lead to variations in specific enthalpy, resulting in curved lines on the h-s graph.",
+  "references": [
+    "Çengel, Y. A., & Boles, M. A. (2018). Thermodynamics: An Engineering Approach (9th ed., Chapter 7). McGraw-Hill Education."
+  ]
+},
+    #5
+{
+"question": "Can entropy be subject to conservation principles?",
+"answer": "Entropy is a nonconserved property, and there is no such thing as the conservation of entropy principle. Entropy remains constant during idealized reversible processes and increases during all actual processes.",
+"references": [
+"Çengel, Y. A., & Boles, M. A. (2018). Thermodynamics: An Engineering Approach (9th ed., Chapter 7). McGraw-Hill Education.",
+"https://en.wikipedia.org/wiki/Entropy"
+  ]
+},
+    #6
+    {
+"question": "Why exactly pressure drops along the pipe?",
+"answer": "The pressure loss occurs when frictional forces, caused by the resistance to flow, act on a fluid as it flows through a conduit.",
+"references": [
+"https://en.wikipedia.org/wiki/Pressure_drop"
+  ]
+    },
+    #7
+    {
+"question": "Why expansion fans are insetropic?",
+"answer": "Expansion fan is formed of Mach waves. Since the flow turning gradually with each succesive wave (unlike shocks), and each Mach wave is isentropic, then the flow across the expansion fan is also isentropic.",
+"references": [
+"Çengel, Y. A., & Boles, M. A. (2018). Thermodynamics: An Engineering Approach (9th ed., Chapter 17 p.856). McGraw-Hill Education.",
+
+  ]
+    },
+    #8
+    { 
+"question": "Can heat be transferred to a liquid without inducing a change in its temperature?",
+"answer": "Yes, it is possible during the phase transformations (vaporization, melting) or if the liquid does work on a system. For this to be possible we have to assume steady state, adiabatic conditions and no external work for the system. "
+},
+    #9
+    {
+"question": "Why pitot tube has to be turned towards the direction of the flow?",
+"answer": "Assuming the tube is not aligned properly, the dynamic pressure component would not be captured properly due to the turbulence. This results in total pressure distortion meaning wrong pressure reading."
+},
+   
+#   PROBLEMS
+
+#1    
+{
+"question": "An ideal monoatomic gas, initially comprising 3 moles, undergoes an adiabatic expansion. As a consequence of this expansion, the gas experiences a decrease in temperature from 323 K to 308 K. Please determine work performed by the gas during the process. Assume R = 8.314 J/(K*mol)",
+"answer": {
+"code": """
+import numpy as np
+
+n = 3  # Moles of gas (mol)
+R = 8.314  # Gas constant (J/mol*K)
+T1 = 323  # Initial Temperature (K)
+T2 = 308  # Final Temperature (K)
+
+# Work done in an adiabatic expansion process for an ideal gas
+internal_energy = (3/2) * n * R * (T2-T1)
+work_done = round(-internal_energy,2)
+
+print("Work done by the gas:", work_done, "Joules")
+  """,
+      "explanation": "This code calculates work done in an adiabatic process. For this problem we can use the First Law of Thermodynamics. Recognizing that for adiabatic process Q = 0, we have ΔU = -W. Solving for internal energy, internal energy = (3/2) * n * R * (T2-T1) where 'n' is the number of moles, 'R' is the gas constant, 'T1' and 'T2' are initial and final temperatures, respectively. The work done is simply the same value with opposite sign."
+  }
+},
+#2
+{
+"question": " The aircraft flies at the height where static temperature is 250K. Please find the Mach number if the velocity of the aircraft is 650m/s? Assume isentropic steady flow where, γ = 1.4, R = 287 J/kg*K.",
+"answer": {
+"code": """
+import numpy as np
+
+T = 250  # Static Temperature (K)
+v = 650 # Velocity of the aircraft (m/s)
+R = 287 # Gas Constant (J/(kg*K)))
+γ = 1.4 # Specific heat ratio
+
+# Let's find the speed of sound at the altitude, and then find the Mach number
+c = pow(R*γ*T,1/2) # speed of sound
+M = round(v/c,2) # Mach number
+
+print("The Mach number is equal to", M)
+  """,
+      "explanation": "This code calculates the mach number given the atmospheric temperature and the velocity. First, we have to find the speed of sound at the height where temperature is 250K. Then, we have to recognize the formula for Mach number M=v/c." 
+}
+},    
+#3
+{
+"question": "A pipe has an inlet radius of 0.1 m and fluid velocity of 2.5 m/s. Assuming steady incompressible flow, please, find the mass flow rate out of the pipe. ",
+"answer": {
+"code": """
+import numpy as np
+
+r1 = 0.1  # Initial radius (m)
+v1 = 2.5 # Initial velocity (m/s)
+ρ = 1000 # Density (kg/m^3)
+# Under the assumption of the steady flow we can claim that mass flow rate in is the same as mass flow rate out ṁ1=ṁ2.
+# ρ - const, density of the fluid
+
+A1 = np.pi * r1**2
+ṁ1 = round(ρ*A1*v1,2)
+ṁ2 =  ṁ1
+print("The mass flow rate out is equal to", ṁ2, "kg/s.")
+  """,
+      "explanation": "This code calculates the mass flow rate out of the pipe. For this problem, it is important to recognize that mass flow rates in and out of the pipe are the same. " 
+}
+},        
+#4
+{
+"question": "A certain amount of gas undergoes the process wthout heat exchange adiabatically and very slowly from initial state, where temperature is 325 K and density is 1.2 kg/m^3, to a final state where the temperature is 500 K and density is one-half of the initial value. The specific heat capacity at the constant pressure is 1005 J/(kg*K), and specific gas constant is 287 J/kg*K. Calculate the entropy change of the air duing the process.",
+"answer": {
+"code": """
+import numpy as np
+
+T1 = 325  # Initial temperature (K)
+T2 = 500 # Final temperature (K)
+p1 = 103000 # Initial pressure (Pa)
+p2 = p1/2 # Final pressure (Pa)
+Cp = 1005 # Specific heat capacity under the constant pressure (J/(kg*K))
+R = 287 # Specific gas constant (J/(kg*K))
+
+# It is important to recognize that air is an ideal gas.
+# Use an enthropy change for ideal gas formula 
+
+Δs = round(Cp * np.log(T2/T1) - R * np.log(p2/p1),2)
+
+print("The entropy change is ", Δs, "J/K.")
+  """,
+      "explanation": "This code calculates the change in entropy of the system. From the condition of the problem it is important to recognize that the process is adiabatic, was reached by quasi-equilibrium, and the air is ideal gas. Under this assumptions we can use the entropy changes for perfect gas formula. Positive change in entropy value indicates the increase in disorder of the system." 
+}
+}, 
+    
+    
+#5
+{
+"question": "A Pitot tube, mounted on the aircraft's fuselage is used to measure the velocity of an aircraft in flight. If the pressure difference between the stagnation pressure and static pressure is 4000 Pa, the air density is 1.2 kg/m^3 and the atmospheric pressure is 101325 Pa, find the velocity of the aircraft. Additionally, if the aircraft would climb to an altitude where air density is 0.8 kg/m^3, what would be a new pressure difference? Assume velocity did not change with elevation. ",
+"answer": {
+"code": """
+import numpy as np
+
+Δp = 4000 # Pressure difference (Pa)
+ρ = 1.2 # density of air (kg/m^3)
+
+ρ_new = 0.8  # density of air at the final altitude (kg/m^3)
+
+# We can apply Bernoulli's equation
+
+# Δp == p0-p = 1/2 * ρ * v**2
+
+# Where we can solve for v: 
+
+v = round(np.sqrt(2*Δp/ρ),2)
+
+# Since we know the velocity of the aircraft, we can apply Bernoulli's principle once again to obtain the pressure difference.
+
+Δp_new = 1/2 * ρ_new * v**2
+
+
+
+print("The aircraft's velocity is ", v, "m/s. At the new altitude, the pressure difference is", round(Δp_new,1)," Pa. ")
+  """,
+      "explanation": " This code calculates the velocity of the aircraft and the pressure difference at the altitude where density is given utilizing Bernoulli's principle. Student should recognize that and apply afore mentioned principle to find both unknowns." 
+}
+},
+#6
+{
+"question": "A reversible heat engine operates between two reservoirs at temperatures T1 = 900 K and T2 = 500 K. During each cycle, the engine absorbs Q_h = 7500 J amount of heat from the high-temperature reservoir and rejects Qc amount of heat to the low-temperature reservoir. Find the efficiency of the engine and the amount of heat rejected to the lower-temperature reservoir.?",
+"answer": {
+"code": """
+
+import numpy as np
+
+Q_h = 7500 # Amount of heat from high-temperature reservoir (J)
+T_h = 900 # temperature of the high-temperature reservoir (K)
+T_c = 270 # temperature of the high-temperature reservoir (K)
+
+# To find the efficiency of the engine we can use the following formula:
+
+η = (1 - T_c/T_h)
+# Note, we are solving for the fraction, not percentage! 
+ 
+# Since the process is reversible:  η = 1 - Q_c/Q_h
+# Derive Q_c: 
+
+Q_c = round(Q_h*(1-η))
+
+print("The efficiency of the engine is", η*100, "%. The amount of heat rejected to the low-temperature reservoir is Qc ≈",Q_c,".")
+""",
+"explanation": "This code calculates calculates the efficiency of the reversible engine as well as the heat rejected to the low-temperature reservoir. It is important to recognize that we can find efficiency using η = 1 - Tc/Th and then find Qc knowing that the process is reversible using η = 1 - Q_c/Q_h.",
+"references": [
+"Çengel, Y. A., & Boles, M. A. (2018). Thermodynamics: An Engineering Approach (9th ed., Chapter 10, p.555-557). McGraw-Hill Education."
+        ]
+}
+},
+    
+#7
+{
+"question": "An insulated container at a temperature of 27 °C and pressure 1.8 atm contains some amount of gas. If the number of molecules tripled while temperature and volume are unchanged, what would be the new pressure inside the container? Then, how pressure would change if the volume halved. Assume the gas is ideal.",
+"answer": {
+
+"code": """
+import numpy as np
+p = 1.8 # pressure (atm) 
+t = 27 # temperature (°C)
+# Since the temperature and volume are the same, we can use ideal gas law to find a new pressure:
+
+#p = n*R*T/V 
+
+#p_new = 3*n*R*T/V
+
+# We can substitute p into p_new to get: 
+p_new = 3*p
+
+#When the volume is halved: 
+#p_final = 3*n*R*T/(V/2) = 6*n*R*T/V 
+p_final = 6*p
+
+print("After tripling the number of molecules, the new pressure is p =", p_new, "atm. When we halve the volume, the pressure is p =", p_final, "atm.")
+
+  """,
+      "explanation": " This code utilizes the ideal gas law to find the change in pressure gives changes in the number of molecules or volume of the system. It is essential to recognize that we can use previously mentioned law and Boyle's law given that the gas is ideal." 
+}
+},
+#EXTRA Problem
+{
+"question": "A p-V diagram depicts 4 different reversible cyclic processes performed isobarically. During which cycle did gas do the most work? Explain your answer. Assume no external work, steady state and clockwise movement on the p-V diagram.",
+"answer": {
+
+"code": """
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# Create plot and axis
+fig, ax = plt.subplots()
+
+# Set axis values
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 10)
+
+# Draw circles
+circle1 = plt.Circle((8, 4), 1, color='b', fill=False)
+circle2 = plt.Circle((4, 3), 1.75, color='g', fill=False)
+circle3 = plt.Circle((4, 8), 2, color='r', fill=False)
+circle4 = plt.Circle((8, 8), 1.5, color='m', fill=False)
+
+# Add circles to plot
+ax.add_artist(circle1)
+ax.add_artist(circle2)
+ax.add_artist(circle3)
+ax.add_artist(circle4)
+
+# Make a square plot
+ax.set_aspect('equal')
+
+#Labels and title
+plt.xlabel('Volume (V)')
+plt.ylabel('Pressure (P)')
+plt.title('p-V Diagram')
+
+# Show plot
+plt.grid(True)
+plt.show()
+
+x = round(np.log(5/2),2)
+print(x)
+
+# Given the fact that the process is isobaric (p-const), we can compute the work done by each process by finding the area enclosed in each circle. 
+
+A1 = np.pi * 1**2
+A2 = np.pi * 1.75**2
+A3 = np.pi * 2 **2
+A4 = np.pi * 1.5 **2
+
+
+print("The area's of the circles calculated by A = πR² are the following: blue circle area =", round(A1,2),", green circle area =",round(A2,2),", red circle area =",round(A3,2),", and magenta circle area =",round(A4,2)," So, the biggest amount of work was done by the red cyclic process.")
+  """,
+      "explanation": " This code plots the p-V diagram on which four isobaric processes are depicted. The cycle with the largest area represents the most work done by the gas." 
+}
+},   
+    
+]

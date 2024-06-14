@@ -1,0 +1,98 @@
+[
+    {
+    "question": "Why does Cp equal Cv for incompressible fluids?",
+    "answer": "We know that under incompressible fluids that density does not change and stays constant under changes in pressure. In other words, this means that the volume does not change and dv=0. With the first law, we know U = pdV + Q, but dv=0, so U=Q=mCdeltaT where C is the specific heat of the substance and m is the mass. Essentially, all the heat added to the substance results in an increase in temperature disregarding pressure or volume, so there is no distinction between Cp and Cv for incompressible fluids. For this explanation, Cv and Cp are essentially constants because there are no changes in density with incompressible fluids. Since there are no significant changes in volume during the process, then we know that Cp and Cv are a function of temperature only and can be recognized as C.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question": "What makes a process reversible or irreversible, and of these examples, name whether the process is reversible or irreversible? a. someone using a slinky with a spring b. the throttling process c. when particles move from an area of high concentration to low concentration (diffusion) d. imagine half a gas contained by a thermally insulated wall and the other half is in a vacuum, we then move the wall out of the way quickly e. ice cubes melting in water.",
+    "answer": "A process is reversible if it can be turned back into its original state through the same process just reversed. A reversible process is what we associate isentropic processes with along with it being adiabtic. If something is reversible and adiabatic, then it is reversible, but just because it's reversible, does not guaratee it is isentropic. An irreversible process cannot be turned back into it's original state and there is also an increase in entropy or disorder of the system. An irreversible process is considered this way because it cannot be undone without using energy. a. reversible b. irreversible c. irreversible d. irrerversible e. irrerversible",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question":"Explain what happens when a speed is subsonic (M<1) and the area increases, and then what happens when a speed is supersonic (M>1) and the area increases. Do the same for both subsonic and supersonic, but the area decreases. Which is intuitive and which is not?",
+    "answer": "A subonic speed means that it is below Mach 1. If the area is increasing then the pressure will increase, while the velocity will decrease. When the speed is supersonic, the explanation is less intuitive. The velocity will increase, while the pressure decreases. This is with a converging nozzle or diffuser. The opposite occurs for decreasing area. With subsonic speeds, the pressure will decrease, while the velocity increases, which is in line with what we know already. But for supersonic speeds, the pressure increases, while the velocity decreases. Subsonic speeds are more intuitive because it goes along with incompressible fluids, while supersonic speeds do the opposite. We can see why they behave this way because of the variable nozzle flow equation.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question": "What is the difference between a concave corner and convex corner, and what does each produce?",
+    "answer": "When dealing with a concave corner, you will generate an oblique shock. A concave corner will produce one single shock at a specific angle given in a problem. This type of shock behaves just as a normal shock does. After the shock, the Mach number is smaller, static density, pressure, and enthalpy all increase, while stagnation pressure decreases. As for a convex corner, this generates an expansion fan. Expansion fans behave completely opposite as oblique shocks do, except that the stagnation pressure stays constant throughout the shock because they are isentropic. Many equations can be derived from using these relations.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question":"What exactly is enthalpy and give an example of its use along with an equation to represent it?",
+    "answer": "Enthalpy is the measure of energy in a thermodynamic system; it is the heat absorbed or released in a process at constant temperature. It is the total sum of internal energy plus pressure times velocity. Enthalpy is also known as a state function which means it only cares about the final state of the system. Enthalpy mainly cares about what current state you are in at the moment. It is useful in situations where there is constant external pressure meaning that enthalpy will be equal to energy exchanged by the environment with heat. Enthalpy can be used to improve thermal systems and maximize efficiency. A good formula is H = U + pV.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question":"What is the difference between heat and temperature and give an example of each?",
+    "answer": "Heat is all about the thermal energy that is transferred from one system to the next, while temperature is a measure of the average kinetic energy of molecules in a system. We are able to actually calculate the amount of heat absorbed or released by using the specific heat capcity, mass, and temperature change. An example would be looking at the heat exchange between a hot block and a cold block, then stating the temperature of each. Heat is more spoken about as a process and not a state. Temperature is more of a state function which comes from the zeroth law. The zeroth law states that when two objects in thermal equlibrium are in contact, there is no heat transfer and we call them the same temperature. It also states that heat flows from one source to another only if there is a difference between the two which is temperature. Anytime you use a thermometer, you are using the zeroth law.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question": "How is Bernoulli's equation related to the conservation of energy, and what do each of the terms mean?",
+    "answer": "Bernoulli's equation basically expresses the conservation of enegery for flowing fluids. Bernoulli's equation is representing the flow of something in terms of pressure, velocity, and height. It includes both kinetic and potential energy plus pressure. The sum of these values will remain constant along a streamline that is not curved. The conservation of energy states that energy within a closed system is constant. Going along with Bernoulli's terms, the kinetic energy term shows the energy with fluid motion, the potential energy term shows energy due to a fluids height, while the pressure term reflects the energy stored internally. Bernoulli's equation is a convienent way to express the conservation of energy for incompressible fluids.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question": "In what ways does the concept of enthalpy impact the design of heat exchangers?",
+    "answer": "From before, we know that enthalpy can have a huge effect on the efficiency and effectiveness of heat exchangers. When thinking about designing a heat exchanger, you must think about the enthalpy changes to ensure you get the desired temperature change. You would need to consider the first two laws of thermodynamics in order to be most precise. When thinking about the first law, you could calculate the amount of heat that needs to be transferred which makes you think about the size of the heat exchanger. When thinking about second law, this shows us the direction of flow and efficiency. In order to produce the best heat exchanger, you would need to know how to maximize the energy using the concept of enthalpy. By carefully measuring the changes in enthalpy, you can find the system that works the best while staying in thermodynamic limits.",
+    "explanation": "",
+    "reference": ""
+    },
+    {
+    "question":"How would you differentiate between isothermal and adiabatic processes regarding the amount of work done?",
+    "answer": "First, it would be good to define an isothermal process. An isothermal process is when the temperture remains constant and the amount of work done is equal to the amount of heat transferred, while an adiabatic process is when there is no heat transferred during the process. For an adiabatic process, any work done results in a change in the system's internal energy and change in temperature. We know that Q= 0 when some process is adiabatic and that a useful equation would be that internal energy is equal to the amount of work done. You can also distinguish between the two by knowing the equation for an isothermal process which will give you the amount of work done. This would be W=nRTln(Vf/Vi) where n is the number of moles, T is temperature, and R is the universal gas constant.",
+    "explanation": "",
+	"reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."  
+    },
+    {
+    "question":"A manometer containing oil (density = 850 kg/m^3) is attached to a tank filled with air. If the oil-level difference between the two columns is 45 cm and the atmospheric pressure is 98 kPa, determine the absolute pressure of the air in the tank.",
+    "answer": "\nimport numpy as np\n\npatm = 98 # atmospheric pressure (kPa)\nd = 850 # oil density in manometer (kg/m^3)\ng = 9.81 # gravity (m/s^2)\nh = 0.00045 # height (km)\n\n# Apply manometer principle (equation is straight forward as given)\np = patm + (d*g*h)\n\nprint('The absolute pressure of air in the tank is:', p, 'kPa')\n",
+    "explanation": "This code uses the manometer principle that we learned in some of the very first lessons showing that pressure changes with height. By plugging the values into the equation, we are able to see that pressure does change with height and gravity plays a role as well. An problem like this is simple to solve knowing the type of equation to use and what assumptions to make. We know to use gravity becuase height is changing and we can also infer to use the manometer equation because of the mention of the device stated in the problem.",
+    "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    },
+    {
+    "question": "A piston-cylinder device initially contains 0.4 m^3 of air at 100 kPa and 80°C. The air is now compressed to 0.1 m^3 in such a way that the temperature inside the cylinder remains constant. Determine the work done during this process.",
+    "answer": "\nimport numpy as np\n\nv1 = 0.4 # inital volume before compression (m)\nv2 = 0.1 # final volume after compression (m)\np = 100 # pressure (kPa)\nT = 80 # constant temperature (°C)\n\n# Using ideal gas equation, find work by setting work equal to the integral from v1 to v2, and setting P = Constant/V. Also, noting that PV = nRT which is equal to a constant.\nw = (p*v1)*np.log(v2/v1)\n\nprint('The amount of work done during this process is:', w, 'kJ')\n",
+    "explanation": "Using the ideal gas equation and knowing that the volume changes but the temperature stays constant meaning isothermal, we need to take the integral of the work formula. Work ends up being negative because work is done on the system and compression is performed. We see here that pv is equal to a constant and that constant is nRT, we have set it up this way knowing that that the problem is isothermal. When volume changes, we know we must take an integral to obtain the correct equation because something is changing. We could have multiplied it by nRT, but that would obtain the some answer.",
+    "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    },
+    {
+    "question": "Steam enters a turbine with a velocity of 40 m/s and an enthalpy of 3433.8 kJ/kg. At the outlet, 2 meters lower than the inlet, the velocity is 162 m/s, and the enthalpy is 2675.5 kJ/kg. A heat loss of 1 kJ/kg is experienced from the turbine casing. The work output per unit mass is closest to...",
+    "answer": "\nimport numpy as np\n\nv1 = 40 # inlet veloctiy (m/s)\nv2 = 162 # outlet velocity (m/s)\nh1 = 3433.8 # inlet enthalpy (kJ/kg)\nh2 = 2675.5 # outlet enthalpy (kJ/kg)\nz = 2 # height difference (m)\nQ = -1 # heat (kJ/kg)\ng = 9.81 # gravity (m/s^2)\n\n# Apply the steady state flow energy equation: W - Q = (v1^2/2 + h1 + z1g) - (v2^2/2 + h2 + z2g)\nworkpermass = (v1**2/(2*1000)+ h1 + (z*g)/1000)-(v2**2/(2*1000)+ h2 + 0) + Q\n\nprint('The work output per unit mass is:', workpermass, 'kJ/kg')\n",
+    "explanation": "Using the steady flow energy equation, we are able to manipulate it to give us work per unit mass by dividing by the mass flow rate. We knew that the inlet area was 2 above the outlet, therefore we needed to include that in our calculations along with converting between units by dividing by 1000 in for the veolcity and height. By doing these things, we arrive at our result. We converted velocity into kilometers to match up with out other units in the equation. We also converted gravity to kilometers as well. Doing this kind of problem is mostly straight forward, as long as your assumptions about the equation are correct. We know we have potential energy and we also know there is kinetic energy by inferring from the problem statement.",
+    "reference": "https://faculty.utrgv.edu/constantine.tarawneh/Thermodynamics/ThermodynamicsProb.pdf"
+    },
+    {
+    "question": "A rigid tank contains a hot fluid which is cooled while being stirred by a paddle wheel. Initially, the internal energy of the fluid is 800 kJ. During the cooling process, the fluid loses 500 kJ of heat, and the paddle wheel does 100 kJ of work on the fluid. Determine the final internal energy of the fluid. Neglect the energy stored in the paddle wheel.",
+    "answer": "\nimport numpy as np\n\nu1 = 800 # inital internal energy (kJ)\nQ = -500 # heat (kJ)\nW = -100 # work done on system (kJ)\n\n# Apply the conservation of energy principle: Q — W = deltaU + deltaKE + deltaPE\nu2 = Q - W + u1\n\nprint('The final internal energy of the fluid is:', u2, 'kJ')\n",
+    "explanation": "We can use the conservation of energy principle to solve this problem. We know that work is negative because it is done on the system, and heat is lost, so it is also negative. By neglecting the kinetic and potential energy, we can reaarange the equation to formulate our answer. We know we cna neglect these terms because in the problem statement, it says to neglect any potential energy. We also know that we can neglet any kinetic energy because there is no mention of velocity in the problem. A problem like this can be solved with simple assumptions and knowing what equation to use to solve it.",
+    "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    },
+    {
+    "question": "A nozzle with a diameter of 0.500 cm is attached to a garden hose with a radius of 0.900 cm. The flow rate through hose and nozzle is 0.500 L/s. Calculate the speed of the water (a) in the hose and (b) in the nozzle.",
+    "answer": "\nimport numpy as np\n\nd = 0.005 # diameter of nozzle (m)\nr = 0.009 # radius of hose (m)\nQ = 0.0005 # flow rate (m^3/s)\nA = 3.14*(r**2) # area of hose (m^2)\n\n# For part a, use the flow rate equation: Q = vA\nv1 = Q/A\n\nprint('The velocity through the hose is:', v1,'m/s')\n\n#For part b, use the equation of continuity: A1v1 = A2v2\nv2 = (r**2/(d/2)**2)*v1\n\nprint('The veloctiy through the nozzle is:', v2, 'm/s')\n",
+    "explanation": "Using the fact that Q is equal to velocity times area, we are able to find the first speed through the hose. This equation was introduced to us during incompressible fluids. It is very useful when you know the flow rate and the area but need the velocity. Then, we can use the continuity equation to relate the two equations, knowing they are equal and that the areas cancel out, we find the speed through the nozzle. This is equation was also introduce early on with incompressible fluids, but can be used in many scenarios. It is good to note that the speed of the water in the hose is v1 because we are workign with it's radius and flow rate equation first. Be sure to use the correct diameters/radii when doing a problem such as this. ",
+    "reference": "https://openstax.org/books/university-physics-volume-1/pages/14-5-fluid-dynamics"
+    },
+    {
+    "question":"A Carnot heat engine receives 500 kJ of heat per cycle from a high-temperature source at 652°C and rejects heat to a low-temperature sink at 30°C. Determine (a) the thermal efficiency of this Carnot engine and (b) the amount of heat rejected to the sink per cycle.",
+    "answer": "\nimport numpy as np\n\nTh = 652 + 273.15 # temperature of hot source (K)\nTc = 30 + 273.15 # temperature of cold source (K)\nQin = 500 # amount of heat given to hot source (kJ)\n\n# For part a, apply the thermal efficiency equation (equation is straight forward)\nn = 1 - (Tc/Th)\n\nprint('The thermal efficiency of this Carnot heat engine is:', n)\n\n# For part b, apply the second law: Qout/Tc = Qin/Th\nQout = (Tc/Th)*Qin\n\nprint('The amount of heat expelled during this process is:', Qout, 'kJ')\n",
+    "explanation":"By using the thermal efficiency equation we derived in lecture, we can just simply apply it here by plugging in the numbers given. This equation is used for finding the therml efficiency of a heat engine. Using this type of equation is generally straight foward. For part b, we can use a form of the second law and manipulate it, so that we get the amount of heat expelled. Here we have applied the second law which tells us more about the direction and efficency of a system. We use it here to compare the two hot and cold sources and can come up with the ratio in order to solve for our unknown variable. Always make sure temperature is in Kelvin.",
+    "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    },
+    {
+    "question": "Air enters a diffuser with a velocity of 200 m/s. Determine (a) the velocity of sound and (b) the flow Mach number at the diffuser inlet when the air temperature is 30°C.",
+    "answer": "\nimport numpy as np\n\nv = 200 # velocity entering diffuser (m/s)\nT = 30+273.25 # temperature of air (K)\nk = 1.4 # specific heat ratio determined by 30°C and the tables\nR = 287 # gas constant of air (kJ/kg*K)\n\nimport math\n\n# For part a, use the equation for speed of sound: a = sqrt(K*T*R)\na = math.sqrt(T*R*k)\n\nprint('The velocity of sound is: ',a , 'm/s')\n\n# For part b, use the Mach number equation\nM = v/a\n\nprint('The mach number at the inlet is: ', M)\n",
+    "explanation": "By using the speed of sound equation and the tables provided, we are able to come up with the answer by plugging in the numbers and making sure the temperature has the correct units. We start by looking at this problem and seeing what is needed first. In order to find the mach flow number at the inlet, we needed to find what the speed of sound was. Upon finding that while using the numbers given, we are then able to apply that to the mach number equation. For part b, we know the Mach number equation, so we can easily plug in the values to obtain the answer. For problems such as these, it is good to take things step by step and see what minor steps may be needed to arrive at the final answer.",
+    "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    }
+]

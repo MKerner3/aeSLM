@@ -1,0 +1,189 @@
+[
+{
+    "question": "Why might different fluids at the same velocities have different mach numbers?",
+    "answer": "Mach number is defined as M =  V/a where a is the spead of sound. As the speed of sound varies from fluid to fluid, mach number will also."        
+},
+{
+    "question": "An engineer designs a pitot static port to have a diameter of 2mm, but it is manufactured to 4mm. What assumptions must be made so that both design and manufacturing will work the same?",
+    "answer": {
+        "answer": "Inviscid, incompressible and steady flow.",
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill pg.226"
+    }
+},
+{
+    "question": "Assuming incompressible flow, what's the airspeed of a plane if the static port measures 1 bar and the pitot measures 1.2?",
+    "answer":{
+        "code": """
+import numpy as np
+
+rho = 1.293 # density of air
+p1 = 100000 # pressure at static port in pascal
+p2 = 120000 # pressure at pitot tube in pascal
+v2 = 0
+            
+# Use bernoulli and solve for v1
+v1 = ((2 * (p2 - p1)) / rho) ** (1/2)
+
+print('Airspeed is', v1, 'm/s')
+        """,
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill pg. 228",
+        "explanation": "The code uses Bernoulli's principle, knowing that veloity is zero at the pitot tube, solving for the velocity at the static part is possible."
+    }
+},
+{
+    "question": "10kg of water is entering a tank per second. A whole is drilled at the bottom with a radius of 0.01m. Whats the velocity of the water pouring out?",
+    "answer":{
+        "code": """
+import numpy as np
+
+mf = 10
+a2 = 0.01 ** 2 * np.pi
+rho = 997 # density of water in kg/m^3
+
+#continuity
+v2 = mf / (a2 * rho)
+print('Veloity is', v2, 'm/s')
+        """,
+        "explanation": "Use the principle of contuinity, M1 = rho * A2 * v2"
+    }
+},
+{
+    "question": "Air flows into a diverging nozzle. What is the gauge at position 2 if the nozzle entry has Area = 0.1 m^2 and velocity = 6 m/s and Area at position 2 = 0.3 m^2?",
+    "answer":{
+        "code": """
+import numpy as np
+
+#continuity to find v2
+rho = 1.293
+a1 = 0.1
+a2 = 0.3
+v1 = 6
+v2 = (a1 * v1)/a2
+
+#use Bernoulli to find p2 - p1
+pg = (0.5 * rho)*(v2 ** 2 - v1 ** 2)
+
+print('Gauge pressure at position 2 is', pg)
+        """,
+        "explanation": "Assumptions revolving around Bernoulli's principle must be made. The sign will be negative as the pressure is lower than before, a simple implementation of contuinuity and Bernoulli's principle can be used to solve for gauge pressure"
+    }
+},
+{
+    "question": "Why isn't there a normal component of velocity for streamlines?",
+    "answer": "A streamline is defined as a line tangential to velocity direction. Therefore there cannot be a normal component as a streamline is already perfectly tangential."
+},
+{
+    "question": "Why is the fastest velocity for a viscid fluid traveling through a pipe in the center of the pipes cross section?",
+    "answer": "Shear forces within the fluid blobs are most present at the outermost of the pipe, where it makes contact with pipe walls. As the liquid is examined closer to the center, the shear forces show a trend of tapering off, the farther from a wall."
+},
+{
+    "question": "A plane is flying at 10000ft. The pressure at a point on the wing is 0.5 bar. Ambient pressure is 1 bar. Ambient temp is 297k. Calculate the temperature at the moment on the wing",
+    "answer":{
+        "code": """
+import numpy as np
+
+p1 = 0.5
+pa = 0.7
+ta = 297
+gamma = 1.4
+
+#the relationship between ambient pressure and temp and measured pressure and temp can be used
+
+t1 = ta * (p1 / pa) ** ((gamma - 1) / gamma)
+
+print('Temp at the point on the wing is', t1, 'k')
+
+        """,
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill pg. 540",
+        "explanation": "Isentropic flow must be assumed, and then the relationship between pressure and temperature ratios can be used."
+    }
+},
+{
+    "question": "Is air flow compressible at Mach = 0.2?",
+    "answer":{ 
+        "answer": "Flow is almost always compressible at any speed. However, below M = 0.3, the variation in a calculation using incompressible vs compressible methods is less than 5%. So for all calculation purposes, no.",
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill pg. 585"
+    }
+},
+{
+    "question": "The upstream conditions of a normal shock are as follows: Velocity = 600 m/s, Temp = 270 k. What is the velocity after the shock occurs? Assume gamma = 1.4",
+    "answer":{
+        "code": """
+import numpy as np
+
+v1 = 600
+R = 287
+t = 270
+g = 1.4
+# find mach number
+a = (g * t1 * R) ** (1/2)
+M1 = v1 / a
+
+# normal shock formula can be used or a normal shock table for m2
+M2 = ((1 + ((g - 1) / 2) * M1 ** 2) / (g * M1 ** 2 - ((g - 1)/2))) ** (1/2)
+
+v2 = M2 * (g * R * t) ** (1/2)
+
+print('The velocity after the shock is', v2, 'm/s')
+        """,
+        "explanation": "Using the mach formulas and tables we can calculate M1 and then use the normal shock table or equation to find M2. We know that total temperature remains constant, so velocity can be calculated after. Ratios could have been found using normal shock tables."
+    }
+},
+{
+    "question": "Expand on the zeroeth law. What problem did the zeroeth law solve?",
+    "answer": "The zeroeth law provides a solution for multiple objects in equilibrium. It defines temperature as the property that multiple bodies will share if in equilibrium with each other. Mathmatically, if a = b and b = c then a = c."
+},
+{
+    "question": "If a process is reversible and adiabatic, is it also isentropic?",
+    "answer": "Yes, a reversible, adiabatic process results in no change in heat (Q), therefore, no change in entropy."
+},
+{
+    "question": "A stirring rod is intorduced into a system of viscous fluid and turned on. Is any of the work converted to entropy?",
+    "answer":{
+        "answer": "The shaft work from the stirring itself would not introduce and entropy. However, the friction between the stirrer and the fluid may introduce heat and therefore a change in entropy",
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. pg. 379"
+    }
+},
+{
+    "question": "A 25 kg hot rock at 600 k is thrown into a lake. It comes to thermal equilibrium at 290 k with the surrounding water. What is the rock's change in entropy? Cv = 0.63 kJ/Kkg",
+    "answer": {
+        "code": """
+import numpy as np
+
+t1 = 600
+t2 = 290
+m = 25
+cv = 0.63
+
+# use formula for entropy change
+deltaS = m * cv * np.log(t2/t1)
+print('The rocks change in entropy is', deltaS, 'kJ/K')
+        """,
+        "references":"John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. pg. 385"
+    }
+},
+{
+    "question": "Elaborate on the two property rule, why does it exist?",
+    "answer": "There are only two ways to change the state of a system, heat and work. Both require a change of at least two properties between pressure, volume, and temp. The ideal gas equation demonstrates this rather nicely, PV = nRT."
+},
+{
+    "question": "Calculate what a pitot tube would measure if the upstream flow is 700 m/s, 300 K and gamma = 1.4",
+    "answer": {
+        "code": """
+import numpy as np
+
+v = 700
+t = 300
+m = v / ((287 * g * t) ** (1/2))
+g = 1.4
+
+#rayleigh pitot tube formula
+output = (((((g + 1)**2) * m **2) / ((4 * g * m ** 2) - 2 * (g - 1))) ** (g / (g - 1))) *((1 - g + 2 * g * m ** 2)/(g + 1))
+
+print('The pitot tube would measure a pressure ratio of', output)
+        """,
+        "references": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill pg.605",
+        "explanation": "Use mach formula to find mach number and then Rayleigh pitot tube formula."
+    }
+}
+]

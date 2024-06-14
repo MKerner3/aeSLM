@@ -1,0 +1,272 @@
+[
+{
+    "question": "How do pitot tubes measure fluid velocity?"
+    "answer": "Pitot tubes don't actually measure the velocity of a fluid, rather the differences in pressure. A hole head-on to the flow measures the stagnation pressure (when velocity is zero) while the smaller tubes on the sides measure static pressure. By utilizing Bernoulli's equation where velocity on one side is zero, stagnation pressure is equal to static pressure plus dynamic pressure--which is (1/2)rho*v^2 where rho is density and v is velocity. Using the measured pressures from the pitot tube, one can either use a computer or manually solve for velocity."
+    "references": "[https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/pitot.html]"
+},
+{
+    "question": "Why is the minimum pressure at the center of curvature for curved streamlines?"
+    "answer": "The pressure is minimized at the center of pressure in short due to Newton's second law and a modified application of Bernoulli's equation along curved streamlines. Along curves, normal acceleration must be balanced by a normal pressure force. To stay along the curve, there must be a centripetal acceleration caused by a pressure gradient acting normal to the streamlines. Mathematically, this can be noted by integrating dp/dn = p(V^2/R) and realizing that p is at its minimum when the distance from R is minimized."
+    "references": "[https://web.mit.edu/hml/ncfmf/06PFFA.pdf]"
+},
+{
+    "question": "What is the difference between divergence and advection?"
+    "answer": "Divergence essentially measures the change of a vector field (commonly velocity). It can dictate if a flow sources or sinks with respect to a specific point. Advection  is defined as 'Advection is defined as the exchange of energy, moisture, or momentum as a result of horizontal heterogeneity.' It is important to note that while this is the definition of advection, the operator is used in this course and can be generalized. It is more similar to divergence, but gives the variation of some other variable as velocity (or some other rate of change) changes across a vector field. Mathematically, divergence is simply the derivatives of the 3D components of velocity. The advection operator multiplies the components of velocity (or some other variable) by the derivative of some other variable with respect to space."
+    "references": "[https://www.sciencedirect.com/topics/earth-and-planetary-sciences/advection]"
+},
+{
+    "question": "Why can some processes be treated as adiabatic and why is this important?"
+    "answer": "An adiabatic process is one in which no heat transfer occurs. As heat transfer takes time, processes that occur very rapidly may not be able to transfer heat. Because of this and the first law, change in internal energy can be set equal to the negative work done on the system and therefore the net work done can be considered independent of the path taken."
+},
+{
+    "question": "Why is the efficiency of a heat engine maximimum when the process is reversible?"
+    "answer": "A reversible heat engine is more efficient essentially due to the second law of thermodynamics. Reversible processes can be returned to their original state and can do so with no change in entropy, while irreversibilities occur with an increase in entropy. Irreversibilities occur for a multitude of reasons, but result in 'lost work' that makes the process less efficient. For example, energy lost from friction cannot be regained and used as energy in the system."
+    "references": ["https://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node48.html"]
+},
+{
+    "question": "Why can't irreversible processes be plotted on p-V diagrams and what is the compromise?"
+    "answer": "Many times, reversible processes take place in quasi-equilibrium, so they are able to be graphed according to equilibrium states. Irreversible processes however do not occur where p-V are in equilibrium and therefore cannot be represented with a continuous line. Instead, it is often graphed with a dotted line to indicate a process has taken place from point A to point B, but irreversibly."
+},
+{
+    "question": "Why does the entropy of a system approach its maximum as it tends towards equilibrium?"
+    "answer": "For an isolated system there is no change in work done as there is nothing to do work or do work on. As dS = dQ/dt + dS(irrev), dS = dS(irrev). So irreversible processes that change entropy are the only processses that can happen to move towards equilibrium. And as dS(irrev) can only be positive or zero, entropy can only keep increasing as it approaches its maximum amount."
+},
+{
+    "question": "In Fanno flow, how do subsonic and supersonic flow have both similar and opposite behavior?"
+    "answer": "The upper (starting subsonic) and lower (starting supersonic) curves cannot be transversed by the same curve. However they both are adiabatic processes and approach a sonic point of maximum entropy where the flow is choked. Similarly, total pressure decreases for both flows, though static increases for supersonic and decreases for subsonic. As for most other properties, they act oppositely. This mostly revolves around their different behaviors as the area effectively decreases due to friction. From standard mass flow rate conventions, subsonic flow speeds up to reach Mach 1 while supersonic slows down as area decreases."
+    "references": "[https://en.wikipedia.org/wiki/Fanno_flow#:~:text=Fanno%20flow%20is%20the%20adiabatic,also%20applies%20to%20incompressible%20flow.]"
+},
+{
+    "question": "How can oblique shocks be treated as normal shocks?"
+    "answer": "Oblique shock properties can be calculated like normal shocks simply by tilting the frame of reference so that the shock is perpendicular to the frame. To accomodate this one must calculate the Mach component and use that in the normal shock equations."
+}
+{
+    "question": "A new radiation heat transfer sensor consists of a small, closed, rigid, insulated 0.0400 m^3 box containing a 0.0100 m^3 rubber balloon. Initially, the box is evacuated but the balloon contains argon (an ideal gas) at 20.0°C and 0.0100 MPa. When the balloon receives 0.100 kJ of radiation energy through an uninsulated window in the box, it bursts. The resulting pressure change is sensed by a transducer and an alarm is sounded. Determine the pressure and temperature inside the box after the balloon bursts. For argon, assume the constant volume is .315 kJ/kgK and the specific gass constant is .208 kJ/kgK."
+    "answer": {
+        "code": """
+        import numpy as np
+Vb = 0.0100 # balloon volume (m^3)
+Vx = 0.0400 # box volume (m^3)
+T1 = 20.0 #initial temperature (C)
+p1 = 0.0100 #initial pressure (MPa)
+Q = 0.100 #heat added (kJ)
+R = 0.208 # specific gas constant (kJ/kgK)
+cv = 0.315 # ideal gas constant for constant volume (kJ/kgK)
+
+#first law: Q-W = delta(U)
+#BUT dV is 0 as the gas doesn't face any resistance when expanding so W = int(pdV) = 0 Q = delta(U) = mcv(T2-T1)
+
+#first must calculate m using m = (p1V1)/(RT1)
+p1 = p1 * 1000 # convert p to kPa
+m = (p1 * Vb) / (R * (T1 + 273.15))
+# solve for T2 using first law
+T2 = T1 + (Q / (m * cv))
+
+# solve for p2 using pV = mRT
+p2 = (m * R * (T2 + 273.15))/(Vx)
+
+
+print("The final temperature inside the box is", T2, "°C")
+print("The final pressure inside the box is", p2, "kPa")
+    """,
+    "explanation": "This code uses an version of the first law of thermodynamics in which work is zero as the gas does not face any resistance as it expands into the vaccuum so Q - W = delta(U) [where Q is heat addition, W is work done, and delta(U) is change in internal energy] becomes Q = delta(U). It also takes advantage of the ideal gas law pV = mRT where p is pressure, V is volume, m is mass, R is specific gas constant, and T is temperature. We also assume that the changes in kinetic and potential energy are zero in order to solve the problem."
+    "references": ["Robert T. Balmer (2011) Modern Engineering Thermodynamics, Academic Press."]
+    }
+},
+{
+    "question": "Air is compressed from an initial state of 100 kPa and 17°C to a final state of 600 kPa and 57°C. Determine the entropy change of air during this compression process given cp of air is 1.006 kJ/kgK and R (specific gas constant) is 287 kJ/kgK"
+    "answer": {
+        "code": """
+        import numpy as np
+p1 = 100 # initial pressure (kPa)
+T1 = 17 # initial temperature (C)
+p2 = 600 # final pressure (kPa)
+T2 = 57 # final temperature (C)
+cp = 1.006 # given cp for air (kJ/kgK)
+R = 287 # given specific gas constant (J/kgK)
+
+# first be sure to convert temperatures to Kelvin
+T1 = T1 + 273.15
+T2 = T2 + 273.15
+
+# convert R to kJ/kgK
+R = 287 / 1000
+
+# use ideal gas energy equations
+s = cp * np.log(T2/T1) - R * np.log(p2/p1)
+
+print("The change in entropy due to compression is", s, "kJ/kgK")
+""",
+        "explanation": "Air is an ideal gas, so you can use the formula: s2 - s1 = cp * ln(T2/T1) - R * ln(p2/p1) where s2 and s1 represent respective entropies, T2 and T1 represent respective temperatures, and p2 and p1 represent respective pressures."
+        "references": ["Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."]
+    }
+},
+{
+    "question": "A 10-cm fire hose with a 3-cm nozzle discharges 1.5 m^3/min to the atmosphere. Assuming frictionless flow and density is 1000 kg/m^3, find the force exerted by the flange bolts to hold the nozzle on the hose."
+    "answer": {
+        "code": """
+        import numpy as np
+D1 = 10 # entrance diameter (cm)
+D2 = 3 # nozzle exit diameter (cm)
+Q = 1.5 # volumetric flow rate (m^3/min)
+rho = 1000 # density (kg/m^3)
+
+# convert Q to m^3/sec
+Q = 1.5 / 60
+
+# convert diameters to meters
+D1 = D1 / 100
+D2 = D2 / 100
+
+# compute areas
+A1 = (np.pi/4) * D1**2
+A2 = (np.pi/4) * D2**2
+
+# use volumetric flow rate equation to find velocities
+v1 = Q / A1
+v2 = Q / A2
+
+# use Bernoulli's to find pressure
+p = .5 * rho * (v2**2 - v1**2)
+
+# calculate mass flow rate
+mdot = rho * Q
+
+# use force-momentum equation and solve for force
+F = p * A1 - mdot * (v2-v1)
+
+print("The force required to hold the nozzle on the hose is", F, "N")
+""",
+        "explanation": "This code first utilizes the volumetric flow rate equation Q = Av (Q is volumetric flow rate, A is area, and v is velocity) which can be applied when the fluid is incompressible. Next it uses Bernoulli's equation along streamlines and takes in the exit pressure as 0 as the flow exits into the atmosphere (i.e., the pressure = pa = 0 gage). Bernoulli's equation is p1 = p2 + (1/2)rho(v2^2-v1^2) where p1 and p2 are respective pressures, rho is density, and v2 and v1 are respective pressures. Lastly to find the force one must use the force-momentum equation in which F + p1*A1 - p2*A2 = mdot1*v1 - mdot2*v2 where F is the force, p1 and p2 are pressures, A1 and A2 are areas, mdot1 and mdot2 are mass flow rates, and v1 and v2 are velocities."
+        "references": ["Frank M. White (2016) Fluid Mechanics, McGraw-Hill."]
+    }
+},
+{
+    "question":"A manometer is used to measure the pressure in a tank. The fluid used has a specific gravity of 0.85, and the manometer column height is 55 cm. If the local atmospheric pressure is 96 kPa and the density of water is 1000 kg/m^3 determine both the gauge pressure and the absolute pressure within the tank."
+    "answer": {
+        "code": """
+        import numpy as np
+sg = 0.85 # specific gravity of fluid (no units)
+h = 55/100 # manometer column height (m)
+pa = 96 # local atmospheric pressure (Pa)
+rhoW = 1000 # density of water (kg/m^3)
+
+# find density of the fluid
+rho = sg * rhoW
+
+# assuming the density of the fluid in the manometer is much higher, gauge pressure is about rho * g * h
+g = 9.81 # gravityy (m/s^2)
+pg = (rho * g * h) / 1000 # find in kPa
+
+# add pa to find absolute pressure
+pabs = pg + pa
+
+print("The gauge pressure in the tank is", pg, "kPa")
+print("The absolute pressure in the tank is", pabs, "kPa")
+""",
+        "explanation": "A manometer uses the known atmospheric pressure to measure another unknown pressure by using gauge pressure. First the code uses the specific gravity (sg) and density of water (rhoW) and the formula sg*rhoW to find the density of the fluid. After pgauge is calculated using rho * g * h where rho is the density of the fluid, g is gravity, and h is the height of the manometer column. Lastly gauge pressure is known to be p - pa so given pa, this compuation is quite simple. Additionally, we must assume that the density of the fluid in the manometer is much higher than the other fluid."
+        "references": ["Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."]
+    }
+},
+{
+    "question": "Air flows adiabatically through a duct. At point 1 the velocity is 240 m/s with T1 = 320 K and p1 = 170 kPa. Compute T0, p0, rho0, and Ma. At some point 2 further downstream v2 = 290 m/s and p2 = 135 kPa. What is the stagnation pressure p02? Assume gamma is 1.4 and cp is 1005 m^2/s^2K."
+    "answer": {
+        "code": """
+        import numpy as np
+v1 = 240 # velocity at point 1 (m/s)
+T1 = 320 # temperature at point 1 (K)
+p1 = 170 # pressure at point 1 (kPa)
+v2 = 290 # velocity at point 2 (m/s)
+p2 = 135 # pressure at point 2
+gamma = 1.4 # ideal gas constant
+cp = 1005 # constant pressure (m^2/s^2K)
+R = 287 # ideal gas constant for air (m^2/s^2K)
+
+# use stagnation temperature formula
+T0 = T1 + (v1**2)/(2*cp)
+print("The stagnation temperature at point 1 is", T0, "K")
+
+# use stagnation temperature to find the Mach number
+M = np.sqrt(((T0/T1)-1)*(2/(gamma-1)))
+
+# following, use Mach number to calculate stagnation pressure
+p0 = p1 * (1+((gamma-1)/2)*M**2)**(gamma/(gamma-1))
+
+# using ideal gas law, calculate density
+rho = (p0/(R * T0)) * 1000
+
+print("The stagnation pressure at point 1 is", p0, "kPa")
+print("The density at point 1 is", rho, "kg/m^3")
+print("The Mach number at point 1 is", M)
+
+# to find the stagnation pressure at point 2 you must first find T2 realizing that T02 = T01 because the flow is adiabatic
+T2 = T0 - (v2**2)/(2*cp)
+
+# then use isentropic relations
+p02 = p2 * (T0/T2)**(gamma/(gamma-1))
+
+print("The isentropic stagnation pressure at point 2 is", p02, "kPa")
+""",
+        "explanation": "The stagnation pressure is first found throught the formula T0 = T + (v^2/(2cp)) where T0 is stagnation temperature, T is static temperature, v is velocity, and cp is the molar capacity at constant pressure. Next, Mach number is calculated from the formula T0/T = 1 + ((gamma-1)/2)*M^2 where T0 and T are as previously defined, gamma is cp/cv, and M is the Mach number. Density is calculated through the ideal gas law pV = mRT modified to be rho = p/RT where rho is density, p is pressure, R is the universal gas constant, and T is temperature. Lastly stagnation pressure is calculated in two steps. The first uses the same stagnation temperature formula as prior, and the second uses the isentropic relations where p2/p1 = (T2/T1)^(gamma/(gamma-1)) where all the terms are as previously determined."
+        "references": ["Frank M. White (2016) Fluid Mechanics, McGraw-Hill."]
+    }
+},
+{
+    "question": "A nuclear explosion produces a normal shock wave that travels through still air with a Mach number of 5.50. The pressure and temperature of the air in front of the shock wave are 14.7 psia and 70.0°F. Determine the Mach number, pressure, and temperature behind the shock wave."
+    "answer": {
+        "code": """
+        import numpy as np
+M1 = 5.50 # Mach number of the moving shock wave (no units)
+p1 = 14.7 # pressure in front of the shock wave (psia)
+T1 = 70.0 # temperature in front of the shock wave (F)
+gamma = 1.4 # gamma factor of air (no units)
+
+# use normal shock relations to find Mach number
+M2 = np.sqrt((1+((gamma-1)/2)*M1**2)/(gamma*M1**2-((gamma-1)/2)))
+print("The Mach number behind the shock wave is", M2)
+
+# it is important to note that these units are in imperial, particularly such that temperature should be converted to rankine and not kelvin
+T1 = T1 + 459.67
+
+# use normal shock relations for temperature
+T2 = T1*((1+((gamma-1)/2)*M1**2)/(1+((gamma-1)/2)*M2**2))
+print("The temperature behind the shock wave is", T2, "°R")
+
+# use normal shock relations for pressure
+p2 = p1*((1+gamma*M1**2)/(1+gamma*M2**2))
+print("The pressure behind the shock wave is", p2, "lbf/in^2")
+""",
+        "explanation": "This question simply utilizes all of the normal shock relations which can be computed through equations or referred to on the tables. Here, the equations used are M2^2 = ((1+M1**2*(gamma-1)/2)/(gamma*M1**2-(gamma-1)/2)) where M1 and M2 are Mach numbers and gamma is the gamma factor. The formula for temperature is T1(1+M1**2(gamma-1)/2)=T2(1+M2**2(gamma-1)/2 where T1 and T2 are temperatures and the rest are as previously defined. Lastly, the normal shock pressure equation is p1(1+gamma*M1^2) = p2(1+gamma*M2^2) where p1 and p2 are pressures and the rest are as previously defined. Here we assume the gamma factor of air to be 1.4."
+        "references": ["Robert T. Balmer (2011) Modern Engineering Thermodynamics, Academic Press."]
+    }
+},
+{
+    "question": "Air flows steadily between two sections in a long, straight portion of 4-in. inside diameter pipe. The uniformly distributed temperature and pressure at each section are, in the first section: 100 psia and 540°R and in the second section: 18.4 psia and 453°R. The average air velocity at section 2 is 1000 ft/s. If alternatively the temperature and pressure from section 1 remained constant, what would the area have to be in section 2 to have the same velocity, assuming the velocity in section 1 is as calculated previously?"
+    "answer": {
+        "code": """
+        import numpy as np
+p1 = 100 # pressure at section 1 (psia)
+T1 = 540 # temperature at section 1 (R)
+p2 = 18.4 # pressure at section 2
+T2 = 453 # temperature at section
+v2 = 1000 # velocity at section 2 (ft/s)
+D = 4 # diameter of the pipe (in)
+
+# the velocity change can be assumed to be due to changes in pressure, which in turn changes the density. Using ideal gas law to find the density ratio, R is not needed as it cancels out.
+rho_ratio = (p2 * T1) / (p1 * T2)
+
+# use the fact that mass flow rate is constant through the control volume
+v1 = rho_ratio * v2
+
+print("The velocity at section 1 is", v1, "ft/s")
+
+# use the volumetric flow rate for conservation of mass as in the second case density is constant
+A1 = (np.pi/4) * D**2 # in square inches
+A2 = (v1 * A1) / v2
+print("The area of section 2 if pressure and temperature remained constant is", A2, "square inches")
+""",
+        "explanation": "This code uses the conservation of mass by drawing a control volume over the two different sectors. From this conservation law, we know that the mass flow rate in is equal to the mass flow rate out, so rho1*A1*v1 = rho2*A2*v2 where rho1 and rho2 are densities, A1 and A2 are areas, and v1 and v2 are velocities. As the area of the pipe is constant, the areas cancel out. As we are solving for v1, we can assume that velocity changes based on changes in pressure and temperature and in turn a change in density. using pV = mRT we can calculate the ratio of pressures (omitting R as it will cancel out anyways) and then plug this value into the mass flow rate equation. For the second part of the question, a constant pressure and temperature implies that density is constant because the flow is incompressible. So we can use the relation Q1 = Q2 where Q1 and Q2 are the volumetric flow rates (Av) and solve for A2."
+        "references": ["Wade W. Huebsch et al., Fundamentals of Fluid Mechanics (2013), John Wiley & Sons, Inc."]
+    }
+}
+]

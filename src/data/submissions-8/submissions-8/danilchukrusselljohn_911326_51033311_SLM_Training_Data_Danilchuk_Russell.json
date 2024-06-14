@@ -1,0 +1,261 @@
+[
+{
+    "Question": "Define a fluid in relation to its ability to sustain shear stress.",
+    "Answer": "A fluid is a substance which cannot sustain shear stress when at rest. Shear stresses are sustained in fluids only when relative motion between fluid particles takes place. Another way to say this is that when a fluid is at rest, there are no shear stresses."
+},
+{
+    "Question": "Describe how pressure acts upon a stationary object submerged in a fluid using the hydrostatic equation.",
+    "Answer": "A body immersed in a fluid will still experience a force even if there is no relative motion between the body and the fluid. Since no shear stresses are present in a stationary fluid, pressure is set by the normal component of force with respect to the surface. Considering the weight of the object and the hydrostatic equation dp = -g * rho * dy, we can say that pressure increases with depth and that the net force on the object acts only in the vertical direction. Archimedes Principle states that the upward force on the submerged body is equal to the weight of the fluid displaced by the body."
+},
+{
+    "Question": "Define gauge pressure and its importance.",
+    "Answer": "Gauge pressure is the relative pressure with respect to the atmospheric pressure. Often, the pressure of a fluid is far greater than the atmospheric pressure, meaning the affects of atmospheric pressure can be ignored and gauge pressure used in calculations."
+},
+{
+    "Question": "What is the physical significance of Bernoulli's Equation?",
+    "Answer": "When velocity increases, pressure decreases, and when velocity decreases, pressure increases. Bernoulli's equation is also a relation for mechanical energy in an incompressible flow as it states that the work done on a fluid by pressure forces is equal to the change in kinetic energy of the flow",
+    "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
+},
+{
+    "Question": "What are Couette and Poiseuille Flows and what occurs when they are combined?",
+    "Answer": "Couette flow occurs between two parallel plates when one plate is stationary and the other moves at a constant velocity, creating a linear velocity profile between them. Poiseuille flow occurs in a fully enclosed pipe or between two stationary parallel plates driven by a pressure gradient. The velocity profile for Poiseuille flow is parabolic, with the maximum velocity occurring at the center of the pipe or midway between the plates and decreasing to zero at the walls. When these flows are combined, the force balance and equations of motion are the same but the boundary conditions are different. Either a favorable pressure gradient occurs (when dp/dx < 0) or and adverse pressure gradient occurs (when dp/dx > 0)"
+},
+{
+    "Question":"Explain the implications of an adiabatic process within the First Law of Thermodynamics",
+    "Answer":"The first law states that energy cannot be created nor destroyed, meaning a state has a total energy, denoted as E. The energy of a system is the sum of kinetic energy, potential energy, and internal energies. Energy can be transferred as heat, work, or mass flow. An Adiabatic process involves no heat transfer. Assuming no kinetic or potential energy contributions, this means that the work done on or by a system during an adiabatic process is independant of the path taken."
+},
+{
+    "Question":"What is a polytropic process and how does the value of the parameter n determine what type of process occurs?",
+    "Answer":"A polytropic process is a compression or expansion for which the pressure and volume are related by p*V^n = constant. The parameter n is assumed to remain constant throughout the process. For ideal gasses, n = gamma indicates an isentropic proccess, n = 1 represents an isothermal process, n = 0 is isobaric, n = infinity is isochoric, n between 1 and gamme usually indicates a process with heat transfer."
+},
+{
+    "Question":"Elaborate on the clausius and kelvin-planck statements and how they limit the efficeincy of heat engines.",
+    "Answer":"The Kelvin-Planck statement states that it is impossible to build a cyclic device whose sole effect is to produce positve work while recieving heat from a single thermal reservoir, which is assumed to have infinite thermal heat capacity. This statement says that all the heat cannot be converted into useful work, there must be some limit on the efficiency. The clausius statement demonstrates the irriversibility of nature, stating that heat cannot be transferred from a colder body to a hotter one without an input of work. In summmary, these statements conclude that heat engines are limited in effieciency. The maximum efficiency of a cyclic heat engine operating between two thermal reservoirs is attained when the cycle is reversible."
+},
+{
+    "Question":"Explain why change in entropy is path independant and what the only way to reduce the entropy of a system is.",
+    "Answer":"Entropy is an extensive property representing the inability of a systems thermal energy to produce useful mechanical work. By the definition of a thermodynamic property, the value of entropy must depend only on the state of the system, not on the path taken. Entropy change is proportional to the mass of a system. Entropy can only be integrated over a reversible process. For irriversible processes, there is an infinitesimal entropy production due to the irreversability within the system, meaning the only way to reduce the entropy of a closed system is to give up heat to the surroundings."
+},
+{
+    "Question": "Invicid, incompressible air flows along a streamline. Air density along the streamline is 1.225 kg/m^3. At point 1 along the streamline, pressure is 100 KPa and velocity is 3 m/s. Downstream the velocity is 60 m/s. Calculate the pressure downstream.",
+    "Answer": {
+        "code": """
+import numpy as np
+
+rho = 1.225 # Density (kg/m^3)
+p1 = 101314 # Pressure 1 (Pa)
+v1 = 3 # Velocity 1 (m/s)
+v2 = 60 # Velocity 2 (m/s)
+
+# Apply bernoulli's equation along streamlines (p1 + 0.5 * rho * (v1**2)) = p2 + 0.5 * rho * (v2**2))
+p2 = p1 + 0.5 * rho * ((v1**2)-(v2**2))
+
+print("Downstream Pressure:", p2, "Pa")
+        """,
+
+        "Explaination": "This code utilized bernoulli's equation to show the relation between pressure and velocity along a streamline. As shown, a small change in pressure results in a large change in velocity.",
+        "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
+    }
+},
+{
+    "Question":"JP-7 fuel flows through a 5 meter long pipe with a diameter of 0.1 meters at a temperature of -34.5 degrees celcius and a volumetric flow rate of 0.5 m^3/s. Calculate the pressure drop thorugh the pipe. Assume viscosity is 0.012 Pa-s",
+    "Answer": {
+        "code": """
+import numpy as np
+
+l = 5 # Length of Pipe (m)
+d = 0.1 # Diameter of Pipe (m)
+r = d/2 # Radius of Pipe (m)
+Q = 0.5 # Volumetric Flow Rate (m^3/s)
+mu = 0.012 # Viscosity (Pa-s)
+pi = np.pi
+
+# Calculate bulk velocty using relation V = Volumetric Flow Rate/Cross Sectional Area
+V = Q/(pi * (r**2))
+
+# Apply Hagen-Poiseuille Equation
+Delta_P = (8*mu*V*l)/(r**2)
+
+print("The loss in pressure is:", Delta_P, "Pa")
+        """,
+
+        "Explaination": "This code utilizes the volumetric flow rate - bulk velocity relation and the hagen-poiseuille equation to calculate pressure loss through a pipe.",
+        "Refrences": "https://wiki.anton-paar.com/us-en/aviation-fuels"
+    },
+},
+{
+    "Question":"Contrary to the Clausius statement of the second law, 100 Joules of heat is transferred from a 600 K colder body to a 1200 K hoter body. Prove that this violates the increase in entropy principle.",
+    "Answer": {
+        "code": """
+import numpy as np
+
+Q = 100 # Heat Energy (J)
+T_hot = 1200 # Temperature of Hot Body in Kelvin
+T_cold = 600 # Temperature of Cold Body in Kelvin
+
+# Entropy Change of Hot Body
+
+delta_S_hot = Q/T_hot
+
+# Entropy Change of Cold Body
+
+delta_S_cold = -1 * Q/T_cold
+
+# Total Entropy Change
+
+delta_S = delta_S_hot + delta_S_cold
+
+print("The total entropy change is", delta_S, "J/K which violates the entropy principle since the total entropy change is negative.")
+        """,
+
+        "Explaination": "This code calculates the entropy change of two bodies where heat is transferred in an internally reversible isothermal heat transfer process.",
+        "Refrences": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    }
+},
+{
+    "Question":"Calculate the entropy change for an ideal gas that undergoes an adiabatic expansion from 1 bar to 0.5 bar. Assume initial temperature is 300 K, heat capacity at constant pressure is 1005 J/(kg*K), and specific gas constant R = 287 J/(kg*K)",
+    "Answer": {
+        "code": """
+import numpy as np
+
+P1 = 1  # initial pressure (bar)
+P2 = 0.5  # final pressure (bar)
+T1 = 300  # initial temperature (K)
+
+Cp = 1005  # heat capacity at constant pressure J/(kg*K)
+R = 287  # specific gas constant for air J/(kg*K)
+
+# Calculate the final temperature
+
+gamma = Cp / (Cp - R)
+
+# Using Isentropic Relations
+
+T2 = T1 * (P2 / P1)**((gamma - 1) / gamma)
+
+# Calculate the entropy change
+delta_S = Cp * np.log(T2 / T1) - R * np.log(P2 / P1)
+
+print("Entropy change is:", delta_S, "J/K")
+        """,
+
+        "Explaination": "This code calculates entropy change for an ideal gas where Q = 0. After the final temperature is calculated, Tds relations are used to find the change in entropy.",
+    }
+},
+{
+    "Question":"An airplane flies at a velocity of 500 m/s. Calculate its Mach number if it is flying at a standard altitude of sea level. Assume temperature at sea level is 288 Kelvin and gamma is 1.4.",
+    "Answer": {
+        "code": """
+import numpy as np
+
+gammma = 1.4
+T = 288 # Temperature in Kelvin
+R = 287  # specific gas constant for air J/(kg*K)
+V = 500 # velocity of
+
+# Calculate speed of sound
+
+a = np.sqrt(gamma * R * T)
+
+# Calculate Mach Number
+
+M = V/a
+
+print("The airplane is flying at Mach", M)
+        """,
+
+        "Explaination": "This code calculates mach number using the speed of sound equation and then the relation between mach numbeer, flow velocity, and speed of sound.",
+        "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
+    }
+},
+{
+    "Question":"A normal shock wave in air where the upstream flow properties are v1 = 680 m/s, T1 = 288 K, and p1 = 1 atm. Assuming gamma = 1.4, calculate the velocity, temperature, and pressure down- stream of the shock using normal shock property tables",
+    "Answer": {
+        "code": """
+import numpy as np
+
+gamma = 1.4
+R = 287  # specific gas constant for air J/(kg*K)
+T1 = 288 # Temperature in Kelvin
+v1 = 680 # Velocity (m/s)
+p1 = 1 # Pressure (atm)
+
+# Calculate speed of sound
+
+a1 = np.sqrt(gamma * R * T1)
+
+# Calculate Mach Number
+
+M = v1/a1
+
+# Values from Property Tables at calculated M
+
+p2_p1 = 4.5
+T2_T1 = 1.687
+M2 = 0.5774
+
+# Calculate downstream properties
+
+p2 = p2_p1 * p1
+
+T2 = T2_T1 * T1
+
+a2 = np.sqrt(gamma * R * T2)
+
+v2 = M2 * a2
+
+print("Pressure:", p2, "atm")
+print("Temperature:", T2, "K")
+print("Velocity:", v2, "m/s")
+        """,
+
+        "Explaination": "This code calculates downstream properties Temperature, Pressure, and Velocity using the speed of sound and normal shock relations found in property tables associated with gamma = 1.4",
+        "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
+    }
+},
+{
+    "Question":"Air enters a 1 m diameter pipe steadily at 2000 Pa and 20 C with a velocity of 5 m/s. Air is heated as it flows, and leaves the pipe at 1800 Pa and 40 C. Determine the velocity and volume flow rate at the exit.",
+    "Answer": {
+        "code": """
+import numpy as np
+
+v1 = 5 # Velocity of incoming air (m/s)
+p1 = 2000 # Pressure of incoming air (Pa)
+T1 = 20 # Temperature of incoming air (C)
+d = 1 # Diameter of pipe (m)
+p2 = 1800 # Pressure of exiting air (Pa)
+T2 = 40 # Temperature of exiting air (C)
+R = 287  # specific gas constant for air J/(kg*K)
+r = d/2 # Radious of pipe (m)
+
+# Calculate volume flow rate at inlet
+
+vol_flow1 = np.pi*(r**2)*v1
+
+# Calculate density
+
+rho1 = p1/(R*(T1+237))
+rho2 = p2/(R*(T2+237))
+
+# Calculate mass flow rate using m_dot = rho * A * V
+
+mass_flow = rho1*(np.pi*(r**2))*v1
+
+# Since mass flow in is equal to mass flow out
+
+vol_flow2 = mass_flow/rho2
+
+# Calculate Velocity Out
+
+v2 = vol_flow2/(np.pi*r**2)
+
+print("Volume flow at exit:", vol_flow2, "m^3/s")
+print("Velocity at exit:", v2, "m/s")
+        """,
+
+        "Explaination": "This code uses the principle of conservation of mass to calculate the velocity at the exit of the pipe given that density changes.",
+        "Refrences": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
+    }
+}
+
+]

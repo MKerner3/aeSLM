@@ -1,0 +1,285 @@
+[
+{
+ "question": "How is it that incompressible flow can have a non-uniform velocity profile and why do we evaluate mass flow rate differently compared to a constant profile?"
+ "answer": "Fluid flow near walls wants to ""grip" the wall due to the friction of the pipe and the viscosity of the fluid, this is the internal resistance of a fluid to flow. The velocity of the flow near the walls will be less than the flow further away from the walls, this is known as Poiseuille flow. To evaluate flow with gradients you must integrate with area. If we induce a tangential force at the top of the flow, the molecules need to accommodate this displacement through momentum exchange. This is Couette flow and is evaluated the same."
+ "reference": ["https://www.lehman.edu/faculty/anchordoqui/chapter28.pdf", "page: 28-5"]
+},
+{
+ "question": "Is Bernoulli's equation a statement on the conservation of momentum and does that mean it is related to Newton's second law?"
+ "answer": "Bernoulli's equation implies that when focusing on the forces on the streamline we can apply Newton's 2nd law. The conservation of Momentum is also derived from Newton's 2nd law. It is important to understand that Bernoulli's equation is only valid along streamlines and can be used for problems related to momentum if they are connected by streamlines following the conditions stated earlier. Understanding its assumptions will differentiate its applicability. However, Bernoulli's equation is more closely a statement on energy conservation: energy of a fluid remains constant along a streamline."
+ "reference": ["https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/bernnew.html"]
+},
+{
+ "question": "How does one go about calculating stagnation pressure within a flow that has a specific inlet velocity?"
+ "answer": "Stagnation pressure is the reading when the flow is impeded and has a stagnation point. This is most commonly recorded with a pitot-static tube and In incompressible flow, the stagnation pressure can be read as the static pressure plus the dynamic pressure. Impeding sonic flow will develop shocks, which will cause a drop in stagnation pressure that is read vs what that value is. Utilizing isentropic relations can yield results pre and post-shock, but this utilizes the Rayleigh pitot tube formula and is only valid when Mach is greater than 1."
+},
+{
+ "question": "If a heat engine is at maximum efficiency when it is cyclic, does that mean it is also in quasi-equilibrium?"
+ "answer": "A heat engine is only at maximum efficiency when it is reversible and cyclic. This is an idealized process meaning that in practice this cannot be achieved. Quasi-Equilibirum refers to a process that occurs slowly and remains infinitesimally close to an equilibrium state at all times. If a heat engine is utilizing maximum efficiency, which means it is reversible, does not mean quasi-equilibrium because a reversible process must be carried out in a way to avoid creating entropy."
+ "reference": [ "https://bingweb.binghamton.edu/~suzuki/ThermoStatFIles/1.5%20Review%203%20%20Phys.131%20Entropy%20Carnot%20cycle.pdf", "page 7"]
+},
+{
+ "question": "How can one consider a steady flow process, what are the analytical steps and equations used to determine this?"
+ "answer": "Whether steady conditions are valid depends on how the flow crosses that control volume. It is important to draw a control volume that makes calculating the flow easiest to determine kinetic and potential components. After taking these steps it is important to recognize that steady flow processes are understood as there is no accumulation of energy or depletion of mass, meaning that conservation is at play: steady flow mass continuity, steady flow momentum equations, and steady flow energy equations constitute the steady flow conservation equations."
+},
+{
+ "question": "How is it that choked flow has a peak mass flow rate value regardless of how much you raise the pressure differential, will anything else happen to the flow otherwise?"
+ "answer": "Choked flow occurs when the Mach number at the throat reaches 1, and once the flow is choked any changes to the pressure differential will not increase the mass flow rate through the throat. This is because the flow velocity at the throat won't exceed the speed of sound. However, decreasing the exit pressure downstream of the throat will shift the position of the shock further downstream of your nozzle or pipe. This will alter your stagnation and static values at specific points within your flow."
+},
+{
+ "question": "If flow through a variable nozzle has an inlet velocity that is subsonic, how can the flow post throat be supersonic or subsonic and what conditions would need to be applicable?
+ "answer": "We assume that flow is choked at the throat and friction can be ignored, we can utilize isentropic relations to find the mach number downstream of the throat. The concept being discussed is when the area ratios can result in the possibility of super-sonic and sub-sonic solutions. This would need to be calculated given a specific problem. If flow entering the diverging section is subsonic, the static pressure will begin to rise to match the exit static pressure. The opposite holds for flow entering the diverging duct that is supersonic. If a shock forms the static pressure post-shock will rise to match the exit static pressure, this is done isentropically."
+},
+{
+ "question": "Explain how expansion fans are isentropic processes while shocks are entropic processes and the consequences given that both are results of compressible flow?"
+ "answer": "Entropy is a thermodynamic property defined as: "the inability of a "system's thermal energy to yield useful mechanical work". For shocks, there can be normal shocks, oblique shocks, or bow shocks which is what happens when the impeding angle is greater than the maximum turning angle. In all three of these situations, they are entropic processes and have similar consequences. However, expansion fans, are adiabatic and reversible due to the isentropic property of the flow, meaning they are isentropic: constant entropy throughout the expansion fan. This creates different relations across the fan that are seemingly opposite of those compared to a shock."
+ "reference": ["https://www.grc.nasa.gov/www/k-12/airplane/expans.html" ]
+},
+{
+ "question": "If I had a variable nozzle with significant friction, an inlet subsonic velocity, and made the throat of the nozzle long enough such that Fanno-Flow took effect, what would happen to the mach number downstream of this long throat?"
+ "answer": " What would happen is if you had a case where the flow entering this pipe was subsonic, friction would reduce the area and velocity would begin to rise in the pipe eventually hitting what is called the choking condition, flow reaching the choking condition would experience drops in static temperature and pressure. If the flow entering the pipe is sonic, friction reduces the area and velocity will drop down to the choking condition. The flow will begin to experience increases in static temperature and pressure. It is important to note that in the case of Fanno flow, flow cannot surpass the choking condition."
+},
+{
+    "question" : " A jet engine with an inlet diameter of 8m is operating at sea level. The Ambient air pressure is 101.325kPa, and the Ambient air temperature is 15 C. The jet engine is able to pull in air with a velocity of 100 m/s and reads a temperature of 400k at the exit. The exit diameter is a quarter of the inlet diameter. Assuming the flow is adiabatic and reversible, calculate the velocity at the exit of the jet engine, and the specific work this engine produces. Assuming changes in potential energy are negligible. Assume a cp value of 1.006 kj/(kg . K). "
+    "answer" : {
+        "code": """
+import numpy as np
+
+pi = 3.141592653589793
+v1 = 100  # Velocity (m/s)
+P1 = 101.325  # Pressure (kPa)
+T1 = (15 + 273.15)  # Temperature (K)
+D1 = 8  # Diameter (m)
+D2 = (D1) / 4  # Diameter2 (m)
+T2 = 400  # Temperature2 (K)
+Cp = 1.006  # Specific Heat Capacity (kJ/(kg . K))
+Gamma = 1.4  # Gamma for air
+
+# We have the required values to find density at the inlet and recognizing the flow is isentropic we can find density at the exit.
+rho1 = P1 / ((Cp - (Cp / Gamma)) * T1)
+P2 = ((T2 / T1) ** (Gamma / (Gamma - 1))) * P1
+rho2 = P2 / ((Cp - (Cp / Gamma)) * T2)
+
+# Apply continuity utilizing area calculations
+A1 = pi * (D1 ** 2) * .25
+A2 = pi * (D2 ** 2) * .25
+V2 = (rho1 * A1 * v1) / (A2 * rho2)
+
+# Utilize steady flow energy equation disregarding potential
+sWork = -((Cp * (T2 - T1)) + ((V2 ** 2 - v1 ** 2) / 2))
+
+print("The specific work done is", sWork, "kW, note the negative implying work is done onto the system, and the exit velocity is ", V2, "m/s.")
+     """,
+    "explanation": "This code utilizes ideal gas law and continuity to calculate the SFEE in order to find the work that is done at the system and to calculate the velocity at the exit."
+    }
+},
+{
+    "question" : "Air flows through a pipe at M = 1.25. The diameter of the pipe is 6m and at some length in the pipe, a shock forms and the exit static reads 75k with a skin coefficient of .002. The stagnation temperature is 100k and the Stagnation pressure is 125kPa at the inlet. What is the exit stagnation pressure to inlet stagnation pressure, the exit static temp to inlet static temp? At what length in the pipe are these values read, What is the impulse relative to the stagnation pressure at exit?"
+    "answer" : {
+        "code": """
+import numpy as np
+
+pi = 3.141592653589793
+M1 = 1.25
+T0 = 100 # Stagnation Temperature (k)
+P0 = 125 # Stagnation Pressure (kPa)
+D = 6  # Diameter (m)
+cf = .002 # skin friction coefficient
+Pe = 75 # Exit static pressure (kPa)
+nonDimFlow1 = 1.2238 # value in gas table
+
+#Utilizing gas table, find non-dim flow rate at inlet related to stagnation pressure and calculate it such to get non-dim related to exit pressure, this will give us our downstream mach value)
+nonDimFlow2 = (nonDimFlow1 * (P0/Pe))
+friction1 = 0.0486
+
+#Looking at gas tables we find that this flow rate is at mach 0.860, now we can calculate stagnation values
+P0e = (Pe/0.6170)
+Te = (T0 * .8711)
+friction2 = 0.0310
+
+#next utilizing the friction expressions at the different values and solving for Lmax will allow us to yield the length
+frictionM = friction1 - friction2
+Lmax = (frictionM * 6)/(4 * cf)
+
+#For impulse look back at gas property table at exit and utilize manipulation to get F/P0e)
+A = pi * (D ** 2) * .25
+impulseP = .9979 * nonDimFlow2 * ((Pe * A) / P0e)
+
+print("The Impulse ratio is,", impulseP, "and the length of the pipe is,", Lmax,"m.")
+        """,
+        "explanation": "This code utilizes the gas property tables and expects you to be able to pull the correct values, from there it calculates length of the pipe utilizing Lmax which is L1 ratio - L2 and through manipulation get Impulse over pressure"
+        "reference": ["Brian J. Cantwell Fundamentals of Compressible Flow", "pages: 283-284"]    
+    }
+},
+{
+    "question": "A rocket with a solid motor is flying through the air at 165 m/s, it has a static pressure of 380kPa at the exit and ejects the propellant out at 200m/s.  The solid rocket motor burns right at the exit of the motor casing and the temperature at the exit is 550K. The volumetric flow rate is 115 m^3/s and the ambient pressure at this level is 75kPa. Find the thrust this rocket produces and the specific impulse. Assume a gamma of 1.4 and a Cv of 1.3 kJ/(kg.K) for the gas expelled from the motor and assume this gas acts like a perfect gas."
+    "answer": {
+        "code": """
+import numpy as np
+
+vFlow = 115 # Volumetric flow rate (m^3/s)
+Pe = 380 # Exit Pressure (kPa)
+Te = 550 # Exit Temperature (K)
+Pa = 75 # Ambient Pressure (kPa)
+vPropellant = 200 # Velocity of propellant (m/s)
+gammaGas = 1.4
+cvGas = 1.3 # heat capacity at constant volume kJ/(kg.K)
+
+#utilizing steady flow momentum, we can calculate for thrust, but we need density of the propellant at the exit.
+cpGas = cvGas * gammaGas
+Rgas = cpGas - cvGas
+rhoe = (Pe/(Rgas * Te)) #density of propellant exiting
+Ae = vFlow/vPropellant #area of motor casing
+machGas = vPropellant/((gammaGas * Rgas* Te)**.5)
+
+#utilizing gas table we can find impulse expressions and flow rate expressions to manipulate ratios)
+Thrust = 1.1903 * 1.1341 * Ae * Pe - (Ae*Pa)
+T0e = Te / .9524
+Impulse = 1.1903 * vFlow * rhoe * ((cpGas * T0e)**.5)
+
+print("The thrust of the motor is,", Thrust, "kN and the specific impulse is", Impulse,"kN.s/kg .")       
+        """,
+        "explanation": "This code utilizes the fact there are no inlet components to the solid rocket motor and only considers the exit. It uses Steady Flow energy with thrust and impulse in order to calculate thrust. From there it gets exit mach to find impulse at exit."
+        "reference": [ "Moran, M. J., et. al., 2014, Fundamentals of Engineering Thermodynamics, 8th ed., Wiley, Hoboken, NJ", "question 13.37","page 673" ]
+    }
+},
+{
+    "question": "Flow is fully released for only .1 seconds and enters a pipe at 300 m/s with a temperature of 300K and the flow is strictly driven by a pressure gradient where downstream pressure is 1 bar and upstream pressure is 8 bar. The area at the inlet is half of the area at the exit. Note that the cp value is 2.5, The gamma of this gas is 1.67. and this gas acts like a perfect gas assuming the flow is incompressible. Does the system have backflow, if so calculate the specifc work required to go against the gradient. Ignore changes in potential"
+    "answer":{
+        "code": """
+import numpy as np
+
+Vin = 300 # Velocity inlet (m/s)
+Tin = 300 # Temperature inlet (K)
+Pin = 8*(10**2) # Pressure inlet (kPa)
+Pout = 1*(10**2) # Pressure outlet (kPa)
+cp = 2.5 # Heat capacity at constant pressure (kJ/(kg.K))
+gamma = 1.67
+Ain = 0.5 # Area (m^2)
+Aexit = 1 # Area (m^2)
+
+#understanding we have flow that is compressible we must calculate density utilizing continuity
+cv = cp/gamma # Heat capacity at constant volume
+R = cp - cv #gas constant (kJ/(kg.K))
+rho = (Pin/(R*Tin))
+mDot = rho * Ain * Vin
+Vout = (Ain/Aexit) * Vin
+
+#To calculate for back flow we must utilize the change in entropy equation and calculate if change is entropy due to irreversibilities is negative
+Texit = (Pout * Tin)/Pin
+dSirrev = (cp * np.log(Texit/Tin)) - (R * np.log(Pout/Pin))
+
+#Since the flow is going backwards that must mean work is being done onto the system to go against the pressure differential
+specificWork = (cp * (Texit-Tin)) + (0.5 * (Vout**2 - Vin**2))
+
+print ("the change in irreversibilities is:", dSirrev, "kj/kg.k meaning that flow is going agaisnt the gradient, the specific work to perform this is:", specificWork, "kw.s/kg")
+        """,
+        "explanation": "This code is utilizing the relations of change in entropy in order to determine the work required to find how there is flow opposite to the pressure gradient, a lot of algebraic manipulation is involved."
+    }
+},
+{
+    "question": "A new system that utilizes compression that is adiabatic and reversible is to decrease the density of gas. The gas has a cv value of .73 and an R-value of .450, the inlet static temperatures are 300k and static pressures are 105kPa, however, it takes in gas rapidly at 225 m/s and reads 350k at the exit. The device relies on changes in height from the inlet to the exit of 0.25 with an inlet height of 1m and the density at the inlet is 1.75 kg/m^3. Calculate the work done, as well as static, pressure, and density ratios of exit to inlet."
+    "answer":{
+        "code": """
+import numpy as np
+
+rho1 = 1.75 # Density (kg/m^3)
+T1 = 300 # Temperature inlet (K)
+T2 = 350 # Temperature exit (K)
+P1 = 105 # Pressure inlet (kPa)
+V1 = 225 # Velocity inlet (m/s)
+cv = .73 # Heat capacity at constant volume (kJ/(kg.K))
+R = 0.450 # gas constant (kJ/(kg.K))
+
+#using continuity we must find the mass flow rate, then using isentropic relations find rho 2 and from continuity find v2
+cp = cv + R # heat capacity at constant pressure (kJ/(kg.K))
+gamma = cp/cv
+A1 = 1 # height in meters
+A2 = 4 * A1 # height in meters
+mdot = rho1 * A1 * V1
+P2 = ((T2/T1)**(gamma/(gamma-1))) * P1
+rho2 = P2/(R * T2)
+V2 = mdot /(A2 * rho2)
+
+#calculate static ratios
+rhoRatio = rho2/rho1
+pressureRatio = P2/P1
+
+#calculate work using SFEE accounting for kinetic and potential
+work = mdot * ((cp * (T2-T1)) + (0.5 * (V2**2 + V1**2)) + 9.81 * (A2 - A1))
+mWork = work/1000
+print("The work done by the system is,",mWork,"Megawatts (MW). The density ratio is:", rhoRatio, "and pressure ratio is:", pressureRatio)
+        """,
+        "explanation": "This code calculates the work done on the system utilizing the potential and kinetic components, it also uses isentropic relations in order to find the static ratios of exit and inlet."
+        "reference": [ "Moran, M. J., et. al., 2014, Fundamentals of Engineering Thermodynamics, 8th ed., Wiley, Hoboken, NJ", "question 4.24", "page 166" ]
+    }
+},
+{
+    "question": "Air enters pipe 1 uniformly at 25m/s and at 45 degrees relative to the control surface of the pipe. Pipe 1 has a diameter of 0.5 meters and is connected to pipe 2 which has a diameter of 0.3m. As the flow goes through pipe 1 it holds a static pressure value of 100kPa and temperature of 175k throughout the whole flow, but as it enters pipe 2 it now has a parabolic profile expressed as V2(1+(r)^2) where r is the radius. These pipes are not orthogonal to each other and are at an additional angle of 20 degrees. What is the velocity exiting pipe 2 and the momentum flux components only through pipe 2?"
+    "answer": {
+        "code": """
+import numpy as np
+
+pi = 3.141592653589793
+V1 = 25 # Velocity inlet (m/s)
+D1 = 0.5 # diameter of pipe 1 (m)
+D2 = 0.3 # diameter of pipe 2 (m)
+P1 = 100 # pressure inlet (kPa)
+T1 = 175 # temperature inlet (K)
+R = .287 # gas constant for air (kJ/(kg.K))
+
+#Calculate mass flow rate in the x direction
+vtheta1 = V1 * .707106      # velocity normal to surface of pipe 1
+rho = P1/(R * T1)
+A1 =  pi * (D1 ** 2) * .25
+mdot = rho * A1 * vtheta1
+
+#calculate v2 and find momentum flux components
+integrand = ((0.3**2)/2) + ((0.3**4)/4)
+V2 = mdot / (rho * 2 * pi * integrand)
+vtheta2 = V2 * .9396926208 # velocity component in x of pipe 2
+vtheta3 = V2 * .342021433 # velocity component in y of pipe 2
+mxFlux = mdot * vtheta2
+myFlux = mdot * vtheta3
+
+print ("The velocity exiting pipe 2 is:", V2, "m/s. The momentum flux component in the x is,", mxFlux,"kg/s and in the y is,", myFlux,"kg/s.")
+        """,
+        "explanation": "The code involves the user to do some hand integration, however it computes the integration to find the mass flux components and finds the mass flow rate in order to find those components."
+    }
+},
+{
+    "question": " A company wants to try to use boats in the ocean as pads for the boosters to land on which are 25m by 30m. The pressure and temperature at which the gas is being expelled are 700k and 450 kPa.The booster's jet radius is 10m the exit velocity of the jet is 300 m/s and the booster is at an attack angle of 30 degrees normal to the boat before contacting the boat. What is the total force the boat experiences? Assume a gamma value of 1.9 and a cv value of 3.3 kj/(kg. k) for the gas from the booster."
+    "answer":{
+        "code": """
+import numpy as np
+
+pi = 3.141592653589793
+T1 = 700 # temperature exit (K)
+P1 = 450  # pressure exit (kPa)
+V1 = 300  # velocity exit (m/s)
+Rad = 10  # radius (m)
+gamma = 1.9
+Pa = 101.325  # pressure atmosphere (kPa)
+cv = 3.3  # heat capacity at constant volume (kJ/(kg.K))
+
+# first calculate the density of the gas being expelled
+cp = cv * gamma
+R = cp - cv
+rho = P1 / (R * T1)
+A = 25 * 30  # area (m^2)
+
+# calculate mass flow rate entering control volume
+vtheta1 = V1 * .5  # .5 arises from sin of 30
+aJet = pi * Rad ** 2
+mdot = rho * (aJet / 0.5) * vtheta1
+
+# calculate force on the boat including atmosphere and pressure gradient from jet
+force = (rho * aJet * V1 ** 2 * 0.5) + (Pa * 1000 * A) + (P1 * 1000 * aJet)
+forceK = force / 1000
+
+print("The force experienced by the boat is", forceK, "kN.")
+    """,
+    "explanation": "This code utilizes the ideal gas relations to find density and from there expects a correct control volume analysis. It utilizes pressure from atmosphere and jet, along with momentum flux from the jet to calculate the force on the boat."
+    }
+},
+]

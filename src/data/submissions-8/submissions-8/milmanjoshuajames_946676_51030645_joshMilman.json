@@ -1,0 +1,171 @@
+[
+    {
+        "question": "Give an example of a control volume.",
+        "answer": "A secured tunnel with the same amount of mass going in as out. mass flux(in) = mass flux(out)."
+    },
+    {
+        "question": "What causes shocks?",
+        "answer": "When an object moves faster than the speed of sound, objects that react to changes in pressure can't, thereofre creating a build up of pressure and thus shocks."
+    },
+    {
+        "question": "Can Bernoulli’s principle hold across a shock wave explain your reasoning?",
+        "answer": "No, Bernoulli's principle can only hold for incompressible flow. The total pressure decreases downstream of a shock."
+    },
+    {
+        "question": "Explain the outcome difference in a concave corner versus a convex corner for a mach wave.",
+        "answer": "A concave corner will result in a oblique shock while a convex croner will lead to an expansion fan."
+    },
+    {
+        "question": "In a pipe with a constriction causing velocity to increase, what happens to the pressure as the fluid moves from the wide section to the narrow section?",
+        "answer": "The pressure decreases in the fluid flow from the wide section to the narrow section due to the increase in velocity."
+    },
+    {
+        "question": "How does only backspin affect the trajectory of a golf ball for the magnus effect?",
+        "answer": "Straight backspin on a golf ball generates lift, causing the ball to stay airborne longer and travel farther than a non-spinning ball."
+    },
+    {
+        "question": "What type of flow occurs between two parallel plates when one plate is stationary and the other is moving horizontally?",
+        "answer": "Couette flow, characterized by the shear stress and velocity gradients induced within the fluid."
+    },
+    {
+        "question": "If heat is added to a closed system while no work is done and no heat is transferred out, what happens according to the first law of thermodynamics?",
+        "answer": "The internal energy of the system increases leading to a rise in temperature within the system due to the added heat energy."
+    },
+    {
+        "question": "When we talk about pressure in fluid mechanics, what's the difference between stagnation pressure and static pressure?",
+        "answer": "Stagnation pressure is the total energy the fluid has considering both its resting pressure and the pressure it gains from its movement, while static pressure just looks at the pressure from the fluid sitting still."
+    },
+        "question": "A glass of cola contains 4 inches or 0.1016m in height of cola. The bartender adds whiskey to the cup adding another inch to the height or 0.0254m. Calculate the gauge pressure at the bottom of the cup. Given cola density(1042 kg/m^3); whiskey density(1010 kg/m^3).",
+        "answer": {
+            "code": """
+  import numpy as np
+
+h_cola = 0.1016 #meters
+h_whiskey = 0.0253 #meters
+density_cola = 1.042 #kg/m^3
+density_whiskey = 1.01 #kg/m^3
+gravity = 9.98 #m/s^2
+
+#calculate the gauge pressure very simple
+gauge_presure = density_whiskey*gravity*h_whiskey + density_cola*gravity*h_cola #answer in Pa
+
+  
+  print("Gauge Pressure at the bottom of the cup:", gauge_presure, "Pa")
+            """,
+            "explanation": "This question requires a simple calculation of gauge pressure using two different objects one being poured on top of inside a cup.",
+        }
+    },
+    {
+        "question": "Given air flowing steadily through a pipe at a speed of 50 m/s, with a decrease in pressure of -10,000 Pa, and the density of air being 1.125 kg/m^3, find the pressure at this other point using Bernoulli's equation.",
+        "answer": {
+            "code": """
+  import numpy as np
+
+v_inf = 50  # Velocity at both points m/s
+delta_p = -10000  # Decrease in pressure from point 1 to point 2 Pa
+rho = 1.25   # Density of the fluid kg/m^3
+p_2 = 0.5 * rho * v_inf**2 + delta_p # Calculate the pressure at point 2 using Bernoulli's equation
+  
+    print("Pressure at point 2:", p_2, "Pa")
+            """,
+            "explanation": "This code calculates pressure at a 2nd point given the pressure decrease and constant velocity using Bernoulli's equation."
+        }
+    }
+    {
+        "question": "Nitrogen gas at a volume of 2m^3 exterst a pressure of 500kPa. Determine the temperature of this nitrogen using the ideal gas law.",
+        "answer": {
+            "code": """
+  import numpy as np
+
+V = 2  # Volume in m^3
+P = 500000  # Pressure in Pa (500 kPa converted to Pa)
+R = 8.314  # J/(mol*K)
+n = P * V / (R * 1000) #number of moles
+T = P * V / (n * R) # Calculate the temperature using the ideal gas law
+  
+    print("The temperature of the nitrogen gas is:", T, "K")
+            """,
+            "explanation": "This code calculates temperature using the ideal gas law not a very hard question."
+        }
+    }
+    {
+        "question": "Given the upstream temperature of 500 K pressure of 200 kPa and Mach number of 2; determine the downstream temperature, pressure, and Mach number.",
+        "answer": {
+            "code": """
+  import numpy as np
+T1 = 500  # Upstream temperature in K
+P1 = 200000  # Upstream pressure in Pa (200 kPa converted to Pa)
+M1 = 2  # Upstream Mach number
+gamma = 1.4  # Specific heat ratio for air
+
+# Calculate downstream temperature using the normal shock relations
+T2 = T1 * ((2 * gamma * M1**2 - (gamma - 1)) / (gamma + 1))
+
+# Calculate downstream pressure using the normal shock relations
+P2 = P1 * ((2 * gamma * M1**2 - (gamma - 1)) / (gamma + 1))**(gamma / (gamma - 1))
+
+# Calculate downstream Mach number using the normal shock relations
+M2 = ((gamma + 1) * M1**2) / (2 + (gamma - 1) * M1**2)
+  
+    print("Downstream Temperature (T2):", T2, "K")
+    print("Downstream Pressure (P2):", P2, "Pa")
+    print("Downstream Mach Number (M2):", M2)
+            """,
+            "explanation": "This code calculates the downstream properties given a normal shock using the simple relations."
+        }
+    }
+    {
+        "question": "Given the density of water as 1000 kg/m³, determine its exit speed from a pipe if 8 kg/s enters and the mass flux out equals the mass flux in. Assume the cross-sectional area of the exit is half that of the entrance.",
+        "answer": {
+            "code": """
+  import numpy as np
+rho = 1000  # Density of water in kg/m³
+m_flux_in = 8  # Mass flux entering in kg/s
+A_in = 1  # Cross-sectional area of the entrance in m²
+A_out = 0.5 * A_in  # Cross-sectional area of the exit in m²
+v_out = m_flux_in / (rho * A_out) # Calculate the exit speed using the mass flux equation
+  
+    print("The exit speed of the liquid is:", v_out, "m/s")
+            """,
+            "explanation": "This code calculates exit velocity considering a control volume and mass flux."
+        }
+    }
+    {
+        "question": "A kilogram of air heats up from 500 K to 700 K in a closed container without changing volume. Its specific heat at constant volume of 1000 J/(kg·K). Calculate the change in entropy.",
+        "answer": {
+            "code": """
+  import numpy as np
+m = 1  # Mass of air in kg
+T1 = 500  # Initial temperature in K
+T2 = 700  # Final temperature in K
+Cv = 1000  # Specific heat at constant volume in J/(kg*K)
+delta_S = m * Cv * np.log(T2 / T1) # Calculate the change in entropy using the Clausius inequality
+
+    print("The change in entropy is:", delta_S, "J/K")
+            """,
+            "explanation": "This code calculates change in entropy using the clausius inequality."
+        }
+    }
+    {
+        "question": "An aircraft flying at Mach 3 encounters an oblique shock wave with an angle of 45 deg. Determine the Mach number and the angle of the flow behind the shock wave.",
+        "answer": {
+            "code": """
+  import numpy as np
+gamma = 1.4
+M1 = 3  # Upstream Mach number
+theta = np.deg2rad(45)  # Angle of oblique shock in radians
+# Calculate the Mach number behind the shock using the oblique shock relations
+M2 = np.sqrt((1 + ((gamma - 1) / 2) * M1**2) / (gamma * M1**2 - (gamma - 1) / 2 * (np.sin(theta))**2))
+M2 = np.round(M2, 2)  # Round off to 2 decimal places
+# Calculate the angle behind the shock using the oblique shock relations
+beta = np.arcsin((1 / M1) * np.sin(theta - np.arcsin(1 / M1)))
+beta_deg = np.rad2deg(beta) # Convert angle from radians to degrees
+beta_deg = np.round(beta_deg, 2)  # Round off to 2 decimal places
+
+    print("Mach number behind the oblique shock:", M2)
+    print("Angle behind the oblique shock (in degrees):", beta_deg)
+            """,
+            "explanation": "This code calculates angle and mach number due to an oblique shock."
+        }
+    }
+  ]

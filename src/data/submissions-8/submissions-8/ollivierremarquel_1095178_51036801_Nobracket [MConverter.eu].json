@@ -1,0 +1,173 @@
+
+{
+  "question": "In what type of flows can Bernoulli’s principle be applied?",
+  "answer": "Bernoulli’s can be applied at low speed, inviscid (without flow friction or viscous effects), and incompressible steady flow. It is applied to flow along a streamline, where the flow can be rotational or irrational. However, if the flow is rotational, Bernoulli holds between any 2 points in the flow, not necessarily just on the same streamline. If the flow is irrotational, Bernoulli’s can apply across streamlines."
+},
+{
+  "question": "What is the difference between Couette Flow and Poiseuille Flow, and when can each be applied?",
+  "answer": "Both Couette and Poiseuille flows are both examples of viscous flows. Couette flow is considered to flow between a moving and stationary plate. The pressure gradient between the two plates is 0, and the flow is driven solely by the shearing motion of the plates rather than pressure differences. Poiseuille flow is a flow between 2 stationary plates, driven by a constant pressure gradient induced by a constant pressure difference or pressure drop in a pipe or between 2 parallel plates. Poiseuille flow is axisymmetric and swirl-free. Poiseuille flow can be observed in blood flow or through pipes, while Couette Flow can be observed in engineering applications involving lubrication between 2 surfaces, like a bearing. "
+},
+{
+  "question": "Why is there a pressure gradient across curved streamlines?",
+  "answer": "Neglecting gravitational forces, consider a fluid blob traveling along a curved streamline. The acceleration is in the normal direction towards the center of curvature. This acceleration wouldn’t exist if it were traveling in a straight path. When the streamline is curved, a normal pressure force must balance the normal acceleration, and that normal pressure force keeps the fluid moving in its curved path. Due to curvature, fluid moves at higher velocities towards the inside of the curvature, and following Bernoulli’s equation, low pressure is related to high velocity, causing a pressure gradient with low pressure towards the inside of the curve and high pressure on the outside."
+},
+{
+  "question": "What is the significance of the Clausius Inequality in irreversible and reversible processes? ",
+  "answer": "For an irreversible process, the Clausius Inequality strictly says that heat transfer occurs WITH irrecoverable energy loss. This holds because an irreversible process means the system cannot be brought to its original state without external help. For reversible processes, equality (in the Clausius Inequality itself) applies when all processes within the cycle are reversible. Heat transfer occurs WITHOUT any irrecoverable energy losses, and the system changes in a quasi-equilibrium matter. "
+},
+{
+  "question": "How does entropy relate to the directionality and irreversibility of processes in nature?",
+  "answer": "Entropy represents the inability of a system’s thermal energy to yield useful work. Processes favor the direction that leads to an increase in entropy, like heat flowing from a hot object to a cold one. In irreversible processes, entropy increases, leading to a loss of the ability to perform useful work. Reversible processes allow quasi-equilibrium changes, allowing a system to be brought back to its original state without any entropy change. "
+},
+{
+  "question": "What are adiabatic, isobaric, isochoric, isentropic, and isothermal processes, and how can I relate them? ",
+  "answer": "The adiabatic process occurs when no heat is exchanged between the system and its surroundings. Isobaric processes occur at constant pressure, isochoric processes occur at constant volume, and isothermal processes occur at constant temperature. An isentropic process occurs with no change in entropy. Relating these processes depends on the conditions and behaviors of the system and can overlap. In isentropic processes, the system remains adiabatic. An adiabatic process can be isentropic if it is reversible. Isothermal processes can be isochoric or isobaric if they occur at constant volume or pressure."
+},
+{
+  "question": "Why do we consider flow across an expansion fan isentropic?",
+  "answer": "Isentropic flow assumes energy conservation and moment without losses due to friction, heat transfer, and shock waves when we consider it isentropic. It is also associated with ideal gas behavior, and the fact that entropy stays in contrast through the expansion process simplifies the analysis of energy changes and heat transfer within a system. Assuming the flox is isentropic allows us to use our isentropic relations to solve flow problems as well. "
+},
+{
+  "question": "Why does decreasing exit static pressure move a shock in the throat to the exit plane in a supersonic converging-diverging nozzle? ",
+  "answer": "Flow reaches its maximum velocity at the throat of the nozzle. Before the throat, flow is supersonic, while after the throat, flow is subsonic. The shock wave depends on the pressures and velocities before and after the throat. The diverging section of the nozzle allows the flow to increase its velocity and decrease its static pressure. If exit static pressure is less than the pressure at the throat, the shockwave will form at the throat, and decreasing the pressure will cause the shock to move toward the exit plane. The pressure ratio/gradient is important to determining shock position."
+},
+{
+  "question": "Why doesn’t the mass flow rate through a converging nozzle increase when reducing exit static pressure in choked flow?",
+  "answer": "The mass flow rate doesn’t increase when reducing exit static pressure at the exit because the choked flow is reached at the throat of the nozzle. Choked flow occurs flow at the nozzle reaches Mach 1, and flow is limited by the speed of sound and can’t accelerate further. The communication between the initial conditions at the start of the nozzle and the conditions at the end travel at the speed of sound, so once Mach 1 is hit at the throat, the inlet doesn’t know what’s happening at the exit."
+},
+{
+  "question": "A wind tunnel produces inviscid incompressible flow along a streamline. There is a factor of .05 decrease in the pressure from point 1 to point 2, and a factor of 20 increase in the velocity from point 1 to point 2. At point 1 the pressure is 106kPa and the velocity is 5 m/s. Calculate the density of air in the wind tunnel, ignore any effects due to gravity.",
+  "answer": {
+      "code": """
+      
+P1 = 106000 # Pressure (Pa)
+V1 = 5 # Velocity (m/s)
+
+# Calculate P2 and V2 with given ratios
+P2 = (106000)*(1-.05)
+V2 = 20*5
+
+#Apply Bernoulli's (P1+(1/2)(rho)(V1)^2= P2+(1/2)(rho)(V2)^2)
+
+rho = (2*(P2-P1))/((V1)**2-(V2)**2)
+print(str(rho)+'kg/(m**3)')
+
+      """,
+      "explanation": "This code calculates the density of air at a point in a streamline using bernoulli's equation (P1+(1/2)(rho)(V1)^2= P2+(1/2)(rho)(V2)^2) where p1 is the pressure at point 1, rho is the desnity of the fluid, v1 is the velocity of the fluid at point 1, p2 is the pressure of the fluid at point 2, and v2 is the velocity of the fluid at point 2."
+  }
+},
+{
+  "question": "An H shaped tank is filled with water, with the top exposed to open air. From the bottom of the H to the top is 1 m. From the bottom of the H to the bar on the H is 0.5m. If the density of water is 1000 kg/m^3 and the pressure at the bar in the H is 101234 Pa, calculate the air pressure.",
+  "answer": {
+      "code": """
+rho_water = 1000 #Density of water (kg/m**3)
+height = 1-0.50 # Height difference (m)
+P_bar = 101234 # Atmospheric pressure (Pa)
+g = 9.81 # Gravity (m/s**2)
+
+#Use hydrostatic equation (P_bar = P_air + rho*g*height)
+P_air = -((rho_water*g*height)-P_bar)
+
+print(str(P_air) + 'Pa')
+      """,
+      "explanation": "This code uses the hydrostatic equation to find the pressure at a point of the tank (p = p_air + rho*g*height), where p_air is the atmospheric pressure the liquid is exposed to, rho is the density of the liquid, g is the gravitation acceleration, and h is the height differnce from the 2 points. "
+  }
+},
+{
+  "question": "A converging-diverging nozzle has air flow entering at 15 kPa and a stagnation temperation of 290 K. The flow is steady and isentropic with y = 1.4. The throat of the nozzle has a mach number of 1. If the mass flow rate is 3.56 kg/s, what is the area of the throat? Assume R = 0.287 kJ/ kg * K.",
+  "answer": {
+      "code": """
+import numpy as np
+
+m_dot = 3.56 # Mass flow rate (kg/s)
+R = 0.287 #Constant for air (kJ/kg*K)
+p_stagnation = 15 #Stagnation pressure (kPa)
+T_stagnation = 290 #Stagnation Temperature 
+
+rho_stagnation = (p_stagnation)/(R* T_stagnation) #Calculate stagnation density
+
+#from flow tables throat density/stagnation density = 0.6339 and throat temperature/ stagnation temperature = 0.8333
+
+throat_density = 0.6339 * rho_stagnation
+throat_temperature = 0.8333 * T_stagnation
+
+#Use equation of throat velocity (sqrt(yRT))
+
+throat_velocity = np.sqrt(1.4*.287*throat_temperature*10**3)
+
+#Use equationof mass flow rate ( mdot = rho * A * throat velocity)
+Area = (m_dot)/(throat_velocity*throat_density)
+
+print(str(Area) + 'm**2')
+      """,
+      "explanation": "This code calculates the throat area of converging-diverging nozzle using the equation for stagnation density ( stagnation pressure/ (universal gas constant * stagnation temperature), isentropic flow tables with a y value of 1.4, the throat velocity equation ( throat velocity = sqrt(yRT), and the mass flow rate equation ( mdot = rho*Area*throat velocity)."
+  }
+},
+{
+  "question": "Air is hit by a shockwave in a tunnel. The air has a static pressure of 95 kPa. What is the mach wave downstream of the shock if the static pressure behind the shock is 7.24 kPa and the mach number upstream is M = 0.594.",
+  "answer": {
+      "code": """
+import numpy as np
+
+p2 = 7.24 # pressure after shock (kPa)
+p1 = 95 # pressure before shock (kPa)
+y = 1.4 #gamma value
+M1 = 0.594 # Mach number upstream
+
+#Using normal shock equation ( p2/p1 = (1+yM1^2)/(1+yM2^2) due to equation formatting equation isn't it 1 line
+
+p_ratio = 7.24/95
+numerator = 1+y*M1**2
+M2 = np.sqrt(((numerator/p_ratio)-1)/y)
+print(str(M2))
+      """,
+      "explanation": "This code calculates the Mach wave downstream of the shock wave using the isentropic flow tables, and the isentropic relation that p2/p1 = (1+yM1^2)/(1+yM2^2) where y = 1.4, M1 is the mach number upstream, M2 is the mach number downstream, p2 is the pressure after the shock, and p1 is the pressure before the shock."
+  }
+},
+{
+  "question": "An ideal gas has density of 2.3 kg/m^3, a molar mass of 23 kg/mol and a temperature of 32 degrees Celcius. What is the pressure of the gas if it is in a sealed container under these conditions? The universal gas constant is 8.314 J/mol * K.",
+  "answer": {
+      "code": """
+      
+
+rho = 2.3 #density of gas (kg/m^3)
+Mmass = 23 # Molar mass of gas (kg/mol)
+Temp = 32 # Temperature of gas (C degrees)
+Rbar = 8.314 # Universal gas constant (J/mol K)
+
+Temp = 23 + 273.15 #converting the temp to Kelvin
+R = Rbar/Mmass #Specific gas constant of the gas
+p = rho * R * Temp # Ideal gas law equation for mass (p = rho*R*T)
+print(str(p) + 'Pa')
+      """,
+      "explanation": "This code calculates the pressure of an ideal gas using the ideal gas law, converting for mass values. It uses the fact that the specific gas constant is the universal gas constant/ the material's molar mass in kg/mol, and a form of the ideal gas law equation (p= rho*R*T), where p is the pressure of the gas, rho is the density of the gas, R is the specific gas constant, and T is the temperature."
+  }
+},
+{
+  "question": "A heat engine does 212 J of work and has an efficiency of 14%. How much energy is absorbed by the heat?",
+  "answer": {
+      "code": """
+work = 212 # work by the heat engine (Joules)
+n = .23 # efficiency of heat engine
+
+Q1 = work/n # using equation for efficiency (n = W/Q1)
+print(str(Q1) + 'J')
+      """,
+      "explanation": "This code calculates how much energy was absorbed by heat in a heat engine by using the efficiency formula (n = W/Q1) where n is the efficiency of the heat engine, W is the work done by the heat engine, and Q1 is how much heat is absorbed."
+  }
+},
+{
+  "question": "A fluid moving at a velocity of 13 m/s has a specific pressure of 8 Pa and a temperature of 141 K. What is the stagnation temperature of the fluid?",
+  "answer": {
+      "code": """
+Temp = 141 #Temperature of fluid (K)
+v = 13 #velocity of fluid (m/s)
+cp = 8 # specific pressure of fluid
+
+Tstag = Temp + (v)**2/(2*cp)
+
+print(str(Tstag) + 'K')
+      """,
+      "explanation": "This code calculates the stagnation temperature of a fluid using the equation for stagnation temperature (T = T1+v1^2/2cp), where T = the stagnation pressure, T1 is the temperature of the fluid, V1 is the velocity of the fluid, and cp is the fluid's specific pressure."
+  }
+}

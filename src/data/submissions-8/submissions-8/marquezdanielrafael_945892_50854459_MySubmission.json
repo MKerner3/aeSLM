@@ -1,0 +1,256 @@
+[
+{
+    "question": "Define 'volumetric flow rate', and how it relates to continuity.",
+    "answer": "Volumetric flow rate (Q) is a measure of how much volume of a fluid flows in a given interval of time, defined as Q = A*v, in the units of meters-cubed/second. Assuming constant density and incompressible flow, we can state that Q-dot_in equals Q-dot_out."
+},
+{
+    "question": "Why can Bernoulli's principle not be used across shocks?",
+    "answer": "Shocks are small regions in flow which contain near-instantaneous increases in static pressure, static temperature, and density, and cause pressure downstream of the shock to be less than pressure upstream. Shocks represent highly irreversible processes, as well as being compressible, thus violating some of the initial assumptions of Bernoulli's principle."
+},
+{
+    "question": "Explain the main mechanism through which Archimede's principle works.",
+    "answer": "Archimede's principle states that a body submerged in a fluid will undergo a 'buoyant force' equal to the weight of the displaced fluid. When the object is submerged, the pressure forces due to the deeper fluid are higher than the pressure due to the shallower fluid. This pressure differential is the driving mechanism of Archimede's principle"
+},
+{
+    "question": "Explain why in a simple compressive system, if the fluid undergoes expansion but is unrestrained and adiabatic, the process is also isothermal.",
+    "answer": "We can understand why this is by examining the Q-W=dU equation. When an expansion is unrestrained, there is zero p*dV work, and we assume no other work (stirring) because it is a simple compressive system. When we say a system is adiabatic, this means that the Q term = 0. Therefore, Q-W=dU becomes 0-0=dU=0 where dU=m*c_v*dT=0, thus dT=0 and the system is, by definition, isothermal."
+},
+{
+    "question": "Elaborate on how we can relate mass-flow rates in a steady-flow process.",
+    "answer": "Steady-flow processes assume that the total mass within a control volume stays the same. We can derive an expression from this assumption which states the sum of mass-flow into the CV is equal to the sum of the mass-flow out of the CV. This is very useful for understanding the mass-flow rates of simple steady processes."
+},
+{
+    "question": "What mechanisms cause the Magnus Effect, and how does it work?",
+    "answer": "The Magnus Effect can be understood by imagining a ball spinning through fluid flow travelling perpendicular to the ball's axis of rotation. On either side of the ball, friction between the fluid and the ball imparts some momentum, relating to the direction of rotation. This causes fluid on one side of the ball to slow down, and on the other side to speed up. This change in velocity causes an inverse change in pressure (through Bernoulli's principle), and the resultant pressure differential generates a lift, or 'Magnus Force'."
+},
+{
+    "question": "Why does flow tend to adhere to curved surfaces?",
+    "answer": "This can be attributed to the 'Coandă Effect', which is where flow 'attaches' to a curved/cylindrical surface before later detaching. This behavior is complex, but can primarily be attributed to the relatively lower pressure formed close to the curved surface. The pressure gradient formed between the higher ambient pressure and lower pressure causes the flow to adhere to the curved surface."
+},
+{
+    "question": "Describe choked flow and its effects on a system.",
+    "answer": "Choked flow is the condition in which a fluid passing through a conduit is unable to increase the mass flow rate (m-dot) by decreasing the static pressure at the exit. This typically occurs once the inlet/exit pressure ratio reaches a point at which the fluid flow reaches Mach 1 or sonic conditions. A further decrease of the exit pressure will increase the Mach number at the exit."
+},
+{
+    "question": "Describe Poiseuille Flow and the resultant shape of the flow.",
+    "answer": "Poiseuille flow is the viscous flow of a fluid travelling between two plates. As a result of shear the fluid has less velocity closer to the plates. This forms a gradient where velocity is highest in the center, and lowest where the fluid contacts a plate."
+},
+{
+    "question": "A water tank has an area of 5 m^2 and a height of 4m. It contains 3m of water (1000 kg/m^3) in height and is contaminated such that 10% of its total height is oil (850 kg/m^3), which floats on top of the water. What is the pressure at the bottom of the tank in kilopascals? (Assume atmospheric pressure = 1 atm)",
+    "answer": {
+        "code": """
+        #Values
+        heightTotal = 4
+        heightWater = 3
+        heightOil = heightTotal * 0.1
+        densityWater = 1000
+        densityOil = 850
+        atmosphericPressureAtm = 1
+        gravityConstant = 9.81
+
+        atmosphericPressurePa = atmosphericPressureAtm * 101325 #Conversion factor from atm to Pa
+        pressureFromWater = densityWater * gravityConstant * heightWater #rho * g * h
+        pressureFromOil = densityOil * gravityConstant * heightOil #rho * g * h
+
+        totalPressure = (atmosphericPressurePa + pressureFromWater + pressureFromOil)/1000
+        print(totalPressure, "kilopascals")
+        """,
+        "explanation": "This code calculates the total pressure at the bottom of a tank, using the rho * g * h equations, as well as converting atmospheric pressure into Pascals."
+    }
+},
+{
+    "question": "A test pilot is flying an experimental plane with two redundant pitot-static probe air-speed measurement systems. A discrepancy between the two probes causes the digital air speed gauge to read 'ERROR', and read out the raw values from the two probes. Probe one reads a stagnation pressure of 104,529 N/m^2 and a static pressure of 71,439 N/m^2. Probe two reads a stagnation pressure of 102,928 N/m^2 and a static pressure of 94,582 N/m^2. A callout from the traffic control tower tells the pilot that he is travelling at an air-speed of 225 knots. Determine which probe is faulty, assuming air has a density of 1.25 kg/m^3.",
+    "answer": {
+        "code": """
+        import numpy as np
+
+        #Constants
+        rho = 1.25
+        measuredAirspeed = 225
+        p1Stag = 104529
+        p1Stat = 71439
+        p2Stag = 102928
+        p2Stat = 94582
+
+        #Derive airspeed equations then convert to knots from m/s (1.94384 conversion factor)
+        p1Airspeed = (np.sqrt((2*(p1Stag-p1Stat))/(rho)))*1.94384
+        p2Airspeed = (np.sqrt((2*(p2Stag-p2Stat))/(rho)))*1.94384
+
+        #Find which probe is closest to the ATC-recorded airspeed
+        if(np.abs(p1Airspeed-measuredAirspeed)>np.abs(p2Airspeed-measuredAirspeed)):
+            print("Pitot Probe 1 is faulty.")
+            print("Pitot Probe 2 is reading:", np.round(p2Airspeed,2), "knots")
+        else:
+            print("Pitot Probe 2 is faulty.")
+            print("Pitot Probe 1 is reading:", np.round(p1Airspeed,2), "knots")
+        """,
+        "explanation": "This code calculates the measured airspeed of both pitot-static probes, converts it into knots, and then compares to see which probe is closest to the ATC recorded airspeed."
+    } 
+},
+{
+    "question": "A tank of water is filled by an inlet with A_inlet=0.5m^2, at a volumetric flow rate of 1m^3/min. The tank is very large, but has weak supports, only able to support 12,500 kg of water. Assuming constant water density of 1000 kg/m^3, find at what time the total water mass reaches 90% of the support capacity, then graph the mass over time.",
+    "answer": {
+        "code": """
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        maxWeight = 12500 #in kilograms
+        safeWeight = maxWeight * 0.9 #kg
+        density = 1000 #kg/m^3
+        inletArea=0.5 #m^2
+        volFlow = 1 #m^3/min
+
+        #Convert volumetric flow into SI units
+        volFlow = volFlow/60 #m^3/s
+
+        #Solve for mass-flow rate (m-dot = Q * rho), and time to fill to 90% capacity
+        mDot = volFlow * density #kg/s
+        timeToFill = safeWeight/mDot
+
+        #Generate Results
+        x_values = np.linspace(0, np.round(timeToFill), 25)
+        y_values = mDot*x_values
+
+        #Results and Plot
+        print("Time to fill to 90% load-capacity:", timeToFill, "seconds.")
+
+        plt.plot(x_values, y_values, marker='o', linestyle='-')
+        plt.title('Plot of container mass-load')
+        plt.xlabel('Time (seconds)')
+        plt.ylabel('Mass of Water')
+        plt.grid(True)
+        plt.show()
+        """,
+        "explanation": "This code converts the given values to SI units, finds the mass-flow rate, then charts and prints both the water mass over time and the time taken to fill to 90% load-capacity."
+    }
+},
+{
+    "question": "Given a pipe with an internal diameter of 6 inches, determine the length of pipe required to drop the pressure of the viscous fluid by 250 pascals. Assume viscosity (mu) = 0.00275 kg/(m*s) and the bulk velocity is 20 ft/s.",
+    "answer": {
+        "code": """
+        import numpy as np
+
+        #Conversion of imperial units to SI
+        diameterImperial = 6
+        diameterMetric = diameterImperial / (3.281*12) #(meters) - Conversion factor from feet - meters = 1/3.281
+        radius = diameterMetric / 2 #(meters)
+        velocityImperial = 20
+        velocityMetric = velocityImperial / 3.281 #(meters/s)
+
+        #Constants
+        desiredPressureDrop = 250
+        viscosity = 0.00275
+
+        #Rearranged Hagen-Poiseuille Equation to solve for L
+        desiredLength = (desiredPressureDrop*(np.square(radius)))/(8*viscosity*velocityMetric)
+        print("The length of the pipe required to drop pressure by 250 Pa given these conditions is:", desiredLength, "meters.")
+        """,
+        "explanation": "This code converts the given values to SI units, then solves for desired length in meters by rearranging the Hagen-Poiseuille equation for viscous flow."
+    }
+},
+{
+    "question": "A climate control computer maintains the temperature inside of an Arctic research base. It does so by controlling a reversible cyclic heat pump which takes in heat from a geothermal heat source at 367 degrees Kelvin and the cold outdoors at 233 degrees Kelvin, rejecting heat to the interior of the base. If the pump extracts heat from the geothermal source at 1.35 kW and from the cold outdoors at a variable rate, plot the temperature the pump rejects to the base depending on that rate, and find the rate ideal for an output temperature of 300 degrees Kelvin.",
+    "answer": {
+        "code": """
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        #Constants
+        geoTemp = 367 #Kelvin
+        coldTemp = 233 #Kelvin
+        geoRate = 1350 #Watts
+        maxRate = 2500-geoRate #Maximum output rate limit
+
+        #Testing Rates
+        coldRate = np.linspace(0,maxRate,100)
+        #Base output temperature, using the Clausius inequality, assuming reversible pump
+        baseTemp = ((geoTemp*coldTemp*geoRate)+(geoTemp*coldTemp*coldRate))/((geoRate*coldTemp)+(coldRate*geoTemp))
+
+        #Plot baseTemp vs coldRate
+        plt.plot(coldRate, baseTemp, marker='o', linestyle='-')
+        plt.title('Plot of base output temperature based on heat extraction rate from cold outdoors')
+        plt.xlabel('Cold extraction rate (Watts)')
+        plt.ylabel('Output Temperature (Kelvin)')
+        plt.grid(True)
+        plt.show()
+
+        #Find closest value and print
+        closestValue = 999999
+        closestIndex = -1
+        for i, value in enumerate(baseTemp):
+            if np.abs(value-300) < closestValue:
+                closestValue = np.abs(value-300)
+                closestIndex = i
+        if closestIndex != -1:
+            print("The control computer should set the outdoor heat extraction rate to", np.round(coldRate[closestIndex],2) , "Watts.")
+        else:
+            print("Something has gone wrong. The result could not be calculated.")
+        """,
+        "explanation": "This code first finds the range of extraction rates to test given the restrictions of the question. It then creates an array of rates using linspace, then tests each of those arrays in a rearranged version of the Clausius Inequality, solving for output temperature assuming a reversible pump. It then plots the rates vs. output temperature, and then performs a simple check to find the ideal rate for a 300 degree Kelvin output temperature."
+    }
+},
+{
+    "question": "The United States Navy is testing an experimental boat. The boat has a rectangular profile of 4 meters by 3 meters, and is 6 meters tall. If 40% of the boat's height sinks into water (assuming water density of 1000kg/m^3), calculate the upward buoyant force on the boat.",
+    "answer": {
+        "code": """
+        import numpy as np
+        #Physical characteristics
+        waterDensity = 1000 #kg/m^3
+        gravityConstant = 9.81 #m/s^2
+        #Boat characteristics
+        length = 4 #m
+        width = 3 #m
+        height = 6 #m
+
+        #Calculations
+        submergedHeight = 6*0.4
+        submergedVolume = length * width * submergedHeight #m^3
+        buoyantForce = submergedVolume * waterDensity * gravityConstant
+
+        #Result
+        print("The upward buoyant force on the boat is: ", np.round((buoyantForce/1000),2), "kilonewtons.")
+        """,
+        "explanation": "This code calculates the total submerged volume of the experimental boat. It then multiples the submerged volume with the density of water and the gravitational constant, all in SI units. This calculates the upward buoyant force on the boat given by Archimede's Principle."
+    }
+},
+{
+    "question": "Farmer John has a irrigation control system connected to his large rainwater tank. Currently, the rain (density 1000kg/m^3) is filling his empty tank at a rate of 0.0175 m^3/s, where the tank has a total volume of 200m^3. The tank has a small circular outlet pipe with a 10cm diameter, and the irrigation control system measures that the outlet water exit velocity is 0.2 m/s. If the rain is going to stop in 5 hours, determine whether or not John's tank will overflow, and chart the mass of the water in the tank.",
+    "answer": {
+        "code": """
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        #Constants
+        density = 1000 #kg/m^3
+        tankVolume = 200 #m^3
+        Q_in = 0.0175 #m^3/s
+        outDiameter = 10 #cm
+        outVelocity = 0.2 #m/s
+        timeUntilClearSkies = 5*3600 #seconds
+
+        #Calculations
+        Q_out = (np.square((10/100)/2)*np.pi*outVelocity)
+        Q_net = Q_in - Q_out #m^3/s
+
+        #Graphing
+        time = np.linspace(0,timeUntilClearSkies,100)
+        volume = Q_net * time
+        mass = volume * density
+        plt.plot(time, mass, linestyle='-')
+        plt.plot([0,timeUntilClearSkies], [tankVolume*density,tankVolume*density], color='red') #Graph overflow line (in mass)
+        plt.title('Plot of time vs volume in tank.')
+        plt.xlabel('Time (seconds)')
+        plt.ylabel('Theoretical Tank Water Mass (kg)')
+        plt.grid(True)
+        plt.show()
+
+        #Print results
+        if(np.max(volume) > tankVolume):
+            print("Farmer John's tank has been flooded past its 200 m^3 capacity.")
+        else:
+            print("Farmer John's tank did not overflow.")
+        """,
+        "explanation": "This code first calculates the net volumetric flow rate into the tank, by first finding the volumetric flow rate out of the outlet pipe, and subtracting that from the rate going in. It then graphs the mass of water in the tank against time, then outputs the result of whether John's tank will overflow or not. "
+    }
+}
+]

@@ -1,0 +1,259 @@
+[
+{
+    "question": "A piston/cylinder system containing 1 kg of “laughing gas” (nitrous oxide, N2O), is initially at 298 K and 1.00 bar. The system then goes through a process where heat transfer adds 101 kJ to the gas, and simultaneously the piston is moved in such a way that the product of pressure and volume in the cylinder is unchanged – in other words pV is constant during the heat addition. After the process has ended, the pressure of the N2O in the cylinder is 0.130 bar. N2O has a molecular weight of 44. What is the entropy change of the gas due to this process?",
+    "answer": {
+        "code": """
+import numpy as np
+
+R = 8314 / 44 #converting gas constant
+P2 = 0.13 #final pressure (bar)
+P1 = 1 #initial pressure (bar)
+
+#solve for entropy
+s = -R * (np.log(P2/P1))
+
+
+print("Change in entropy:", s, "J/kgK")
+        """,
+        "explanation": "For an ideal gas, pV = mRT. Because pV is constant, then mRT is also constant, so T1 = T2. Then, use entropy change equation to solve for the change in entropy.",
+        "references": ["Frank White (2002) Fluid Mechanics"]
+    }
+},
+{
+    "question": "A low speed, open-return wind tunnel is being designed with a fan at the inlet, and a test section having a rectangular cross-section of 40in. x 42in. The designers want to achieve a 55 mph wind speed, with the air in the test-section nominally at 72ºF and 0.95 atm. How much air (mass flow rate) will the fan that runs the wind tunnel have to supply to meet these conditions?",
+    "answer": {
+        "code": """
+import numpy as np
+
+P = 0.95 #pressure of test (atm)
+R = 0.73024 #gas constant (in ft per mol)
+T = (72 - 32) * (5/9) + 273.15 #temperature converting to (K)
+V = 55 * (88/60) #velocity (ft/s)
+A = 40 * 42 * (1/144) #area converting to (ft^2)
+
+#apply mass flow rate equation
+m = (P/(R*T)) * V * A
+
+print("The mass flow rate:", m, "lb/s")
+        """,
+        "explanation": "This code assumes we have an ideal gas and steady and uniform flow to find how much air the fan will have to supply",
+        "references": ["Frank White (2002) Fluid Mechanics"]
+    }
+},
+{
+    "question": "A turbine produces shaft power from a gas that enters the turbine with a (static) temperature of 628 K, a velocity of 139 m/s and a stagnation pressure of 14 atm. The gas exits the turbine with a stagnation temperature of 275 K and a stagnation pressure of 0.95 atm. The gas passing through the turbine has a molecular weight of 16 and a specific heat ratio of 1.45. What is the stagnation temperature of the gas entering the turbine?",
+    "answer": {
+        "code": """
+import numpy as np
+
+T1 = 628 #static temperature (K)
+V = 139 #velocity (m/s)
+g = 1/45 #gamma
+R = 8314 / 16 #gas constant (J/kgK)
+
+#apply stagnation temperature equation and Cp equation
+Cp = ((g) / (g-1)) * R
+T01 = T1 + (V^2)/(2 * Cp)
+
+print("The stagnation temperature is:", T01, "K")
+        """,
+        "explanation": "This code assumes steady flow and adiabatic to solve for the stagnation temperature using static temperature, velocity, and Cp",
+        "references": ["Frank White (2002) Fluid Mechanics"]
+    }
+},
+{
+    "question": "If there is an isentropic flow flowing at a speed of 1200 m/s at sea level, what is the stagnation temperature? Stagnation pressure?",
+    "answer": {
+        "code": """
+import numpy as np
+
+g = 1.4 #gamma
+V = 1200 #velocity (m/s)
+R = 287 #gas constant (J/kgK)
+T = 300 #temperature (K)
+P = 101325 #pressure (Pa)
+
+#apply temperature ratio equation
+Tratio = 1 + ((g-1)/2) * ((V^2) / (g*R*T))
+
+#solve for stagnation temperature 
+T0 = Tratio * T
+
+#apply pressure ratio equation
+Pratio = (Tratio)**(g/(g-1))
+
+#solve for stagnation pressure
+P0 = Pratio * P
+
+print("Stagnation temperature:", T0, "K")
+print("Stagnation pressure:", P0, "Pa")
+        """,
+        "explanation": "This code applies the temperature and pressure ratio equations in order to find stagnation temperature and stagnation pressure.",
+    }
+},
+{
+    "question": "Consider a flow with a pressure and temperature of 1 atm and 288K. A pitot tube is inserted into this flow and measures a pressure of 1.555 atm. What is the velocity of the flow",
+    "answer": {
+        "code": """
+import numpy as np
+
+#determine subsonic or supersonic
+Pratio = 1/0.528 #for sonic flow which is higher than the pressure given
+#flow is subsonic
+
+Pratio2 = 1.555 #pressure ratio (atm)
+M = 0.82 #mach number found from subsonic flow table
+g = 1.4 #gamma
+R = 287 #gas constant
+T = 288 #temperature (K)
+
+#solve for speed of sound
+a = np.sqrt(g * R * T)
+
+#solve for velocity
+V = M * a
+
+print("Velocity of the flow:", V, "m/s")
+        """,
+        "explanantion": "This code initially determines if the flow is subsonic or supersonic by comparing the pressure ratio. Then, once decided that the flow is subsonic, the code solves for the speed of sound in order to find velocity.",
+    }
+},
+{
+    "question": "Air is flowing through a round tube of 650mm diameter. The initial pressure of the tube is 50kPa and the initial Temperature is 200K. The temperature of the air at the exit of the tube is 320K. The mass flow rate of the tube is 5kg/s. The flow has sped up to twice it’s speed. Find initial velocity (V1), final pressure (P2), and final area (A2).",
+    "answer": {
+        "code": """
+import numpy as np
+
+P1 = 50000 #pressure (Pa)
+R = 8.314 / 28 #converting gas constant
+T1 = 200 #temperature (K)
+T2 = 320 #final temperature  (K)
+mDot = 5 #mass flow rate (kg/s)
+A1 = (np.pi * (0.65**2)) / 4 #area (m)
+
+#solve for density
+density1 = P1 / (R*T1) #(kg/m^3)
+
+#use density to solve for velocity
+V1 = mDot / (density1 * A1) #(m/s)
+
+#solve for density2 to help find P2
+#mass flow in = mass flow out
+#(density1)(V1)(A) = (density2)(V2)(A)
+density2 = density1 / 2 #(kg/m^3)
+
+#solve for P2
+P2 = (density2)*(R)*(T2) #(kPa)
+
+#solve for A2
+#(density1)(V)(A1) = (density2)(V)(A2)
+A2 = ((density1)*(A1)) / density2 #(m^2)
+
+
+print("Initial Velocity:", V1, "m/s")
+print("Final Pressure:", P2, "kPa")
+print("Final area", A2, "m^2")
+        """,
+        "explanation": "This code assumes ideal gas and steady and uniform flow and uses the mass flow rate equation (mDot = (density)(V)(A)) and mass flow in = mass flow out to solve for V, P, and A.",
+        "references": ["Frank White (2002) Fluid Mechanics"]
+    }
+},
+{
+    "question": "Consider airflow over a 22.5 degree half-angle wedge. If M1=2.5, P1=1 atm, T1=300 K, and wave angle is 46 degrees, calculate P2, T2, and M2.",
+    "answer": {
+        "code": """
+import numpy as np
+
+M1 = 2.5 #mach 1
+beta = 46 #wave angle (degrees)
+P1 = 1 #pressure (atm)
+T1 = 300 #temperature (K)
+theta = 22.5 #half angle wedge (degrees)
+
+#solve for Mn1
+Mn1 = M1 * (np.sin(beta))
+
+#use oblique shock table to find pressure ratio, temperature ratio, and Mn2
+Pratio = 3.613
+Tratio  = 1.531
+Mn2 = 0.6165
+
+#solve for P2 from Pratio
+P2 = Pratio * P1
+
+#solve for T2 from Tratio
+T2 = Tratio * T1
+
+#solve for M2
+M2 = Mn2 / (np.sin(beta - theta))
+
+
+print("Outlet mach number:", M2)
+print ("Final pressure:", P2, "atm")
+print ("Final temperature:", T2, "K")
+        """,
+        "explanation": "This code use the oblique shock table to try and find the final pressure, temperature, and mach number of an oblique shock.",
+    }
+},
+{
+    "question": "Why does stagnation pressure decrease but static pressure increases across a shock?",
+    "answer": "A shock is a compression wave which increases static pressure. However, the velocity decreases so much across a shock that the dynamic pressure drop causes the stagnation pressure to drop."
+},
+{
+    "question": "What is A* and why does it change across a shock?",
+    "answer": "A* is the area you would need to get the flow choked. A* changes across a shock because the stagnation pressure drops as well."
+},
+{
+    "question": "Which equations for conservation of momentum has the most assumptions and what are they??",
+    "answer": "Bernoulli’s equation is the conservation of momentum equation with the most assumptions: steady, inviscid, no body forces, on streamline, incompressible."
+},
+{
+    "question": "How do bow shocks occur?",
+    "answer": "When the turn angle of the flow exceeds the maximum turn angle, we get detached shocks"
+},
+{
+    "question": "The first law of thermodynamics and the conservation of energy are  related. How do they differ in the types of energy considered?",
+    "answer": "The first law of thermodynamics states that heat is supplied to the system (Q) causing change in internal energy of the system (delta U) and the system can do some work (W). Q = delta U + W. The first law also looks at heat transfers, work done, and changes in internal energy. However, conservation of energy looks at all forms of energy (i.e. potential, kinetic, chemical, etc.)."
+},
+{
+    "question": "How do heat transfer and internal energy differ? In particular, which can be stored as such in a system and which cannot?",
+    "answer": "Heat transfer is when heat energy is transferred from one system to another due to a temperature difference. The total energy is the the sum of kinetic and potential energy. Heat transfer cannot be stored like internal energy can be stored."
+},
+{
+    "question": "Why, in terms of the first law of thermodynamics, does the temperature of a rapidly expanding gas decrease?",
+    "answer": "As the gas expands rapidly, the system does not have enough time to interact with its surroundings, so heat does not flow from its surroundings to the system. Therefore, heat (Q) = 0, and the final internal energy is less than the initial because internal energy of the system is directly proportional to the temperature."
+},
+{
+    "question": "Why is change in entropy important?",
+    "answer": "It is important because it shows what happened in the process. A positive change in entropy means either entropy was produced or there was heat transfer to the system. A negative change in entropy means entropy was transferred out of the system. No change in entropy means the process was isentropic, reversible, and adiabatic."
+},
+{
+    "question": "How is it unlikely that a process can be isothermal unless it is a very slow process. Is it the same for isobaric and isochoric processes?",
+    "answer": "A isothermal process must be slow so that heat is transferred and the temperature does  not change. For isobaric and isochoric process, the system must be in thermal equilibrium with slow variations."
+},
+]
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
