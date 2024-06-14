@@ -59,17 +59,7 @@
 {
     "question": "A pressure indicator column has a height of 2.25 meters and a density of 11300 kg/m^3. Determine the local atmospheric pressure. Assume acceleration due to gravity.",
     "answer": {
-        "code":"""
-        import numpy as np
-        
-        rho = 11300
-        h = 2.25
-        g = 9.8
-        
-        # Apply the formula used to describe the pressure exerted by the weight of a gas or liquid in a column
-        atm_p = rho * h * g
-        print("The local atmospheric pressure is str(atm_p/101325)+' atm')
-        """,
+        "code":"\n        import numpy as np\n        \n        rho = 11300\n        h = 2.25\n        g = 9.8\n        \n        # Apply the formula used to describe the pressure exerted by the weight of a gas or liquid in a column\n        atm_p = rho * h * g\n        print("The local atmospheric pressure is str(atm_p/101325)+' atm')\n        ",
         "explanation": "This code calculates the pressure exerted by the weight of a gas or liquid in a column. Where h is the height above the observation point, rho is the density of the fluid, and g is the acceleration due to gravity on Earth.",
         "references": [
             "https://www.khanacademy.org/science/physics/fluids/density-and-pressure/v/fluids-part-3"
@@ -79,25 +69,7 @@
 {
     "question": "Consider water moving through a leveled pipe of varying diameter. Fluid enters the pipe with a velocity of 1.2m/s and exits the pipe with a velocity of 2m/s. The pressure into the pipe is 1650N/m^2. Assume laminar flow. Using Bernoulli's equation, calculate the pressure of water leaving the pipe.",
     "answer": {
-        "code":"""
-        import numpy as np
-        
-        v1 = 1.2
-        v2 = 2
-        p1 = 1650
-        rho = 1000 # density of water
-        
-        # Recall Bernoullis Equation: 
-        p1 + rho * h1 * g + 0.5 * rho * v1**2 = p2 + rho * h2 * g + 0.5 * rho * v2**2
-        
-        # Since the pipe is level, the height at either end of the pipe is the same, thus h1 = h2. Therefore, we can cancel out the terms involving h:
-        p1 + 0.5 * rho * v1**2 = p2 + 0.5 * rho * v2**2
-        
-        # Now substituting in our values we can solve for p2: 
-        p2 = 0.5 * ((v1)**2 - (v2)**2) + p1
-        
-        print("The pressure of water that is exiting the system is str(p2)+' N/m^2')
-        """,
+        "code":"\n        import numpy as np\n        \n        v1 = 1.2\n        v2 = 2\n        p1 = 1650\n        rho = 1000 # density of water\n        \n        # Recall Bernoullis Equation: \n        p1 + rho * h1 * g + 0.5 * rho * v1**2 = p2 + rho * h2 * g + 0.5 * rho * v2**2\n        \n        # Since the pipe is level, the height at either end of the pipe is the same, thus h1 = h2. Therefore, we can cancel out the terms involving h:\n        p1 + 0.5 * rho * v1**2 = p2 + 0.5 * rho * v2**2\n        \n        # Now substituting in our values we can solve for p2: \n        p2 = 0.5 * ((v1)**2 - (v2)**2) + p1\n        \n        print("The pressure of water that is exiting the system is str(p2)+' N/m^2')\n        ",
         "explanation": "This code uses Bernoulli's equation to determine the pressure leaving out of a pipe of varying diameter.",
         "references": [
             "https://www.khanacademy.org/science/physics/fluids/fluid-dynamics/v/fluids-part-12"
@@ -107,25 +79,7 @@
 {
     "question": "An oil of viscosity 0.97 poise and relative density 0.9 is flowing through a horizontal circular pipe of diameter 100 mm and of length 10 m. Calculate the difference of pressure at the two ends of the pipe, if 100 kg of the oil is collected in a tank in 30 seconds. Assume the flow is laminar.",
     "answer": {
-        "code":"""
-        import numpy as np
-        
-        t= 30 # time
-        mu = 0.97/10 # Converting poise to N-s/m^2. 10 poise = 1 N-s/m^2
-        l = 10 # length 
-        mdot = 100/t # mass flow rate
-        rho = 0.9 * 1000 # relative density is equal to 0.9(of 0:1)  
-        Q = mdot/rho # volume flow rate 
-        d = 100/1000 # we must convert mm to m. 1mm is equal to 0.001m 
-        r = d/2 # radius
-        A = (pi/4) * d**2 # area 
-        v = Q/A # velocity
-        
-        # Since the flow is laminar we can apply the Hagen-Poiseuille equation to determine the pressure loss across a pipe:
-        Delta_p = (8 * mu * v * l)/(r**2)
-        
-        print('The loss in pressure is '+str(np.around(Delta_p,3))+'N/m^2')
-        """,
+        "code":"\n        import numpy as np\n        \n        t= 30 # time\n        mu = 0.97/10 # Converting poise to N-s/m^2. 10 poise = 1 N-s/m^2\n        l = 10 # length \n        mdot = 100/t # mass flow rate\n        rho = 0.9 * 1000 # relative density is equal to 0.9(of 0:1)  \n        Q = mdot/rho # volume flow rate \n        d = 100/1000 # we must convert mm to m. 1mm is equal to 0.001m \n        r = d/2 # radius\n        A = (pi/4) * d**2 # area \n        v = Q/A # velocity\n        \n        # Since the flow is laminar we can apply the Hagen-Poiseuille equation to determine the pressure loss across a pipe:\n        Delta_p = (8 * mu * v * l)/(r**2)\n        \n        print('The loss in pressure is '+str(np.around(Delta_p,3))+'N/m^2')\n        ",
         "explanation": "This code determines the loss in pressure across a pipe such that t represents time, mu is viscosity, l is length, mdot is mass flow rate rho = is relative density, Q is volume flow rate, d is diameter, r is radius, A is area, and v is velocity.",
         "references": [
             "K., B. R., & Bansal, R. K. (2000). Textbook of fluid mechanics and hydraulic machines. Laxmi Pub."
@@ -135,23 +89,7 @@
 {
     "question": "An aircraft is flying at a cruising speed of 300m/s at an altitude of 4500m where the atmospheric pressure is 60.25kPa and the ambient air temperature is 235.7K. The ambient air is first decelerated in a diffuser before it enters the compressor. Assuming both the diffuser and the compressor to be isentropic, what is the stagnation pressure at the compressor inlet? The constant-pressure specific heat cp is 1.005kJ/(kg*k) and the specific heat ratio, k, of air at room temperature is 1.4.",
     "answer": {
-        "code":"""
-        import numpy as np
-        
-        v1 = 300 #velocity
-        p1 = 60.25
-        t1 = 235.7
-        cp = 1.005 * 1000 # conversion factor 
-        k = 1.4
-        
-        # First we must determine the stagnation temperature, t0, at the compressor inlet:
-        t0 = t1 + ((v1 ** 2)/(2 * cp))
-        
-        # Then using the equation for stagnation pressure for ideal gases with constant specific heats:
-        p0 = p1 * ((t0/t1) ** (k/(k-1))
-        
-        print('The stagnation pressure at the compressor inlet is str(p2)+' kPa')
-        """,
+        "code":"\n        import numpy as np\n        \n        v1 = 300 #velocity\n        p1 = 60.25\n        t1 = 235.7\n        cp = 1.005 * 1000 # conversion factor \n        k = 1.4\n        \n        # First we must determine the stagnation temperature, t0, at the compressor inlet:\n        t0 = t1 + ((v1 ** 2)/(2 * cp))\n        \n        # Then using the equation for stagnation pressure for ideal gases with constant specific heats:\n        p0 = p1 * ((t0/t1) ** (k/(k-1))\n        \n        print('The stagnation pressure at the compressor inlet is str(p2)+' kPa')\n        ",
         "explanation": "This code calculates the stagnation pressure at the compressor inlet such that v is the velocity, k is the specific heat ratio of air at room temperature, cp is the constant-pressure specific heat, t is the ambient air temperature, and p is the atmospheric pressure.",
         "references": [
              "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
@@ -163,23 +101,7 @@
 {
   "question": "Air enters a diffuser with a velocity of 500m/s. Determine (a) the speed of sound and (b) the Mach number at the diffuser inlet when the air temperature is 30°C. Assume air at specified conditions behave as ideal gasses.",
     "answer": {
-        "code":"""
-        import numpy as np
-        
-        R = 0.287 *1000 # gas constant of air converted from kJ/kg*K to m^2/s^2
-        k = 1.4 # specific heat ratio at 30 degrees Celsius
-        T = 30 + 273.15 # converting temperature in Celsius to temperature in kelvin
-        V = 500
-        
-        # (a) The speed of sound in the air can be expressed and determined using Hook's Law:
-        c = sqrt(k * R * T)
-        
-        # (b) The Mach Number is then easily determined using M = V/c
-        M = V/c
-        
-        print('The speed of sound is str(c)+' m/s')
-        print('The Mach number is str(M))
-        """,
+        "code":"\n        import numpy as np\n        \n        R = 0.287 *1000 # gas constant of air converted from kJ/kg*K to m^2/s^2\n        k = 1.4 # specific heat ratio at 30 degrees Celsius\n        T = 30 + 273.15 # converting temperature in Celsius to temperature in kelvin\n        V = 500\n        \n        # (a) The speed of sound in the air can be expressed and determined using Hook's Law:\n        c = sqrt(k * R * T)\n        \n        # (b) The Mach Number is then easily determined using M = V/c\n        M = V/c\n        \n        print('The speed of sound is str(c)+' m/s')\n        print('The Mach number is str(M))\n        ",
         "explanation": "This code calculates the speed of sound in air such that R is the gas constant of air, k is the specific heat ratio at 30 degrees Celsius, T is the given temperature, and v is our given velocity.",
         "references": [
             "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
@@ -191,51 +113,14 @@
 {
     "question": "A coffee thermos is initially closed and filled with 0.1m^3 of hot liquid at 366.15K and contains air at 0.2MPa. The thermos is then opened and left exposed to a space with a volume of  0.2m^3 at a temperature of 343.15K and 0.1MPa. Equilibrium is achieved adiabatically. What is the total mass of air? ",
     "answer": {
-        "code":"""
-        
-        import numpy as np
-        
-        p1 = 0.2 * 10**6 # converting MPa to Pa
-        v1 = 0.1
-        T1 = 366.15 
-        R = 287 
-        p2 = 0.1 * 10**6 # converting MPa to Pa
-        v2 = 0.2
-        T2 = 343.15
-        
-        # We can apply the Ideal Gas equation to find the mass inside the thermos and the mass of the room:
-        m1 =  (p1*v1)/(R * T1) 
-        m2 =  (p2*v2)/(R * T2)
-        
-        # Then summing m1 and m2 to determine the total mass:
-        m_tot = m1 + m2
-        
-        print('The total mass of air is str(m_tot)+' kg')
-        """,
+        "code":"\n        \n        import numpy as np\n        \n        p1 = 0.2 * 10**6 # converting MPa to Pa\n        v1 = 0.1\n        T1 = 366.15 \n        R = 287 \n        p2 = 0.1 * 10**6 # converting MPa to Pa\n        v2 = 0.2\n        T2 = 343.15\n        \n        # We can apply the Ideal Gas equation to find the mass inside the thermos and the mass of the room:\n        m1 =  (p1*v1)/(R * T1) \n        m2 =  (p2*v2)/(R * T2)\n        \n        # Then summing m1 and m2 to determine the total mass:\n        m_tot = m1 + m2\n        \n        print('The total mass of air is str(m_tot)+' kg')\n        ",
         "explanation": "This code solves for the total mass amongst two systems that have been interfaced and have reached equilibrium. Using the ideal gas equation such that P is the pressure, v is the volume, m is the mass, and T is the temperature. The total mass is determined by summing the individual masses of each system together."
     }  
 },
 {
   "question": "A heat engine receives heat from a source at 1200 K at a rate of 500 kJ/s and rejects the waste heat to a medium at 300 K. The power output of the heat engine is 180 kW. Determine the reversible power and the irreversibility rate for this process.",
     "answer": {
-        "code":"""
-        
-        import numpy as np
-        
-        waste = 300
-        source = 1200
-        q = 500 # volume flow rate
-        w_out = 180 # power output of heat engine
-        
-        # The reversible power for this process is the amount of power that a reversible heat engine would produce when operating between the same temperature limits, and is determined to be:
-        w_rev = (1- (waste /source)) * q 
-        
-        # The irreversibility rate is the difference between the reversible power and the power output:
-        w_irrev = w_rev - w_out
-        
-        print('The reversible power for this process is str(w_rev)+' kW')
-        print('The irreversibility rate is str(w_irrev)+' kW')
-        """,
+        "code":"\n        \n        import numpy as np\n        \n        waste = 300\n        source = 1200\n        q = 500 # volume flow rate\n        w_out = 180 # power output of heat engine\n        \n        # The reversible power for this process is the amount of power that a reversible heat engine would produce when operating between the same temperature limits, and is determined to be:\n        w_rev = (1- (waste /source)) * q \n        \n        # The irreversibility rate is the difference between the reversible power and the power output:\n        w_irrev = w_rev - w_out\n        \n        print('The reversible power for this process is str(w_rev)+' kW')\n        print('The irreversibility rate is str(w_irrev)+' kW')\n        ",
         "explanation": "This code solves for the reversible power and the irreversibility rate for work done on a heat engine. The waste is the heat rejected by the heat engine. The source is the heat received by the heat engine. The volume flow rate, q, is the rate in which the heat is received by the heat engine and the power output is the amount of work being output by the heat engine.",
         "references": [
             "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."

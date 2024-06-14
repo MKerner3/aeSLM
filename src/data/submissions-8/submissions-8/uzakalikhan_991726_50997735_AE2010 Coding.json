@@ -2,21 +2,7 @@
 {
   "question": "Calculate the change in entropy per kilogram as air is heated from 300 to 600 K while pressure drops from 400 to 300 kPa.",
   "answer": {
-      "code": """
-      import numpy as np
-
-      T1 = 300 # Initial Temperature (K)
-	  T2 = 600 # Final Temperature (K)
-	  P1 = 400 # Initial Pressure (kPa)
-	  P2 = 300 # Final Pressure (kPa)
-	  Cp = 1.005 # Specific heat capacity at constant pressure (kJ/kg-K)
-	  R = 0.287 # Specific Gas constant (kJ/kg-K)
-
-      # Using equation for Entropy changes for perfect gases, ds = s2 - s1
-	  ds = Cp*np.log(T2/T1) - R*np.log(P2/P1)
-
-	  print("The change in specific entropy of air is: ", ds, "kJ/kg-K")
-      """,
+      "code": "\n      import numpy as np\n\n      T1 = 300 # Initial Temperature (K)\n	  T2 = 600 # Final Temperature (K)\n	  P1 = 400 # Initial Pressure (kPa)\n	  P2 = 300 # Final Pressure (kPa)\n	  Cp = 1.005 # Specific heat capacity at constant pressure (kJ/kg-K)\n	  R = 0.287 # Specific Gas constant (kJ/kg-K)\n\n      # Using equation for Entropy changes for perfect gases, ds = s2 - s1\n	  ds = Cp*np.log(T2/T1) - R*np.log(P2/P1)\n\n	  print("The change in specific entropy of air is: ", ds, "kJ/kg-K")\n      ",
       "explanation": "This code calculates the change in specific entropy as the temperature and pressure of air are varied. It employs the perfect gas relations with the equation for entropy change",
 	  "references": [
 		  "Fundamentals of Thermodynamics, 8th Edition, by Borgnakke and Sonntag, page 275."
@@ -26,26 +12,7 @@
 {
   "question": "A cylinder fitted with a piston has an initial volume of 0.1 m3 and contains nitrogen at 150 kPa, 25 C. The piston is moved, compressing the nitrogen until the pressure is 1 MPa and the temperature is 150 C. During this compression process heat is transferred from the nitrogen, and the work done on the nitrogen is 20 kJ. Determine the amount of this heat transfer",
   "answer": {
-      "code": """
-      import numpy as np
-
-      V = 0.1 # Initial volume (m^3)
-	  P1 = 150 # Inital pressure (kPa)
-	  P2 = 1 # Final pressure (MPa)
-	  T1 = 25 # Initial temperature (C)
-	  T2 = 150 # Final temperature (C)
-	  W = -20 # Work done (kJ)
-	  R = 0.2968 # Specfic gas constant for Nitrogen (kJ/kg-K)
-	  Cv = 0.745 # Specific heat constant at constant volume for Nitrogen (kJ/kg-K)
-
-	  # Using ideal gas relations, pV = mRT, can find mass of nitrogen
-	  m = (P1*V)/(R*(T1+273.15))
-
-	  # From the equations for first law and internal energy, dQ -dW = dU, du = Cv * dT
-	  Q = m *Cv*(T2-T1) + W
-
-	  print("The heat transfer due to compression from the nitrogen is: ", Q, "kJ")
-      """,
+      "code": "\n      import numpy as np\n\n      V = 0.1 # Initial volume (m^3)\n	  P1 = 150 # Inital pressure (kPa)\n	  P2 = 1 # Final pressure (MPa)\n	  T1 = 25 # Initial temperature (C)\n	  T2 = 150 # Final temperature (C)\n	  W = -20 # Work done (kJ)\n	  R = 0.2968 # Specfic gas constant for Nitrogen (kJ/kg-K)\n	  Cv = 0.745 # Specific heat constant at constant volume for Nitrogen (kJ/kg-K)\n\n	  # Using ideal gas relations, pV = mRT, can find mass of nitrogen\n	  m = (P1*V)/(R*(T1+273.15))\n\n	  # From the equations for first law and internal energy, dQ -dW = dU, du = Cv * dT\n	  Q = m *Cv*(T2-T1) + W\n\n	  print("The heat transfer due to compression from the nitrogen is: ", Q, "kJ")\n      ",
       "explanation": "Here, the code calculates the amount of heat transfer done during the compression process of a piston. It uses the ideal gas relation, pV = mRT, and the first law of thermodynamics Q - W = U, where U is the internal energy.",
 	  "references": [
 		  "Fundamentals of Thermodynamics, 8th Edition, by Borgnakke and Sonntag, page 119."
@@ -55,49 +22,14 @@
 {
   "question": "A flow of air has velocity of 850 m/s, pressure of 130 kPa, and temperature at 180 C. Compute the pressure and temperature of the air if brought isentropically to rest.",
   "answer": {
-      "code": """
-      import numpy as np
-
-	  Cp = 1005 # Specific heat capacity of air at constant pressure (J/kg-K)
-	  gamma = 1.4 # Specific heat ratio of air
-	  V1 = 850 # Inital velocity of air (m/s)
-	  P1 = 130 # Initial pressure of air (kPa)
-	  T1 = 180 # Initial temperature of air (C)
-
-	  # Stagnation temperature due to steady isentropic process
-	  T2 = (T1 + 273.15) + (V1**2)/(2*Cp)
-
-	  # Stagnation pressure using isentropic relations
-	  P2 = P1*(T2/(T1 + 273.15))**((gamma)/(gamma - 1))
-
-	  print ("The stagnation temperature and pressure of air due to isentropic process is ", T2, "K, ",P2, "kPa, respectively" )
-      """,
+      "code": "\n      import numpy as np\n\n	  Cp = 1005 # Specific heat capacity of air at constant pressure (J/kg-K)\n	  gamma = 1.4 # Specific heat ratio of air\n	  V1 = 850 # Inital velocity of air (m/s)\n	  P1 = 130 # Initial pressure of air (kPa)\n	  T1 = 180 # Initial temperature of air (C)\n\n	  # Stagnation temperature due to steady isentropic process\n	  T2 = (T1 + 273.15) + (V1**2)/(2*Cp)\n\n	  # Stagnation pressure using isentropic relations\n	  P2 = P1*(T2/(T1 + 273.15))**((gamma)/(gamma - 1))\n\n	  print ("The stagnation temperature and pressure of air due to isentropic process is ", T2, "K, ",P2, "kPa, respectively" )\n      ",
       "explanation": "This code calculates the stagnation temperature and pressure which is if it were brought to zero velocity by steady isentropic process with no external work. With these assumptions, we use the equation for stagnation temperature, T01 = T1 + v1^2/2Cp. And to find stagnation pressure, we use the isentropic relations between pressure and temperature, p0/p1 = (T0/T1)^(k/k-1), where k is the specific heat ratio, gamma."
   }
 },
 {
   "question": "A chemical is flowing through a pipe with 90° bend, with a mass flow of 200 kg/s. Its incoming velocity (uniform) is 2 m/s, and its outgoing velocity is 3 m/s. What is the net force exerting on the fluid and its magnitude?",
   "answer": {
-      "code": """
-      import numpy as np
-
-	  mdot = 200 # Mass flow rate (kg/s)
-	  V1 = 2 # Incoming velocity (m/s)
-	  V2 = 3 # Outgoing velocity (m/s)
-
-	  # Momentum flux and conservation of mass, find force compenents
-	  Fx = mdot * (0 - V1)
-	  Fy = mdot * (V2 - 0)
-	  Fz = 0
-	  Fnet = [Fx, Fy, Fz]
-
-	  # Magnitude of net force
-	  Fmag = np.sqrt(Fx**2 + Fy**2 + Fz**2)
-
-	  Force = ["Fx", "Fy", "Fz"]
-
-      print ("The net force exerting on the fluid is:", Force, "= ", Fnet, "N and the magnitude is:",Fmag ,"N" )
-      """,
+      "code": "\n      import numpy as np\n\n	  mdot = 200 # Mass flow rate (kg/s)\n	  V1 = 2 # Incoming velocity (m/s)\n	  V2 = 3 # Outgoing velocity (m/s)\n\n	  # Momentum flux and conservation of mass, find force compenents\n	  Fx = mdot * (0 - V1)\n	  Fy = mdot * (V2 - 0)\n	  Fz = 0\n	  Fnet = [Fx, Fy, Fz]\n\n	  # Magnitude of net force\n	  Fmag = np.sqrt(Fx**2 + Fy**2 + Fz**2)\n\n	  Force = ["Fx", "Fy", "Fz"]\n\n      print ("The net force exerting on the fluid is:", Force, "= ", Fnet, "N and the magnitude is:",Fmag ,"N" )\n      ",
       "explanation": "This code calculates the net force exerting on the fluid around a bend. Assuming incoming velocity is in the positive x direction and outgoing velocity is in the positive y direction, we can find individual components of force using the momentum flux equation (Fx = mDotOut * vOut - mDotIn * vIn) and idea of concervation of mass (mDotOut = mDotIn). We can assume flow is inviscid.",
 	  "references": [
 		  "Jack B. Evett, Cheng Liu, 2500 Solved Problems in Fluid mechanics and Hydraulics, Revised First Edition."
@@ -107,50 +39,14 @@
 {
   "question": "A needle nose projectile traveling at a speed of M = 3 passes 200m above an observer. Find the projectiles velocity and determine how far beyond the observer the projectile will first be heard.",
   "answer": {
-      "code": """
-      import numpy as np
-
-	  M = 3 # Mach number of projectile
-	  h = 200 # Height of projectile (m)
-	  k = 1.4 # Specific heat ratio (gamma)
-	  R = 287 # Specific gas constant of air (J/kg-K)
-
-	  # Assuming the temperature of air is room temperature
-	  T = 300 # (K)
-
-	  # Speed of sound (m/s)
-	  a = np.sqrt(k*R*T)
-
-	  # Velocity of projectile (m/s)
-	  V = M*a
-
-	  # Wave angle calculation (rad)
-	  u = np.arcsin(1/M)
-
-	  # Distance of sound heard beyond observer
-	  x = (h)/(np.tan(u))
-
-	  print("The velocity of the projectile is: ",V, "m/s")
-	  print("The distance beyond the observer which projectile is first heard is: ", x, "m")
-      """,
+      "code": "\n      import numpy as np\n\n	  M = 3 # Mach number of projectile\n	  h = 200 # Height of projectile (m)\n	  k = 1.4 # Specific heat ratio (gamma)\n	  R = 287 # Specific gas constant of air (J/kg-K)\n\n	  # Assuming the temperature of air is room temperature\n	  T = 300 # (K)\n\n	  # Speed of sound (m/s)\n	  a = np.sqrt(k*R*T)\n\n	  # Velocity of projectile (m/s)\n	  V = M*a\n\n	  # Wave angle calculation (rad)\n	  u = np.arcsin(1/M)\n\n	  # Distance of sound heard beyond observer\n	  x = (h)/(np.tan(u))\n\n	  print("The velocity of the projectile is: ",V, "m/s")\n	  print("The distance beyond the observer which projectile is first heard is: ", x, "m")\n      ",
       "explanation": "This code involves a projectile moving at supersonic speed which creates a mach wave. Knowing the air conditions, the speed of sound can be calculated using a = sqrt(kRT). Thus, the velocity of the projectile can be found. Given the observer is stationary, the wave angle can be calculated using u = sin-1(1/M) and with trigonometry, the distance of the heard projectile is found using tan(u) = h/x."
   }
 },
 {
   "question": "Water enters a stationary lawn sprinkler through its base at the steady rate of 1000 ml/s. The exit area of each of the two nozzles is 30 mm^2. Determine the average speed of water leaving the nozzle.",
   "answer": {
-      "code": """
-      import numpy as np
-
-	  Q = 0.001 # Volumetric flow rate (m^3/s) = 1000/10^6
-	  A = 30/(10**6) # Area of nozzles (m^2)
-
-	  # Conservation of mass (Continuity), A2*v2 + A3*v3 - A1*v1 = 0
-	  # A2 = A3 and v2 = v3. Therefore, average velocity of water exiting the nozzle is
-	  velNozzle = Q/(2*A)
-
-	  print ("The velocity of water leaving the nozzle is: ",velNozzle, "m/s")
-      """,
+      "code": "\n      import numpy as np\n\n	  Q = 0.001 # Volumetric flow rate (m^3/s) = 1000/10^6\n	  A = 30/(10**6) # Area of nozzles (m^2)\n\n	  # Conservation of mass (Continuity), A2*v2 + A3*v3 - A1*v1 = 0\n	  # A2 = A3 and v2 = v3. Therefore, average velocity of water exiting the nozzle is\n	  velNozzle = Q/(2*A)\n\n	  print ("The velocity of water leaving the nozzle is: ",velNozzle, "m/s")\n      ",
       "explanation": "First, assume that flow is steady and incompressible. Then, by continuity the mass flow rate entering the sprinkler and exiting sprinkler is equal, A2*v2 + A3*v3 - A1*v1 = 0, density cancels out as it is constant throughout. Knowing the volumetric flow rate entering equal to Q = A1*v1 and that the areas of the nozzles are equal, we arrive at the equation above.",
 	  "references": [
 		  "Fundamentals of Fluid Mechanics, Sixth edition, Bruce R. Munson, Donald F. Young, page 197."
@@ -160,26 +56,7 @@
 {
   "question": "Suppose you have two blocks of copper, each of heat capacity 200 J/K. Initially one block has a uniform temperature of 300 K and the other 310 K. Calculate the entropy change that occurs when you place the two blocks in thermal contact with one another and surround them with perfect thermal insulation. Is the sign of delta S consistent with the second law? (Assume the process occurs at constant volume.",
   "answer": {
-      "code": """
-      import numpy as np
-
-	  Cv = 200 # Heat capacity at constant volume (J/K)
-	  Tc = 300 # Temperature of the cooler block (K)
-	  Th = 310 # Temperature of the warmer block (K)
-
-	  # Final equiliubrium temperature of blocks
-	  Teq = (Tc + Th)/2
-
-	  # Entropy changes of individual blocks
-	  Sc = Cv * np.log(Teq/Tc)
-	  Sh = Cv * np.log(Teq/Th)
-
-	  # Total entropy change
-	  Stot = Sc + Sh
-
-	  print("The entropy change of the cooler and warmer block are: ",Sc, "J/K and", Sh, "J/K, respectively.")
-	  print("The total entropy change is: ",Stot, "J/k which is positive as predicted by the second law for irreversible process in isolated systems.")
-      """,
+      "code": "\n      import numpy as np\n\n	  Cv = 200 # Heat capacity at constant volume (J/K)\n	  Tc = 300 # Temperature of the cooler block (K)\n	  Th = 310 # Temperature of the warmer block (K)\n\n	  # Final equiliubrium temperature of blocks\n	  Teq = (Tc + Th)/2\n\n	  # Entropy changes of individual blocks\n	  Sc = Cv * np.log(Teq/Tc)\n	  Sh = Cv * np.log(Teq/Th)\n\n	  # Total entropy change\n	  Stot = Sc + Sh\n\n	  print("The entropy change of the cooler and warmer block are: ",Sc, "J/K and", Sh, "J/K, respectively.")\n	  print("The total entropy change is: ",Stot, "J/k which is positive as predicted by the second law for irreversible process in isolated systems.")\n      ",
       "explanation": "Since the blocks have equal heat capacities, a given quantity of heat transfer from the warmer to the cooler block causes temperature changes that are equal in magnitude and of opposite signs. The final equilibrium temperature is 305 K, the average of the initial values. When the temperature of one of the blocks changes reversibly from T1 to T2 , the entropy change is given by dS = integral(Cv*dT/T) from T1 to T2 == Cv*ln(T2/T1). The infinitesimal entropy production due to irreverisibility cannot be negative."
   }
 },

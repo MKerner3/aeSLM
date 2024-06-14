@@ -39,19 +39,7 @@
 
     "question": "Consider the isentropic flow over an airfoil at gamma 1.4. The freestream conditions correspond to a standard altitude of 10,000 ft and free stream mach of 0.82. At a given point on the airfoil, M = 1.0. Calculate the static pressure at that point. (Note: You will have to use the standard atmopsheric vs. altitude table.)"
     "answer": {
-        "code": """
-        import numpy as np
-        # Based upon the standard atmosphere vs. altitude table, we get a free stream pressure of 1455.6 lbf/ft^2
-        # Looking at isentropic flow charts at Mach = 0.82, we get a free stream pressure over stagnation pressure ratio value of 0.6430.
-        # For our purposes, we will invert this ratio to now have a stagnation pressure over free stream pressure ratio value of 1.555
-        # Now, look at Mach = 1, and we will get a stagnation pressure over static pressure value of 1.893. This ratio will also need to be inverted so that we can get final static pressure. This static pressure indicates the static pressure where Mach = 1.
-        # Since we have both ratios and the initial free stream pressure, we can now find the final static pressure. This is done by multiplying the ratios and free stream pressure together, as the ratios will cancel out stagnation pressure and the free stream pressures will cancel out as well.
-        p0overp1 = 1.555
-        p2overp0 = 0.528
-        p1 = 1455.6
-        p2 = p2overp0 * p0overp1 * p1
-        print("The static pressure over an airfoil where mach = 1 is:", p2, "lbf/ft^2")
-        """,
+        "code": "\n        import numpy as np\n        # Based upon the standard atmosphere vs. altitude table, we get a free stream pressure of 1455.6 lbf/ft^2\n        # Looking at isentropic flow charts at Mach = 0.82, we get a free stream pressure over stagnation pressure ratio value of 0.6430.\n        # For our purposes, we will invert this ratio to now have a stagnation pressure over free stream pressure ratio value of 1.555\n        # Now, look at Mach = 1, and we will get a stagnation pressure over static pressure value of 1.893. This ratio will also need to be inverted so that we can get final static pressure. This static pressure indicates the static pressure where Mach = 1.\n        # Since we have both ratios and the initial free stream pressure, we can now find the final static pressure. This is done by multiplying the ratios and free stream pressure together, as the ratios will cancel out stagnation pressure and the free stream pressures will cancel out as well.\n        p0overp1 = 1.555\n        p2overp0 = 0.528\n        p1 = 1455.6\n        p2 = p2overp0 * p0overp1 * p1\n        print("The static pressure over an airfoil where mach = 1 is:", p2, "lbf/ft^2")\n        ",
         "explanation": "For this problem, we utilize the table of values for isentropic, subsonic, flow at gamma = 1.4. Given the intial and final mach numbers, we can find the pressure ratios. From there the pressure ratios can be manipulated in a way to cancel certain pressure values out and to then find the static pressure at the Mach 1 point on the airfoil. In addition the table of standard atmospheric conditions at varying altitudes was necessary to find the free stream pressure."
         "references": ["Problem 8.6 | Page 611 from John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"]
     }
@@ -59,37 +47,14 @@
 {
     "question": "Consider air at a temp of 330 K and flowing at Mach 1.5, find the velocity of the air."
     "answer": {
-        "code": """
-        import numpy as np
-        # Recall the following equations: a = sqrt(gamma * R * T) & M = v / a
-        # First need to find speed of sound (a)
-        gamma = 1.4
-        R = 287
-        T = 330
-        a = np.sqrt(gamma * R * T)
-        # Now that we found a, rearrange the latter equation for velocity
-        M = 1.5
-        v = M * a
-        print("The velocity of the air is", v, "m/s")
-        """,
+        "code": "\n        import numpy as np\n        # Recall the following equations: a = sqrt(gamma * R * T) & M = v / a\n        # First need to find speed of sound (a)\n        gamma = 1.4\n        R = 287\n        T = 330\n        a = np.sqrt(gamma * R * T)\n        # Now that we found a, rearrange the latter equation for velocity\n        M = 1.5\n        v = M * a\n        print("The velocity of the air is", v, "m/s")\n        ",
         "explanation": "This code calculates the velocity of air by the utilization of the definition of a mach number and definition of speed of sound. For the formulas shown, v is the velocity of the air, R is the gas constant, T is temperature, gamma is the ratios between specific heat capacities of constant pressure and volume, a is speed of sound, and M is mach number"
     }
 },
 {
     "question": "Consider an airfoil in a flow at standard sea level conditions with a freestream velocity of 50 m/s. At a given point on the airfoil, the pressure is 0.9 × 105 Pa. Find the velocity at this given point. (Assume at standard sea level, densitySL = 1.23 kg/m3 and pressureSL = 1.01 × 105 N/m2)."
     "answer": {
-        "code": """
-        import numpy as np
-        # Since flow is in free stream and density is constant, flow is incompressible and thus Bernoulli's Principle can be applied.and
-        rhoSL = 1.23
-        p1 = 1.01 * 10**5
-        v1 = 50
-        p2 = 0.9 * 10 **5
-        # Bernoulli's Principle: p1 + 0.5 * rhoSL * (v1**2) = p2 + 0.5 * rhoSL * (v2**2)
-        # Re-arrange above expression for v2 to find the velocity at that specific point
-        v2 = np.sqrt(((2 * (p1 - p2))/(rhoSL)) + (v1**2))
-        print("The velocity at the point where the pressure is 0.9 x 10^5 N/m^2 is:", v2, "m/s")
-        """,
+        "code": "\n        import numpy as np\n        # Since flow is in free stream and density is constant, flow is incompressible and thus Bernoulli's Principle can be applied.and\n        rhoSL = 1.23\n        p1 = 1.01 * 10**5\n        v1 = 50\n        p2 = 0.9 * 10 **5\n        # Bernoulli's Principle: p1 + 0.5 * rhoSL * (v1**2) = p2 + 0.5 * rhoSL * (v2**2)\n        # Re-arrange above expression for v2 to find the velocity at that specific point\n        v2 = np.sqrt(((2 * (p1 - p2))/(rhoSL)) + (v1**2))\n        print("The velocity at the point where the pressure is 0.9 x 10^5 N/m^2 is:", v2, "m/s")\n        ",
         "explanation": "This code uses Bernoulli's principle to find the velocity at another point along a streamline, since the flow is considered incompressible. Using the given values, the expression can be re-arranged to find the velocity."
         "references": ["Example 3.1 | Page 212 John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"]
     }
@@ -97,67 +62,20 @@
 {
     "question": "Consider a closed system containing 5 m^3 of air pressurized at 5 x 10^5 Pa and at 350 C. Specific heat at constant volume is  0.74 kJ / Kg*K. If 2500 kJ of heat is added isochorichly, what is the final pressure in the system?"
     "answer": {
-        "code": """
-        import numpy as np
-        #First, we need to find the mass of the air, so that we can then use mass in the first law of thermodynamics expression.
-        #To find mass, we must use the ideal gas relation: pV = mRT and re-arrange to solve for mass.
-        p1 = 5 * 10 ** 5
-        V = 5
-        T1 = 350 + 273.15
-        cv = 0.74
-        Q = 2500
-        R = 287
-        m = (p1 * V) / (R * T1)        
-        # Second, we must find change in temperature, which can be determined by utilizing the first law of thermodyanmics: Q - W = delt(U)
-        # We also need to recognize the following expression only valid for perfect gasses: delt(U) = m * cv * deltT
-        #Subsituting the latter expression into the first law expression, we get the following expression: Q - W = m * cv * deltT
-        # Note that this is a closed system, so there is no work done or being done by the system. Now, re-arrange the expression for deltT
-        deltT = (Q) / (m * cv)
-        # Final temperature can now be found since we already know intiial temperature and change in temperature
-        T2 = T1 + deltT
-        # Since volume remains constant, the process is isochoric, and we can use the isochoric relations to find final pressure
-        #The isochoric relation that will be used is (p2/p1) = (T2/T1), in which we rearrange to solve for p2
-        p2 = (T2 / T1) * p1
-        print("The final pressure in the system is:", p2, "Pa.")
-        """,
+        "code": "\n        import numpy as np\n        #First, we need to find the mass of the air, so that we can then use mass in the first law of thermodynamics expression.\n        #To find mass, we must use the ideal gas relation: pV = mRT and re-arrange to solve for mass.\n        p1 = 5 * 10 ** 5\n        V = 5\n        T1 = 350 + 273.15\n        cv = 0.74\n        Q = 2500\n        R = 287\n        m = (p1 * V) / (R * T1)        \n        # Second, we must find change in temperature, which can be determined by utilizing the first law of thermodyanmics: Q - W = delt(U)\n        # We also need to recognize the following expression only valid for perfect gasses: delt(U) = m * cv * deltT\n        #Subsituting the latter expression into the first law expression, we get the following expression: Q - W = m * cv * deltT\n        # Note that this is a closed system, so there is no work done or being done by the system. Now, re-arrange the expression for deltT\n        deltT = (Q) / (m * cv)\n        # Final temperature can now be found since we already know intiial temperature and change in temperature\n        T2 = T1 + deltT\n        # Since volume remains constant, the process is isochoric, and we can use the isochoric relations to find final pressure\n        #The isochoric relation that will be used is (p2/p1) = (T2/T1), in which we rearrange to solve for p2\n        p2 = (T2 / T1) * p1\n        print("The final pressure in the system is:", p2, "Pa.")\n        ",
         }
 },
 {
     "question": "A tank that has two inlets and outlets is filled with a fluid that has a density of 800 kg/m^3 . At one inlet, the fluid enters with a volumetric flow rate of 5 m^3/s, and exits the outlet with a cross-sectional area of 0.125 m^2 at 75 m/s , if the velocity entering the second inlet is 2 m/s, what is the cross-sectional area of that inlet?"
     "answer": {
-        "code": """
-        import numpy as np
-        Q1 = 5
-        rho = 800
-        v3 = 75
-        A3 = 0.125
-        v2 = 2
-        # First, we must find the individual mass flows with given values. The mass flow rate is density * area * velocity. 
-        # Recall that volumetric flow rate is equal to area * velocity.
-        # Note that the mass flow rate for inlet 2 will not be found yet, as we do not know the cross-sectional area of that inlet.
-        m1 = Q1 * rho
-        m3 = rho * A3 * v3
-        # Applying the principle of continuity (m1 + m2 = m3), where mass flow in equates to mass flow out, we can then find the cross-sectional area of the second inlet by expanding m2 into A2 * v2. 
-        A2 = (m3 - m1) / v2
-        print("The cross-sectional area of the second inlet is:", A2, "m^2.")
-        """,
+        "code": "\n        import numpy as np\n        Q1 = 5\n        rho = 800\n        v3 = 75\n        A3 = 0.125\n        v2 = 2\n        # First, we must find the individual mass flows with given values. The mass flow rate is density * area * velocity. \n        # Recall that volumetric flow rate is equal to area * velocity.\n        # Note that the mass flow rate for inlet 2 will not be found yet, as we do not know the cross-sectional area of that inlet.\n        m1 = Q1 * rho\n        m3 = rho * A3 * v3\n        # Applying the principle of continuity (m1 + m2 = m3), where mass flow in equates to mass flow out, we can then find the cross-sectional area of the second inlet by expanding m2 into A2 * v2. \n        A2 = (m3 - m1) / v2\n        print("The cross-sectional area of the second inlet is:", A2, "m^2.")\n        ",
         "explanation": "This code uses the principle of continuity for incompressible flow, which states that the mass flow remains constant throughout the inlets and outlets."
         }
 },
 {
     "question": "Consider an oblique shock wave with a wave angle of 35 deg, and a pressure ratio (p2/p1) = 3. Calculate the upstream Mach Number."
     "answer": {
-        "code": """
-        import numpy as np
-        #Using the table of values corresponding to oblique shock waves, we can find that for the pressure ratios, the intiial normal Mach is 1.64.
-        #Using the definition of the normal mach number component seen by a moving observer, we get the expression of normal Mach = Mach * sin(beta).
-        # Re-arranging the above expression to find the initial mach gives us Mach = (normal Mach) / sin(beta).
-        Mn1 = 1.64
-        #Convert beta to radians
-        beta = 35 * ((np.pi) / 180)
-        M1 = (Mn1) / (np.sin(beta))
-        print("The upstream Mach number is:", M1, ".")
-        """,
+        "code": "\n        import numpy as np\n        #Using the table of values corresponding to oblique shock waves, we can find that for the pressure ratios, the intiial normal Mach is 1.64.\n        #Using the definition of the normal mach number component seen by a moving observer, we get the expression of normal Mach = Mach * sin(beta).\n        # Re-arranging the above expression to find the initial mach gives us Mach = (normal Mach) / sin(beta).\n        Mn1 = 1.64\n        #Convert beta to radians\n        beta = 35 * ((np.pi) / 180)\n        M1 = (Mn1) / (np.sin(beta))\n        print("The upstream Mach number is:", M1, ".")\n        ",
     "explanation": "This problem uses the concept of reference frames in oblique shocks, as oblique shocks are simply normal shocks but at an wedge angle and wave angle. The normal mach number is the mach number that is perpendicular to the shock. In addition, the table of values for oblique shocks was used as well in order to find the normal upstream mach number from pressure ratios."
     "references": ["Example 9.4 | Page 632 John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"]
     }
@@ -165,17 +83,7 @@
 {
     "question": "A gas with a gamma value of 1.89 is initially at  15 kg/m3 and is expanded adiabatically and reversibly to 5 times its initial volume. Find the final density."
     "answer": {
-        "code": """
-        import numpy as np
-        gamma = 1.89
-        rho1 = 15
-        # Since the gas is being expanded adiabatically, the process is isentropic since it is reversible and adiabatic. From this we can use the isentropic relation between density and volume.
-        # The isentropic relationship between density and volume is: (rho2/rho1) = (V1/V2)^(gamma - 1).
-        # Since the gas was expanded to a volume 5 times the initial volume, we can write the ratio of V1/V2 as 1/5.
-        # Now, we plug in the newfound volume ratio and solve for rho2.
-        rho2 = ((1/5)**(1.89-1)) * rho1
-        print("The final density of the gas after being expanded is:", rho2, "kg/m^3.")
-        """,
+        "code": "\n        import numpy as np\n        gamma = 1.89\n        rho1 = 15\n        # Since the gas is being expanded adiabatically, the process is isentropic since it is reversible and adiabatic. From this we can use the isentropic relation between density and volume.\n        # The isentropic relationship between density and volume is: (rho2/rho1) = (V1/V2)^(gamma - 1).\n        # Since the gas was expanded to a volume 5 times the initial volume, we can write the ratio of V1/V2 as 1/5.\n        # Now, we plug in the newfound volume ratio and solve for rho2.\n        rho2 = ((1/5)**(1.89-1)) * rho1\n        print("The final density of the gas after being expanded is:", rho2, "kg/m^3.")\n        ",
     "explanation": "This problem utilized the isentropic relations after assuming flow is isentropic due to the gas being expanded adiabatically. The isentropic relation needed is between volume and density, in which volume ratio was given as 1/5 and final density can be solved for."
     }
 },

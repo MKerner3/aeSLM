@@ -38,146 +38,49 @@
 {
     "question": "The Reaction Control System (RCS) uses compressed nitrogen (Density = 1.251 kg/m^3) to propel spacecraft and correct their orientation in space (vacuum). The gauge pressure behind the converging RCS nozzle is 690,000 Pa. Consider the system to be at a steady state. Nitrogen is ejected from the nozzle at a rate of 80 m/s. Consider the nozzle to have a circular cross-section throughout. The diameter of the nozzle inlet is 5 cm, and the outlet diameter is 2 cm. Calculate the moment exerted on the spacecraft's center of mass (given that the moment arm is 1 m). Assume the nozzle is frictionless on the inside",
     "answer": {
-        "code": """
-import numpy as np
-
-rho = 1.251                     # kg/m^3
-p_1 = 690000+101325             # N/m^2 
-A_in = np.pi/4 * 0.05**2        # m^2
-A_out = np.pi/4 * 0.02**2       # m^2
-v_out = 80                      # m/s
-v_in = (A_out / A_in) * v_out   # m/s
-R_arm = 1                       # m
-
-# Apply Steady Flow Momentum Equation (F = MassFlowrRateOut*v_out - MassFlowrRateIn*v_in) and principle of continuity (A1*v1 = A2*v2)
-F = rho * A_in * v_in * (v_out - v_in) - p_1 * A_in
-M = F*R_arm
-print(str(np.round(M,3))+' N*M')
-        """,
+        "code": "\nimport numpy as np\n\nrho = 1.251                     # kg/m^3\np_1 = 690000+101325             # N/m^2 \nA_in = np.pi/4 * 0.05**2        # m^2\nA_out = np.pi/4 * 0.02**2       # m^2\nv_out = 80                      # m/s\nv_in = (A_out / A_in) * v_out   # m/s\nR_arm = 1                       # m\n\n# Apply Steady Flow Momentum Equation (F = MassFlowrRateOut*v_out - MassFlowrRateIn*v_in) and principle of continuity (A1*v1 = A2*v2)\nF = rho * A_in * v_in * (v_out - v_in) - p_1 * A_in\nM = F*R_arm\nprint(str(np.round(M,3))+' N*M')\n        ",
         "explanation": "This code utilizes the principle of continuity and steady flow momentum equation for incompressible flow, which states that the mass flow rate remains constant and net force is the difference in inlet-outlet mass flow rate times velocity. The equation A1*v1 = A2*v2 and F = MassFlowrRateOut*v_out - MassFlowrRateIn*v_in expresses this, where A represents cross-sectional area and v represents velocity. We have to be careful that the exit ambient pressure is zero Pa and we have to convert inlet gauge pressure to absolute pressure by adding the atmospheric pressure",
     }
 },
 {
     "question": "Imagine a T-shaped tube with the bottom of the T connected to a water reservoir with water density rho = 1000 kg/m^3, and atmospheric pressure exerting on the surface of the water. Airflow with density rho = 1.293 kg/m^3 is flowing at 100 m/s in the horizontal section of the T tube. How high will the water rise in the vertical section of the T tube? Assume the vertical section of the tube is long enough, and water won't flow into the horizontal section of the tube.",
     "answer": {
-        "code": """
-import numpy as np
-
-rho_water = 1000                # kg/m^3
-rho_air = 1.293                 # kg/m^3
-v_air = 100                     # m/s
-g = 9.81                        # m/s^2
-
-# Apply Bernoulli's principle with two points, one in the moving air in the horizontal section of the tube and the second one in the still air region in the vertical section of the tube.
-delta_p = 0.5*rho_air*v_air**2  # Pa, difference in static pressure of the moving air and the still air in the horizontal and vertical section of the tube
-delta_h = delta_p/(rho_water*g) # m^2
-print(str(np.round(delta_h,3))+' M')
-        """,
+        "code": "\nimport numpy as np\n\nrho_water = 1000                # kg/m^3\nrho_air = 1.293                 # kg/m^3\nv_air = 100                     # m/s\ng = 9.81                        # m/s^2\n\n# Apply Bernoulli's principle with two points, one in the moving air in the horizontal section of the tube and the second one in the still air region in the vertical section of the tube.\ndelta_p = 0.5*rho_air*v_air**2  # Pa, difference in static pressure of the moving air and the still air in the horizontal and vertical section of the tube\ndelta_h = delta_p/(rho_water*g) # m^2\nprint(str(np.round(delta_h,3))+' M')\n        ",
         "explanation": "This problem utilizes Bernoulli's equation for incompressible flow, which states that the total pressure along a streamline of incompressible flow remains constant. The equation p_1 + 1/2*rho*v_1^2 = p_2 + 1/2*rho*v_2^2 expresses this principle. Then we utilize fluids statics equation. The equation delta_p = rho*g*delta_h expresses this",
     }
 },
 {
     "question": "Continuing with the previous RCS thruster scenario, after the nitrogen thruster tank is depleted (0 Pa), a replenishing valve that connects the thruster tank to a reservoir tank (P = 690,000 Pa, T = 273 K) opens. The thruster tank is filled adiabatically until it matches the pressure of the reservoir. Assuming nitrogen behaves as a perfect gas with R = 0.2968 kJ/(kg*K) and gamma = 1.470, and given that the volume of the tank is 0.01 m^3, find the final temperature of the gas and its mass inside the thruster tank.",
     "answer": {
-        "code": """
-import numpy as np
-
-gamma = 1.470
-R = 0.2968          # kJ/(kg*K)
-P = 690000          # Pa
-T_initial = 273     # K
-V = 0.01            # m^3
-
-# First Law: Q - W = delta(U) = c_v*delta(T)
-T_final = gamma*T_initial
-
-# Ideal Gas Law: PV = mRT
-mass = P*V/(R*1000*T_final)
-print('Raise in temperature: '+str(np.round(T_final,3))+' K, '+'mass: '+str(np.round(mass,3))+' kg')
-        """,
+        "code": "\nimport numpy as np\n\ngamma = 1.470\nR = 0.2968          # kJ/(kg*K)\nP = 690000          # Pa\nT_initial = 273     # K\nV = 0.01            # m^3\n\n# First Law: Q - W = delta(U) = c_v*delta(T)\nT_final = gamma*T_initial\n\n# Ideal Gas Law: PV = mRT\nmass = P*V/(R*1000*T_final)\nprint('Raise in temperature: '+str(np.round(T_final,3))+' K, '+'mass: '+str(np.round(mass,3))+' kg')\n        ",
         "explanation": "We approach this problem by finding the work done by the reservoir tank to the control volume of the gas entering the thruster tank, which is p*delta(V). Then we can utilize First Law in Thermodynamics and set Q to be 0 due to adiabatic process and delta(U) to be m*c_v*delta(T). Since we know c_v - c_p = R and c_p/c_v = gamma, we can find T_final using these relationships. Finally, knowing T_final, we can utilize ideal gas law (PV = mRT) to find the mass inside the thruster tank",
     }
 },
 {
     "question": "A cyclic machine is designed to take in heat from two heat sources: A at 1K and B at 1000K and reject the heat into the environment at 300K. If source A is supplying the machine with a power of 200 kW, will that be enough for the machine to remove heat from source B at a power of 5 kW?",
     "answer": {
-        "code": """
-import numpy as np
-
-T_A = 1000      #K
-T_B = 1         #K
-T_EN = 300      #K
-BDot = 5        #kW
-ADot = (1./T_B - 1./T_EN)/(1./T_EN - 1./T_A) * BDot
-print('No, the power supplied by A is not enough. The minimum power from A is '+str(np.round(ADot, 3))+' kW')
-
-        """,
+        "code": "\nimport numpy as np\n\nT_A = 1000      #K\nT_B = 1         #K\nT_EN = 300      #K\nBDot = 5        #kW\nADot = (1./T_B - 1./T_EN)/(1./T_EN - 1./T_A) * BDot\nprint('No, the power supplied by A is not enough. The minimum power from A is '+str(np.round(ADot, 3))+' kW')\n\n        ",
         "explanation": "Since the machine is cyclic, the power input should equal the power output. In other words, ADot + BDot = ENDot. We can utilize the Clausius inequality, namely sum(dot(Q_i)/T_i) ≤ 0. With this inequality given, we can calculate the minimum power needed from source A to achieve the extraction power from source B.",
     }
 },
 {
     "question": "For a long cylindrical pipe with friction and a convergent-divergent nozzle installed at the front, given that the nozzle is choked and with the right back pressure, the nozzle is able to achieve an exit velocity of Mach 2. What is the maximum length of the pipe to accelerate/decelerate the flow, given the nozzle capability and a pipe skin coefficient of 0.1, and a diameter of 0.5m?",
     "answer": {
-        "code": """
-import numpy as np
-
-c_f = 0.1 
-D = 0.5 # m
-mach_lowBackPressure = 2
-
-# look up flowCapacity in given mach number
-flowCapacity = 0.7591
-
-# look up 4*c_f*L_{max}/D in given mach number
-LmaxConst_lowBackPressure = 0.305
-
-# look up same flowCapacity in subsonic flow condition
-mach_highBackPressure = 0.37;
-
-# look up 4*c_f*L_{max}/D in given mach number
-LmaxConst_highBackPressure = 2.93
-
-#calculate length
-L = LmaxConst_highBackPressure*D/(4*c_f)
-
-print('The maximum length of the pipe is '+str(np.round(L, 3))+' M')
-
-        """,
+        "code": "\nimport numpy as np\n\nc_f = 0.1 \nD = 0.5 # m\nmach_lowBackPressure = 2\n\n# look up flowCapacity in given mach number\nflowCapacity = 0.7591\n\n# look up 4*c_f*L_{max}/D in given mach number\nLmaxConst_lowBackPressure = 0.305\n\n# look up same flowCapacity in subsonic flow condition\nmach_highBackPressure = 0.37;\n\n# look up 4*c_f*L_{max}/D in given mach number\nLmaxConst_highBackPressure = 2.93\n\n#calculate length\nL = LmaxConst_highBackPressure*D/(4*c_f)\n\nprint('The maximum length of the pipe is '+str(np.round(L, 3))+' M')\n\n        ",
         "explanation": "In this question, we should notice that when the nozzle is choked, the flow can be either supersonic or subsonic at the exit for the convergent-divergent nozzle, and these two flow conditions have the same flow capacity. However, the subsonic flow condition should have a higher length.",
     }
 },
 {
     "question": "Continuing with the previous RCS thruster scenario, what is the maximum mass flow rate this nozzle can support? Given that c_p of N2 is 1040 J/(kg*K) when the tank temperature is 300K, and assuming gamma = 1.4.",
     "answer": {
-        "code": """
-import numpy as np
-
-A_out = np.pi/4 * 0.02**2       # m^2
-p_0 = 690000+101325             # N/m^2 
-T_0 = 300                       # K
-c_p = 1040                      # J/(kg*K)
-
-# the nozzle is choked at Mach 1
-MDot = 1.281*A_out*p_0/(np.sqrt(T_0*c_p))
-print(str(np.round(MDot,3))+' kg/s')
-        """,
+        "code": "\nimport numpy as np\n\nA_out = np.pi/4 * 0.02**2       # m^2\np_0 = 690000+101325             # N/m^2 \nT_0 = 300                       # K\nc_p = 1040                      # J/(kg*K)\n\n# the nozzle is choked at Mach 1\nMDot = 1.281*A_out*p_0/(np.sqrt(T_0*c_p))\nprint(str(np.round(MDot,3))+' kg/s')\n        ",
         "explanation": "The nozzle reaches the maximum mass flow rate when the flow is choked. Since P_0 at the tank is the same as P_0 at the nozzle, we can use a lookup table to find the flow capacity at Mach 1 and plug in the given constants to find the mass flow rate at that point, which is the maximum mass flow rate.",
     }
 },
 {
     "question": "Imagine a convergent-divergent nozzle. The inlet stagnation pressure is 500,000 Pa, and the outlet stagnation pressure is 250,000 Pa. What is the strength of the shock at the divergent section of the nozzle? What happens to the position of the shock if we decrease the back pressure?",
     "answer": {
-        "code": """
-import numpy as np
-
-p0s = 250000 #Pa
-p0 = 500000  #Pa
-ratio = p0s/p0
-
-#find ratio on the lookup table
-strength = 0.514 # mach number
-print('Strength of shock is '+str(strength)+' Mach. If we reduce the back pressure, the shock will move backwards along the nozzle')
-        """,
+        "code": "\nimport numpy as np\n\np0s = 250000 #Pa\np0 = 500000  #Pa\nratio = p0s/p0\n\n#find ratio on the lookup table\nstrength = 0.514 # mach number\nprint('Strength of shock is '+str(strength)+' Mach. If we reduce the back pressure, the shock will move backwards along the nozzle')\n        ",
         "explanation": "Given the pre-shock and post-shock stagnation pressure, we can use the ratio to find the Mach number when the shock occurs and determine the strength of the shock. If the back pressure is decreased, the flow reaches a higher velocity before the shock forms. In other words, the flow has more time to accelerate in the nozzle before the shock slows it down.",
     }
 },

@@ -39,19 +39,7 @@
 {
     "Question": "Invicid, incompressible air flows along a streamline. Air density along the streamline is 1.225 kg/m^3. At point 1 along the streamline, pressure is 100 KPa and velocity is 3 m/s. Downstream the velocity is 60 m/s. Calculate the pressure downstream.",
     "Answer": {
-        "code": """
-import numpy as np
-
-rho = 1.225 # Density (kg/m^3)
-p1 = 101314 # Pressure 1 (Pa)
-v1 = 3 # Velocity 1 (m/s)
-v2 = 60 # Velocity 2 (m/s)
-
-# Apply bernoulli's equation along streamlines (p1 + 0.5 * rho * (v1**2)) = p2 + 0.5 * rho * (v2**2))
-p2 = p1 + 0.5 * rho * ((v1**2)-(v2**2))
-
-print("Downstream Pressure:", p2, "Pa")
-        """,
+        "code": "\nimport numpy as np\n\nrho = 1.225 # Density (kg/m^3)\np1 = 101314 # Pressure 1 (Pa)\nv1 = 3 # Velocity 1 (m/s)\nv2 = 60 # Velocity 2 (m/s)\n\n# Apply bernoulli's equation along streamlines (p1 + 0.5 * rho * (v1**2)) = p2 + 0.5 * rho * (v2**2))\np2 = p1 + 0.5 * rho * ((v1**2)-(v2**2))\n\nprint("Downstream Pressure:", p2, "Pa")\n        ",
 
         "Explaination": "This code utilized bernoulli's equation to show the relation between pressure and velocity along a streamline. As shown, a small change in pressure results in a large change in velocity.",
         "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
@@ -60,24 +48,7 @@ print("Downstream Pressure:", p2, "Pa")
 {
     "Question":"JP-7 fuel flows through a 5 meter long pipe with a diameter of 0.1 meters at a temperature of -34.5 degrees celcius and a volumetric flow rate of 0.5 m^3/s. Calculate the pressure drop thorugh the pipe. Assume viscosity is 0.012 Pa-s",
     "Answer": {
-        "code": """
-import numpy as np
-
-l = 5 # Length of Pipe (m)
-d = 0.1 # Diameter of Pipe (m)
-r = d/2 # Radius of Pipe (m)
-Q = 0.5 # Volumetric Flow Rate (m^3/s)
-mu = 0.012 # Viscosity (Pa-s)
-pi = np.pi
-
-# Calculate bulk velocty using relation V = Volumetric Flow Rate/Cross Sectional Area
-V = Q/(pi * (r**2))
-
-# Apply Hagen-Poiseuille Equation
-Delta_P = (8*mu*V*l)/(r**2)
-
-print("The loss in pressure is:", Delta_P, "Pa")
-        """,
+        "code": "\nimport numpy as np\n\nl = 5 # Length of Pipe (m)\nd = 0.1 # Diameter of Pipe (m)\nr = d/2 # Radius of Pipe (m)\nQ = 0.5 # Volumetric Flow Rate (m^3/s)\nmu = 0.012 # Viscosity (Pa-s)\npi = np.pi\n\n# Calculate bulk velocty using relation V = Volumetric Flow Rate/Cross Sectional Area\nV = Q/(pi * (r**2))\n\n# Apply Hagen-Poiseuille Equation\nDelta_P = (8*mu*V*l)/(r**2)\n\nprint("The loss in pressure is:", Delta_P, "Pa")\n        ",
 
         "Explaination": "This code utilizes the volumetric flow rate - bulk velocity relation and the hagen-poiseuille equation to calculate pressure loss through a pipe.",
         "Refrences": "https://wiki.anton-paar.com/us-en/aviation-fuels"
@@ -86,27 +57,7 @@ print("The loss in pressure is:", Delta_P, "Pa")
 {
     "Question":"Contrary to the Clausius statement of the second law, 100 Joules of heat is transferred from a 600 K colder body to a 1200 K hoter body. Prove that this violates the increase in entropy principle.",
     "Answer": {
-        "code": """
-import numpy as np
-
-Q = 100 # Heat Energy (J)
-T_hot = 1200 # Temperature of Hot Body in Kelvin
-T_cold = 600 # Temperature of Cold Body in Kelvin
-
-# Entropy Change of Hot Body
-
-delta_S_hot = Q/T_hot
-
-# Entropy Change of Cold Body
-
-delta_S_cold = -1 * Q/T_cold
-
-# Total Entropy Change
-
-delta_S = delta_S_hot + delta_S_cold
-
-print("The total entropy change is", delta_S, "J/K which violates the entropy principle since the total entropy change is negative.")
-        """,
+        "code": "\nimport numpy as np\n\nQ = 100 # Heat Energy (J)\nT_hot = 1200 # Temperature of Hot Body in Kelvin\nT_cold = 600 # Temperature of Cold Body in Kelvin\n\n# Entropy Change of Hot Body\n\ndelta_S_hot = Q/T_hot\n\n# Entropy Change of Cold Body\n\ndelta_S_cold = -1 * Q/T_cold\n\n# Total Entropy Change\n\ndelta_S = delta_S_hot + delta_S_cold\n\nprint("The total entropy change is", delta_S, "J/K which violates the entropy principle since the total entropy change is negative.")\n        ",
 
         "Explaination": "This code calculates the entropy change of two bodies where heat is transferred in an internally reversible isothermal heat transfer process.",
         "Refrences": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."
@@ -115,29 +66,7 @@ print("The total entropy change is", delta_S, "J/K which violates the entropy pr
 {
     "Question":"Calculate the entropy change for an ideal gas that undergoes an adiabatic expansion from 1 bar to 0.5 bar. Assume initial temperature is 300 K, heat capacity at constant pressure is 1005 J/(kg*K), and specific gas constant R = 287 J/(kg*K)",
     "Answer": {
-        "code": """
-import numpy as np
-
-P1 = 1  # initial pressure (bar)
-P2 = 0.5  # final pressure (bar)
-T1 = 300  # initial temperature (K)
-
-Cp = 1005  # heat capacity at constant pressure J/(kg*K)
-R = 287  # specific gas constant for air J/(kg*K)
-
-# Calculate the final temperature
-
-gamma = Cp / (Cp - R)
-
-# Using Isentropic Relations
-
-T2 = T1 * (P2 / P1)**((gamma - 1) / gamma)
-
-# Calculate the entropy change
-delta_S = Cp * np.log(T2 / T1) - R * np.log(P2 / P1)
-
-print("Entropy change is:", delta_S, "J/K")
-        """,
+        "code": "\nimport numpy as np\n\nP1 = 1  # initial pressure (bar)\nP2 = 0.5  # final pressure (bar)\nT1 = 300  # initial temperature (K)\n\nCp = 1005  # heat capacity at constant pressure J/(kg*K)\nR = 287  # specific gas constant for air J/(kg*K)\n\n# Calculate the final temperature\n\ngamma = Cp / (Cp - R)\n\n# Using Isentropic Relations\n\nT2 = T1 * (P2 / P1)**((gamma - 1) / gamma)\n\n# Calculate the entropy change\ndelta_S = Cp * np.log(T2 / T1) - R * np.log(P2 / P1)\n\nprint("Entropy change is:", delta_S, "J/K")\n        ",
 
         "Explaination": "This code calculates entropy change for an ideal gas where Q = 0. After the final temperature is calculated, Tds relations are used to find the change in entropy.",
     }
@@ -145,24 +74,7 @@ print("Entropy change is:", delta_S, "J/K")
 {
     "Question":"An airplane flies at a velocity of 500 m/s. Calculate its Mach number if it is flying at a standard altitude of sea level. Assume temperature at sea level is 288 Kelvin and gamma is 1.4.",
     "Answer": {
-        "code": """
-import numpy as np
-
-gammma = 1.4
-T = 288 # Temperature in Kelvin
-R = 287  # specific gas constant for air J/(kg*K)
-V = 500 # velocity of
-
-# Calculate speed of sound
-
-a = np.sqrt(gamma * R * T)
-
-# Calculate Mach Number
-
-M = V/a
-
-print("The airplane is flying at Mach", M)
-        """,
+        "code": "\nimport numpy as np\n\ngammma = 1.4\nT = 288 # Temperature in Kelvin\nR = 287  # specific gas constant for air J/(kg*K)\nV = 500 # velocity of\n\n# Calculate speed of sound\n\na = np.sqrt(gamma * R * T)\n\n# Calculate Mach Number\n\nM = V/a\n\nprint("The airplane is flying at Mach", M)\n        ",
 
         "Explaination": "This code calculates mach number using the speed of sound equation and then the relation between mach numbeer, flow velocity, and speed of sound.",
         "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
@@ -171,43 +83,7 @@ print("The airplane is flying at Mach", M)
 {
     "Question":"A normal shock wave in air where the upstream flow properties are v1 = 680 m/s, T1 = 288 K, and p1 = 1 atm. Assuming gamma = 1.4, calculate the velocity, temperature, and pressure down- stream of the shock using normal shock property tables",
     "Answer": {
-        "code": """
-import numpy as np
-
-gamma = 1.4
-R = 287  # specific gas constant for air J/(kg*K)
-T1 = 288 # Temperature in Kelvin
-v1 = 680 # Velocity (m/s)
-p1 = 1 # Pressure (atm)
-
-# Calculate speed of sound
-
-a1 = np.sqrt(gamma * R * T1)
-
-# Calculate Mach Number
-
-M = v1/a1
-
-# Values from Property Tables at calculated M
-
-p2_p1 = 4.5
-T2_T1 = 1.687
-M2 = 0.5774
-
-# Calculate downstream properties
-
-p2 = p2_p1 * p1
-
-T2 = T2_T1 * T1
-
-a2 = np.sqrt(gamma * R * T2)
-
-v2 = M2 * a2
-
-print("Pressure:", p2, "atm")
-print("Temperature:", T2, "K")
-print("Velocity:", v2, "m/s")
-        """,
+        "code": "\nimport numpy as np\n\ngamma = 1.4\nR = 287  # specific gas constant for air J/(kg*K)\nT1 = 288 # Temperature in Kelvin\nv1 = 680 # Velocity (m/s)\np1 = 1 # Pressure (atm)\n\n# Calculate speed of sound\n\na1 = np.sqrt(gamma * R * T1)\n\n# Calculate Mach Number\n\nM = v1/a1\n\n# Values from Property Tables at calculated M\n\np2_p1 = 4.5\nT2_T1 = 1.687\nM2 = 0.5774\n\n# Calculate downstream properties\n\np2 = p2_p1 * p1\n\nT2 = T2_T1 * T1\n\na2 = np.sqrt(gamma * R * T2)\n\nv2 = M2 * a2\n\nprint("Pressure:", p2, "atm")\nprint("Temperature:", T2, "K")\nprint("Velocity:", v2, "m/s")\n        ",
 
         "Explaination": "This code calculates downstream properties Temperature, Pressure, and Velocity using the speed of sound and normal shock relations found in property tables associated with gamma = 1.4",
         "Refrences": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill."
@@ -216,42 +92,7 @@ print("Velocity:", v2, "m/s")
 {
     "Question":"Air enters a 1 m diameter pipe steadily at 2000 Pa and 20 C with a velocity of 5 m/s. Air is heated as it flows, and leaves the pipe at 1800 Pa and 40 C. Determine the velocity and volume flow rate at the exit.",
     "Answer": {
-        "code": """
-import numpy as np
-
-v1 = 5 # Velocity of incoming air (m/s)
-p1 = 2000 # Pressure of incoming air (Pa)
-T1 = 20 # Temperature of incoming air (C)
-d = 1 # Diameter of pipe (m)
-p2 = 1800 # Pressure of exiting air (Pa)
-T2 = 40 # Temperature of exiting air (C)
-R = 287  # specific gas constant for air J/(kg*K)
-r = d/2 # Radious of pipe (m)
-
-# Calculate volume flow rate at inlet
-
-vol_flow1 = np.pi*(r**2)*v1
-
-# Calculate density
-
-rho1 = p1/(R*(T1+237))
-rho2 = p2/(R*(T2+237))
-
-# Calculate mass flow rate using m_dot = rho * A * V
-
-mass_flow = rho1*(np.pi*(r**2))*v1
-
-# Since mass flow in is equal to mass flow out
-
-vol_flow2 = mass_flow/rho2
-
-# Calculate Velocity Out
-
-v2 = vol_flow2/(np.pi*r**2)
-
-print("Volume flow at exit:", vol_flow2, "m^3/s")
-print("Velocity at exit:", v2, "m/s")
-        """,
+        "code": "\nimport numpy as np\n\nv1 = 5 # Velocity of incoming air (m/s)\np1 = 2000 # Pressure of incoming air (Pa)\nT1 = 20 # Temperature of incoming air (C)\nd = 1 # Diameter of pipe (m)\np2 = 1800 # Pressure of exiting air (Pa)\nT2 = 40 # Temperature of exiting air (C)\nR = 287  # specific gas constant for air J/(kg*K)\nr = d/2 # Radious of pipe (m)\n\n# Calculate volume flow rate at inlet\n\nvol_flow1 = np.pi*(r**2)*v1\n\n# Calculate density\n\nrho1 = p1/(R*(T1+237))\nrho2 = p2/(R*(T2+237))\n\n# Calculate mass flow rate using m_dot = rho * A * V\n\nmass_flow = rho1*(np.pi*(r**2))*v1\n\n# Since mass flow in is equal to mass flow out\n\nvol_flow2 = mass_flow/rho2\n\n# Calculate Velocity Out\n\nv2 = vol_flow2/(np.pi*r**2)\n\nprint("Volume flow at exit:", vol_flow2, "m^3/s")\nprint("Velocity at exit:", v2, "m/s")\n        ",
 
         "Explaination": "This code uses the principle of conservation of mass to calculate the velocity at the exit of the pipe given that density changes.",
         "Refrences": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."

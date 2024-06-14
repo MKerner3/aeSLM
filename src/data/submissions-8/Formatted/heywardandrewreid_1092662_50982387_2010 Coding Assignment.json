@@ -1,0 +1,98 @@
+[
+    {
+      "question": "A golfer practicing at the range notices that if he hits the club lower down on the ball, creating backspin, then his shots tend to go further than if he leaves no spin on the ball. State what phenomena is going on and how it works.",
+      "answer": "The Magnus Effect is taking place here, which demonstrates that when a ball is rotating through a fluid, there is an lift force created on it due to the forces of friction allowing air to stick to the ball, deflecting the air upwards as the ball is spinning backwards.",
+      "explanation": "",
+      "reference": "https://www.youtube.com/watch?v=23f1jvGUWJs"
+    },
+    {
+      "question": "Supersonic Flow hits a wedge with an incline of 15 degrees. The resulting oblique shock angle is 55 degrees. What is the angle at which the flow continues, and what happens to the static pressure, static temperature, and Mach number of the fluid after the shock?",
+      "answer": "The flow will follow the wedge angle of 15 degrees and static pressure and static temperature will increase, while Mach number will decrease as a result of the shock relations",
+      "explanation": "",
+      "reference": ""
+    },
+    {
+      "question": "Explain the difference between heat, enthalpy, and temperature.",
+      "answer": "In thermodynamics, heat refers to the transfer of thermal energy from a hotter system to a cooler temperature, while temperature is the measure of the average kinetic energy of all the molecules in a system. Enthalpy simply measures the amount of heat that flows between a system and its surroundings, therefore at a constant pressure, enthalpy and heat are the same value.",
+      "explanation": "",
+      "reference": "https://www.khanacademy.org/science/chemistry/thermodynamics-chemistry/internal-energy-sal/a/heat, https://ch301.cm.utexas.edu/thermo/#enthalpy/enthalpy-all.php"
+    },
+    {
+      "question": "Why does honey flow out of a jar slower and appear to be thicker than water flowing out of a bottle? Name what this property is and what it entails.",
+      "answer": "The property being described is called viscocity and it measures the fluids resistance to flow. This resistance is a result of internal friction between molecules which is related to the molecular structure of the fluid. Thus honey has more internal friction that water due to its molecular composition.",
+      "explanation": "",
+      "reference": "https://www.princeton.edu/~gasdyn/Research/T-C_Research_Folder/Viscosity_def.html"
+    },
+    {
+      "question": "Explain the difference between laminar and turbulant flow and what property quantifies this difference",
+      "answer": "Laminar flow describes flow that is very uniform and constant at all points, whereas turbulant flow is very irregular and chaotic. The reynolds number quantifies this by using a nondimensional expression, where a low value represents laminar flow and a high value represents turbulant flow.",
+      "explanation": "",
+      "reference": "https://www.engineersyard.com/fluid-mechanics-interview-questions/#q3-differentiate-between-laminar-flow-and-turbulent-flow-give-an-example-of-each"
+    },
+    {
+      "question": "A hollow  perfectly-insulated cube contains gas that is confined to one side by a diaphram, while there is a vacuum on the other side. If the diaphram broke, describe what would happen to the pressure, volume, and temperature. Additionally, state whether this process is reversible or irreversible and why.",
+      "answer": "If the diaphram broke, pressure would decrease, volume would increase and temperature would remain constant. Pressure decreaased and volume increased due to the ideal gas relations. Temperature is constant because there is no heat being added to the system and no work is being done because there must be resistance for work to occur. Therefore, according to the first law of thermodynamics (U = Q + W), dU = 0, thus dT = 0. Additionally, this process is considered irreversible, because it will require work to bring the system back to its original state.",
+      "explanation": "",
+      "reference": "https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/resources/q7_9/"
+    },
+    {
+      "question": "Can the entropy of an ideal gas change during an isothermal process?",
+      "answer": "Yes, an isentropic process must be adiabatic and reversible, neither of which depend on whether the system is isothermal. For example, a gas expanding at a constant temperature would be isothermal, but entropy would still increase since molecules are able to move around in more places with a constant kinetic energy",
+      "explanation": "",
+      "reference": "Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill. p406"
+    },
+    {
+      "question": "When watching a tank pressurization sequence, you notice that the pressure rise over time is in exponential decay, even though the valve is a simple ball valve that is either fully open or closed. Why does this happen?",
+      "answer": "When the valve first opens and the tank is empty, there is a large pressure difference between the pressure reservoir and the tanks, however, as the tank becomes more and more full, the pressure difference decreases. The fluid particles are going to diffuse quicker when there is a large pressure drop, thus creating a funciton with a large initial slope that tapers off as the tank fills up further. This can also be though of in terms of pressure = force x area, thus more pressure difference means more force, which means more acceleration of fluid particles according to Newtons second law.",
+      "explanation": "",
+      "reference": ""
+    },
+    {
+      "question": "Can you explain what it means to have a Langrangian frame of reference? Also list another common frame of reference and how it differs from the Langragian view.",
+      "answer": "A Langragian frame of reference involves taking a look at each induvidual fluid particle separately in order to find a desired output. The Eulerian frame of reference is also comomonly used and sets up a system boundary and deals with a system of particles moving through the boundary.",
+      "explanation": "",
+      "reference": "https://www.sciencedirect.com/science/article/abs/pii/S1352231014000946#:~:text=Lagrangian%20approach%20deals%20with%20individual,of%20a%20number%20of%20particles."
+    },
+    {
+      "question": "Imagine a water duct 1 meter tall and 0.5 meters wide bending around a 5m inner radius. Pressure Transducers at each end of the duct read a pressure drop of 50 Pa. You can assume a density of 1000 kg/m^3. What is the velocity of the fluid around the bend?",
+      "answer": "\n    import numpy as np\n          \n    dp = 50 #Pa\n    ρ = 1000 #kg/m^3 \n    r1 = 5 #m (inner radius) \n    r2 = 5.5 #m (outer radius (inner + width)) \n    v = (dp/(ρ*(np.log(r2/r1))))**(1/2) \n    print('The velocity of the fluid around the bend is '+str(v)+' m/s.')\n        ",     
+      "explanation": "To get our solution, we start with the relationship of flow around a bend: dp/dr = (ρ(v(r))^2)/r. Rearranging the equation we get: dp = ((ρ(v(r))^2)/r)dr. Integrating both sides over the limit of the inner and outer radius (r1 and r2), we get: ∆p = (ρ(v(r))^2)ln|r|. Rearranging for v(r) = (∆p/ρln|r2/r1|)^(½). Plug in and solve.",
+      "reference": "https://www.youtube.com/watch?v=A47wqBhzEnE"
+    },
+    {
+      "question": "You are tasked with designing a fluid feed system for an engine test stand and you need to calculate pressure loss from the tanks to the main valves. You know the volumetric flow rate of the system is 12 m^3/s and you can assume the pipe to be one long straight segment of 5 meters with a diameter of 0.0254 m. Note that the fluid has a viscosity of 1.54E-3 kg/(ms) and calculate pressure drop through the pipe.",
+      "answer": "\n    import numpy as np\n          \n    mu = 1.54 * 10**(-3) #kg/ms (viscosity)  \n    Q = 12 #m^3/s (volumetric flow rate)  \n    D = 0.0254 #m (diameter)  \n    R = D/2 #m (radius)  \n    L = 5 #m (length)\n    Delta_p = (8 * mu * Q * L)/(np.pi*(R**4))  \n    print('The loss in pressure is '+str(np.around(Delta_p,3))+' Pa.') \n        ",
+      "explanation": "Use the Hagen Poiseuille Equation: ∆p = (8MuQL)/(πR^4). Plug in all the values provided to find the pressure drop.",
+      "reference": ""
+    },
+    {
+      "question": "Consider a room with a rectangular floor that is 5 m by 7 m, and a 3.3 m high ceiling. The air pressure and temperature in the room are 1 atm and 25 C, respectively. Calculate the internal energy and the enthalpy of the air in the room.",
+      "answer": "\n    H = 3.3 #m (height) \n    L = 4 #m (length) \n    W = 7 #(width) \n    V = H*L*W #m^3 (volume) \n    T = 273.15 + 25 #K\n    P = 1*(1.01*(10**5)) #Pa \n    R = 287 #Gas constant\n    M = (P*V)/(R*T) \n    γ = 1.4 #gamma\n    cp = (γ*R)/(γ-1) #J/kg*K (specific heat at constant pressure) \n    cv = R/(γ-1) #J/kg*K (specific heat at constant volume)\n    #Now that we have these values, we can solve for H and U: \n    H = M*cp*T #J\n    U = M*cv*T #J\n    print('The enthalpy in the room is '+str(H)+' J and the internal energy in the room is '+str(U)+' J.')\n        ",
+      "explanation": "To calculate mass of air in the room, we must use M = pV/RT, where V is the volume of the room, R is the ideal gas constant for air (287) and T is the temp of the room. We will need the values of cp and cv for air. We know R to be 287 and γ = 1.4, and by using cv/cp = γ and cp – cv = R, we can derive: cp = γR/(γ-1) & cv = R/(γ-1)",
+      "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. p536 7.1"
+    },
+    {
+      "question": "Calculate the ratio of kinetic energy to internal energy at a point in an airflow where the Mach number is 2",
+      "answer": "\n    M = 2 \n    γ = 1.4 \n    ratio = (1/2)*(γ*(γ-1))*M**2 \n    print('The ratio of kinetic energy to internal energy is '+str(ratio)+'.') \n        ",
+      "explanation": "We know the kinetic energy is K= 1/2mv^2 and internal energy is U = mcvT. The ratio of these leaves us with ((½)(v^2)/cvT). M = v/a, and a = sqrt(γRT), thus v^2 = M^2γRT. The T’s then cancel out and R = cp-cv, simplifying the final equation to (½)(γ(γ-1)M^2. We are given M and γ is 1.4 for air, allowing the ratio to be solved.",
+      "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. p578 8.3"
+    },
+    {
+      "question": "Consider a venturi with a throat-to-inlet area ratio of 0.8 mounted in a flow at standard sea level conditions. If the pressure difference between the inlet and the throat is 7 lb/ft^2, calculate the velocity of the flow at the inlet. You may assume flow to be incompressible.",
+      "answer": "\n    import numpy as np\n    \n    ratio = 0.8 #Ratio of A1/A2\n    ρ = 0.002377 #slug/ft^3 (sea level conditions)\n    dp = 7 #lb/ft^2\n    v1 = np.sqrt((2*(dp))/(ρ*(((1/ratio)**2)-1)))\n    print('The velocity of the flow at the inlet is '+str(v1)+' ft/s.')\n        ",
+      "explanation": "Bernoullis equation and conservation of momentum can be used to find the velocity of the flow. Bernoulli's equation states that p1 + (1/2)ρv1^2 = p2 + (1/2)ρv2^(2). Consevation of momentum states that A1v1 = A2v2. Rearranging this shows that v2 = v1(A1/A2). Plugging this in to bernoullis equation and solving for v1 yields: v1 = sqrt((2(p2-p1))/(ρ((A2/A1)^2-1)).",
+      "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. p226 3.3"
+    },
+    {
+      "question": "Consider a low-speed subsonic wind tunnel with a 12/1 contraction ratio for the nozzle. If the flow in the test section is at standard sea level conditions with a velocity of 50 m/s, calculate the height difference in a U-tube mercury manometer with one side connected to the nozzle inlet and the other to the test section.",
+      "answer": "\n    import numpy as np\n          \n    ratio = 1/12 #ratio of A2/A1\n    ρ = 1.23 #kg/m3 (density of air at sea level)\n    w = 1.36*(10**4) #kg/m3 (desnity of mercury)\n    g = 9.8 #(m/s/s) #acceleration due to gravity\n    v2 = 50 #m/s (velocity of flow in test section)\n    dp = (1/2)*ρ*(v2**2) - (1/2)*ρ*(((ratio)*v2)**2)\n    #dp = wgdh\n    dh = dp/(w*g)\n    print('The change in heigh of the monometer will be '+str(dh)+' m.')\n        ",
+      "explanation": "The first step to solving this problem is using bernoulli's equation to solve for pressure difference between the nozzle and test section. Bernoulli's equation can be written as p1 + (1/2)ρv1^(2) = p2 + (1/2)ρv2^(2), where v1 can be set equal to v1 = (A2/A1)v2 due to conservation of momentum. Plugging this in and solving for difference is static pressure yields: p1 - p2 = (1/2)ρv2^2 - (1/2)ρ((A2/A1)v2)^2. We also know that p1-p2 = wg(h1-h2), where w is the density of mercury in the monometer, and g acceleration due to gravity. Thus, the only unknown becomes change in height.",
+      "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill. p226 3.4"
+    },
+        {
+      "question": "Draw a P-V Diagram for a process of isobaric compression from 10 m^3 to 5 m^3 at 10 Pa. Calculate the work done from this process.",
+      "answer": "\n    import numpy as np\n    import matplotlib.pyplot as plt\n        \n    x = np.array([5, 10]).reshape(2,1)\n    y = np.array([10, 10]).reshape(2,1)\n    plt.plot(x, y, 'r')\n    plt.ylabel('Pressure (Pa)')\n    plt.xlabel('Volume (m^3)')\n    plt.show()\n    p = 10 #Pa\n    v = 5 #m^2\n    W = p*v\n    print('The amount of work done during this process was '+str(W)+' J.')\n        ",
+      "explanation": "In isobaric compression, pressure remains the same while volume changes, thus showing this on the graph represents a horizontal line of constant pressure and changing volume. To find work from this, we know work is the integral of p*dv, thus the area under this graph will demonstrate the total work done.",
+      "reference": "https://www.khanacademy.org/science/thermal-physics-essentials/x34146f1b92e003ad:how-is-the-universe-going-to-end/x34146f1b92e003ad:pv-diagrams/e/work-from-pv-diagrams"
+    }
+]

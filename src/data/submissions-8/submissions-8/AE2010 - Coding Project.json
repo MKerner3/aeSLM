@@ -2,79 +2,21 @@
 {
     "question": "Consider a steady, incompressible flow through a horizontal pipe with a diameter of .1 meter, and with a length of 10 meters. The fluid has a viscosity of μ = 0.001 Pa*s and a density of ρ = 1000 kg/m^3. If the volumetric flow rate through the pipe is .01 m^3/s, calculate the pressure drop along the pipe resulting from the viscous effects.",
     "answer": {
-        "code": """
-  import numpy as np
-  
-  # Given values
-  
-  D = 0.1 # Pipe diameter (m)
-  L = 10 # Pipe length (m)
-  mu = 0.001 # Viscosity (Pa*s)
-  rho = 1000 # Density (kg/m^3)
-  Q = 0.01 # Volumetric flow rate (m^3/s)
-  A = 3.14 * (D/2)**2 # Cross-sectional area of the pipe
-  
-  # Calculations
-  
-  # Mean velocity
-  V = Q/A
-  # Delta P
-  delta_p = (8 * mu * L * Q) / (3.14 * (D / 2)**4)
-  
-  print('Pressure drop along the pipe:', round(delta_p,2), 'Pa')
-    """,
+        "code": "\n  import numpy as np\n  \n  # Given values\n  \n  D = 0.1 # Pipe diameter (m)\n  L = 10 # Pipe length (m)\n  mu = 0.001 # Viscosity (Pa*s)\n  rho = 1000 # Density (kg/m^3)\n  Q = 0.01 # Volumetric flow rate (m^3/s)\n  A = 3.14 * (D/2)**2 # Cross-sectional area of the pipe\n  \n  # Calculations\n  \n  # Mean velocity\n  V = Q/A\n  # Delta P\n  delta_p = (8 * mu * L * Q) / (3.14 * (D / 2)**4)\n  \n  print('Pressure drop along the pipe:', round(delta_p,2), 'Pa')\n    ",
         "explanation": "To find the pressure drop along a pipe. The Navier-Stokes equation can be used. This assumes steady, incompressible flow through a circular pipe. With these assumptions, the equation is simplified to the Hagen-Poiseuille equation. This code uses a reduced version of the Navier-Stokes equation for steady, incompressible, flow, the Hagen-Poiseuille equation. The Hagen-Poiseuille equation uses the principle of conservation of mass and a no-slip condition for pipe walls. To relate pressure drop and volumetric flow rate. Using the given values, pipe diameter, pipe length, viscosity, density, and volumetric flow rate, the code computes the pressure drop.",
     }
 },
 {
     "question": "A supersonic wind tunnel test consists of a scale model of an aircraft-mounted for testing. The air in the wind tunnel is supplied from a high-pressure reservoir. The flow around the model is maintained at a high subsonic speed. A pitot tube is mounted near the model and measures a stagnation pressure of 400 lb/ft^2. Given the wind tunnel is operating at a standard altitude of 36000 ft, find the velocity and temperature of the airflow around the model. Assume isentropic flow over the model, and assume that the wind tunnel has an ambient pressure and temperature.",
     "answer": {
-        "code": """
-  # Given
-  p = 19152  # Pressure at measurement point (Pa)
-  p_inf = 476  # Ambient pressure at 36,000 ft (lb/ft^2)
-  T_inf = 391 # Ambient Temperature at 36,000 ft (R)
-  gamma = 1.4  # Ratio of specific heats
-  
-  # Conversions
-  p_inf = 476 * 47.88025
-  T_inf = 391 * (5/9)
-  
-  # Isentropic relation between static conditions at measurement point
-  T = T_inf * (p / p_inf)**((gamma - 1) / gamma)
-  
-  print("Model temperature at the measurement point", round(T,2), "R")
-  
-  """,
+        "code": "\n  # Given\n  p = 19152  # Pressure at measurement point (Pa)\n  p_inf = 476  # Ambient pressure at 36,000 ft (lb/ft^2)\n  T_inf = 391 # Ambient Temperature at 36,000 ft (R)\n  gamma = 1.4  # Ratio of specific heats\n  \n  # Conversions\n  p_inf = 476 * 47.88025\n  T_inf = 391 * (5/9)\n  \n  # Isentropic relation between static conditions at measurement point\n  T = T_inf * (p / p_inf)**((gamma - 1) / gamma)\n  \n  print("Model temperature at the measurement point", round(T,2), "R")\n  \n  ",
         "explanation": "Procedure: To find the model temperature at the given point on the model, the isentropic relations must be used between the stagnation condition and the static conditions. The values will need to be converted to proper units. Values for p-infinity and T-infinity will need to be obtained from a Standard Atmosphere table. The isentropic flow relation can then be used to calculate the static temperature at the measurement point. Explanation: This code uses the isentropic flow relations to calculate the temperature at a specific point on a model. To do this values of freestream ambient temperature and pressure need to be used. After locating those values on a Standard Atmosphere table, the code calculator T using T = T_inf * (p / p_inf)**((gamma - 1) / gamma) where p = Pressure at the measurement point, p_inf = Ambient Pressure, T_inf = Ambient Temperature, and gamma = Ratio of specific heats.",
     }
 },
 {
     "question": "An insulated tank initially contains 5 kg of air at 20 C and 100 kPa. Heat is transferred to the air after a heating element is turned on. The air is heated until it reaches a pressure of 120 kPa. Find the final pressure in the tank, and the amount of heat transfer required to achieve the final state.",
     "answer": {
-        "code": """
-  # Given
-  m = 5 / 1000  # Mass of air (kg)
-  T1 = 20  # Initial temperature (C)
-  P1 = 100  # Initial pressure (kPa)
-  P2 = 120 # Initial pressure (kPa)
-  
-  # Conversion
-  T1 = 20 + 273.15 
-  # Using the ideal gas law
-  T2 = T1 * (P2 / P1)  # Final pressure (kPa)
-  
-  print("Final pressure:", round(T2,2), "kPa")
-  
-  # Specific heat capacity of air at constant volume (kJ/kg-K)
-  cv = 0.718
-  
-  # Heat transfer (kJ)
-  Q = m * cv * (T2 - T1)
-  
-  print("Heat transfer:", round(Q,2), "kJ")
-  
-  """,
+        "code": "\n  # Given\n  m = 5 / 1000  # Mass of air (kg)\n  T1 = 20  # Initial temperature (C)\n  P1 = 100  # Initial pressure (kPa)\n  P2 = 120 # Initial pressure (kPa)\n  \n  # Conversion\n  T1 = 20 + 273.15 \n  # Using the ideal gas law\n  T2 = T1 * (P2 / P1)  # Final pressure (kPa)\n  \n  print("Final pressure:", round(T2,2), "kPa")\n  \n  # Specific heat capacity of air at constant volume (kJ/kg-K)\n  cv = 0.718\n  \n  # Heat transfer (kJ)\n  Q = m * cv * (T2 - T1)\n  \n  print("Heat transfer:", round(Q,2), "kJ")\n  \n  ",
         "explanation": "Procedure: An insulated tank contains air at a known state. When heat is transferred to the air, the tank state becomes unknown. Using the ideal gas law, and Gay-Lussac’s law, the final pressure will be calculated. The heat transfer can then be calculated using the first law of thermodynamics. Explanation: This code first calculates the final temperature using the ideal gas law (T2/T1 = P2/P1), which assumes a constant mass and volume. The heat transfer can then be calculated using this newly acquired temperature (Using Q = m*C*delta-T). Assuming the heat transfer from the walls is negligible, these values can be calculated.",
     }
 }, 
@@ -207,106 +149,14 @@
 {
     "question": "Air flows through a pipe with a velocity where friction forces are notable. Heat transfer occurs through the pipe wall such that the air temperature inside the pipe remains at a constant 310 K. At point B the pressure is 3.1 bar. At point A in the pipe, the velocity is 290 m/s and the pressure is 3.2 bar. What direction is the flow?",
     "answer": {
-        "code": """
-  import numpy as np
-  
-  # Givens
-  T = 310  # Temperature (K)
-  p_A = 3.2  # Pressure at point A (Pa)
-  p_B = 3.1  # Pressure at point B (Pa)
-  v_A = 290  # Velocity at point A (m/s)
-  
-  # Constants
-  R = 287  # Specific gas constant for air (J/kg*K)
-  
-  # Calculate velocity at point B
-  v_B = v_A*(p_A/p_B)
-  
-  # Calculate heat transfer
-  q = 0.5*(v_B**2 - v_A**2)
-  
-  # Calculate entropy change
-  delta_s = -R * np.log(p_B/p_A)
-  delta_s_irrev = delta_s - (q/T)
-  
-  if delta_s_irrev < 0:
-      print("B is upstream of A")
-      print("Velocity at point B:", round(v_B,2), "m/s")
-      print("Heat transfer:", round(q,2), "J/kg")
-      print("Entropy change:", round(delta_s,2), "J/(kg*K)")
-      print("Irreversible entropy change:", round(delta_s_irrev,2) ,"J/(kg*K)")
-  else:
-      print("B is downstream of A")
-      print("Velocity at point B:", round(v_B,2), "m/s")
-      print("Heat transfer:", round(q,2), "J/kg")
-      print("Entropy change:", round(delta_s,2), "J/(kg*K)")
-      print("Irreversible entropy change:", round(delta_s_irrev,2) ,"J/(kg*K)")
-  
-  """,
+        "code": "\n  import numpy as np\n  \n  # Givens\n  T = 310  # Temperature (K)\n  p_A = 3.2  # Pressure at point A (Pa)\n  p_B = 3.1  # Pressure at point B (Pa)\n  v_A = 290  # Velocity at point A (m/s)\n  \n  # Constants\n  R = 287  # Specific gas constant for air (J/kg*K)\n  \n  # Calculate velocity at point B\n  v_B = v_A*(p_A/p_B)\n  \n  # Calculate heat transfer\n  q = 0.5*(v_B**2 - v_A**2)\n  \n  # Calculate entropy change\n  delta_s = -R * np.log(p_B/p_A)\n  delta_s_irrev = delta_s - (q/T)\n  \n  if delta_s_irrev < 0:\n      print("B is upstream of A")\n      print("Velocity at point B:", round(v_B,2), "m/s")\n      print("Heat transfer:", round(q,2), "J/kg")\n      print("Entropy change:", round(delta_s,2), "J/(kg*K)")\n      print("Irreversible entropy change:", round(delta_s_irrev,2) ,"J/(kg*K)")\n  else:\n      print("B is downstream of A")\n      print("Velocity at point B:", round(v_B,2), "m/s")\n      print("Heat transfer:", round(q,2), "J/kg")\n      print("Entropy change:", round(delta_s,2), "J/(kg*K)")\n      print("Irreversible entropy change:", round(delta_s_irrev,2) ,"J/(kg*K)")\n  \n  ",
         "explanation": "This code calculates the velocity of point B using the given pressure and velocity at point A. The code then calculates the heat transfer and entropy change using SFEE for adiabatic flow, and entropy change equation for isobaric processes. Then the irreversible entropy change is calculated. The irreversible entropy change cannot be negative by definition. Thus, if the irreversible entropy change is negative, the flow is from B to A. If the irreversible entropy change is positive, the flow is from A to B."
     }
 },
 {
     "question": "Air flows through a converging-diverging nozzle at 20 MPa and 900 K with negligible velocity. The flow is assumed to be steady, one-dimensional, and isentropic. The specific heat ratio is 1.4. At the exit, the Mach number is 2, and the through area is 15 cm^2. Find the throat conditions, the exit plane conditions, and the mass flow rate through the nozzle.",
     "answer": {
-        "code": """import numpy as np
-  
-  # Given
-  P_0 = 2000000  # Stagnation pressure (Pa)
-  T_0 = 900  # Stagnation temperature (K)
-  Ma_e = 2  # Exit Mach number
-  A_t = 15*10**-4  # Throat area (m^2)
-  k = 1.4  # Specific heat ratio
-  R = 287  # Gas constant for air (J/kg.K)
-  
-  # Calculate stagnation density
-  rho_0 = P_0/(R * T_0)
-  
-  # Throat conditions at Ma = 1 from table
-  pt_p0 = .5283
-  Tt_T0 = .8333
-  rhot_rho0 = .6339
-  
-  # Throat conditions
-  P_t = P_0 * pt_p0
-  T_t = T_0 * Tt_T0
-  rho_t = rho_0 * rhot_rho0
-  # Speed of sound at throat
-  V_t = np.sqrt(k * R * T_t)  
-  
-  # Throat results
-  print("Throat conditions:")
-  print("Pressure:", round(P_t,2), "Pa")
-  print("Temperature", round(T_t,2), "K")
-  print("Density:", round(rho_t,2), "kg/m^3")
-  print("Velocity:", round(V_t,2), "m/s")
-  
-  # Exit plane conditions at Ma = 2 from table
-  pe_p0 = .1278
-  Te_T0 = .5556
-  rhoe_rho0 = .2300
-  Ae_A0 = 1.6875
-  Mat = 1.6330
-  # Exit plane conditions
-  P_e = P_0 * pe_p0
-  T_e = T_0 * Te_T0
-  rho_e = rho_0 * rhoe_rho0
-  A_e = A_t * Ae_A0
-  V_e = Mat * V_t
-  
-  # Exit plane results
-  print("\nExit plane conditions:")
-  print("Pressure:", round(P_e,2), "Pa")
-  print("Temperature", round(T_e,2), "K")
-  print("Density:", round(rho_e,3), "kg/m^3")
-  print("Exit area:", round(A_e,4), "m^2")
-  print("Velocity:", round(V_e,2), "m/s")
-  
-  # Mass flow rate
-  mdot = rho_t * A_t * V_t
-  print("Mass flow rate:", round(mdot,2), "kg/s")
-  
-  """,
+        "code": "import numpy as np\n  \n  # Given\n  P_0 = 2000000  # Stagnation pressure (Pa)\n  T_0 = 900  # Stagnation temperature (K)\n  Ma_e = 2  # Exit Mach number\n  A_t = 15*10**-4  # Throat area (m^2)\n  k = 1.4  # Specific heat ratio\n  R = 287  # Gas constant for air (J/kg.K)\n  \n  # Calculate stagnation density\n  rho_0 = P_0/(R * T_0)\n  \n  # Throat conditions at Ma = 1 from table\n  pt_p0 = .5283\n  Tt_T0 = .8333\n  rhot_rho0 = .6339\n  \n  # Throat conditions\n  P_t = P_0 * pt_p0\n  T_t = T_0 * Tt_T0\n  rho_t = rho_0 * rhot_rho0\n  # Speed of sound at throat\n  V_t = np.sqrt(k * R * T_t)  \n  \n  # Throat results\n  print("Throat conditions:")\n  print("Pressure:", round(P_t,2), "Pa")\n  print("Temperature", round(T_t,2), "K")\n  print("Density:", round(rho_t,2), "kg/m^3")\n  print("Velocity:", round(V_t,2), "m/s")\n  \n  # Exit plane conditions at Ma = 2 from table\n  pe_p0 = .1278\n  Te_T0 = .5556\n  rhoe_rho0 = .2300\n  Ae_A0 = 1.6875\n  Mat = 1.6330\n  # Exit plane conditions\n  P_e = P_0 * pe_p0\n  T_e = T_0 * Te_T0\n  rho_e = rho_0 * rhoe_rho0\n  A_e = A_t * Ae_A0\n  V_e = Mat * V_t\n  \n  # Exit plane results\n  print("\nExit plane conditions:")\n  print("Pressure:", round(P_e,2), "Pa")\n  print("Temperature", round(T_e,2), "K")\n  print("Density:", round(rho_e,3), "kg/m^3")\n  print("Exit area:", round(A_e,4), "m^2")\n  print("Velocity:", round(V_e,2), "m/s")\n  \n  # Mass flow rate\n  mdot = rho_t * A_t * V_t\n  print("Mass flow rate:", round(mdot,2), "kg/s")\n  \n  ",
         "explanation": "This code calculates the flow properties, and mass flow rate at the throat and exit plane of a converging diverging nozzle, given inlet stagnation conditions, exit mach number, and throat area. The assumptions are as follows: 1) Air is an ideal gas with constant specific heat at room temperature. 2) Flow through the nozzle is steady, one-dimensional, and isentropic. The code begins by calculating the stagnation density using the ideal gas equation. To find throat conditions, the code uses the isentropic relations for a normal shock at the throat (M=1). Using table values the ratios of throat-to-stagnation pressure, temperature, and density are found and then used to calculate throat pressure, temperature, density, and the speed of sound. The same process is completed for the exit plane conditions, except table values are retrieved for an oblique shock with exit mach number of 2. The ratios are used to calculate exit plane pressure, temperature, density, exit area, and velocity. Finally, the code calculates the mass flow rate using the continuity equation for the throat conditions.",
         "references": [
             "Thermodynamics An Engineering Approach Example 17-7"
@@ -316,29 +166,7 @@
 {
     "question": "Water in a large lake is being used to generate electricity through the use of a hydraulic turbine generator. This generator is located where the depth of the water is 100 m. Water is being supplied into the turbine at a rate of 7000 kg/s. If the electrical power generated is measured to be 1955 kW, and the generator has an efficiency of 95%, find the overall efficiency of the turbine, the mechanical efficiency of the turbine, and the shaft work provided by the turbine into the generator.",
     "answer": {
-        "code": """# Given
-  m_dot = 7000  # Mass flow rate (kg/s)
-  h = 100  # Depth of water (m)
-  P_elect = 1955   # Electric power generated (kW)
-  eta_gen = 0.95  # Generator efficiency
-  g = 9.81  # Acceleration due to gravity (m/s^2)
-  rho = 1000  # Density of water (kg/m^3)
-  
-  # Overall efficiency of turbine-generator
-  e_mech_in = g * h / (1000 * rho) 
-  e_mech_fluid = m_dot * e_mech_in 
-  n_overall = P_elect / e_mech_fluid
-  print("Overall efficiency of the turbine-generator:", round(n_overall,2))
-  
-  # Mechanical efficiency of turbine
-  n_turbine = n_overall / eta_gen
-  print("Mechanical efficiency of the turbine:", round(n_turbine,3))
-  
-  # Shaft power supplied by turbine
-  P_shaft = e_mech_fluid * n_turbine
-  print("Shaft power supplied by the turbine:", round(P_shaft,2), "kW")
-  
-  """,
+        "code": "# Given\n  m_dot = 7000  # Mass flow rate (kg/s)\n  h = 100  # Depth of water (m)\n  P_elect = 1955   # Electric power generated (kW)\n  eta_gen = 0.95  # Generator efficiency\n  g = 9.81  # Acceleration due to gravity (m/s^2)\n  rho = 1000  # Density of water (kg/m^3)\n  \n  # Overall efficiency of turbine-generator\n  e_mech_in = g * h / (1000 * rho) \n  e_mech_fluid = m_dot * e_mech_in \n  n_overall = P_elect / e_mech_fluid\n  print("Overall efficiency of the turbine-generator:", round(n_overall,2))\n  \n  # Mechanical efficiency of turbine\n  n_turbine = n_overall / eta_gen\n  print("Mechanical efficiency of the turbine:", round(n_turbine,3))\n  \n  # Shaft power supplied by turbine\n  P_shaft = e_mech_fluid * n_turbine\n  print("Shaft power supplied by the turbine:", round(P_shaft,2), "kW")\n  \n  ",
         "explanation": "This code finds the overall efficiency of the turbine generator by calculating the mechanical energy input rate and dividing the electrical power generated by it. The code then calculates the mechanical efficiency of the turbine by dividing the overall efficiency by the generator efficiency. Finally, the shaft power provided by the turbine to the generator is calculated by multiplying the mechanical energy input rate by the turbine's mechanical efficiency.",
         "references": [
             "Thermodynamics An Engineering Approach Example 2-16"
@@ -348,36 +176,7 @@
 {
     "question": "A piston cylinder contraption initially contains .6 m^3 of nitrogen gas at 31 C and 500 kPa. An electric heater inside the contraption is turned on and allowed to pass a current of 3 Amps for 2.5 minutes from a 240 Volt source. The Nitrogen gas expands at constant pressure, and produces a heat loss of 2950 J. Find the final temperature of the nitrogen.",
     "answer": {
-        "code": """# Given
-  P1 = 500*10**3  # Initial pressure (Pa)
-  V1 = 0.6  # Initial volume (m^3)
-  T1 = 31+273.15  # Initial temperature (K)
-  Vo = 240 # Voltage of source (V)
-  I = 3 # Current of source (A)
-  Q_loss = 2950  # Heat loss (J)
-  R = 297  # Gas constant for nitrogen (J/kg*K)
-  cp = 1039  # Specific heat capacity of nitrogen at room temperature (J/kg*K)
-  mins = 2.5 # Minutes electric heater on (mins)
-  
-  # Calculate electrical work done on nitrogen
-  W_e = Vo*I*mins*60
-  
-  # Calculate the mass of nitrogen
-  m_n = P1*V1/(R*T1)
-  
-  # Energy balance equation
-  Left_Side = W_e - Q_loss
-  Right_Side = m_n*cp
-  
-  # Solve for the final temperature T2
-  T2 = (Left_Side/Right_Side) + T1
-  
-  # Results
-  print("Electrical work done on nitrogen:", round(W_e / 1000,2), "kJ")
-  print("Mass of nitrogen:", round(m_n,2), "kg")
-  print("Final temperature of nitrogen:", round(T2 - 273.15,2), "C")
-  
-  """,
+        "code": "# Given\n  P1 = 500*10**3  # Initial pressure (Pa)\n  V1 = 0.6  # Initial volume (m^3)\n  T1 = 31+273.15  # Initial temperature (K)\n  Vo = 240 # Voltage of source (V)\n  I = 3 # Current of source (A)\n  Q_loss = 2950  # Heat loss (J)\n  R = 297  # Gas constant for nitrogen (J/kg*K)\n  cp = 1039  # Specific heat capacity of nitrogen at room temperature (J/kg*K)\n  mins = 2.5 # Minutes electric heater on (mins)\n  \n  # Calculate electrical work done on nitrogen\n  W_e = Vo*I*mins*60\n  \n  # Calculate the mass of nitrogen\n  m_n = P1*V1/(R*T1)\n  \n  # Energy balance equation\n  Left_Side = W_e - Q_loss\n  Right_Side = m_n*cp\n  \n  # Solve for the final temperature T2\n  T2 = (Left_Side/Right_Side) + T1\n  \n  # Results\n  print("Electrical work done on nitrogen:", round(W_e / 1000,2), "kJ")\n  print("Mass of nitrogen:", round(m_n,2), "kg")\n  print("Final temperature of nitrogen:", round(T2 - 273.15,2), "C")\n  \n  ",
         "explanation": "The assumptions are as follows 1) Nitrogen is an ideal gas 2) The system is stationary and thus the kinetic and potential energy changes are zero 3) The pressure remains constant during the process 4) Nitrogen has constant specific heats at room temperature
   
   This code finds the final temperature of nitrogen gas in a piston cylinder device, heated by an electric resistance heater. The code first calculates the electrical work done on the nitrogen. Next, the code calculates the mass of nitrogen using the ideal gas equation. Using the energy balance equation, the code then equates net energy transfer to the change in enthalpy of the gas. After rearranging the equation, the final temperature of the nitrogen gas can be found.",
@@ -389,171 +188,28 @@
 {
     "question":"Using matplotlib and numpy, create a plot to iIllustrate the T-s Diagrams for a perfect gas with constant pressure, constant volume, constant enthalpy, and reversible and adiabatic.",
     "answer":{
-        "code": """
-  import matplotlib.pyplot as plt
-  import numpy as np
-  
-  # Specific heat capacities
-  cp = 1.005
-  cv = 0.718
-  
-  # Entropy range
-  s = np.linspace(0, 2.5, 100)
-  
-  # Calculate entropy for constant pressure and constant volume processes
-  entropy_cp = np.exp(s / cp)
-  entropy_cv = np.exp(s / cv)
-  
-  # Reference temperature for constant enthalpy line
-  T_ref = entropy_cp[0]  
-  
-  # Plotting Constant Pressure and Constant Volume
-  plt.figure(figsize=(8, 6))
-  plt.plot(s, entropy_cp, label='Constant Pressure', color='g', linestyle='--')
-  plt.plot(s, entropy_cv, label='Constant Volume', color='b', linestyle='--')
-  
-  # Constant enthalpy 
-  plt.axhline(y=T_ref, color='r', linestyle='--', label='Constant Enthalpy')
-  
-  # Reversible and adiabatic
-  s_adiabatic = 0  # Choose entropy value
-  plt.axvline(x=s_adiabatic, color='k', linestyle='--', label='Reversible and Adiabatic')
-  
-  plt.xlabel('Entropy (s)')
-  plt.ylabel('Temperature (T)')
-  plt.title('T-s Diagram for a Perfect Gas')
-  plt.legend()
-  plt.xticks(ticks=[], labels=[])
-  plt.yticks(ticks=[], labels=[])
-  plt.show()
-  
-  
-  """,
+        "code": "\n  import matplotlib.pyplot as plt\n  import numpy as np\n  \n  # Specific heat capacities\n  cp = 1.005\n  cv = 0.718\n  \n  # Entropy range\n  s = np.linspace(0, 2.5, 100)\n  \n  # Calculate entropy for constant pressure and constant volume processes\n  entropy_cp = np.exp(s / cp)\n  entropy_cv = np.exp(s / cv)\n  \n  # Reference temperature for constant enthalpy line\n  T_ref = entropy_cp[0]  \n  \n  # Plotting Constant Pressure and Constant Volume\n  plt.figure(figsize=(8, 6))\n  plt.plot(s, entropy_cp, label='Constant Pressure', color='g', linestyle='--')\n  plt.plot(s, entropy_cv, label='Constant Volume', color='b', linestyle='--')\n  \n  # Constant enthalpy \n  plt.axhline(y=T_ref, color='r', linestyle='--', label='Constant Enthalpy')\n  \n  # Reversible and adiabatic\n  s_adiabatic = 0  # Choose entropy value\n  plt.axvline(x=s_adiabatic, color='k', linestyle='--', label='Reversible and Adiabatic')\n  \n  plt.xlabel('Entropy (s)')\n  plt.ylabel('Temperature (T)')\n  plt.title('T-s Diagram for a Perfect Gas')\n  plt.legend()\n  plt.xticks(ticks=[], labels=[])\n  plt.yticks(ticks=[], labels=[])\n  plt.show()\n  \n  \n  ",
         "explanation": "This code generates T-ds diagrams for a perfect gas showing constant pressure and constant volume processes, constant enthalpy, and reversible and adiabatic processes. The diagram thus shows the relationship between temperature and entropy showing a gas’s behavior under varying conditions.",
   }
 },
 {
     "question": "In python generate a plot that illustrates the changes in magnitudes of subsonic and supersonic velocity vectors along a streamline traveling through a throat/confined area.",
     "answer": {
-        "code": """
-  import matplotlib.pyplot as plt
-  import numpy as np
-  from matplotlib.cm import ScalarMappable
-  
-  # Choose between subsonic and supersonic
-  Flow_is = "subsonic"
-  
-  # Define the functions
-  def func1(x):
-    return np.exp(-(x)**2) - 1.1
-  
-  def func2(x):
-    return -np.exp(-(x)**2) + 1.1
-  
-  # Create the x-axis values
-  x = np.linspace(-3, 3, 40)  # 40 points between -3 and 3
-  
-  # Calculate the y-axis values for each function
-  y1 = func1(x)
-  y2 = func2(x)
-  area = (y1 - y2) * 1
-  
-  if Flow_is != "subsonic":
-      flow = "supersonic"
-      area = -area
-      title = 'Velocities of Supersonic Flow Through Confined Area'
-  else:
-      title = 'Velocities of Subsonic Flow Through Confined Area'
-  
-  # Create a colormap for arrow colors based on area
-  cmap = plt.cm.viridis  
-  norm = plt.Normalize(min(area), max(area))  
-  colors = cmap(norm(area))  
-  
-  # Plot the functions
-  plt.fill_between(x, y1, y2, color='skyblue', alpha=0.5)
-  plt.quiver(x, np.zeros_like(x), area, np.zeros_like(x), angles=0, scale=10, scale_units='width', color=colors)
-  
-  # Add colorbar for legend
-  sm = ScalarMappable(cmap=cmap, norm=norm)
-  sm.set_array([])
-  colorbar = plt.colorbar(sm, label='Increasing Velocity', format='')  
-  colorbar.set_ticks([]) 
-  
-  # Add labels and title
-  plt.title(title)
-  plt.tick_params(bottom=False, left=False, labelbottom=False, labelleft=False)
-  plt.show()
-  
-  """,
+        "code": "\n  import matplotlib.pyplot as plt\n  import numpy as np\n  from matplotlib.cm import ScalarMappable\n  \n  # Choose between subsonic and supersonic\n  Flow_is = "subsonic"\n  \n  # Define the functions\n  def func1(x):\n    return np.exp(-(x)**2) - 1.1\n  \n  def func2(x):\n    return -np.exp(-(x)**2) + 1.1\n  \n  # Create the x-axis values\n  x = np.linspace(-3, 3, 40)  # 40 points between -3 and 3\n  \n  # Calculate the y-axis values for each function\n  y1 = func1(x)\n  y2 = func2(x)\n  area = (y1 - y2) * 1\n  \n  if Flow_is != "subsonic":\n      flow = "supersonic"\n      area = -area\n      title = 'Velocities of Supersonic Flow Through Confined Area'\n  else:\n      title = 'Velocities of Subsonic Flow Through Confined Area'\n  \n  # Create a colormap for arrow colors based on area\n  cmap = plt.cm.viridis  \n  norm = plt.Normalize(min(area), max(area))  \n  colors = cmap(norm(area))  \n  \n  # Plot the functions\n  plt.fill_between(x, y1, y2, color='skyblue', alpha=0.5)\n  plt.quiver(x, np.zeros_like(x), area, np.zeros_like(x), angles=0, scale=10, scale_units='width', color=colors)\n  \n  # Add colorbar for legend\n  sm = ScalarMappable(cmap=cmap, norm=norm)\n  sm.set_array([])\n  colorbar = plt.colorbar(sm, label='Increasing Velocity', format='')  \n  colorbar.set_ticks([]) \n  \n  # Add labels and title\n  plt.title(title)\n  plt.tick_params(bottom=False, left=False, labelbottom=False, labelleft=False)\n  plt.show()\n  \n  ",
         "explanation": "This code generates a plot that shows the velocities of either subsonic or supersonic flow through a confined area. The code uses defined function for flow profile, and colors to indicate magnitude of velocity.",
   }
 },
 {
     "question": "In python generate a plot that shows the effective area due to friction in Fanno flow. Take the perspective of a person looking into a pipe experiencing Fanno flow.",
     "answer": {
-        "code": """
-  import numpy as np
-  import matplotlib.pyplot as plt
-  
-  def throat_shape(x, y):
-      # Define a function that describes the throat shape
-      return np.exp(-x**2 - y**2)
-  
-  # Generate x and y values
-  x = np.linspace(-2, 2, 100)
-  y = np.linspace(-2, 2, 100)
-  X, Y = np.meshgrid(x, y)
-  
-  # Calculate throat shape values
-  Z = throat_shape(X, Y)
-  
-  # Create filled contours for visualization
-  plt.contourf(X, Y, Z, cmap='Blues')
-  plt.title('Effective Area Due to Friction In Fanno Flow\n Looking into a pipe')
-  plt.xlabel('Distance from the middle')
-  plt.ylabel('Distance from the middle')
-  cbar = plt.colorbar(label='Stacked Effective Areas',format='')
-  
-  plt.tick_params(bottom=False, left=False, labelbottom=False, labelleft=False)
-  plt.gca().set_aspect('equal', adjustable='box')
-  plt.show()
-  
-  """,
+        "code": "\n  import numpy as np\n  import matplotlib.pyplot as plt\n  \n  def throat_shape(x, y):\n      # Define a function that describes the throat shape\n      return np.exp(-x**2 - y**2)\n  \n  # Generate x and y values\n  x = np.linspace(-2, 2, 100)\n  y = np.linspace(-2, 2, 100)\n  X, Y = np.meshgrid(x, y)\n  \n  # Calculate throat shape values\n  Z = throat_shape(X, Y)\n  \n  # Create filled contours for visualization\n  plt.contourf(X, Y, Z, cmap='Blues')\n  plt.title('Effective Area Due to Friction In Fanno Flow\n Looking into a pipe')\n  plt.xlabel('Distance from the middle')\n  plt.ylabel('Distance from the middle')\n  cbar = plt.colorbar(label='Stacked Effective Areas',format='')\n  \n  plt.tick_params(bottom=False, left=False, labelbottom=False, labelleft=False)\n  plt.gca().set_aspect('equal', adjustable='box')\n  plt.show()\n  \n  ",
         "explanation": "This code generates a visualization of the effective area due to friction in Fanno flow, within a pipe. It uses contours to show area distribution through the pipe.",
   }
 },
 {
     "question": "In python generate a plot that illustrates velocity vectors of a flow exiting a pipe.",
     "answer": {
-        "code": """
-  import numpy as np
-  import matplotlib.pyplot as plt
-  
-  # Preplotting
-  x = np.linspace(-1, 1, 20)
-  y = np.linspace(-1, 1, 20)
-  X, Y = np.meshgrid(x, y)
-  
-  # Define velocity functions
-  vel_X = 4*X
-  vel_Y = 4*Y
-  dvel_dX = 10*X + 10*Y
-  dvel_dY = 10*X + 10*Y
-  vel_mag = np.sqrt(vel_X**2 + vel_Y**2)
-  
-  # Plotting  velocity field
-  fig = plt.figure(figsize=(8,4))
-  c = plt.contourf(X, Y, vel_mag, 30)
-  plt.quiver(X, Y, vel_X, vel_Y, color='w')
-  plt.colorbar(c)
-  plt.title(r'Velocity, $\mathbf{v}$')
-  plt.xlabel('x')
-  plt.ylabel('y')
-  plt.show()
-  
-  
-  """,
+        "code": "\n  import numpy as np\n  import matplotlib.pyplot as plt\n  \n  # Preplotting\n  x = np.linspace(-1, 1, 20)\n  y = np.linspace(-1, 1, 20)\n  X, Y = np.meshgrid(x, y)\n  \n  # Define velocity functions\n  vel_X = 4*X\n  vel_Y = 4*Y\n  dvel_dX = 10*X + 10*Y\n  dvel_dY = 10*X + 10*Y\n  vel_mag = np.sqrt(vel_X**2 + vel_Y**2)\n  \n  # Plotting  velocity field\n  fig = plt.figure(figsize=(8,4))\n  c = plt.contourf(X, Y, vel_mag, 30)\n  plt.quiver(X, Y, vel_X, vel_Y, color='w')\n  plt.colorbar(c)\n  plt.title(r'Velocity, $\mathbf{v}$')\n  plt.xlabel('x')\n  plt.ylabel('y')\n  plt.show()\n  \n  \n  ",
         "explanation": "This code illustrates a velocity field where all vectors are pointing outward from a circular pipe. The plot uses contours and vectors lengths to show behavior of flow exiting the pipe in 2D space.",
   }
 },

@@ -2,21 +2,7 @@
 {
   "question": "A rigid 800L container holds a 30kg sample of CO2 at 280K. The CO2 is slowly heated to 400K. Calculate the pressure in the container both before and after being heated up. Assume that the CO2 is behaving like an ideal gas.",
   "answer": {
-      "code": """
-import numpy as np
-
-V = 800 * 0.001 # Volume (m^3)
-m = 30 # mass (kg)
-T1 = 280 # initial temperature (K)
-T2 = 400 # final temperature (K)
-R = 188.92 # specific gas constant of CO2 (J/kg*K)
-
-#The ideal gas equation is PV = mRT
-P1 = (m * R * T1) / V # initial pressure (Pa)
-P2 = (m * R * T2) / V # final pressure (Pa)
-
-print("The pressure in the container before being heated up is ", P1, " pascals,\ and the pressure in the container after being heated up is ", P2, " pascals.")
-      """,
+      "code": "\nimport numpy as np\n\nV = 800 * 0.001 # Volume (m^3)\nm = 30 # mass (kg)\nT1 = 280 # initial temperature (K)\nT2 = 400 # final temperature (K)\nR = 188.92 # specific gas constant of CO2 (J/kg*K)\n\n#The ideal gas equation is PV = mRT\nP1 = (m * R * T1) / V # initial pressure (Pa)\nP2 = (m * R * T2) / V # final pressure (Pa)\n\nprint("The pressure in the container before being heated up is ", P1, " pascals,\ and the pressure in the container after being heated up is ", P2, " pascals.")\n      ",
       "explanation": "This code calculates the change in pressure using the ideal gas equation which relates the pressure, volume, and temperature of an ideal gas. It uses the formula PV = mRT, where 'P' is the pressure of the gas, 'V' is the volume of the container holding the gas, 'm' is the mass of the gas, 'R' is the gas constant of the gas, and 'T' is the temperature of the gas."
       "references": [
           "Professor Zaidi's lecture slides"
@@ -26,18 +12,7 @@ print("The pressure in the container before being heated up is ", P1, " pascals,
 {
   "question": "At a given point on the wing of a Boeing 727, the pressure and temperature of the air are 2.4 x 10^4 N/m^2 and 210K, respectively. What is the density of the air at this point?",
   "answer": {
-      "code": """
-import numpy as np
-
-R = 287 # specific gas constant of air (J/kg*K)
-P = 24000 # pressure of the air (Pa)
-T = 210 # temperature (K)
-
-# Use the ideal gas equation
-rho = P / (R*T)
-
-print("The density of the air is ", rho, " pascals.")
-      """,
+      "code": "\nimport numpy as np\n\nR = 287 # specific gas constant of air (J/kg*K)\nP = 24000 # pressure of the air (Pa)\nT = 210 # temperature (K)\n\n# Use the ideal gas equation\nrho = P / (R*T)\n\nprint("The density of the air is ", rho, " pascals.")\n      ",
       "explanation": "This code calculates the density using an alternate form of the ideal gas equations, P = rho * RT, where P is the pressure of the gas, rho is the density of the gas, R is the gas constant of the gas, and T is the temperature of the gas."
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 98, problem 1.1a"
@@ -47,23 +22,7 @@ print("The density of the air is ", rho, " pascals.")
 {
   "question": "A U-tube mercury manometer is used to measure the pressure at a point on the wing of a wind-tunnel model. One side of the manometer is connected to the model, and the other side is open to the atmosphere. Atmospheric pressure and the density of the mercury are 1.01 x 10^5 N/m^2 and 1.36 x 10^4 kg/m^3, respectively. When the displacement of the two columns of mercury is 20 cm, with the high column on the model side, what is the pressure on the wing?",
   "answer": {
-      "code": """
-import numpy as np
-
-Patm = 101000 # Pressure of the atmosphere (Pa)
-rhol = 13600 # Density of the mercury (kg/m^3)
-h = 0.2 # Height difference of the mercury in the two tubes (m)
-g = 9.8 # gravitational acceleration constant (m/s^2)
-
-# The pressure in a tube can be calculated by adding the pressure at the opening of the tube with the pressure exerted by the fluid above the depth of interest.
-# The pressure at a specific depth is the same in both tubes. The pressure in the tube on the model side is Pm + rhol * gh, where Pm is the pressure on the wing.
-# The pressure in the tube on the side open to the atmosphere is Patm + rhoa * gh, where rhoa is the density of air. Since the density of air is very small, the rhoa * gh term can be considered negligible.
-# Setting the two equations equal to each other and rearranging some terms, we get that Pm = Patm - rhol * gh.
-
-Pm = Patm - rhol * g * h
-
-print("The pressure on the wing is ", Pm, " pascals.")
-      """,
+      "code": "\nimport numpy as np\n\nPatm = 101000 # Pressure of the atmosphere (Pa)\nrhol = 13600 # Density of the mercury (kg/m^3)\nh = 0.2 # Height difference of the mercury in the two tubes (m)\ng = 9.8 # gravitational acceleration constant (m/s^2)\n\n# The pressure in a tube can be calculated by adding the pressure at the opening of the tube with the pressure exerted by the fluid above the depth of interest.\n# The pressure at a specific depth is the same in both tubes. The pressure in the tube on the model side is Pm + rhol * gh, where Pm is the pressure on the wing.\n# The pressure in the tube on the side open to the atmosphere is Patm + rhoa * gh, where rhoa is the density of air. Since the density of air is very small, the rhoa * gh term can be considered negligible.\n# Setting the two equations equal to each other and rearranging some terms, we get that Pm = Patm - rhol * gh.\n\nPm = Patm - rhol * g * h\n\nprint("The pressure on the wing is ", Pm, " pascals.")\n      ",
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 100, problem 1.11"
       ]
@@ -72,20 +31,7 @@ print("The pressure on the wing is ", Pm, " pascals.")
 {
   "question": "Consider the flow properties a point in the flow where the temperature is 320K and the velocity is 1000 m/s. Calculate the Mach number at this point",
   "answer": {
-      "code": """
-import numpy as np
-
-gamma = 1.4 # specific heat ratio of air
-R = 287 # specific gas constant of air (J/kg*K)
-T = 320 # temperature (K)
-V = 1000 # velocity of the gas (m/s)
-
-# The Mach number can be calculated as V/a, where 'V' is velocity and 'a' is the speed of sound.
-# a can be calculated as sqrt(gamma * RT). Putting the two equations together, we get M = V/sqrt(gamma * RT)
-M = V / np.sqrt(gamma * R * T)
-
-print("The Mach number at this point is ", M)
-      """,
+      "code": "\nimport numpy as np\n\ngamma = 1.4 # specific heat ratio of air\nR = 287 # specific gas constant of air (J/kg*K)\nT = 320 # temperature (K)\nV = 1000 # velocity of the gas (m/s)\n\n# The Mach number can be calculated as V/a, where 'V' is velocity and 'a' is the speed of sound.\n# a can be calculated as sqrt(gamma * RT). Putting the two equations together, we get M = V/sqrt(gamma * RT)\nM = V / np.sqrt(gamma * R * T)\n\nprint("The Mach number at this point is ", M)\n      ",
       "explanation": "This code calculates the Mach number using the Mach number equation and the equation for the speed of sound, M = V/sqrt(gamma * RT), where M is the Mach number, V is the velocity in m/s, gamma is the specific heat ratio, and T is the temperature in K."
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 560, example 8.2"
@@ -95,20 +41,7 @@ print("The Mach number at this point is ", M)
 {
   "question": "Consider a long tube with a length of 300m. The tube is filled with helium, a monatomic gas, at a temperature of 320K. A sound wave is generated at one end of the tube. How long will it take for the wave to reach the other end?",
   "answer": {
-      "code": """
-import numpy as np
-
-d = 300 # distance (m)
-gamma = 1.67 # specific heat ratio of monatomic gases
-R = 2078.5 # specific gas constant of helium (J/kg*K)
-T = 320 # temperature (K)
-
-# The distance travelled by an object can be calculated with d = vt, where d is the distance, v is the speed of the object, and t is time
-# The velocity of sound is given by sqrt(gamma * RT). Combining these two formulas and rearranging some terms, we get that t = d/sqrt(gamma * RT)
-t = d / np.sqrt(gamma * R * T)
-
-print("It would take ", t, " seconds for the sound wave to reach the end of the tube.")
-      """
+      "code": "\nimport numpy as np\n\nd = 300 # distance (m)\ngamma = 1.67 # specific heat ratio of monatomic gases\nR = 2078.5 # specific gas constant of helium (J/kg*K)\nT = 320 # temperature (K)\n\n# The distance travelled by an object can be calculated with d = vt, where d is the distance, v is the speed of the object, and t is time\n# The velocity of sound is given by sqrt(gamma * RT). Combining these two formulas and rearranging some terms, we get that t = d/sqrt(gamma * RT)\nt = d / np.sqrt(gamma * R * T)\n\nprint("It would take ", t, " seconds for the sound wave to reach the end of the tube.")\n      "
       "explanation": "This code calculates the time it takes for sound to travel by using a combination of the distance and speed of sound formulas, t = d/sqrt(gamma * RT), where d is distance, gamma is the specific heat ratio, R is the specific gas constant, and T is the temperature."
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 564, example 8.6"
@@ -118,19 +51,7 @@ print("It would take ", t, " seconds for the sound wave to reach the end of the 
 {
   "question": "Consider a flow along a streamline with a velocity of 50 m/s, a density of 1.23 kg/m^3, and a pressure of 1.01 x 10^5 N/m^2. The pressure at a point downstream the streamline is decreased to 0.9 x 10^5 N/m^2. Assuming that the flow is incompressible, what is the velocity at this point?",
   "answer": {
-      "code": """
-import numpy as np
-
-v1 = 50 # upstream velocity (m/s)
-p1 = 101000 # upstream pressure (Pa)
-rho = 1.23 # density (kg/m^3)
-p2 = 90000 # downstream pressure (Pa)
-
-# Use Bernoulli's equation, p1 + 0.5 * rho * v1^2 = p2 + 0.5 * rho * v2^2 => v2 = sqrt(2(p1 - p2)/rho + v1^2)
-v2 = np.sqrt((2*(p1 - p2) / rho) + v1**2)
-
-print("The velocity downstream is ", v2, " m/s.")
-      """
+      "code": "\nimport numpy as np\n\nv1 = 50 # upstream velocity (m/s)\np1 = 101000 # upstream pressure (Pa)\nrho = 1.23 # density (kg/m^3)\np2 = 90000 # downstream pressure (Pa)\n\n# Use Bernoulli's equation, p1 + 0.5 * rho * v1^2 = p2 + 0.5 * rho * v2^2 => v2 = sqrt(2(p1 - p2)/rho + v1^2)\nv2 = np.sqrt((2*(p1 - p2) / rho) + v1**2)\n\nprint("The velocity downstream is ", v2, " m/s.")\n      "
       "explanation": "This code calculates the downstream velocity using Bernoulli's equation, p1 + 0.5*rho*v1^2 = p2 + 0.5*rho*v2^2, where p1 and p2 are the upstream and downstream pressures, v1 and v2 are the upstream and downstream velocities, and rho is the density of the fluid."
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 210, example 3.1"
@@ -140,19 +61,7 @@ print("The velocity downstream is ", v2, " m/s.")
 {
   "question": "Consider the gas in the resevoir of a supersonic wind tunnel. The pressure and temperature of the air in the resevoir are 20 atm and 300K respectively. The air in the resevoir isentropically expands through the wind tunnel duct until it reaches a point where the pressure of the air is 1 atm. Calculate the temperature at this point.",
   "answer": {
-      "code": """
-import numpy as np
-
-T1 = 300 # initial temperature (K)
-p1 = 20 # initial pressure (atm)
-p2 = 1 # final pressure (atm)
-gamma = 1.4 # specific heat ratio of air
-
-# Use the isentropic relations for pressure and temperature, (p2/p1) = (T2/T1)^(gamma/(gamma-1)) => T2 = T1(p2/p1)^((gamma-1)/gamma)
-T2 = T1 * (p2/p1)**((gamma-1)/gamma)
-
-print("The temperature of the air is ", T2, "K.");
-      """
+      "code": "\nimport numpy as np\n\nT1 = 300 # initial temperature (K)\np1 = 20 # initial pressure (atm)\np2 = 1 # final pressure (atm)\ngamma = 1.4 # specific heat ratio of air\n\n# Use the isentropic relations for pressure and temperature, (p2/p1) = (T2/T1)^(gamma/(gamma-1)) => T2 = T1(p2/p1)^((gamma-1)/gamma)\nT2 = T1 * (p2/p1)**((gamma-1)/gamma)\n\nprint("The temperature of the air is ", T2, "K.");\n      "
       "explanation": "This code calculates temperature using the isentropic relations, (p2/p1) = (T2/T1)^(gamma/(gamma-1)) => T2 = T1(p2/p1)^((gamma-1)/gamma), where p1 and p2 is the pressure at state 1 and state 2 respectively, T1 and T2 is the temperature at state 1 and state 2 respectively, and gamma is the specific heat ratio."
       "references": [
           "John D. Anderson Jr. (2010) Fundamentals of Aerodynamics, McGraw-Hill, page 529, example 7.5a"

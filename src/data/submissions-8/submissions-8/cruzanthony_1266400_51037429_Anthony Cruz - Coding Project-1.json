@@ -2,29 +2,7 @@
 {
   "question": "Air flows steadily from a large pressurized tank at pressure P0 into a converging duct that is open to another large tank at pressure Pb. The duct is insulated and we ignore friction. We measure: P0 = 158.0 kPa (Stagnation pressure) Pb = 101.3 kPa (Back pressure) Is the flow at the exit subsonic, sonic, or supersonic?",
   "answer": {
-      "code": """
-import numpy as np
-
-P0 = 158.0 # Stagnation pressure (kPa)
-Pb = 101.3 # Back pressure (kPa)
-
-# Calculate the ratio between the exit static pressure and stagnation pressure
-pressure_ratio = Pb/P0
-
-if pressure_ratio < 0.5283:
-	print("The flow is sonic")
-elif pressure_ratio > 0.5283:
-	print("The flow is subsonic everywhere and not choked")
-
-      "",
-      "explanation": "At Mach 1, the pressure ratio of static pressure to stagnation pressure is given by the following equation P/P0 = (1 + (y - 1)/2 * M^2)^-y/(y-1) where y is gamma = 1.4 for air and M is the Mach number. At Mach 1, this ratio is equal to 0.5283 and less than 0.5283 at Mach greater than 1. Therefore, if this ratio is less than 0.5283 the flow is subsonic at the exit and does not get choked.",
-      "references": ["John M. Cimbala, The Pennsylvania State University: https://www.me.psu.edu/cimbala/me320/Lesson_Notes/Fluid_Mechanics_Lesson_15B.pdf"]
-  }
-},
-{
-  "question": "Air flows steadily from a large pressurized tank at pressure P0 into a converging duct that is open to another large tank at pressure Pb. The duct is insulated and we ignore friction. We measure: P0 = 158.0 kPa (Stagnation pressure) T0 = 520.0 K (Stagnation temperature) Pb = 101.3 kPa (Back pressure) Calculate the exit Mach number and static temperature at the exit.",
-  "answer": {
-	"code": """
+      "code": "\nimport numpy as np\n\nP0 = 158.0 # Stagnation pressure (kPa)\nPb = 101.3 # Back pressure (kPa)\n\n# Calculate the ratio between the exit static pressure and stagnation pressure\npressure_ratio = Pb/P0\n\nif pressure_ratio < 0.5283:\n	print("The flow is sonic")\nelif pressure_ratio > 0.5283:\n	print("The flow is subsonic everywhere and not choked")\n\n      "",\n      "explanation": "At Mach 1, the pressure ratio of static pressure to stagnation pressure is given by the following equation P/P0 = (1 + (y - 1)/2 * M^2)^-y/(y-1) where y is gamma = 1.4 for air and M is the Mach number. At Mach 1, this ratio is equal to 0.5283 and less than 0.5283 at Mach greater than 1. Therefore, if this ratio is less than 0.5283 the flow is subsonic at the exit and does not get choked.",\n      "references": ["John M. Cimbala, The Pennsylvania State University: https://www.me.psu.edu/cimbala/me320/Lesson_Notes/Fluid_Mechanics_Lesson_15B.pdf"]\n  }\n},\n{\n  "question": "Air flows steadily from a large pressurized tank at pressure P0 into a converging duct that is open to another large tank at pressure Pb. The duct is insulated and we ignore friction. We measure: P0 = 158.0 kPa (Stagnation pressure) T0 = 520.0 K (Stagnation temperature) Pb = 101.3 kPa (Back pressure) Calculate the exit Mach number and static temperature at the exit.",\n  "answer": {\n	"code": "
 import numpy as np
 
 P0 = 158.0 # Stagnation pressure (kPa)

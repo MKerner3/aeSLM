@@ -38,19 +38,7 @@
   {
     "question": "An airfoil is placed in a flow of 100% dinitrogen monoxide gas with a freestream velocity of 50m/s at sea level conditions. The pressure in the flow is 1.35 bar and the density is 1.9781 kg/m^3. At a given point, the pressure is 1.2 bar. Calculate the velocity at this point.",
     "answer": {
-        "code": """
-import numpy as np
-
-rho = 1.9781  # Density at sea level (kg/m^3)
-v1 = 50  # Freestream velocity (m/s)
-p1 = 135000  # Pressure of the flow (N/m^2)
-p2 = 120000 # Pressure at point on airfoil (N/m^2)
-
-# Apply Bernoulli's equations to the airfoil
-v2 = np.sqrt((2*(p1-p2)/rho + v1**2))
-
-print("Velocity at the point on the airfoil where pressure = 1.2 bar:", v2, "m/s")
-        """,
+        "code": "\nimport numpy as np\n\nrho = 1.9781  # Density at sea level (kg/m^3)\nv1 = 50  # Freestream velocity (m/s)\np1 = 135000  # Pressure of the flow (N/m^2)\np2 = 120000 # Pressure at point on airfoil (N/m^2)\n\n# Apply Bernoulli's equations to the airfoil\nv2 = np.sqrt((2*(p1-p2)/rho + v1**2))\n\nprint("Velocity at the point on the airfoil where pressure = 1.2 bar:", v2, "m/s")\n        ",
         "explanation": "This code utilizes Bernoulli's equation along a streamline. It states that p1 + 1/2 * rho * v1^2 = p2 + 1/2 * rho * v2^2. The equation can be rearranged to solve for v2.",
         "references": ["John Anderson, (2023) Fundamentals of Aerodyanmics, Seventh Edition, McGraw-Hill."]
     }
@@ -58,26 +46,7 @@ print("Velocity at the point on the airfoil where pressure = 1.2 bar:", v2, "m/s
   {
     "question": "A large hall has a with a rectangular floor that is 22m by 75m, and a 100m high ceiling. The air pressure is 1.03 bar and the temperature is 17 degrees C. Calculate the internal energy and the enthalpy of the air in the room.",
     "answer": {
-        "code": """
-V = 22 * 75 * 100  # Volume of the room (m^3)
-p = 101300  # Pressure in the room (N/m^2)
-T = 17 + 273.15 # Temperature in the room (N/m^2)
-R = 287 # J/kg/K of air
-cv = 717.5 # J/kg/K
-cp = 1004.5 # J/kg/K
-
-# density of the air
-rho = p/R/T
-
-# Mass of the air
-m = rho * V
-
-U = m * cv * T
-H = m * cp * T
-
-print("Internal energy of the air:", U, "J")
-print("Enthalpy of the air:", H, "J")
-        """,
+        "code": "\nV = 22 * 75 * 100  # Volume of the room (m^3)\np = 101300  # Pressure in the room (N/m^2)\nT = 17 + 273.15 # Temperature in the room (N/m^2)\nR = 287 # J/kg/K of air\ncv = 717.5 # J/kg/K\ncp = 1004.5 # J/kg/K\n\n# density of the air\nrho = p/R/T\n\n# Mass of the air\nm = rho * V\n\nU = m * cv * T\nH = m * cp * T\n\nprint("Internal energy of the air:", U, "J")\nprint("Enthalpy of the air:", H, "J")\n        ",
         "explanation": "Density of the air is first calculated by using the ideal gas law. Mass is found using density and volume. Afterwards, the mass can be multiplied by cp and cv and temperature in Kelvin to find the total internal energy and enthalpy.",
         "references": ["John Anderson, (2023) Fundamentals of Aerodyanmics, Seventh Edition, McGraw-Hill."]
     }
@@ -85,16 +54,7 @@ print("Enthalpy of the air:", H, "J")
   {
     "question": "An aircraft flies at an altitude of 20,000 m. The pressure at a point on the wing is 5,000 Pa. Assuming isentropic flow over the wing, calculate the temperature at this point. The stagnation pressure and temperature at 20,000 m are 5,475 Pa and 217 K respectively.",
     "answer": {
-        "code": """
-p1 = 5000 # Pressure at a local point on the wing, Pa
-p01 = 5475 # Stagnation pressure at h = 20,000 m, Pa
-T01 = 217 # Stagnation temperature at h = 20,000 m, K
-gamma = 1.4 # Specific heat ratio of air
-
-T1 = T01 * (p1/p01)**((gamma-1)/gamma)
-
-print("Local temperature at the point:", T1, "K")
-        """,
+        "code": "\np1 = 5000 # Pressure at a local point on the wing, Pa\np01 = 5475 # Stagnation pressure at h = 20,000 m, Pa\nT01 = 217 # Stagnation temperature at h = 20,000 m, K\ngamma = 1.4 # Specific heat ratio of air\n\nT1 = T01 * (p1/p01)**((gamma-1)/gamma)\n\nprint("Local temperature at the point:", T1, "K")\n        ",
         "explanation": "The problem states that the flow is isentropic. The isentropic relation T/T01 = (p/p01)^((gamma-1)/gamma) can be applied to the flow to find the local temperature.",
         "references": ["John Anderson, (2023) Fundamentals of Aerodyanmics, Seventh Edition, McGraw-Hill."]
     }
@@ -102,30 +62,7 @@ print("Local temperature at the point:", T1, "K")
   {
     "question": "A steady flow has a static temperature of 400 K, and a velocity of 1,200 m/s. Calculate the Mach number at this point, and find what the mach number would be after a normal shock. Afterwards find the new temperature.",
     "answer": {
-        "code": """
-import numpy as np
-
-T = 400 # Static temperature, K
-v = 1200 # Velocity of the flow, m/s
-R = 287 # Gas constant of air, J/kg/K
-gamma = 1.4 # Specific heat ratio of air
-
-# Calculate the speed of sound
-a = np.sqrt(gamma * R * T)
-
-# Calculate the Mach number
-M1 = v/a
-
-# Use the equation for mach number after a shock
-M2 = np.sqrt((1 + ((gamma - 1)/2) * M1**2) / (gamma*(M1**2) - (gamma - 1)/2))
-
-# New temperature after a shock
-T2 = T1 * (1 + ((gamma - 1)/2) * M1**2) * ((2*gamma)/(gamma - 1)*M1**2 - 1) / ((gamma + 1)**2 / (2*(gamma - 1)) * M1**2)
-
-print("Mach number of the flow:", M1)
-print("Mach number of the flow after the shock:", M2)
-print("The temperature after the shock:", T2, "K")
-        """,
+        "code": "\nimport numpy as np\n\nT = 400 # Static temperature, K\nv = 1200 # Velocity of the flow, m/s\nR = 287 # Gas constant of air, J/kg/K\ngamma = 1.4 # Specific heat ratio of air\n\n# Calculate the speed of sound\na = np.sqrt(gamma * R * T)\n\n# Calculate the Mach number\nM1 = v/a\n\n# Use the equation for mach number after a shock\nM2 = np.sqrt((1 + ((gamma - 1)/2) * M1**2) / (gamma*(M1**2) - (gamma - 1)/2))\n\n# New temperature after a shock\nT2 = T1 * (1 + ((gamma - 1)/2) * M1**2) * ((2*gamma)/(gamma - 1)*M1**2 - 1) / ((gamma + 1)**2 / (2*(gamma - 1)) * M1**2)\n\nprint("Mach number of the flow:", M1)\nprint("Mach number of the flow after the shock:", M2)\nprint("The temperature after the shock:", T2, "K")\n        ",
         "explanation": "The speed of sound is found by applying a = sqrt(gamma*R*T) using temperature and gas properties. The Mach number is found by dividing the velocity by the speed of sound. The Mach number post shock is found by using the normal shock equation for velocity after a shock. The temperature after the shock is found by using the change in temperature equation. It is important to remember that this temperature is the static temperature, and that stagnation temperature across a shock is constant.",
         "references": ["John Anderson, (2023) Fundamentals of Aerodyanmics, Seventh Edition, McGraw-Hill."]
     }
@@ -133,20 +70,7 @@ print("The temperature after the shock:", T2, "K")
   {
     "question": "An aircraft flies at an altitude of 6000 m at Mach 1.7. If a shock occurs, assuming the shock wave pattern is a Mach wave, the moment a person on the ground hears the shock, how far ahead is the aircraft?",
     "answer": {
-        "code": """
-import numpy as np
-
-M = 1.7 # Mach number
-h = 6000 # altitude of the plane, m
-
-# calculate the Mach angle
-mu = np.arcsin(1/M)
-
-# calculate distance using tan(mu) = h/d
-d = h / np.tan(mu)
-
-print("The distance between the person and the aircraft is:", d, "m")
-        """,
+        "code": "\nimport numpy as np\n\nM = 1.7 # Mach number\nh = 6000 # altitude of the plane, m\n\n# calculate the Mach angle\nmu = np.arcsin(1/M)\n\n# calculate distance using tan(mu) = h/d\nd = h / np.tan(mu)\n\nprint("The distance between the person and the aircraft is:", d, "m")\n        ",
         "explanation": "The shockwave from the aircraft follows a straight line at an angle relative to the ground. This angle is found as the inverse sin of 1/M. Some trigonometry can then be applied to determine that the horizontal distance d between the aircraft and the first people to hear the shock is h / atan(mu).",
         "references": ["John Anderson, (2023) Fundamentals of Aerodyanmics, Seventh Edition, McGraw-Hill."]
     }
@@ -154,23 +78,7 @@ print("The distance between the person and the aircraft is:", d, "m")
   {
     "question": "A heat source at 1000 K loses 1600 kJ of heat to a sink at (1) 750 K and (2) 900 K. Determine which process is more irreversible.",
     "answer": {
-        "code": """
-T = 1000 # Temperature of heat source, K
-Q = 1600000 # Heat loss to a sink
-
-# Entropy to a sink at 500 K
-S_source = -Q/T
-S_sink1 = Q/750
-S_1 = S_source + S_sink1
-
-# Entropy to a sink at 750 K
-S_sink2 = Q/900
-S_2 = S_source + S_sink2
-
-print("Change in entropy in process 1:", S_1, "J/K")
-print("Change in entropy in process 2:", S_2, "J/K")
-print("Process 1 is more irreversible.")
-        """,
+        "code": "\nT = 1000 # Temperature of heat source, K\nQ = 1600000 # Heat loss to a sink\n\n# Entropy to a sink at 500 K\nS_source = -Q/T\nS_sink1 = Q/750\nS_1 = S_source + S_sink1\n\n# Entropy to a sink at 750 K\nS_sink2 = Q/900\nS_2 = S_source + S_sink2\n\nprint("Change in entropy in process 1:", S_1, "J/K")\nprint("Change in entropy in process 2:", S_2, "J/K")\nprint("Process 1 is more irreversible.")\n        ",
         "explanation": "The irreversibility of a process can be measured in the change in entropy that comes from the process. The change is entropy can be found as the sum of entropy of different parts of a system. The entropy of heat loss from a source can be found with S = -Q/T1. The entropy of heat going into the sink is S = Q/T2. Summing these gives the net entropy of the process. Whichever net entropy is greater is more irreversible. Process 1 is also intuitively more irreversible because the temperature different between the source and sink is greater.",
         "references": ["Michael Boles and Yunus Çengel, (2010) Thermodynamics: An Engineering Approach, McGraw-Hill."]
     }
@@ -178,30 +86,7 @@ print("Process 1 is more irreversible.")
   {
     "question": "A hose with a nozzle is used to fill a 350-L reservoir. The inner diameter of the hose is 10 cm, and it reduces to 1 cm at the nozzle. It takes 15 s to fill the reservoir with water, determine the average velocity of water at the nozzle exit and the mass flow rate.",
     "answer": {
-        "code": """
-import numpy as np
-
-V = 350 # Volume of bucket, L
-D_1 = 0.1 # Initial diameter of hose, m
-D_2 = 0.01 # Final diameter of hose, m
-t = 15 # Time to fill the reservoir, s
-rho = 1 # density of water, kg/L
-
-# calculate volumetric flow rate
-Vdot = V / t
-
-# calculate mass flow rate
-mdot = rho * Vdot
-
-# calculate the exit area of the nozzle
-Ae = np.pi * (D_2 / 2)**2
-
-# calculate the mean exit velocity of the flow
-Ve = Vdot / Ae * (1/1000) # multiple by 1/1000 to convert from liters to cubic meters
-
-print("The mean exit velocity from the nozzle is:", Ve, "m/s")
-print("The mass flow rate is:", mdot, "kg/s")
-        """,
+        "code": "\nimport numpy as np\n\nV = 350 # Volume of bucket, L\nD_1 = 0.1 # Initial diameter of hose, m\nD_2 = 0.01 # Final diameter of hose, m\nt = 15 # Time to fill the reservoir, s\nrho = 1 # density of water, kg/L\n\n# calculate volumetric flow rate\nVdot = V / t\n\n# calculate mass flow rate\nmdot = rho * Vdot\n\n# calculate the exit area of the nozzle\nAe = np.pi * (D_2 / 2)**2\n\n# calculate the mean exit velocity of the flow\nVe = Vdot / Ae * (1/1000) # multiple by 1/1000 to convert from liters to cubic meters\n\nprint("The mean exit velocity from the nozzle is:", Ve, "m/s")\nprint("The mass flow rate is:", mdot, "kg/s")\n        ",
         "explanation": "First begin by calculating the volumetric flow rate. This can be found by dividing the volume of liquid moved by time. Volumetric flow rate can be multiplied by density to get mass flow rate. The exit area of the nozzle can then be calculated by finding the area of a circle. Dividing the volumetric flow rate by the exit area gives the average velocity of the fluid.",
         "references": ["Michael Boles and Yunus Çengel, (2010) Thermodynamics: An Engineering Approach, McGraw-Hill."]
     }

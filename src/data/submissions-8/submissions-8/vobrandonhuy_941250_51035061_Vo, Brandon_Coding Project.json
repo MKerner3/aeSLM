@@ -38,32 +38,7 @@
 {
 "question": "A garden hose attached with a nozzle is used to fill a 15-gallon bucket. The inner diameter of the hose is 2.5 cm, and it reduces to 1.2 cm at the nozzle exit. If it takes 75 seconds to fill the bucket with water,  determine the volume and mass flow rates of apple juice through the hose. The density of apple juice is 1.05 kg/L, and assume the apple juice is incompressible."
 "answer": {
-	"code": """
-import numpy as np
-
-rho = 1.05  # Density (kg/L)
-V = 15 # Volume (gal)
-t = 75 # Time (seconds)
-
-#Convert volume from gallons to liters
-V1 = V *3.7854 # Volume (Liters)
-
-# Apply volumetric flow rate equation (V_dot = V/t)
-V_dot = V1/t
-
-# Use volumetric flow rate to find the mass flow rate (m_dot = rho * V_dot)
-m_dot = rho * V_dot
-
-print("The volumetric flow rate through the hose is:", V_dot, "L/s")
-print("The mass flow rate through the hose is:", m_dot, "kg/s")
-"explanation": "This code utilizes the concepts of conservation of mass in control volumes and continuity. Knowing that the mass flow rate must be constant for incompressible flow, the end conditions can be used to calculate the flow rates. Therefore, the equations V_dot = V1 / t and subsequently m_dot = ρ * V_dot express this, where ρ represents the fluid density, t represents the time it took to fill the bucket, and V represents the total volume."
-"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill", "https://www.khanacademy.org/science/physics/fluids/fluid-dynamics/a/what-is-volumetric-flow-rate"]
-	}
-},
-{
-"question": "A heat source at 1000 K loses 3000 kJ of heat to a sink at (a) 600 K and (b) 850 K. Determine which heat transfer process is more irreversible."
-"answer": {
-	"code": """
+	"code": "\nimport numpy as np\n\nrho = 1.05  # Density (kg/L)\nV = 15 # Volume (gal)\nt = 75 # Time (seconds)\n\n#Convert volume from gallons to liters\nV1 = V *3.7854 # Volume (Liters)\n\n# Apply volumetric flow rate equation (V_dot = V/t)\nV_dot = V1/t\n\n# Use volumetric flow rate to find the mass flow rate (m_dot = rho * V_dot)\nm_dot = rho * V_dot\n\nprint("The volumetric flow rate through the hose is:", V_dot, "L/s")\nprint("The mass flow rate through the hose is:", m_dot, "kg/s")\n"explanation": "This code utilizes the concepts of conservation of mass in control volumes and continuity. Knowing that the mass flow rate must be constant for incompressible flow, the end conditions can be used to calculate the flow rates. Therefore, the equations V_dot = V1 / t and subsequently m_dot = ρ * V_dot express this, where ρ represents the fluid density, t represents the time it took to fill the bucket, and V represents the total volume."\n"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill", "https://www.khanacademy.org/science/physics/fluids/fluid-dynamics/a/what-is-volumetric-flow-rate"]\n	}\n},\n{\n"question": "A heat source at 1000 K loses 3000 kJ of heat to a sink at (a) 600 K and (b) 850 K. Determine which heat transfer process is more irreversible."\n"answer": {\n	"code": "
 import numpy as np
 
 Q = 3000 # Heat transfer (kJ)
@@ -97,36 +72,7 @@ else:
 {
 "question": "A reservoir contains a volume of water 10 meters in height. Someone has accidentally spilled a significant amount of oil, which floats on top of the water. The oil has a height of 2 meters. Calculate the gauge pressure at the bottom of the reservoir. Assume the following densities for oil and water: ρ_o = 750 kg/m^3 and p_w = 1000 kg/m^3."
 "answer": {
-	"code": """
-import numpy as np
-
-print("Consider the following mental image. At the bottom of the resevoir is the water, however high it might be, and on top of the water is the amount of oil, again however high it might be.")
-
-rho_o = 750 # Density of oil (kg/m^3)
-rho_w = 1000 # Density of water (kg/m^3)
-g = 9.981 # Gravity (m/s^2)
-h_o = 2 # height of oil (m)
-h_w = 10 # height of water (m)
-
-# First calculating pressure at the interface (the border between water and oil) - the equation used is p_2 = p_1 + rho*g*h, but gauge pressure is p_2 - p_1 = rho*g*h
-# In this case, we're omitting p_1 (which is p_atm) since it's undefined and won't work with code - this equation is really: p_i = p_atm + (rho_o * g * h_o)
-p_i = rho_o * g * h_o
-
-# Next calculating the pressure at resevoir bottom, again working around the p_1 component as it isn't as clear with code - this equation is really p = p_i + (rho_w * g * h_w)
-p = rho_w * g * h_w
-
-# Lastly, we can calculate gauge pressure, which is the difference between p and p_atm (p - p_atm) - combining the two equations yields: p = p_atm + (rho_o * g * h_o) + (rho_w * g * h_w)
-p_gauge = p_i + p
-
-print("The gauge pressure at the bottom of the resevoir is", p_gauge, "kg/m*s^2 or", p_gauge, "Pascals (Pa)")
-"explanation": "Again, as mentioned, it's important to visualize the resevoir, with the oil on top and water on the bottom. Since gauge pressure is a pressure measurement relative to atmospheric pressure, written as a difference between p and p_atm, it was tricky to write out the proper form in code. First, the code considered the pressure at the border between the water and oil, and at at level, there is pressure due to hydrostatic pressure and the atmosphere acting on it. At the bottom of the resevoir, the pressure came from pressure at the interface and hydrostatic pressure. The pressure at the interface is found by p_i = p_atm + (ρ_o * g * h_o), where ρ_o is the oil density, g is gravity, and h_o is the height of the oil. Next, the pressure at the bottom is found by p = p_i + (ρ_w * g * h_w), where ρ_w is the density of water and h_w is the height of the water. The first equation can then be plugged into the second and after moving p_atm to the other side of the equation, the result is the equation for gauge pressure."
-"references":["https://psesh.github.io/ae2010-11/sample_problems/lecture_2.html", "https://physics.stackexchange.com/questions/106466/how-to-calculate-gauge-pressure-at-water-depth"]
-	}
-},
-{
-"question": "Consider a 1m section of a supersonic wind tunnel, where the end of this section opens into the test section of the wind tunnel. The choke point of the wind tunnel is at 0.4m into the section. The air properties at the inlet are the following: stagnation pressure = 200 kPa and stagnation temperature = 320 K. Assume the flow is in a frictionless duct and is a perfect gas. Create a plot of Mach numbers along the length of the 1m section."
-"answer": {
-	"code":"""
+	"code": "\nimport numpy as np\n\nprint("Consider the following mental image. At the bottom of the resevoir is the water, however high it might be, and on top of the water is the amount of oil, again however high it might be.")\n\nrho_o = 750 # Density of oil (kg/m^3)\nrho_w = 1000 # Density of water (kg/m^3)\ng = 9.981 # Gravity (m/s^2)\nh_o = 2 # height of oil (m)\nh_w = 10 # height of water (m)\n\n# First calculating pressure at the interface (the border between water and oil) - the equation used is p_2 = p_1 + rho*g*h, but gauge pressure is p_2 - p_1 = rho*g*h\n# In this case, we're omitting p_1 (which is p_atm) since it's undefined and won't work with code - this equation is really: p_i = p_atm + (rho_o * g * h_o)\np_i = rho_o * g * h_o\n\n# Next calculating the pressure at resevoir bottom, again working around the p_1 component as it isn't as clear with code - this equation is really p = p_i + (rho_w * g * h_w)\np = rho_w * g * h_w\n\n# Lastly, we can calculate gauge pressure, which is the difference between p and p_atm (p - p_atm) - combining the two equations yields: p = p_atm + (rho_o * g * h_o) + (rho_w * g * h_w)\np_gauge = p_i + p\n\nprint("The gauge pressure at the bottom of the resevoir is", p_gauge, "kg/m*s^2 or", p_gauge, "Pascals (Pa)")\n"explanation": "Again, as mentioned, it's important to visualize the resevoir, with the oil on top and water on the bottom. Since gauge pressure is a pressure measurement relative to atmospheric pressure, written as a difference between p and p_atm, it was tricky to write out the proper form in code. First, the code considered the pressure at the border between the water and oil, and at at level, there is pressure due to hydrostatic pressure and the atmosphere acting on it. At the bottom of the resevoir, the pressure came from pressure at the interface and hydrostatic pressure. The pressure at the interface is found by p_i = p_atm + (ρ_o * g * h_o), where ρ_o is the oil density, g is gravity, and h_o is the height of the oil. Next, the pressure at the bottom is found by p = p_i + (ρ_w * g * h_w), where ρ_w is the density of water and h_w is the height of the water. The first equation can then be plugged into the second and after moving p_atm to the other side of the equation, the result is the equation for gauge pressure."\n"references":["https://psesh.github.io/ae2010-11/sample_problems/lecture_2.html", "https://physics.stackexchange.com/questions/106466/how-to-calculate-gauge-pressure-at-water-depth"]\n	}\n},\n{\n"question": "Consider a 1m section of a supersonic wind tunnel, where the end of this section opens into the test section of the wind tunnel. The choke point of the wind tunnel is at 0.4m into the section. The air properties at the inlet are the following: stagnation pressure = 200 kPa and stagnation temperature = 320 K. Assume the flow is in a frictionless duct and is a perfect gas. Create a plot of Mach numbers along the length of the 1m section."\n"answer": {\n	"code":"
 
 import numpy as np
 from scipy.optimize import root_scalar # needed in order to not make complex code trying to solve for roots
@@ -219,32 +165,7 @@ plt.show()
 {
 "question": "A heat engine with a thermal efficiency of 24.675% produces 65.75 MW of work. Calculate the following: (a) How much heat is the heat engine taking in to produce the work, and (b) How much heat is rejected by the engine?
 "answer": {
-	"code":"""
-import numpy as np
-
-efficiency = 24.675 # % thermal efficiency
-W_net_out = 65.75 # work produced by heat engine (MW)
-
-# Calculating part (a)
-efficiency = efficiency / 100
-Q_H = W_net_out / efficiency
-
-#Calculating part (b)
-Q_L = Q_H - W_net_work
-
-Q_H = round(Q_H,3)
-Q_L = round(Q_L,3)
-print("(a) The heat engine needs to receive", Q_H, "MW of heat to produce", W_net_out, "MW of useable work.")
-print("(b) The heat engine will reject", Q_L, "MW of heat as a result.")
-
-"explanation": "This code utilizes the expression for thermal efficiency, which is W/Q_H (useful work divided by heat input). The reason this ratio exists is because of the Kelvin-Planck Statement, which states that it is impossible to create a cyclic device (in this case, heat engine) that can produce work while receiving heat from a single thermal resevoir. There is a limit to the efficiency of this process; a completely reversible process would have 100% efficiency, but such a heat engine does not exist. Furthermore, since there needs to be a thermal resevoir that serves as a sink (receives heat waste), useful work is calculated by subtracting the heat waste from the heat input."
-"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill"]
-	}
-},
-{
-"question": "Consider an inviscid, incompressible flow of air along a streamline. The air density along the streamline is 1.225 kg/m³, which is standard atmospheric density at sea level. At point (a) on the streamline, the pressure and velocity are 14,500 Pa and 3 m/s, respectively. Further downstream, at point (b) on the streamline, the pressure is 7250 Pa. Calculate the pressure at point 2.  What can be said about the relative velocity change compared to the change in pressure?"
-"answer": {
-	"code": """
+	"code":"\nimport numpy as np\n\nefficiency = 24.675 # % thermal efficiency\nW_net_out = 65.75 # work produced by heat engine (MW)\n\n# Calculating part (a)\nefficiency = efficiency / 100\nQ_H = W_net_out / efficiency\n\n#Calculating part (b)\nQ_L = Q_H - W_net_work\n\nQ_H = round(Q_H,3)\nQ_L = round(Q_L,3)\nprint("(a) The heat engine needs to receive", Q_H, "MW of heat to produce", W_net_out, "MW of useable work.")\nprint("(b) The heat engine will reject", Q_L, "MW of heat as a result.")\n\n"explanation": "This code utilizes the expression for thermal efficiency, which is W/Q_H (useful work divided by heat input). The reason this ratio exists is because of the Kelvin-Planck Statement, which states that it is impossible to create a cyclic device (in this case, heat engine) that can produce work while receiving heat from a single thermal resevoir. There is a limit to the efficiency of this process; a completely reversible process would have 100% efficiency, but such a heat engine does not exist. Furthermore, since there needs to be a thermal resevoir that serves as a sink (receives heat waste), useful work is calculated by subtracting the heat waste from the heat input."\n"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill"]\n	}\n},\n{\n"question": "Consider an inviscid, incompressible flow of air along a streamline. The air density along the streamline is 1.225 kg/m³, which is standard atmospheric density at sea level. At point (a) on the streamline, the pressure and velocity are 14,500 Pa and 3 m/s, respectively. Further downstream, at point (b) on the streamline, the pressure is 7250 Pa. Calculate the pressure at point 2.  What can be said about the relative velocity change compared to the change in pressure?"\n"answer": {\n	"code": "
 import numpy as np
 
 rho_air = 1.225 # air density (kg/m^3)
@@ -264,24 +185,7 @@ print("The velocity at point (b) is", round(v_b, 3), "m/s.")
 {
 "question": "A plane is flying at about standard sea level. A pitot tube gives a reading of 30,000 Pa. Given that standard sea level pressure is 101325 Pa, what is the airspeed of the plane?"
 "answer":{
-	"code":"""
-import numpy as np
-
-p_0 = 120000 # Pitot tube reading/total pressure (Pa)
-p = 101325 # Standard sea level pressure (Pa)
-rho_air = 1.225 # air density (kg/m^3)
-
-# Calculating plane's airspeed
-v = np.sqrt(2*(p_0-p)/rho_air)
-
-print("The plane's airspeed is", round(v,3), "m/s.")
-"explanation": "This code utilizes Bernoulli's equation with a small adjustment. Bernoulli's Equation(p + (1/2)*ρ*(V^2) = constant C) is used if air density is constant, and this relates the velocity and pressure at one point in a streamline to the velocity and pressure of another point (p_1 + (1/2)*ρ*((V_1)^2)) = (p_2 + (1/2)*ρ*((V_2)^2), where p is pressure, ρ is air density, and V is flow velocity. However, with a pitot tube, one of the velocities goes to 0, representing the stagnation point. The pressure at the stagnation point is called the stagnation pressure (p_0) and is the sum of static pressure and dynamic pressure. By rewriting Bernoulli's Equation with one of the velocities set 0, the equation for calculating pressure and/or velocity given information of a pitot tube is made: p + (1/2)*ρ*(V^2) = p_0."
-	}
-},
-{
-"question": "An aircraft is flying at a cruising speed of 300 m/s at an altitude of 7000 m where the atmospheric pressure is 41.2 kPa and the ambient air temperature is 248 K. The ambient air is first decelerated in a diffuser before it enters the compressor. Approximating both the diffuser and the compressor to be isentropic, determine the stagnation pressure at the compressor inlet."
-"answer":{
-	"code":"""
+	"code":"\nimport numpy as np\n\np_0 = 120000 # Pitot tube reading/total pressure (Pa)\np = 101325 # Standard sea level pressure (Pa)\nrho_air = 1.225 # air density (kg/m^3)\n\n# Calculating plane's airspeed\nv = np.sqrt(2*(p_0-p)/rho_air)\n\nprint("The plane's airspeed is", round(v,3), "m/s.")\n"explanation": "This code utilizes Bernoulli's equation with a small adjustment. Bernoulli's Equation(p + (1/2)*ρ*(V^2) = constant C) is used if air density is constant, and this relates the velocity and pressure at one point in a streamline to the velocity and pressure of another point (p_1 + (1/2)*ρ*((V_1)^2)) = (p_2 + (1/2)*ρ*((V_2)^2), where p is pressure, ρ is air density, and V is flow velocity. However, with a pitot tube, one of the velocities goes to 0, representing the stagnation point. The pressure at the stagnation point is called the stagnation pressure (p_0) and is the sum of static pressure and dynamic pressure. By rewriting Bernoulli's Equation with one of the velocities set 0, the equation for calculating pressure and/or velocity given information of a pitot tube is made: p + (1/2)*ρ*(V^2) = p_0."\n	}\n},\n{\n"question": "An aircraft is flying at a cruising speed of 300 m/s at an altitude of 7000 m where the atmospheric pressure is 41.2 kPa and the ambient air temperature is 248 K. The ambient air is first decelerated in a diffuser before it enters the compressor. Approximating both the diffuser and the compressor to be isentropic, determine the stagnation pressure at the compressor inlet."\n"answer":{\n	"code":"
 import numpy as np
 
 T_1 = 248 # ambient air temperatuer (K)

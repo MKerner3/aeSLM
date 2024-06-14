@@ -2,17 +2,7 @@
 {
   "question": "Find the mass of air vented out of a fan in a day given that the density of the air is 1.2 kg/m^3 and Vdot of the air is .050 m^3/s",
   "answer": {
-      "code": """
-import numpy as np
-
-rho = 1.2  # Density (kg/m^3)
-Vdot = .030  # Vdot (m^3/s)
-
-# Manipulate mass flow equation
-mdot = (rho * Vdot)  
-
-print("Mdot equals:", mdot, "kg/s")
-      """,
+      "code": "\nimport numpy as np\n\nrho = 1.2  # Density (kg/m^3)\nVdot = .030  # Vdot (m^3/s)\n\n# Manipulate mass flow equation\nmdot = (rho * Vdot)  \n\nprint("Mdot equals:", mdot, "kg/s")\n      ",
       "explanation": "This code uses a different version of the mass flow equation given that Area * velocity is equal to Vdot.",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill.",
@@ -27,26 +17,7 @@ print("Mdot equals:", mdot, "kg/s")
 {
   "question": "Find the initial and final temperatures of helium gas and the work required to compress it given that the initial and final specific volumes are 7 and 2 respectively and that it is compressed at 180 KPa.In addition, the gas constant of helium is 2.0769 ",
   "answer": {
-      "code": """
-import numpy as np
-
-sv1 = 7  # Specific Volume (m^3/kg)
-sv2 = 2
-p1 = 180   #pressure (kPa)
-R = 2.0769 # Gas constant for Helium (kJ/Kg*k)
-
-# Manipulate the ideal gas equation (p*v = mRT)--> divide by m ---> (p*v/m = RT)
-#v/m = specific volume = sv
-T1 = (p1 * v1)/R # Temperature (K)
-
-#Pressure is constant (T2/T1 = V2/V1)
-T2 = (sv2/sv1)*T1
-
-# Pressure is constant, work integral  = integral(pdv) = P(v2-v1)
-work = p1 * (sv2-sv1)
-
-print("Initial temperature is:", T1, "K", "Final Temperature is:", T2, "K", "and work equals:", work, "kJ")
-      """,
+      "code": "\nimport numpy as np\n\nsv1 = 7  # Specific Volume (m^3/kg)\nsv2 = 2\np1 = 180   #pressure (kPa)\nR = 2.0769 # Gas constant for Helium (kJ/Kg*k)\n\n# Manipulate the ideal gas equation (p*v = mRT)--> divide by m ---> (p*v/m = RT)\n#v/m = specific volume = sv\nT1 = (p1 * v1)/R # Temperature (K)\n\n#Pressure is constant (T2/T1 = V2/V1)\nT2 = (sv2/sv1)*T1\n\n# Pressure is constant, work integral  = integral(pdv) = P(v2-v1)\nwork = p1 * (sv2-sv1)\n\nprint("Initial temperature is:", T1, "K", "Final Temperature is:", T2, "K", "and work equals:", work, "kJ")\n      ",
       "explanation": "This code uses the Ideal Gas Laws and the work equation to find the intial and final temperatures and the work done on the gas.",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
@@ -61,20 +32,7 @@ print("Initial temperature is:", T1, "K", "Final Temperature is:", T2, "K", "and
 {
   "question": "Find the power output and thermal efficiency of a power plant given that the rate of heat supply is 290 GJ/h and the heat loss is 139 GJ/h"
   "answer": {
-      "code": """
-import numpy as np
-
-Qdoth = 290 # Rate of heat in (GJ/h)
-Qdotl # Rate of heat out(GJ/h)
-
-#Net power output is Qdotin - Qdotout
-Wnet = Qdoth - Qdotl
-
-# Find thermal efficiency (useful work/heat input)
-nth = Wnet / Qdoth * 
-
-print("Net work is:", Wnet, "GJ/h", "Thermal efficiency is:", nth, "%")
-      """,
+      "code": "\nimport numpy as np\n\nQdoth = 290 # Rate of heat in (GJ/h)\nQdotl # Rate of heat out(GJ/h)\n\n#Net power output is Qdotin - Qdotout\nWnet = Qdoth - Qdotl\n\n# Find thermal efficiency (useful work/heat input)\nnth = Wnet / Qdoth * \n\nprint("Net work is:", Wnet, "GJ/h", "Thermal efficiency is:", nth, "%")\n      ",
       "explanation": "This code uses the thermal efficiency equation and heat exchange theorems to calculate the work output and thermal efficiencies. ",
       "references": [
 	Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill.
@@ -89,21 +47,7 @@ print("Net work is:", Wnet, "GJ/h", "Thermal efficiency is:", nth, "%")
 {
   "question": "A plastic tank is filled with water. Determine the total weight given that the density of the water is 1000 kg/m^3, volume of the water is .4 m^3 and weight of the tank is 5kg",
   "answer": {
-      "code": """
-import numpy as np
-
-rho = 1000  # Density (kg/m^3)
-Mtank = 3  # Mass of the tank (kg)
-V = .4  # Volume (m^3)
-
-# Use the mass equation; m = rho*v
-mw = rho * V
-
-#Find total mass
-mtot = mw + mtank
-
-print("Total mass:", mtot, "kg")
-      """,
+      "code": "\nimport numpy as np\n\nrho = 1000  # Density (kg/m^3)\nMtank = 3  # Mass of the tank (kg)\nV = .4  # Volume (m^3)\n\n# Use the mass equation; m = rho*v\nmw = rho * V\n\n#Find total mass\nmtot = mw + mtank\n\nprint("Total mass:", mtot, "kg")\n      ",
       "explanation": "This code utilizes the equation for mass and finds the total mass for the system.",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
@@ -118,20 +62,7 @@ print("Total mass:", mtot, "kg")
 {
   "question": "Air is compressed steadily by a compressor. The air temp is maintained constant by heat rejection to the surroundings.Determine the rate of entropy change given that the work in is 15 kW and the temperature is 25 degrees celcius.",
   "answer": {
-      "code": """
-import numpy as np
-
-T = 25  # Temperature  (degrees Celcius)
-Win = 15 # Work (kW)
-
-# The work in is equal to the heat out
-Qdot = Win
-
-# Use the equation for change in entropy equation. ds = dq/T + ds_irrev
-ds = -Qdot / (T + 273.15)
-
-print("Final change in entropy is :", ds, "W/K")
-      """,
+      "code": "\nimport numpy as np\n\nT = 25  # Temperature  (degrees Celcius)\nWin = 15 # Work (kW)\n\n# The work in is equal to the heat out\nQdot = Win\n\n# Use the equation for change in entropy equation. ds = dq/T + ds_irrev\nds = -Qdot / (T + 273.15)\n\nprint("Final change in entropy is :", ds, "W/K")\n      ",
       "explanation": "This code uses the formula for entropy of a system. This is underlined by the assumptions that this is a steady flow process, kinetic and potential energy changes are negligible, and there are no irreversibilities due to friction.",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
@@ -147,25 +78,7 @@ print("Final change in entropy is :", ds, "W/K")
 {
   "question": "A 7 meter high cylindrical container is filled with equal volumes of water and oil. Find the gauge pressure between the top and bottom of the container. The density of the oil is 800 kg/m^3 and the density of the water is 1000 kg/m^3",
   "answer": {
-      "code": """
-import numpy as np
-
-rhow = 1000  # Density (kg/m^3)
-rhoo = 800  # Density (kg/m^3)
-grav = 9.81
-
-# equal volumes of each so heights are evenly split
-h = 7 / 2
-
-# Find the gauge pressure for each piece (delp = rho * g * delh)
-delpw = rhow * grav * h / 1000
-delpo = rhoo * grav * h / 1000
-
-#Add to get the total pressure
-gaugepressure = delpw + delpo
-
-print("Final gauge pressure:", gaugepressure, "kPa")
-      """,
+      "code": "\nimport numpy as np\n\nrhow = 1000  # Density (kg/m^3)\nrhoo = 800  # Density (kg/m^3)\ngrav = 9.81\n\n# equal volumes of each so heights are evenly split\nh = 7 / 2\n\n# Find the gauge pressure for each piece (delp = rho * g * delh)\ndelpw = rhow * grav * h / 1000\ndelpo = rhoo * grav * h / 1000\n\n#Add to get the total pressure\ngaugepressure = delpw + delpo\n\nprint("Final gauge pressure:", gaugepressure, "kPa")\n      ",
       "explanation": "This code uses the equation for pressure given a height, delp = rho * g * h. The assumption is that the density is uniform throughout each piece.",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 
@@ -180,24 +93,7 @@ print("Final gauge pressure:", gaugepressure, "kPa")
 {
   "question": "Find the power generation potential from a hydraulic turbine-generator that is generating electricity from a large reservoir. The reservoir is 120m high and the mass flow rate through the generator is 2500 kg/s. ",
   "answer": {
-      "code": """
-import numpy as np
-
-z = 120 # Height (m)
-mdot = 2500 # Mass flow rate (kg/s)
-grav = 9.81  # Velocity 1 (m/s)
-
-# Assume all the potential energy can be turned into kinetic energy (total energy = 
-# potential energy = gz
-totenergy = grav * z
-
-#Use work equation (Qdot - Wx = E_cv + mdot_out(h_e + 1/2v_e^2 + gz_e) - 
-# mdot_in(h_i + 1/2v_i^2 + gz_i))
-# energy in is only gz_i. so -Wx = -mdot * gz_i
-Powerpot = mdot * totenergy
-
-print("Power potential is:", Powerpot, "m/s")
-      """,
+      "code": "\nimport numpy as np\n\nz = 120 # Height (m)\nmdot = 2500 # Mass flow rate (kg/s)\ngrav = 9.81  # Velocity 1 (m/s)\n\n# Assume all the potential energy can be turned into kinetic energy (total energy = \n# potential energy = gz\ntotenergy = grav * z\n\n#Use work equation (Qdot - Wx = E_cv + mdot_out(h_e + 1/2v_e^2 + gz_e) - \n# mdot_in(h_i + 1/2v_i^2 + gz_i))\n# energy in is only gz_i. so -Wx = -mdot * gz_i\nPowerpot = mdot * totenergy\n\nprint("Power potential is:", Powerpot, "m/s")\n      ",
       "explanation": "This code uses the shaft work equation to find the maximum power output for a generator given some height of a reservoir.The underlying assumption is that the entire amount of energy can be converted.  ",
       "references": [
           "Michael A. Boles, Yunus A Çengel, (2015) Thermodynamics: An Engineering Approach, McGraw-Hill." 

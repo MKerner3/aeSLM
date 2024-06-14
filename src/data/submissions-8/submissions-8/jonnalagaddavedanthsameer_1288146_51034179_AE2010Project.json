@@ -38,34 +38,7 @@
 {
     "question": "The Merlin Engine by SpaceX is the most reliable rocket engine ever and is the engine for the Falcon 9 launch vehicle. Calculate the exit area of the nozzle given the following values: Expansion Ratio = 16, Cp = 6.0755 kJ/(kg * K), gamma = 1.13, mdot = 266 kg/s, T_0 = 2958 K, and P_0 = 9.7 MPa. You can assume that the flow is choked at the throat."
     "answer":{
-        "code": """
-        import numpy as np
-
-        gamma = 1.4 # specific heat ratio
-        exp_rat = 16 # expansion ratio
-        Cp = 6.0755 # Cp at throat, [kJ/kg * K]
-        P_0 = 9.7 * 1000000 # inlet stagnation pressure [Pa]
-        mdot = 266 # mass flow rate [kg/s]
-        T_0 = 2958 # inlet stagnation temperature [K]
-
-        # Using a gas flow table, find non-dimensional mass flow rate at M = 1
-        ndmfr = 1.2810
-
-        # Solve for Throat Area
-        A_t = (mdot * np.sqrt(Cp * T_0))/(P_0 * ndmfr)
-
-        # Solve for Exit Area
-        A_e = A_t * exp_rat
-
-        print("Exit Area:", A_e, "m^2")
-        ""  "
-
-        } 
-},
-{
-    "question": "You have an incompressible fluid flowing through a venturi. There are pressure transducers before the inlet and at the throat of the venturi which measure 800000 and 850000 Pa respectively. Calculate the throat velocity if the inlet velocity is 20 m/s. The fluid density is 786 kg/m^3."
-    "answer":{
-    "code": """
+        "code": "\n        import numpy as np\n\n        gamma = 1.4 # specific heat ratio\n        exp_rat = 16 # expansion ratio\n        Cp = 6.0755 # Cp at throat, [kJ/kg * K]\n        P_0 = 9.7 * 1000000 # inlet stagnation pressure [Pa]\n        mdot = 266 # mass flow rate [kg/s]\n        T_0 = 2958 # inlet stagnation temperature [K]\n\n        # Using a gas flow table, find non-dimensional mass flow rate at M = 1\n        ndmfr = 1.2810\n\n        # Solve for Throat Area\n        A_t = (mdot * np.sqrt(Cp * T_0))/(P_0 * ndmfr)\n\n        # Solve for Exit Area\n        A_e = A_t * exp_rat\n\n        print("Exit Area:", A_e, "m^2")\n        ""  "\n\n        } \n},\n{\n    "question": "You have an incompressible fluid flowing through a venturi. There are pressure transducers before the inlet and at the throat of the venturi which measure 800000 and 850000 Pa respectively. Calculate the throat velocity if the inlet velocity is 20 m/s. The fluid density is 786 kg/m^3."\n    "answer":{\n    "code": "
     import numpy as np
 
     rho = 786 # density [kg/m^3]
@@ -77,15 +50,7 @@
     v2 = np.sqrt(((P1 - P2) + 0.5 * rho * v1**2)*(2/rho))
 
     print("Throat Velocity", v2, "m/s")
-        """
-
-        } 
-},
-{
-    "question": "A pitot static probe measures ambient pressure as 101,325 Pa and static pressure inside the probe as 89,000 Pa. If air density is 1.25 kg/m^3, calculate the airplane velocity. Assume no wind.
-    "
-    "answer":{
-    "code": """
+        "\n\n        } \n},\n{\n    "question": "A pitot static probe measures ambient pressure as 101,325 Pa and static pressure inside the probe as 89,000 Pa. If air density is 1.25 kg/m^3, calculate the airplane velocity. Assume no wind.\n    "\n    "answer":{\n    "code": "
     import numpy as np
 
     P1 = 101325 # air pressure [Pa]
@@ -96,14 +61,7 @@
     v = np.sqrt((2 * (P1 - P2))/rho)
 
     print("Airplane Velocity", v, "m/s")
-        """
-
-        } 
-},
-{
-    "question": "You’re designing a tube for gas to flow through to pressurize a tank. The gas is moving at M = 0.45 and is therefore compressible. The tube diameter is 0.25” and has a friction factor equal to. Assume adiabatic. Calculate the tube length needed to choke your flow."
-    "answer":{
-    "code": """
+        "\n\n        } \n},\n{\n    "question": "You’re designing a tube for gas to flow through to pressurize a tank. The gas is moving at M = 0.45 and is therefore compressible. The tube diameter is 0.25” and has a friction factor equal to. Assume adiabatic. Calculate the tube length needed to choke your flow."\n    "answer":{\n    "code": "
     import numpy as np
 
     M = 0.45 # mach number
@@ -117,14 +75,7 @@
     Lmax = (ffc * D)/(4 * Cf)
 
     print("Tube Length:", Lmax, "m")
-        """
-
-        } 
-},
-{
-    "question": "You’re designing a system where you want to greatly increase temperature. You do this with a normal shock and you want to characterize your temperature rise after your shock. Plot this temperature as a function of mach number. T1 = 3100 K and gamma = 1.13."
-    "answer":{
-    "code": """
+        "\n\n        } \n},\n{\n    "question": "You’re designing a system where you want to greatly increase temperature. You do this with a normal shock and you want to characterize your temperature rise after your shock. Plot this temperature as a function of mach number. T1 = 3100 K and gamma = 1.13."\n    "answer":{\n    "code": "
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -143,14 +94,7 @@
     plt.ylabel("Temperature [K]")
     plt.title("Mach Number vs. Temperature [K]")
     plt.show()
-        """
-
-        } 
-},
-{
-    "question": "You’re designing a kerosene line that is 6 ft long and can be minimum 0.25”. It goes directly from your main fuel valve to your combustion chamber in a rocket engine so you want to minimize your pressure drop across this tube to less than 20 psid. Plot different tube sizes vs. pressure drop and find the smallest tube. You can assume your flow is laminar. Dynamic viscosity = 1.92E-3 kg/m*s, rho = 800 kg/m^3, and mdot = 7 kg/s."
-    "answer":{
-    "code": """
+        "\n\n        } \n},\n{\n    "question": "You’re designing a kerosene line that is 6 ft long and can be minimum 0.25”. It goes directly from your main fuel valve to your combustion chamber in a rocket engine so you want to minimize your pressure drop across this tube to less than 20 psid. Plot different tube sizes vs. pressure drop and find the smallest tube. You can assume your flow is laminar. Dynamic viscosity = 1.92E-3 kg/m*s, rho = 800 kg/m^3, and mdot = 7 kg/s."\n    "answer":{\n    "code": "
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -176,14 +120,7 @@
     plt.ylabel("Pressure Drop [psi]")
     plt.title("Tube Diameter [in] vs. Pressure Drop [psi]")
     plt.show()
-        """
-
-        } 
-},
-{
-    "question": "The BE-3 turbopump uses 8.9 MW of heat and does 6.9 MW of work on its propellants. Calculate the efficiency of this turbopump.	"
-    "answer":{
-    "code": """
+        "\n\n        } \n},\n{\n    "question": "The BE-3 turbopump uses 8.9 MW of heat and does 6.9 MW of work on its propellants. Calculate the efficiency of this turbopump.	"\n    "answer":{\n    "code": "
     import numpy as np
     import matplotlib.pyplot as plt
 

@@ -2,18 +2,7 @@
 {
     "question": "Assume a submarine on a different planet is at a depth of 300m, and takes a pressure reading of 6450 kPa. Given that the acceleration due to gravity is 20 m/s, and the ocean density is 820 kg/m^3, find the atmospheric pressure on this planet.",
     "answer": {
-        "code": """
-h = 300 # Depth (m)
-rho = 820 # Density (kg/m^3)
-g = 20 # Acceleration due to gravity (m/s^2)
-p = 6450000 # Total Pressure (Pa)
-
-# Rearrangement of fluid pressure equation
-pA = p - rho * g * h
-pA = pA / 1000
-
-print("Atmospheric Pressure: %f kPa" % pA)
-        """,
+        "code": "\nh = 300 # Depth (m)\nrho = 820 # Density (kg/m^3)\ng = 20 # Acceleration due to gravity (m/s^2)\np = 6450000 # Total Pressure (Pa)\n\n# Rearrangement of fluid pressure equation\npA = p - rho * g * h\npA = pA / 1000\n\nprint("Atmospheric Pressure: %f kPa" % pA)\n        ",
         "explanation": "This code calculates atmospheric pressure by using a rearrangement of the fluid pressure equation at a certain depth. The equation used is p_i = p_a + rho * g * h, where 'p_i' is total pressure, 'p_a' is atmospheric pressure, 'rho' is density, 'g' is acceleration due to gravity, and 'h' is depth."
     }
 
@@ -21,17 +10,7 @@ print("Atmospheric Pressure: %f kPa" % pA)
 {
     "question": "We are given an oil pipeline for which we observe a pressure loss of 1kPa over a 4km section. The pipeline has a constant radius of 0.5m, and the oil flows at a velocity of 3 m/s. Calculate the viscosity of the oil.",
     "answer": {
-        "code": """
-deltaP = 1000 # Change in pressure (Pa)
-L = 4000 # Length of Pipe (m)
-r = 0.5 # Radius of pipe (m)
-V = 3 # Flow velocity (m/s)
-
-# Rearrangement of Hagan-Poiseuille pressure loss equation
-mu = deltaP * r**2 / (8 * V * L)
-
-print("Viscosity of the oil: %f kg/(m*s)" % mu)
-        """,
+        "code": "\ndeltaP = 1000 # Change in pressure (Pa)\nL = 4000 # Length of Pipe (m)\nr = 0.5 # Radius of pipe (m)\nV = 3 # Flow velocity (m/s)\n\n# Rearrangement of Hagan-Poiseuille pressure loss equation\nmu = deltaP * r**2 / (8 * V * L)\n\nprint("Viscosity of the oil: %f kg/(m*s)" % mu)\n        ",
         "explanation": "This code calculates the viscosity of a fluid by using a rearrangement of the hagan-poiseuille pressure difference equation. The equation is delta-p = 8 * mu * V * L / R^2, where 'delta-p' is the change in pressure, 'mu' is the viscosity, 'V' is the velocity, and 'L' is the length of pipe."
     }
 
@@ -39,15 +18,7 @@ print("Viscosity of the oil: %f kg/(m*s)" % mu)
 {
     "question": "We have a heat engine that taps geothermal reservoirs in the earth's crust to generate electricity. If the engine has access to a heat source of 150 degrees celsius, and the atmospheric temperature is 20 degrees celsius, calculate the maximum efficiency of the engine.",
     "answer": {
-        "code": """
-t1 = 150 + 273.15 # Heat source temperature (Kelvin)
-t2 = 20 + 273.15 # Atmospheric Temperature (Kelvin)
-
-# Maximum thermal efficiency equation
-eta = 1 - (t2 / t1)
-
-print("Maximum efficiency: %f" % eta)
-        """,
+        "code": "\nt1 = 150 + 273.15 # Heat source temperature (Kelvin)\nt2 = 20 + 273.15 # Atmospheric Temperature (Kelvin)\n\n# Maximum thermal efficiency equation\neta = 1 - (t2 / t1)\n\nprint("Maximum efficiency: %f" % eta)\n        ",
         "explanation": "This code calculates the maximum efficiency of a heat engine by using the maximal efficiency equation. Note that the process must be reversible to reach this efficiency (called Carnot Efficiency). The equation used is eta = 1 - T2/T1, where eta is the efficiency, T2 is the external temperature, and T1 is the source's temperature."
     }
 
@@ -55,16 +26,7 @@ print("Maximum efficiency: %f" % eta)
 {
     "question": "We are given an ideal gas at a pressure of 10kPa, and at a temperature of -20 degrees celsius. Calculate the density of the gas. Assume the gas has a molar mass of 4 g/mol, and note that our specific ideal gas constant is R = 2.1.",
     "answer": {
-        "code": """
-p = 10000 # Pressure (Pa)
-R = 2.1 # Ideal gas constant (J/(g * K))
-T = -20 + 273.15 # Temperature (Kelvin)
-
-# Rearranged ideal gas equation
-rho = p / (R * T)
-
-print("Gas Density: %f g/m^3" % rho)
-        """,
+        "code": "\np = 10000 # Pressure (Pa)\nR = 2.1 # Ideal gas constant (J/(g * K))\nT = -20 + 273.15 # Temperature (Kelvin)\n\n# Rearranged ideal gas equation\nrho = p / (R * T)\n\nprint("Gas Density: %f g/m^3" % rho)\n        ",
         "explanation": "This code calculates the density of an ideal gas by using a rearranged form of one of the ideal gas equations. The ideal gas equation used is p = rho * R * T, where 'p' is the pressure, 'rho' is the density, 'R' is the gas constant, and 'T' is the temperature."
     }
 
@@ -72,16 +34,7 @@ print("Gas Density: %f g/m^3" % rho)
 {
     "question": "During open heart surgery, surgeons use a cardiac bypass machine which conducts shaft work on the blood to continue circulation. Given that our shaft power is 20W, the density of blood is 1050 kg/m^3, and the volumetric flow rate is 0.2 kg/s, calculate the shaft work conducted by the bypass machine.",
     "answer": {
-        "code": """
-P = 20 # Power (W)
-rho = 1050 # Density (kg/m^3)
-Q = 0.2 # Volumetric Flow Rate (kg/s)
-
-# Rearranged shaft power equation
-w = P / (rho * Q)
-
-print("Shaft Work: %f J" % w)
-        """,
+        "code": "\nP = 20 # Power (W)\nrho = 1050 # Density (kg/m^3)\nQ = 0.2 # Volumetric Flow Rate (kg/s)\n\n# Rearranged shaft power equation\nw = P / (rho * Q)\n\nprint("Shaft Work: %f J" % w)\n        ",
         "explanation": "This code calculates shaft work by using a rearranged form of the equation for shaft power. The equation used is P = rho * Q * w, where 'P' is shaft power, 'rho' is density, 'Q' is volumetric flow rate, and 'w' is shaft work."
     }
 
@@ -89,19 +42,7 @@ print("Shaft Work: %f J" % w)
 {
     "question": "We have a pitot tube attached to an airplane that outputs a stagnation pressure of 35kPa and a static pressure of 19 kPa. Given a gamma value of 1.4, calculate the aircraft's mach number.",
     "answer": {
-        "code": """
-import numpy as np
-
-p0 = 35000 # Stagnation Pressure (Pa)
-p = 19000 # Static Pressure (Pa)
-gamma = 1.4 # Heat Capacity Ratio
-
-# Pitot-Static Tube Mach Number Equation
-M_Squared = 2/(gamma - 1) * ((p0/p)**((gamma - 1)/gamma) - 1)
-M = np.sqrt(M_Squared)
-
-print("Mach Number: %f" % M)
-        """,
+        "code": "\nimport numpy as np\n\np0 = 35000 # Stagnation Pressure (Pa)\np = 19000 # Static Pressure (Pa)\ngamma = 1.4 # Heat Capacity Ratio\n\n# Pitot-Static Tube Mach Number Equation\nM_Squared = 2/(gamma - 1) * ((p0/p)**((gamma - 1)/gamma) - 1)\nM = np.sqrt(M_Squared)\n\nprint("Mach Number: %f" % M)\n        ",
         "explanation": "This code calculates the mach number by using the pitot-static equation which relates stagnation and static pressure to mach number. The equation is M^2 = 2/(gamma - 1) * ((p0/p)**((gamma - 1)/gamma) - 1), where 'M' is mach number, 'gamma' is the heat capacity ratio, 'p0' is the stagnation pressure, and 'p' is the static pressure."
     }
 
@@ -109,20 +50,7 @@ print("Mach Number: %f" % M)
 {
     "question": "We have a supersonic aircraft in a wind tunnel. The temperature inside the tunnel is -10 degrees celsius, and the airspeed is approximately 650 m/s. Assuming a gamma value of 1.4 and an R value of 287, calculate the mach angle.",
     "answer": {
-        "code": """
-import numpy as np
-
-T = -10 + 273.15 # Temperature (Kelvin)
-gamma = 1.4 # Heat Capacity Ratio
-R = 287 # Ideal gas constant
-v = 650 # Velocity (m/s)
-
-# Mach Cones and Mach angle equation
-a = np.sqrt(gamma * R * T)
-mu = np.arcsin(a / v)
-
-print("Mach Angle: %f radians" % mu)
-        """,
+        "code": "\nimport numpy as np\n\nT = -10 + 273.15 # Temperature (Kelvin)\ngamma = 1.4 # Heat Capacity Ratio\nR = 287 # Ideal gas constant\nv = 650 # Velocity (m/s)\n\n# Mach Cones and Mach angle equation\na = np.sqrt(gamma * R * T)\nmu = np.arcsin(a / v)\n\nprint("Mach Angle: %f radians" % mu)\n        ",
         "explanation": "This code calculates the mach angle by using the equation for calculating mach angle using mach cones. The equation is mu = sin^-1(at/vt), where 'mu' is the mach angle, 'a' is the speed of sound, 't' is the time elapsed (note that this term cancels), and 'v' is the velocity. We also calculate 'a' with the equation a = sqrt(gamma * R * T), where 'a' is the speed of sound, 'gamma' is the heat capacity ratio, 'R' is the ideal gas constant, and 'T' is the temperature."
     }
 
@@ -172,25 +100,7 @@ print("Mach Angle: %f radians" % mu)
 {
     "question": "Given a heat engine with a heat transfer value of 100 J between the heat reservoir and itself (Q1), graph the relationship between efficiency and the heat transfer between the engine and the cold reservoir (Q2).",
     "answer": {
-        "code": """
-import matplotlib.pyplot as plt
-import numpy as np
-
-q1 = 100 # Heat Reservoir Heat Transfer (J)
-q2 = np.linspace(0, 100, 500) # Cold Reservoir Heat Transfer Values (J)
-
-x = q2
-y = 1 - x / q1 # equation for efficiency
-
-fig = plt.figure(figsize = (5, 5))
-
-plt.plot(x, y)
-plt.xlabel('Q2 (Joules)')
-plt.ylabel('Efficiency')
-plt.title('Heat Engine Efficiency')
-
-plt.show()
-        """,
+        "code": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nq1 = 100 # Heat Reservoir Heat Transfer (J)\nq2 = np.linspace(0, 100, 500) # Cold Reservoir Heat Transfer Values (J)\n\nx = q2\ny = 1 - x / q1 # equation for efficiency\n\nfig = plt.figure(figsize = (5, 5))\n\nplt.plot(x, y)\nplt.xlabel('Q2 (Joules)')\nplt.ylabel('Efficiency')\nplt.title('Heat Engine Efficiency')\n\nplt.show()\n        ",
         "explanation": "We can graph this relationship by simply using the equation for efficiency. The equation is eta = 1 - Q2/Q1, where 'eta' is efficiency, 'Q2' is the heat transfer between the engine and cold reservoir, and 'Q1' is the heat transfer between the heat reservoir and engine."
     }
 
@@ -198,29 +108,7 @@ plt.show()
 {
     "question": "Given a pipe that contains supersonic Fanno flow, graph the relationship between mach number and the skin friction coefficient of the pipe. Assume that the pipe's diameter is 0.5m, the length is 30m, and the gamma value is 1.4.",
     "answer": {
-        "code": """
-import matplotlib.pyplot as plt
-import numpy as np
-
-D = 0.5 # Diameter (m)
-L = 30 # Length (m)
-gamma = 1.4 # Heat Capacity Ratio
-M1 = np.linspace(1.0, 5.0, 500) # Mach Numbers in the supersonic regime
-
-rightSide = (1 - M1**2)/(gamma * M1**2) + (gamma + 1)/(2 * gamma) * np.log((((gamma + 1) / 2) * M1**2) / (1 + ((gamma - 1) / 2) * M1**2)) # Right hand side of skin friction equation
-
-x = M1
-y = rightSide * D / (4 * L) # Isolate skin friction coefficient in equation
-
-fig = plt.figure(figsize = (7, 5))
-
-plt.plot(x, y)
-plt.xlabel('Mach Number')
-plt.ylabel('Skin Friction Coefficient')
-plt.title('Skin Friction Coefficient vs Mach Number')
-
-plt.show()
-        """,
+        "code": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nD = 0.5 # Diameter (m)\nL = 30 # Length (m)\ngamma = 1.4 # Heat Capacity Ratio\nM1 = np.linspace(1.0, 5.0, 500) # Mach Numbers in the supersonic regime\n\nrightSide = (1 - M1**2)/(gamma * M1**2) + (gamma + 1)/(2 * gamma) * np.log((((gamma + 1) / 2) * M1**2) / (1 + ((gamma - 1) / 2) * M1**2)) # Right hand side of skin friction equation\n\nx = M1\ny = rightSide * D / (4 * L) # Isolate skin friction coefficient in equation\n\nfig = plt.figure(figsize = (7, 5))\n\nplt.plot(x, y)\nplt.xlabel('Mach Number')\nplt.ylabel('Skin Friction Coefficient')\nplt.title('Skin Friction Coefficient vs Mach Number')\n\nplt.show()\n        ",
         "explanation": "We can graph this relationship by using a rearranged form of the equation for the skin friction coefficient. The equation used is (4 * c_f * L)/D = (1 - M^2)/(gamma * M^2) + (gamma + 1)/(2 * gamma) * np.log((((gamma + 1) / 2) * M^2) / (1 + ((gamma - 1) / 2) * M^2)), where 'c_f' is the skin friction coefficient, 'L' is the pipe length, 'D' is the pipe diameter, 'gamma' is the heat capacity ratio, and 'M' is the mach number."
     }
 

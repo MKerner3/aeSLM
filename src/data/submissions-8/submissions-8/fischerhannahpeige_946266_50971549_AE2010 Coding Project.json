@@ -2,17 +2,7 @@
 {
   "question": "Consider an airfoil in a flow with a freestream velocity of 150 ft/s. The velocity at a given point on the airfoil is 225 ft/s. Calculate the pressure coefficient at this point.",
   "answer": {
-	"code": """
-import numpy as np
-
-v = 225  # velocity (ft/s)
-vinf = 125  # freestream velocity (ft/s)
-
-# Apply the pressure coefficient equation (Cp = 1 - (v/vinf)^2)
-Cp = 1 - (v/vinf)^2
-
-print("Pressure Coefficient:", Cp)
-      """,
+	"code": "\nimport numpy as np\n\nv = 225  # velocity (ft/s)\nvinf = 125  # freestream velocity (ft/s)\n\n# Apply the pressure coefficient equation (Cp = 1 - (v/vinf)^2)\nCp = 1 - (v/vinf)^2\n\nprint("Pressure Coefficient:", Cp)\n      ",
       "explanation": "Assuming the flow is inviscid and steady (incompressible), Bernoulli's equation can be simplified to obtain the pressure coefficient equation. Bernoulli's equation comes from the principle that states an increase in the speed of a fluid occurs simultaneously with a decrease in pressure or a decrease in the fluid's potential energy. The pressure coefficient descibes the relative pressures throughout a flow field. This formula shows this by dividing the pressure gauge by the heat introduced by the surroundings. This can be simplified to obtain the coefficient of pressure.
 (1) Cp = (p-pinf)/qinf
 (2) p-pinf = 1/2*rho*((vinf)^2-v^2)
@@ -27,18 +17,7 @@ Plugging equations (2) & (3) into (1) and simplifying gets Cp = 1 - (v/vinf)^2. 
 {
   "question": "Consider a P-35 cruising at a standard altitude of 4 km. The pressure sensed by the Pitot tube on its right wing is 6.7 × 104 N/m2. At what velocity is the P-35 flying?",
   "answer": {
-	"code": """
-import numpy as np
-
-p0 = 6.7 x 10^4 # freestream static pressure (N/m^2)
-p1 = 6.166 x 10^4  # pressure (N/m^2)
-rho = 0.81935  # freestream static density (kg/m^3)
-
-# Apply a simplified Bernoulli's equation (v1 = sqrt((2(p0-p1)/rho)
-v1 = sqrt(2(p0-p1)/rho)
-
-print("Velocity:", v1, "m/s")
-      """,
+	"code": "\nimport numpy as np\n\np0 = 6.7 x 10^4 # freestream static pressure (N/m^2)\np1 = 6.166 x 10^4  # pressure (N/m^2)\nrho = 0.81935  # freestream static density (kg/m^3)\n\n# Apply a simplified Bernoulli's equation (v1 = sqrt((2(p0-p1)/rho)\nv1 = sqrt(2(p0-p1)/rho)\n\nprint("Velocity:", v1, "m/s")\n      ",
       "explanation": "Look at the standard atmosphere tables for altitude 4 km. Find the corresponding pressure and density. Assuming the flow is inviscid and steady (incompressible), then Bernoulli's equation can be simplified to obtain the observed velocity. Bernoulli's equation is used to show the pressure and velocity relationship within a steady flow. 
 pa + 1/2*rho*(va)^2 = pb + 1/2*rho*(vb)^2
 p1 + 1/2*rho*(v1)^2 = p0 + 0
@@ -51,19 +30,7 @@ v1 = sqrt((2(p0-p1)/rho)",
 {
   "question": "Consider the inviscid, incompressible flow of air along a streamline. The air density along the streamline is 0.002377 slug/ft3, which is standard atmospheric density at sea level. At point 1 on the streamline, the pressure and velocity are 2116 lb/ft2 and 10 ft/s, respectively. Further downstream, at point 2 on the streamline, the velocity is 190 ft/s. Calculate the pressure at point 2. What can you say about the relative change in pressure from point 1 to point 2 compared to the corresponding change in velocity?"
   "answer":
-	"code": """
-import numpy as np
-
-p1 = 2116  # pressure at point 1 (lb/ft^2)
-rho = 10  # air density (slug/ft^3)
-v1 = 10  # velocity at point 1 (ft/s)
-v2 = 190  # velocity at point 2 (ft/s)
-
-# Apply Bernoulli's equation (p1 + 1/2*rho*(v1)^2 = p2 + 1/2*rho*(v2)^2)
-p2 = p1 + 1/2*rho*((v1)^2 - (v2)^2)
-
-print("Pressure at point 2:", p2, "lb/ft^2")
-      """,
+	"code": "\nimport numpy as np\n\np1 = 2116  # pressure at point 1 (lb/ft^2)\nrho = 10  # air density (slug/ft^3)\nv1 = 10  # velocity at point 1 (ft/s)\nv2 = 190  # velocity at point 2 (ft/s)\n\n# Apply Bernoulli's equation (p1 + 1/2*rho*(v1)^2 = p2 + 1/2*rho*(v2)^2)\np2 = p1 + 1/2*rho*((v1)^2 - (v2)^2)\n\nprint("Pressure at point 2:", p2, "lb/ft^2")\n      ",
       "explanation": "Using Bernoulli's equation, you can rearrange the formula to get the pressure at point 2 in the steady incompressible flow.
 p1 + 1/2*rho*(v1)^2 = p2 + 1/2*rho*(v2)^2
 p2 = p2 + 1/2*rho*(v1)^2 - 1/2*rho*(v2)^2
@@ -92,34 +59,13 @@ p2 = p1 + 1/2*rho*((v1)^2 - (v2)^2)",
 {
   "question": "Consider a room with a rectangular floor that is 5 m by 7 m, and a 3.3 m high ceiling. The air pressure and temperature in the room are 1 atm and 25◦C, respectively. Calculate the internal energy and the enthalpy of the air in the room."
   "answer":
-	"code": """
-import numpy as np
-
-p = 1.01 x 10^5  # pressure (N/m^2)
-T = 298  # temperature (K)
-R = 287  # gas constant (ft/s)
-v = 5*7*3.3  # volume (m^3)
-gamma = 1.4  # specific heat ratio of gas
-
-# Apply ideal gas relation (rho = p/(R*T))
-rho = p/(R*T)
-
-print("Density:", rho, "kg/m^2")
-      """,
+	"code": "\nimport numpy as np\n\np = 1.01 x 10^5  # pressure (N/m^2)\nT = 298  # temperature (K)\nR = 287  # gas constant (ft/s)\nv = 5*7*3.3  # volume (m^3)\ngamma = 1.4  # specific heat ratio of gas\n\n# Apply ideal gas relation (rho = p/(R*T))\nrho = p/(R*T)\n\nprint("Density:", rho, "kg/m^2")\n      ",
 
 # Apply mass formula (m = rho*v)
 m = rho*v
 
 print("Mass:", m, "kg")
-      """,
-
-# Apply specific heat at constant volume formula (e = cv*T)
-cv = R/(gamma-1)
-e = cv*T
-E = m*e
-
-print("Internal Energy:", E, "joule")
-      """,
+      ",\n\n# Apply specific heat at constant volume formula (e = cv*T)\ncv = R/(gamma-1)\ne = cv*T\nE = m*e\n\nprint("Internal Energy:", E, "joule")\n      ",
 
 # Apply specific heat at constant pressure formula (h = cp*T)
 cp = (gamma*R)/(gamma-1)
@@ -127,17 +73,7 @@ h = cp*T
 H = m*h
 
 print("Enthalpy:", H, "joule")
-      """,
-      "explanation": "Because of perfecft gas relations, we are able to relate pressure, the ideal gas constant, and temperature to get density. With the density, you can get the mass by multiplying density by the velocity. Using the specific heat capacities and mass, you are able to calculate the general internal energy and enthalpy. We can use these relationships by utilizing the 1st law of thermodynamics. It is defined by the law of conservation of energy (DeltaU = Q - W). The specific heat capacities are derived from this fundamental law.",
-      "references": [
-          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
-      ]
-  }
-},
-{
-  "question": "Consider a Boeing 747 flying at a standard altitude of 36,000 ft. The pressure at a point on the wing is 400 lb/ft2. Assuming isentropic flow over the wing, calculate the temperature at this point."
-  "answer":
-	"code": """
+      ",\n      "explanation": "Because of perfecft gas relations, we are able to relate pressure, the ideal gas constant, and temperature to get density. With the density, you can get the mass by multiplying density by the velocity. Using the specific heat capacities and mass, you are able to calculate the general internal energy and enthalpy. We can use these relationships by utilizing the 1st law of thermodynamics. It is defined by the law of conservation of energy (DeltaU = Q - W). The specific heat capacities are derived from this fundamental law.",\n      "references": [\n          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"\n      ]\n  }\n},\n{\n  "question": "Consider a Boeing 747 flying at a standard altitude of 36,000 ft. The pressure at a point on the wing is 400 lb/ft2. Assuming isentropic flow over the wing, calculate the temperature at this point."\n  "answer":\n	"code": "
 import numpy as np
 
 p = 400  # pressure at standard altitude (lb/ft^2)
@@ -149,25 +85,7 @@ gamma = 1.4  # specific heat ratio of gas
 T = Tinf*(p/pinf)^((gamma-1)/gamma)
 
 print("Temperature at standard altitude:", T, "◦R")
-      """,
-      "explanation": "Using an isentropic relation relating pressure and temperature, the temperature at standard atmosphere could be calculated. This assumes that the flow is isentropic meaning that it must be adiabatic and reversible. To use these relations, you must look at the standard altitude tables to find the static pressure and temperature at that altitude. Then plug the values into the formula that solves for temperature.",
-      "references": [
-          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
-      ]
-  }
-},
-{
-  "question": "Does a gas do any work when it expands adiabatically? If so, what is the source of the energy needed to do this work?"
-  "answer": When a gas expands adiabatically (meaning no heat is exchanged with the surroundings), the energy for the work done on the surroundings comes from the internal energy of the gas itself. The internal energy decreases as it does work on the surroundings, resulting in a decrease in the gas's temperature."
-},
-{
-  "question": "Are all gases considered as compressible fluids? Are all gas flows considered to be compressible?"
-  "answer": All gases are considered as compressible fluids but not all gas flows are considered to be compressible. For Mach numbers less than 0.3, gases are considered incompressible as the density change in the fluid is insignificant. However, gases are all compressible because most of the volume of a gas is composed of the large amounts of empty space between the gas particles. This means that depending on the container the gas expands and contracts."
-},
-{
-  "question": "Consider an airplane flying at a velocity of 250 m/s. Calculate its Mach number if it is flying at a standard altitude of (a) sea level, (b) 5 km, (c) 10 km."
-  "answer":
-	"code": """
+      ",\n      "explanation": "Using an isentropic relation relating pressure and temperature, the temperature at standard atmosphere could be calculated. This assumes that the flow is isentropic meaning that it must be adiabatic and reversible. To use these relations, you must look at the standard altitude tables to find the static pressure and temperature at that altitude. Then plug the values into the formula that solves for temperature.",\n      "references": [\n          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"\n      ]\n  }\n},\n{\n  "question": "Does a gas do any work when it expands adiabatically? If so, what is the source of the energy needed to do this work?"\n  "answer": When a gas expands adiabatically (meaning no heat is exchanged with the surroundings), the energy for the work done on the surroundings comes from the internal energy of the gas itself. The internal energy decreases as it does work on the surroundings, resulting in a decrease in the gas's temperature."\n},\n{\n  "question": "Are all gases considered as compressible fluids? Are all gas flows considered to be compressible?"\n  "answer": All gases are considered as compressible fluids but not all gas flows are considered to be compressible. For Mach numbers less than 0.3, gases are considered incompressible as the density change in the fluid is insignificant. However, gases are all compressible because most of the volume of a gas is composed of the large amounts of empty space between the gas particles. This means that depending on the container the gas expands and contracts."\n},\n{\n  "question": "Consider an airplane flying at a velocity of 250 m/s. Calculate its Mach number if it is flying at a standard altitude of (a) sea level, (b) 5 km, (c) 10 km."\n  "answer":\n	"code": "
 import numpy as np
 
 R = 287  # ideal gas constant (lb/ft^2)
@@ -186,17 +104,7 @@ a = sqrt(gamma*R*T3)
 M3 = v/a
 
 print("Mach numbers:", M1, M2, M3)
-      """,
-      "explanation": "Look at standard altitude tables at 5 km and 10 km to get specific temperatures first. Then, using the derived formula for the speed of sound, you can obtain the specific speed of sound at each altitude depending on the temperature of the air at that altitude. Then you can calculate the mach number by using the velocity and the speeds of sound you just calculated. To get to this simplified version of the mach number formula, by combining the conservation of momentum equation with the isentropic flow relation which ultimately yields M = v/a.",
-      "references": [
-          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"
-      ]
-  }
-}
-{
-  "question": "Consider an oblique shock wave with a wave angle of 30◦. The upstream flow Mach number is 2.4. Calculate the deflection angle of the flow, the pressure and temperature ratios across the shock wave, and the Mach number behind the wave."
-  "answer":
-	"code": """
+      ",\n      "explanation": "Look at standard altitude tables at 5 km and 10 km to get specific temperatures first. Then, using the derived formula for the speed of sound, you can obtain the specific speed of sound at each altitude depending on the temperature of the air at that altitude. Then you can calculate the mach number by using the velocity and the speeds of sound you just calculated. To get to this simplified version of the mach number formula, by combining the conservation of momentum equation with the isentropic flow relation which ultimately yields M = v/a.",\n      "references": [\n          "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hil1"\n      ]\n  }\n}\n{\n  "question": "Consider an oblique shock wave with a wave angle of 30◦. The upstream flow Mach number is 2.4. Calculate the deflection angle of the flow, the pressure and temperature ratios across the shock wave, and the Mach number behind the wave."\n  "answer":\n	"code": "
 import numpy as np
 
 M1 = 2.4  # upstream flow mach number

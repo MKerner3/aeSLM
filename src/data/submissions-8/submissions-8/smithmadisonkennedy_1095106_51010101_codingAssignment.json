@@ -38,113 +38,35 @@
     {
         "question": "Consider an airfoil at standard sea level conditions with a freestream velocity of 33 m/s. At a certain point on the airfoil, the pressure is 0.3*10^5 N/m^2. First derive Bernoulli's equation from the momentum principle then find the velocity at this point."
         "answer": {
-           "code": """
-          import numpy as np
-
-          pInf = 101000 # standard sea level in N/m^2
-          rho = 1.23 # standard sea level in kg/m^3
-          vInf = 33 # m/s 
-          p = 30000 # N/m^3
-          # use bernoulli's equation (pInf + .5*rho*vInf^2 = p + .5*rho*v^2) and simplify to isolate v
-          v = np.sqrt((2 * (pInf-p) / rho)+ 33*33)
-
-          print("velocity at this point is:", str(v), "m/s")
-               """,
+           "code": "\n          import numpy as np\n\n          pInf = 101000 # standard sea level in N/m^2\n          rho = 1.23 # standard sea level in kg/m^3\n          vInf = 33 # m/s \n          p = 30000 # N/m^3\n          # use bernoulli's equation (pInf + .5*rho*vInf^2 = p + .5*rho*v^2) and simplify to isolate v\n          v = np.sqrt((2 * (pInf-p) / rho)+ 33*33)\n\n          print("velocity at this point is:", str(v), "m/s")\n               ",
     }
     },
     {
        "question": "Consider the inviscid, incompressible flow of air along a streamline. The air density along the streamline is 0.002456 slug/ft^3. At the point 1 on the streamline, the pressure and velocity are 2010 lb/ft^2 and 10 ft/s, respectively. Further downstream, at point 2 on the streamline, the velocity is 180 ft/s. Find the pressure at point 2. What can be said about the change in pressure from point 1 to point 2 compared to the corresponding change in velocity. "
        "answer": {
-          "code": """
-         import numpy as np
-
-         # we can use bernoulli's equation since the flow is steady, incompressible, and inviscid
-         p_1 = 2010 # lb/ft^2
-         rho = 0.002345 # slug/ft^3
-         v_1 = 10 # m/s
-         v_2 = 180 # m/s
-         # bernoulli's (p_1 + .5*rho*v_1^2 = p_2 + .5*rho*v_2^2)
-         p_2 = p_1 + .5*rho*(v_1 * v_1 - v_2 * v_2) # isolate p_2
-         print("the pressure at point 2 is:", str(p_2), "lb/ft^2")
-              """,
+          "code": "\n         import numpy as np\n\n         # we can use bernoulli's equation since the flow is steady, incompressible, and inviscid\n         p_1 = 2010 # lb/ft^2\n         rho = 0.002345 # slug/ft^3\n         v_1 = 10 # m/s\n         v_2 = 180 # m/s\n         # bernoulli's (p_1 + .5*rho*v_1^2 = p_2 + .5*rho*v_2^2)\n         p_2 = p_1 + .5*rho*(v_1 * v_1 - v_2 * v_2) # isolate p_2\n         print("the pressure at point 2 is:", str(p_2), "lb/ft^2")\n              ",
               "explanation": "Velocity increases from point 1 to point 2 while pressure decreases which aligns with bernoulli's equation"
         }
     },
     {
        "question": "Find the mass and density of 3 liters of air at 1.033 bar and 33 degrees celcius given that the gas constant is 287 J/kg*K""
        "answer": {
-          "code": """
-         import numpy as np
-
-                       # assume ideal gas 
-         R = 287 # 287 J/kg*K
-         p = 1.033 # bar
-         T = 33 + 273.15 # convert celcius to Kelvin
-         v = 3 * (0.001 / 1) # convert liters to m^3
-         m = (p * v) / (R * T) # manipulated form of ideal gas law equation in kg
-         rho = m / v # calcuates density in kg/m^3
-         print("The mass of the air is:", m, "kg. The density of the air is:", rho, "kg/m^3.")
-              """,
+          "code": "\n         import numpy as np\n\n                       # assume ideal gas \n         R = 287 # 287 J/kg*K\n         p = 1.033 # bar\n         T = 33 + 273.15 # convert celcius to Kelvin\n         v = 3 * (0.001 / 1) # convert liters to m^3\n         m = (p * v) / (R * T) # manipulated form of ideal gas law equation in kg\n         rho = m / v # calcuates density in kg/m^3\n         print("The mass of the air is:", m, "kg. The density of the air is:", rho, "kg/m^3.")\n              ",
     },
     {
        "question": "calculate the mach number downstream of a shock with the following upstream properites: mach 1 = 1.3, pressure 1 = 93 kPa, and temperature 1 = 333K""
        "answer": {
-          "code": """
-         import numpy as np
-
-         m_1 = 1.3 # mach 1
-         p_1 = 93 # kPa
-         T_1 = 333 # K
-         gamma = 1.4 # assumption 
-                       # we can use the equation m_2^2 = (1+((gamma-1)/2)*m_1^2)/(gamma*(m_1^2)-(gamma-1)/2)
-         m_2 = np.sqrt((1+((gamma-1)/2)*m_1*m_1)/((gamma*m_1*m_1)-(gamma-1)/2))
-         print("mach downstream is:", m_2)
-                                     """,
+          "code": "\n         import numpy as np\n\n         m_1 = 1.3 # mach 1\n         p_1 = 93 # kPa\n         T_1 = 333 # K\n         gamma = 1.4 # assumption \n                       # we can use the equation m_2^2 = (1+((gamma-1)/2)*m_1^2)/(gamma*(m_1^2)-(gamma-1)/2)\n         m_2 = np.sqrt((1+((gamma-1)/2)*m_1*m_1)/((gamma*m_1*m_1)-(gamma-1)/2))\n         print("mach downstream is:", m_2)\n                                     ",
     },
     {
        "question": "Calculate the static temperature and pressure of a flow downstream of a shock with the mach number 1.5, pressure of 200 kPa and temperature of 200 K."
        "answer": {
-          "code": """
-         import numpy as np
-
-         m_1 = 1.5 
-         gamma = 1.4 # assume isentropic
-         T_1 = 200 #K
-         p_1 = 200 #kPa
-         p_2 = ((2*gamma/(gamma+1))*m_1*m_1 - (gamma-1)*(gamma+1))*p_1 # manipulation of continuity, momentum and energy equation for isentropic flow
-         T_2 = ((1+ ((gamma-1)/2)*m_1*m_1) * (((2*gamma)/(gamma-1))*m_1*m_1) - 1)/ (((gamma-1)*(gamma-1))/(2*(gamma-1)*m_1*m_1))*T_1
-         print("The static pressure is:", p_2, "kPa. The static temperatre is:", T_2,"K.")
-                                      """,
+          "code": "\n         import numpy as np\n\n         m_1 = 1.5 \n         gamma = 1.4 # assume isentropic\n         T_1 = 200 #K\n         p_1 = 200 #kPa\n         p_2 = ((2*gamma/(gamma+1))*m_1*m_1 - (gamma-1)*(gamma+1))*p_1 # manipulation of continuity, momentum and energy equation for isentropic flow\n         T_2 = ((1+ ((gamma-1)/2)*m_1*m_1) * (((2*gamma)/(gamma-1))*m_1*m_1) - 1)/ (((gamma-1)*(gamma-1))/(2*(gamma-1)*m_1*m_1))*T_1\n         print("The static pressure is:", p_2, "kPa. The static temperatre is:", T_2,"K.")\n                                      ",
     },
     {
        "question": "At a point in an airflow the temperature is 333 K and the velocity is 3333 m/s. Find the total temperature at this point."
        "answer": {
-          "code": """
-         import numpy as np
-
-         T = 333 # K
-         v = 3333 # m/s
-         gamma = 1.4 # assume isentropic
-         R = 287 # J/kg*K
-                       # we can use the equation h+ v^2/2 = h_0
-                       # we know h = c_p * T so c_p = gamma * R /(gamma - 1)
-                       # putting these equations together we get c_p * T + v^2 / 2 = c_pT_0 
-                       # manipulate to get T_0 = T + (v*v)/(2*c_p) and sub c_p
-         T_0 = T + v*v*(gamma-1)/(2*gamma*R)
-         print("the total temperature is:", T_0, "K.")
-    },
-    {
-       "question": "Find the mach number of an ideal gas travelling at 20 m/s at a temperature of 100 K and define its flow."
-       "answer":
-         import numpy as np
-         gamma = 1.4 # assume isentropic flow
-         v = 20 # m/s
-         T = 100 # K
-         R = 2.87 # gas constant in J/kg*K
-         a = np.sqrt(gamma*R*T) # because this is an ideal gas
-         m = v/a # known mach number equation 
-         print("the mach number is", m, "since m < 1 the flow is subsonic.")
-          "code": """
+          "code": "\n         import numpy as np\n\n         T = 333 # K\n         v = 3333 # m/s\n         gamma = 1.4 # assume isentropic\n         R = 287 # J/kg*K\n                       # we can use the equation h+ v^2/2 = h_0\n                       # we know h = c_p * T so c_p = gamma * R /(gamma - 1)\n                       # putting these equations together we get c_p * T + v^2 / 2 = c_pT_0 \n                       # manipulate to get T_0 = T + (v*v)/(2*c_p) and sub c_p\n         T_0 = T + v*v*(gamma-1)/(2*gamma*R)\n         print("the total temperature is:", T_0, "K.")\n    },\n    {\n       "question": "Find the mach number of an ideal gas travelling at 20 m/s at a temperature of 100 K and define its flow."\n       "answer":\n         import numpy as np\n         gamma = 1.4 # assume isentropic flow\n         v = 20 # m/s\n         T = 100 # K\n         R = 2.87 # gas constant in J/kg*K\n         a = np.sqrt(gamma*R*T) # because this is an ideal gas\n         m = v/a # known mach number equation \n         print("the mach number is", m, "since m < 1 the flow is subsonic.")\n          "code": "
     },
 ]
 

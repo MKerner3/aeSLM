@@ -41,22 +41,7 @@
   {
     "question": "A fluid with a density of 1.125 kg/m^3 travels at 10 m/s through a main, cylindrical pipe with a diameter of 0.25 m that splits into two smaller pipes with a diameter of 0.1 m. The pressure at the end of these smaller pipes is the ambient pressure, 101325 Pa. The pressure upstream of the split is 3 bar and the velocity of the fluid exiting the pipes is 50 m/s. What is the force that the walls of the pipe exert on the fluid?",
     "answer": {
-      "code": """
-  import numpy as np
-
-  rho = 1.125 # Density (kg/m^3)
-  p1 = 300000 # Inlet Pressure (Pa)
-  p2 = 101325 # Outlet Pressure (Pa)
-  A1 = (3.1415/4)*(0.25**2) # Inlet Area (m^2)
-  A2 = (3.1415/4)*(0.1**2) # Outlet Area (m^2)
-  v1 = 10 Inlet velocity (m/s)
-  v2 = 50 Outlet velocity (m/s)
-
-  # Apply Steady Flow Momentum Equation
-  F = (p1*A1) - (p2*A2) - (p2*A2) + (rho*(v2**2)*A2) - (rho*(v1**2)*A1)
-
-  print("Force exerted on the fluid:", F, "N")
-      """,
+      "code": "\n  import numpy as np\n\n  rho = 1.125 # Density (kg/m^3)\n  p1 = 300000 # Inlet Pressure (Pa)\n  p2 = 101325 # Outlet Pressure (Pa)\n  A1 = (3.1415/4)*(0.25**2) # Inlet Area (m^2)\n  A2 = (3.1415/4)*(0.1**2) # Outlet Area (m^2)\n  v1 = 10 Inlet velocity (m/s)\n  v2 = 50 Outlet velocity (m/s)\n\n  # Apply Steady Flow Momentum Equation\n  F = (p1*A1) - (p2*A2) - (p2*A2) + (rho*(v2**2)*A2) - (rho*(v1**2)*A1)\n\n  print("Force exerted on the fluid:", F, "N")\n      ",
       "explanation": "This code utilizes the Steady Flow Momentum Equation, which is a statement on Newton's 2nd Law, F=ma. It ",
       "references": [
         "https://www.homepages.ucl.ac.uk/~uceseug/Fluids2/Problems_2_Slides.pdf"
@@ -66,46 +51,14 @@
   {
     "question": "A diverging nozzle with circular cross-sectional area contains water (density equals 1000 kg/m^3) flowing at a speed of 5 m/s at the inlet. The radius at the exit is 3 times the radius at the inlet. What is the velocity of the water at the outlet?",
     "answer": {
-      "code": """
-  import numpy as np
-
-  rho = 1000 # Density (kg/m^3)
-  r1overr2 = 1/3 # Ratio of exit radius to inlet radius
-  v1 = 5 # Inlet Velocity (m/s)
-  pi = 3.1415 # pi
-
-  # Apply continuity equation
-  v2 = (rho * v1 * pi * (r1overr2)**2)/(rho * pi)
-
-  print("The water's exit velocity:", v2, "m/s")
-      """,
+      "code": "\n  import numpy as np\n\n  rho = 1000 # Density (kg/m^3)\n  r1overr2 = 1/3 # Ratio of exit radius to inlet radius\n  v1 = 5 # Inlet Velocity (m/s)\n  pi = 3.1415 # pi\n\n  # Apply continuity equation\n  v2 = (rho * v1 * pi * (r1overr2)**2)/(rho * pi)\n\n  print("The water's exit velocity:", v2, "m/s")\n      ",
       "explanation": "This code utilizes the continuity equation that states that mass must be conserved when entering or exiting a control volume. This is expressed as mass flow rates at the inlet and exit equaling each other."
     }
   },
   {
     "question": "A perfect gas is compressed in a thermally insulated piston adiabatically and reversibly to a temperature of 500 K. Its molar mass is 28.02 g/mol and has a constant pressure specific heat capacity (cp) of 1039 J/(kg*K). Its initial pressure and temperature is 50000 Pa and 280 K. What is the final pressure of the gas?",
     "answer": {
-      "code": """
-  import numpy as np
-
-  T1 = 280 # initial temperature (K)
-  T2 = 500 # final temperature (K)
-  p1 = 50000 # initial pressure (Pa)
-  cp = 1039 # constant pressure heat capacity (J/(kg*K))
-  M = 0.02802 # molar mass of unknown gas (kg/mol)
-  Rbar = 8.3145 # universal gas constant (J/(mol*K))
-
-  # Find the specific gas constant (R)
-  R = Rbar/M
-
-  # Find the gas's value of gamma (y)
-  y = cp/(cp-R)
-
-  # Apply isentropic gas relation
-  p2 = p1 * ((T2/T1)**(y/(y-1)))
-
-  print("Final pressure of the gas:", p2, "Pa")
-      """,
+      "code": "\n  import numpy as np\n\n  T1 = 280 # initial temperature (K)\n  T2 = 500 # final temperature (K)\n  p1 = 50000 # initial pressure (Pa)\n  cp = 1039 # constant pressure heat capacity (J/(kg*K))\n  M = 0.02802 # molar mass of unknown gas (kg/mol)\n  Rbar = 8.3145 # universal gas constant (J/(mol*K))\n\n  # Find the specific gas constant (R)\n  R = Rbar/M\n\n  # Find the gas's value of gamma (y)\n  y = cp/(cp-R)\n\n  # Apply isentropic gas relation\n  p2 = p1 * ((T2/T1)**(y/(y-1)))\n\n  print("Final pressure of the gas:", p2, "Pa")\n      ",
       "explanation": "This code uses three equations: the specific gas equation, an equation for gamma, and an isentropic gas relation between pressure and temperature. First, the molar mass of the gas is used to find the specific gas constant which is then used to find gamma by substituing (cp-R) for cv (cv is the constant volume specific heat capacity). Since the process is adiabatic and reversible, it must be isentropic, so the isentropic gas relationship is then applied to find p2.",
       "references": [
         "https://learncheme.com/quiz-yourself/interactive-self-study-modules/adiabatic-reversible-expansion-and-compression/adiabatic-reversible-expansion-and-compression-example-problems/"
@@ -115,54 +68,14 @@
   {
     "question": "Air initially at 50 degrees Celsius flows over a wedge at a speed of 700 m/s. An oblique shock is formed at the start of this wedge, and the wave angle (beta) is measured to be 40 degrees. What is the wedge angle (theta)? Assume a gamma (y) value of 1.4 and an R value of 287.",
     "answer": {
-      "code": """
-  import numpy as np
-
-  T1 = 50 # initial temperature (degrees Celsius)
-  v1 = 700 # initial velocity (m/s)
-  B = np.deg2rad(40) # wave angle (radians)
-  y = 1.4 # gamma value
-  R = 287 # gas constant for air (J/(kg*K))
-
-  # Find the speed of sound before the shock to find the Mach number
-  a = np.sqrt(y * R * (T1 + 273.15))
-  M1 = v1/a
-
-  # Find the wedge angle (theta)
-  theta = np.arctan((2/np.tan(B)) * ((((M1**2)*(np.sin(B))**2)-1)/(((M1**2)*(y+np.cos(2*B)))+2)))
-  theta = np.rad2deg(theta)
-
-  print("Wedge angle:", theta, "degrees")
-      """,
+      "code": "\n  import numpy as np\n\n  T1 = 50 # initial temperature (degrees Celsius)\n  v1 = 700 # initial velocity (m/s)\n  B = np.deg2rad(40) # wave angle (radians)\n  y = 1.4 # gamma value\n  R = 287 # gas constant for air (J/(kg*K))\n\n  # Find the speed of sound before the shock to find the Mach number\n  a = np.sqrt(y * R * (T1 + 273.15))\n  M1 = v1/a\n\n  # Find the wedge angle (theta)\n  theta = np.arctan((2/np.tan(B)) * ((((M1**2)*(np.sin(B))**2)-1)/(((M1**2)*(y+np.cos(2*B)))+2)))\n  theta = np.rad2deg(theta)\n\n  print("Wedge angle:", theta, "degrees")\n      ",
       "explanation": "This code utilizes the equation for wedge angle, which is used to find the wedge angle for various Mach numbers in the oblique shock tables. First, the Mach number needs to be found by finding the speed of sound using the equation a = sqrt(y*R*T1). Then, the values are plugged into the equation. This means that this problem can also be solved using the oblique shock tables instead of using this equation. This problem assumes the oblique shock is weak and that the gas is perfect."
     }
   },
   {
     "question": "A perfect gas flows steadily through a vertically oriented turbine which triples the velocity of the air from the inlet to the outlet. Its inlet is located 30 meters above its outlet and its constant pressure specific heat capacity (cp) is 910 J/(kg*K). The temperature of the gas at the inlet is 25 degrees Celsius and at the outlet its temperature is 97 degrees Celsius. Calculate the specific work done on the gas if the velocity at the inlet is 100 m/s and there is no heat loss. Account for changes in potential and kinetic energy.",
     "answer": {
-      "code": """
-  import numpy as np
-
-  cp = 910 # constant pressure specific heat capacity (J/(kg*K))
-  T1 = 25 # initial temperature (degrees Celsius)
-  T2 = 97 # final temperature (degrees Celsius)
-  dz = -30 # change in height (m)
-  v1 = 100 # initial velocity (m/s)
-  v2overv1 = 3 # ratio of final velocity to initial velocity
-  g = 9.81 # gravitational constant (m/s^2)
-
-  # Convert temperatures to Kelvin
-  T1 = T1 + 273.25
-  T2 = T2 + 273.15
-
-  # Express change in specific enthalpy in cv times dT
-  dh = cp * (T2-T1)
-
-  # Apply steady flow energy equation after dividing through by m dot
-  w = dh + 0.5*(((v2overv1*v1)**2) - v1**2) + g*dz
-
-  print("Specific work done on the gas:", w, "J/kg")
-      """,
+      "code": "\n  import numpy as np\n\n  cp = 910 # constant pressure specific heat capacity (J/(kg*K))\n  T1 = 25 # initial temperature (degrees Celsius)\n  T2 = 97 # final temperature (degrees Celsius)\n  dz = -30 # change in height (m)\n  v1 = 100 # initial velocity (m/s)\n  v2overv1 = 3 # ratio of final velocity to initial velocity\n  g = 9.81 # gravitational constant (m/s^2)\n\n  # Convert temperatures to Kelvin\n  T1 = T1 + 273.25\n  T2 = T2 + 273.15\n\n  # Express change in specific enthalpy in cv times dT\n  dh = cp * (T2-T1)\n\n  # Apply steady flow energy equation after dividing through by m dot\n  w = dh + 0.5*(((v2overv1*v1)**2) - v1**2) + g*dz\n\n  print("Specific work done on the gas:", w, "J/kg")\n      ",
       "explanation": "This code utilizes the steady flow energy equation and some assumptions to make it more practical. Since the gas is perfect, the change in enthalpy can be expressed as cp times the change in temperature, and the statement of no heat loss means that the process can be considered adiabatic. This problem takes into account the changes in velocity and height, which affect the kinetic and potential energies of the system. Many problems only account for the change in internal energy, but with large changes in velocity and height, it is necessary to include these other forms of energy in the equation.",
       "references": [
         "https://www.studocu.com/en-gb/document/imperial-college-london/engineering-materials/steady-flow-energy-problems/14305523 (Example 2)"
@@ -172,47 +85,14 @@
   {
     "question": "A gas flows through a converging-diverging nozzle and the flow is choked at the throat. The static pressure before the shock is 0.5 bar and the static pressure after the shock is 3 bar. Using the normal shock relations, find the ratio of density after the shock to density before the shock. Assume a gamma (y) value of 1.333",
     "answer": {
-      "code": """
-  import numpy as np
-
-  p1 = 50000 # static pressure before shock (Pa)
-  p2 = 300000 # static pressure after shock (Pa)
-  y = 1.333 # gamma value
-
-  # Find Mach number before shock
-  M = np.sqrt(((p2/p1)+((y-1)/(y+1))) * ((y+1)/(2*y)))
-
-  # Find density ratio
-  rho2overrho1 = ((2/(y+1)) * (1/(M**2))) + ((y-1)/(y+1))
-
-  print("Ratio of density after the shock to density before the shock:", rho2overrho1)
-      """,
+      "code": "\n  import numpy as np\n\n  p1 = 50000 # static pressure before shock (Pa)\n  p2 = 300000 # static pressure after shock (Pa)\n  y = 1.333 # gamma value\n\n  # Find Mach number before shock\n  M = np.sqrt(((p2/p1)+((y-1)/(y+1))) * ((y+1)/(2*y)))\n\n  # Find density ratio\n  rho2overrho1 = ((2/(y+1)) * (1/(M**2))) + ((y-1)/(y+1))\n\n  print("Ratio of density after the shock to density before the shock:", rho2overrho1)\n      ",
       "explanation": "This code utilizes the normal shock relations for static pressure before and after a shock and density before and after a shock. First, the static pressure ratio is used to find the Mach number before the shock, and then this is used to find the density ratio. This process can also be done using the normal shock tables. This question assumes there is no friction."
     }
   },
   {
     "question": "A perfect gas flows through a pipe that has a section that adds heat from an external source. Assume gamma (y) is 1.4 and the specific gas constant is 300 J/(kg*K). This causes both the temperature and pressure of the gas to triple. In another section of the pipe, there is a high amount of friction resulting in irreversible specific entropy increase of 40 J/(kg*K). Find the net increase in specific entropy throughout these sections.",
     "answer": {
-      "code": """
-  import numpy as np
-
-  y = 1.4 # gamma value
-  R = 300 # specific gas constant (J/(kg*K))
-  T2overT1 = 3 # ratio of T2 to T1
-  p2overp1 = 3 # ratio of p2 to p1
-  ds_irrev = 40 # increase in specific entropy from the irreversible friction (J/(kg*K))
-
-  # Find cp from gamma (y) and R
-  cp = (y*R)/(y-1)
-
-  # Find change in specific entropy from external heat source
-  ds_rev = (cp*np.log(T2overT1)) - (R*np.log(p2overp1))
-
-  # Find the net change in specific entropy
-  ds_net = ds_irrev + ds_rev
-
-  print("Net increase in specific entropy:", ds_net, "J/(kg*K)")
-      """,
+      "code": "\n  import numpy as np\n\n  y = 1.4 # gamma value\n  R = 300 # specific gas constant (J/(kg*K))\n  T2overT1 = 3 # ratio of T2 to T1\n  p2overp1 = 3 # ratio of p2 to p1\n  ds_irrev = 40 # increase in specific entropy from the irreversible friction (J/(kg*K))\n\n  # Find cp from gamma (y) and R\n  cp = (y*R)/(y-1)\n\n  # Find change in specific entropy from external heat source\n  ds_rev = (cp*np.log(T2overT1)) - (R*np.log(p2overp1))\n\n  # Find the net change in specific entropy\n  ds_net = ds_irrev + ds_rev\n\n  print("Net increase in specific entropy:", ds_net, "J/(kg*K)")\n      ",
       "explanation": "This code utilizes an equation derived from the specific Tds equations. This code first finds cp from gamma (y) and the specific gas constant to find the change in specific entropy for the reversible addition of heat from an external source. There is also a source of entropy from the irreversible process of frictional losses that is added to the first specific entropy change to get the net change in entropy for this process of a perfect gas flowing through a pipe. This assumes that there isn't friction in the part of the pipe with the external heat source."
     }
   },

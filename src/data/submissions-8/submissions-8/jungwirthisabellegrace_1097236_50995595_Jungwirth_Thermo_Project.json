@@ -46,23 +46,7 @@
 {
   "question": "A gas of density 1.7 kg/m^3 flows through a pipe with a volume flow rate of 0.12 m^3/s. The pipe has an inlet section diameter of d_1 of 21 cm and an outlet section diameter d_2 of 9 cm. Assuming an ideal incompressible fluid flow, calculate the flow velocities at the pipe's inlet and outlet, i.e., V_1 and V_2, respectively.",
   "answer": {
-      "code": """
-import numpy as np
-
-Q = 0.12 # Volumetric flow rate ((m^3)/s)
-d_in = 0.21 # Inlet diameter (m)
-d_out = 0.09 # Outlet diameter (m)
-pi = 3.14
-# Calculate inlet and outlet areas
-A_in = (1/4) * pi * (d_in **2)
-A_out = (1/4) * pi * (d_out ** 2)
- 
-# Calculate inlet and outlet velocities
-v_in = Q / A_in # Inlet velocity
-print("Inlet velocity:", v_in, "m/s")
-v_out = Q / A_out # Outlet velocity
-print("Outlet velocity:", v_out, "m/s")
-      """,
+      "code": "\nimport numpy as np\n\nQ = 0.12 # Volumetric flow rate ((m^3)/s)\nd_in = 0.21 # Inlet diameter (m)\nd_out = 0.09 # Outlet diameter (m)\npi = 3.14\n# Calculate inlet and outlet areas\nA_in = (1/4) * pi * (d_in **2)\nA_out = (1/4) * pi * (d_out ** 2)\n \n# Calculate inlet and outlet velocities\nv_in = Q / A_in # Inlet velocity\nprint("Inlet velocity:", v_in, "m/s")\nv_out = Q / A_out # Outlet velocity\nprint("Outlet velocity:", v_out, "m/s")\n      ",
       "explanation": "This code calculates the initial and final velocities of a flow going through a pipe with variable area. We assume the flow is inviscid and incompressible (density is constant), and thus utilize the equation Q = Av, where Q is the volumetric flow rate, A is the cross-sectional area, and v is the velocity. Additionally, continuity applies, so Q_in = Q_out.",
       "references": "https://eaglepubs.erau.edu/introductiontoaerospaceflightvehicles/chapter/worked-examples-fluid-flows/",
   }
@@ -70,32 +54,7 @@ print("Outlet velocity:", v_out, "m/s")
 {
   "question": "A garden hose attached with a nozzle is used to fill a 10-gal bucket. The inner diameter of the hose is 2 cm, and it reduces to 0.8 cm at the nozzle exit. If it takes 50 s to fill the bucket with water, determine (a) the volume and mass flow rates of water through the hose, and (b) the average velocity of water at the nozzle exit",
   "answer": {
-      "code": """
-import numpy as np
-
-vGallon = 10 # Volume (gallons)
-t = 50 # Time to fill (s)
-rho = 1000 # Density of water (kg/m^2)
-pi = 3.14 # Constant
-d = .008 # Diameter of hose nozzle (m)
-r = d / 2 # Radius of hose nozzle (m)
-area = pi*(r**2) # Area of hose nozzle (m^2)
-
-# Convert gallons to m^3
-vMeter = vGallon / 264.2
-
-# Volumetric flow rate
-Q = vMeter / t
-
-# Mass flow rate
-mDot = Q * rho
-print("Volumetric flow rate:", Q, "m^3/s")
-print("Mass flow rate:", mDot, "kg/s")
-
-# Average velocity
-avgVelocity = Q / area
-print("Average velocity:", avgVelocity, "m/s")
-      """,
+      "code": "\nimport numpy as np\n\nvGallon = 10 # Volume (gallons)\nt = 50 # Time to fill (s)\nrho = 1000 # Density of water (kg/m^2)\npi = 3.14 # Constant\nd = .008 # Diameter of hose nozzle (m)\nr = d / 2 # Radius of hose nozzle (m)\narea = pi*(r**2) # Area of hose nozzle (m^2)\n\n# Convert gallons to m^3\nvMeter = vGallon / 264.2\n\n# Volumetric flow rate\nQ = vMeter / t\n\n# Mass flow rate\nmDot = Q * rho\nprint("Volumetric flow rate:", Q, "m^3/s")\nprint("Mass flow rate:", mDot, "kg/s")\n\n# Average velocity\navgVelocity = Q / area\nprint("Average velocity:", avgVelocity, "m/s")\n      ",
       "explanation": "This code calculates the volumetric flow rate using the formula Q = V / t, where Q is the volumetric flow rate and V is the volume filled in time t. The mass flow rate is calculated with the formula Mdot = Q * rho, where rho is the density of water in kg / m^2. Assuming that water is incompressible and the flow through the hose is steady, we calculated Vavg = Q / A, where A is the cross-sectional area of the hose nozzle. Please note that units were converted to SI units where applicable (ie cm to m)",
       "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill."
   }
@@ -103,25 +62,7 @@ print("Average velocity:", avgVelocity, "m/s")
 {
   "question": "A piston-cylinder device initially contains air at 150 kPa and 27°C. At this state, the piston is resting on a pair of stops and the enclosed volume is 400 L. The mass of the piston is such that a 350-kPa pressure is required to move it. The air is now heated until its volume has doubled. Determine (a) the final temperature and (b) the work done by the air.",
   "answer": {
-      "code": """
-import numpy as np
-
-p1 = 150000 # Initial pressure (Pa)
-p2 = 350000 # Final pressure (Pa)
-t1_celcius = 27 # Initial temperature (Celcius)
-t1 = t1_celcius + 273.15 # Convert initial temperature to Kelvin
-v1_liter = 400 # Initial volume (L)
-v1 = v1_liter/1000 # Convert volume to m^3
-v2 = 2 * v1 # Final volume (m^3)
-
-# Use ideal gas law to calculate final temperature
-t2 = (t1 * p2 * v2) / (p1 * v1)
-print("Final temperature:", t2, "K")
-
-# Calculate work done using P*delta(V)
-w = p2 * (v2-v1)
-print("Work done:", w, "J")
-      """,
+      "code": "\nimport numpy as np\n\np1 = 150000 # Initial pressure (Pa)\np2 = 350000 # Final pressure (Pa)\nt1_celcius = 27 # Initial temperature (Celcius)\nt1 = t1_celcius + 273.15 # Convert initial temperature to Kelvin\nv1_liter = 400 # Initial volume (L)\nv1 = v1_liter/1000 # Convert volume to m^3\nv2 = 2 * v1 # Final volume (m^3)\n\n# Use ideal gas law to calculate final temperature\nt2 = (t1 * p2 * v2) / (p1 * v1)\nprint("Final temperature:", t2, "K")\n\n# Calculate work done using P*delta(V)\nw = p2 * (v2-v1)\nprint("Work done:", w, "J")\n      ",
       "explanation": "This code calculates the change in temperature of work done by air that is heated to move a piston. Since we are given the initial and final pressure and volume, we can make use of the ideal gas relations to find the final temperature: (P1 * V1) / T1 = (P2 * V2) / T2, where P1 and P2 are the initial and final pressures, V1 and V2 are the initial and final volumes, and T1 and T2 are the initial and final temperatures. Please note that the temperature is given in degrees Celcius and must be converted to Kelvin. The work was then found by using the definition of P-V work: W = P2 * (V2 - V1), where W represents the work done by the gas in Joules. Note that we assume air acts as an ideal gas, changes in potential and kinetic energy are negligible, and that no shaft work is present.",
       "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill."
   }
@@ -129,30 +70,7 @@ print("Work done:", w, "J")
 {
   "question": "Air at 10°C and 80 kPa enters the diffuser of a jet engine steadily with a velocity of 200 m/s. The inlet area of the diffuser is 0.4 m^2. The air leaves the diffuser with a velocity that is very small compared with the inlet velocity. Determine (a) the mass flow rate of the air and (b) the change in specific enthalpy of the air leaving the diffuser.",
   "answer": {
-      "code": """
-import numpy as np
-
-T1_celcius = 10 # Initial temperature (Celcius)
-T1 = T1_celcius + 273.15 # Convert T1 to Kelvin
-p1 = 80000 # Initial pressure (Pa)
-A_in = 0.4 # Inlet area (m^2)
-v1 = 200 # Initial velocity (m/s)
-v2 = 0 # Final velocity << v1 (m/s)
-R = 287 # Gas constant for air (J/(kg*K))
-cp = 1005 # Specific heat of air at constant pressure (J/(kg*K))
-
-# Calculate specific volume using ideal gas law
-specific_volume = (R * T1) / p1 # Specific volume (m^3/kg)
-rho = 1 / specific_volume
-
-# Calculate mass flow rate
-mDot = rho * v1 * A_in
-print("Mass flow rate:", mDot, "kg/s")
-
-# Calculate change in specific enthalpy
-delta_h = - (((v2**2)-(v1**2))/2) # Steady Flow Energy Equation
-print("Change in specific enthalpy:", delta_h, "J/kg")
-      """,
+      "code": "\nimport numpy as np\n\nT1_celcius = 10 # Initial temperature (Celcius)\nT1 = T1_celcius + 273.15 # Convert T1 to Kelvin\np1 = 80000 # Initial pressure (Pa)\nA_in = 0.4 # Inlet area (m^2)\nv1 = 200 # Initial velocity (m/s)\nv2 = 0 # Final velocity << v1 (m/s)\nR = 287 # Gas constant for air (J/(kg*K))\ncp = 1005 # Specific heat of air at constant pressure (J/(kg*K))\n\n# Calculate specific volume using ideal gas law\nspecific_volume = (R * T1) / p1 # Specific volume (m^3/kg)\nrho = 1 / specific_volume\n\n# Calculate mass flow rate\nmDot = rho * v1 * A_in\nprint("Mass flow rate:", mDot, "kg/s")\n\n# Calculate change in specific enthalpy\ndelta_h = - (((v2**2)-(v1**2))/2) # Steady Flow Energy Equation\nprint("Change in specific enthalpy:", delta_h, "J/kg")\n      ",
       "explanation": "This code calculates the mass flow rate and change in specific enthalpy of subsonic flow through a nozzle. To begin, we assume that this is a steady-flow process, so the mass flow rate in equals the mass flow rate out. We also assume a negligible change in potential energy, that the kinetic energy at the exit is zero due to the low velocity, and that air behaves as an ideal gas. The mass flow rate was found by first finding the specific volume using ideal gas relations (nu = (R * T) / P) and using it to find the density (rho = 1 / nu), where nu is the specific volume, R is the gas constant for air, T is the temperature, P is the pressure, and rho is the density; then, mass flow rate was found using rho * v1 * A_in, where v1 is the initial velocity and A_in is the inlet area. The change in specific enthalpy was found by algebraic manipulation of the Steady Flow Energy Equation: h1 + ((v1 ** 2) / 2) = h2 + ((v2 ** 2) / 2), where h1 and h2 are the initial and final enthalpies, and v1 and v2 are the initial and final velocities, respectively. Please note again that we assumed v2 = 0.",
       "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill."
   }
@@ -160,18 +78,7 @@ print("Change in specific enthalpy:", delta_h, "J/kg")
 {
   "question": "A rigid tank contains a hot fluid that is cooled while being stirred by a paddle wheel. Initially, the internal energy of the fluid is 800 kJ. During the cooling process, the fluid loses 500 kJ of heat, and the paddle wheel does 100 kJ of work on the fluid. Determine the final internal energy of the fluid. Neglect the energy stored in the paddle wheel.",
   "answer": {
-      "code": """
-import numpy as np
-
-U1 = 800000 # Initial internal energy (J)
-Q = -500000 # Heat lost to surroundings from system (J)
-W = -100000 # Work done on system by paddle (J)
-
-# Calculate change in internal energy
-delta_U = Q - W
-U2 = delta_U + U1
-print("Final internal energy:", U2, "J")
-      """,
+      "code": "\nimport numpy as np\n\nU1 = 800000 # Initial internal energy (J)\nQ = -500000 # Heat lost to surroundings from system (J)\nW = -100000 # Work done on system by paddle (J)\n\n# Calculate change in internal energy\ndelta_U = Q - W\nU2 = delta_U + U1\nprint("Final internal energy:", U2, "J")\n      ",
       "explanation": "This code calculates the final internal energy of a system with heat loss and work input using the First Law equation Q - W = U2 - U1, where Q and W are the heat input and work output respectively, and U2 and U1 are the final and initial internal energies. Please note that for this problem, Q is negative because heat is lost to the system, and W is negative because work is done on the system. We assume the kinetic and potential energy changes are zero and that no boundary work is being done by the system since the container is rigid.",
 	    "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill."
   }
@@ -179,23 +86,7 @@ print("Final internal energy:", U2, "J")
 {
   "question": "Air enters a diffuser shown in with a velocity of 200 m/s. Determine (a) the speed of sound and (b) the Mach number at the diffuser inlet when the air temperature is 30°C.",
   "answer": {
-      "code": """
-import numpy as np
-
-v = 200 # Velocity (m/s)
-T_celcius = 30 # Temperature (Celcius)
-T = T_celcius + 273.15 # Convert temperature (K)
-gamma = 1.4 # Specific heat ratio of air
-R = 287 # Gas constant for air (J/kgK)
-
-# Calculate speed of sound (m/s)
-a = (gamma * R * T) ** (1/2)
-print("Speed of sound:", a, "m/s")
-
-# Calculate Mach number
-M = v/a
-print("Mach number:", M)
-      """,
+      "code": "\nimport numpy as np\n\nv = 200 # Velocity (m/s)\nT_celcius = 30 # Temperature (Celcius)\nT = T_celcius + 273.15 # Convert temperature (K)\ngamma = 1.4 # Specific heat ratio of air\nR = 287 # Gas constant for air (J/kgK)\n\n# Calculate speed of sound (m/s)\na = (gamma * R * T) ** (1/2)\nprint("Speed of sound:", a, "m/s")\n\n# Calculate Mach number\nM = v/a\nprint("Mach number:", M)\n      ",
       "explanation": "This code calculates the speed of sound in air for the given conditions using the equation a = (gamma * R * T) ** (1/2), where a is the speed of sound, gamma is the specific heat ratio, R is the gas constant, and T is the temperature. The Mach number is then calculated using M = v/a, where v is the velocity and a is the speed of sound for the given conditions. To perform these calculations, we assume that air behaves as an ideal gas.",
 	    "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill."
   }
@@ -203,20 +94,7 @@ print("Mach number:", M)
 {
   "question": "Air enters a converging-diverging nozzle at 1.0 MPa and 800 K with a negligible velocity. The flow is steady, one-dimensional, and isentropic with gamma = 1.4. For an exit Mach number of Ma = 2 and a throat area of 20 cm^2, determine the temperature and pressure at the throat.",
   "answer": {
-      "code": """
-import numpy as np
-
-p0 = 1000000 # Inlet stagnation pressure (Pa)
-T0 = 800 # Inlet stagnation temperature (K)
-pStar_p0 = 0.5283 # Static to stagnation pressure ratio at Mach 1 (found on table)
-Tstar_T0 = 0.8333 # Temperature ratio at Mach 1 (found on table)
-
-# Use values from table to find pressure and temperature at throat
-pStar = pStar_p0 * p0
-print("Static pressure at throat", pStar, "Pa")
-Tstar = Tstar_T0 * T0
-print("Temperature at throat", Tstar, "K")
-      """,
+      "code": "\nimport numpy as np\n\np0 = 1000000 # Inlet stagnation pressure (Pa)\nT0 = 800 # Inlet stagnation temperature (K)\npStar_p0 = 0.5283 # Static to stagnation pressure ratio at Mach 1 (found on table)\nTstar_T0 = 0.8333 # Temperature ratio at Mach 1 (found on table)\n\n# Use values from table to find pressure and temperature at throat\npStar = pStar_p0 * p0\nprint("Static pressure at throat", pStar, "Pa")\nTstar = Tstar_T0 * T0\nprint("Temperature at throat", Tstar, "K")\n      ",
       "explanation": "This code calculates the pressure and temperature conditions at the throat of a converging-diverging nozzle. Please note that some values used in the calculation must be found on Gas Flow Tables. The throat temperature was found by the equation T = (T / T0) * T0, where (T / T0) is the temperature ratio at Mach 1 found on the table and T0 is the given stagnation temperature. The static pressure in the throat was similarly found by p = (p / p0) * p0, where (p / p0) is the pressure ratio at Mach 1 and p0 is the given stagnation pressure. To calculate this, we assume that the flow is steady, one-dimensional, and isentropic, and that air is an ideal gas.",
 	    "references": "Michael A. Boles, Yunus A Çengel, (2006) Thermodynamics: An Engineering Approach, McGraw-Hill.",
   }

@@ -37,158 +37,30 @@
 },
 {
     "question": "The following plot depicts water crashing into a dam. The density of the water is given as 1 Mg/m^3, the density of the materials in the dam is given by 2.5 Mg/m^3, the height of the dam is 6 meters, and the distance between point D and 6 is one. Find the minimum length from 4 to point D.",
-     "code": """
-
-import matplotlib.pyplot as plt
-import numpy as np
-                
-x_wave = np.linspace(0, 5.61, 100)
-y_wave = 6 + 0.18 * np.sin(20 * np.pi * x_wave / 5.61)
-                
-x_water = [0, 5.61, 4, 0, 0]
-y_water = [6, 6, 0, 0, 6]
-                
-x_dam = [4, 5.61, 6.61, 6.61, 4]
-y_dam = [0, 6, 6, 0, 0]
-                
-plt.fill(x_water, y_water, color='lightblue')
-plt.fill(x_wave, y_wave, color='lightblue')
-plt.fill(x_dam, y_dam, color='gray')
-                
-plt.ylim(-.1, 8)
-plt.xlim(0, 6.61)
-                
-plt.gca().spines['top'].set_visible(False)
-plt.gca().spines['right'].set_visible(False)
-plt.gca().spines['bottom'].set_visible(False)
-plt.gca().spines['left'].set_visible(False)
-                
-plt.gca().set_xticks([4, 6])
-plt.gca().set_yticks([0, 6])
-                
-plt.plot([5.61], [0], marker='o', markersize=5, color="black", label='D')
-plt.text(5.61, .1, 'D', horizontalalignment='center')
-                
-plt.show()
-                """,
+     "code": "\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n                \nx_wave = np.linspace(0, 5.61, 100)\ny_wave = 6 + 0.18 * np.sin(20 * np.pi * x_wave / 5.61)\n                \nx_water = [0, 5.61, 4, 0, 0]\ny_water = [6, 6, 0, 0, 6]\n                \nx_dam = [4, 5.61, 6.61, 6.61, 4]\ny_dam = [0, 6, 6, 0, 0]\n                \nplt.fill(x_water, y_water, color='lightblue')\nplt.fill(x_wave, y_wave, color='lightblue')\nplt.fill(x_dam, y_dam, color='gray')\n                \nplt.ylim(-.1, 8)\nplt.xlim(0, 6.61)\n                \nplt.gca().spines['top'].set_visible(False)\nplt.gca().spines['right'].set_visible(False)\nplt.gca().spines['bottom'].set_visible(False)\nplt.gca().spines['left'].set_visible(False)\n                \nplt.gca().set_xticks([4, 6])\nplt.gca().set_yticks([0, 6])\n                \nplt.plot([5.61], [0], marker='o', markersize=5, color="black", label='D')\nplt.text(5.61, .1, 'D', horizontalalignment='center')\n                \nplt.show()\n                ",
    "answer": {
-   "code": """
-import matplotlib.pyplot as plt
-import numpy as np
-            
-x_wave = np.linspace(0, 5.61, 100)
-y_wave = 6 + 0.18 * np.sin(20 * np.pi * x_wave / 5.61)
-x_water = [0, 5.61, 4, 0, 0]
-y_water = [6, 6, 0, 0, 5]
-x_dam = [4, 5.61, 6.61, 6.61, 4]
-y_dam = [0, 6, 6, 0, 0]
-dam_rho = 2.5
-water_rho = 1
-            
-            
-plt.vlines(x = 5.61, ymin = 0, ymax = 6, colors = 'black')
-plt.hlines(y = 0, xmin = 4, xmax = 5.61, colors = 'red')
-plt.fill(x_wave, y_wave, color='lightblue')
-plt.plot([4, 5.61], [0, 6], color='black')
-plt.vlines(x = 6.61, ymin = 0, ymax = 6, colors = 'black')
-plt.hlines(y = 0, xmin = 5.61, xmax = 6.61, colors = 'black')
-plt.hlines(y = 6, xmin = 5.61, xmax = 6.61, colors = 'black')
-plt.hlines(y = 6, xmin = 4, xmax = 5.61, colors = 'green')
-plt.vlines(x = 4, ymin = 0, ymax = 6, colors = 'green')
-plt.hlines(y = 0, xmin = 0, xmax = 4, colors = 'blue')
-plt.vlines(x = 0, ymin = 0, ymax = 6, colors = 'blue')
-            
-plt.ylim(-.1, 8)
-plt.xlim(-0.1, 6.63)
-            
-plt.gca().spines['top'].set_visible(False)
-plt.gca().spines['right'].set_visible(False)
-plt.gca().spines['bottom'].set_visible(False)
-plt.gca().spines['left'].set_visible(False)
-            
-plt.gca().set_xticks([4, 6.61])
-plt.gca().set_yticks([0, 5])
-            
-plt.plot([5.61], [0], marker='o', markersize=5, color="Red", label='D')
-plt.text(5.61, -.35, 'D', horizontalalignment='center', color ="Red")
-plt.plot([6.11], [3], marker='X', markersize=5, color="Red", label='D')
-plt.arrow (6.12, 3, 0, -1, head_width=0.1, head_length=0.1, fc='red', ec='red')
-plt.plot([5.0733], [2], marker='X', markersize=5, color="orange", label='D')
-plt.arrow (5.0773, 2, 0, -1, head_width=0.1, head_length=0.1, fc='orange', ec='orange')
-plt.plot([4.5367], [4], marker='X', markersize=5, color="green", label='D')
-plt.arrow (4.542, 4, 0, -1, head_width=0.1, head_length=0.1, fc='green', ec='green')
-plt.plot([3], [2], marker='X', markersize=5, color="blue", label='D')
-plt.arrow (3, 2, 1, 0, head_width=0.1, head_length=0.1, fc='blue', ec='blue')
-            
-plt.show()
-
-#calculate force at each center of mass of four broken up bodies, as shown in the diagram
-#W_red = (dam_rho*(6*1)*9.81)
-#W_orange = (dam_rho*(.5*(d-1)*6)*9.81)
-#W_green = (water_rho*(.5*(d-1)*6)*9.81)
-#F_blue = (.5*(water_rho*9.81*6)*6)
-#use the sum of moments = to to find d, distance
-#sum of moments = (W_red*(.5)+(W_orange*(1+(d-1)/3)+(W_green*(d-(d-1)/3)(F_blue*3) = 0
-#sum of moments = 44.15d^2 + 14.72d -338.445 = 0
-d = 2.61m
-print("The distance between the point D and x=4 is ", d,"m")
-            """,
+   "code": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n            \nx_wave = np.linspace(0, 5.61, 100)\ny_wave = 6 + 0.18 * np.sin(20 * np.pi * x_wave / 5.61)\nx_water = [0, 5.61, 4, 0, 0]\ny_water = [6, 6, 0, 0, 5]\nx_dam = [4, 5.61, 6.61, 6.61, 4]\ny_dam = [0, 6, 6, 0, 0]\ndam_rho = 2.5\nwater_rho = 1\n            \n            \nplt.vlines(x = 5.61, ymin = 0, ymax = 6, colors = 'black')\nplt.hlines(y = 0, xmin = 4, xmax = 5.61, colors = 'red')\nplt.fill(x_wave, y_wave, color='lightblue')\nplt.plot([4, 5.61], [0, 6], color='black')\nplt.vlines(x = 6.61, ymin = 0, ymax = 6, colors = 'black')\nplt.hlines(y = 0, xmin = 5.61, xmax = 6.61, colors = 'black')\nplt.hlines(y = 6, xmin = 5.61, xmax = 6.61, colors = 'black')\nplt.hlines(y = 6, xmin = 4, xmax = 5.61, colors = 'green')\nplt.vlines(x = 4, ymin = 0, ymax = 6, colors = 'green')\nplt.hlines(y = 0, xmin = 0, xmax = 4, colors = 'blue')\nplt.vlines(x = 0, ymin = 0, ymax = 6, colors = 'blue')\n            \nplt.ylim(-.1, 8)\nplt.xlim(-0.1, 6.63)\n            \nplt.gca().spines['top'].set_visible(False)\nplt.gca().spines['right'].set_visible(False)\nplt.gca().spines['bottom'].set_visible(False)\nplt.gca().spines['left'].set_visible(False)\n            \nplt.gca().set_xticks([4, 6.61])\nplt.gca().set_yticks([0, 5])\n            \nplt.plot([5.61], [0], marker='o', markersize=5, color="Red", label='D')\nplt.text(5.61, -.35, 'D', horizontalalignment='center', color ="Red")\nplt.plot([6.11], [3], marker='X', markersize=5, color="Red", label='D')\nplt.arrow (6.12, 3, 0, -1, head_width=0.1, head_length=0.1, fc='red', ec='red')\nplt.plot([5.0733], [2], marker='X', markersize=5, color="orange", label='D')\nplt.arrow (5.0773, 2, 0, -1, head_width=0.1, head_length=0.1, fc='orange', ec='orange')\nplt.plot([4.5367], [4], marker='X', markersize=5, color="green", label='D')\nplt.arrow (4.542, 4, 0, -1, head_width=0.1, head_length=0.1, fc='green', ec='green')\nplt.plot([3], [2], marker='X', markersize=5, color="blue", label='D')\nplt.arrow (3, 2, 1, 0, head_width=0.1, head_length=0.1, fc='blue', ec='blue')\n            \nplt.show()\n\n#calculate force at each center of mass of four broken up bodies, as shown in the diagram\n#W_red = (dam_rho*(6*1)*9.81)\n#W_orange = (dam_rho*(.5*(d-1)*6)*9.81)\n#W_green = (water_rho*(.5*(d-1)*6)*9.81)\n#F_blue = (.5*(water_rho*9.81*6)*6)\n#use the sum of moments = to to find d, distance\n#sum of moments = (W_red*(.5)+(W_orange*(1+(d-1)/3)+(W_green*(d-(d-1)/3)(F_blue*3) = 0\n#sum of moments = 44.15d^2 + 14.72d -338.445 = 0\nd = 2.61m\nprint("The distance between the point D and x=4 is ", d,"m")\n            ",
  "explanation": "This code calculates the Mach number using isentropic flow tables and an understanding of pitot tubes to find a stagnation pressure value."
         }
 },
 {
     "question": "Air is flowing at a constant rate, and has an initial temperature and pressure of 245.85 C and 56.355 Kpa, respectively. A pitot tube is inserted with its entrance facing the flow direction in the positive x direction, and measures a pressure of 1604 lb/ft^2. Determine the mach number of this flow.",
     "answer": {
-       "code": """
-import numpy as np
-p = 56.355 # initial pressure, Kpa
-T = 245.85 # initial temperature, C
-p_0_lbft = 1604 #stagnation temperature pulled from pitot tube, lb/ft
-                
-p_0 = (p_0_lbft*47.880208) = 76.799 #unit conversion
-P_ratio = (P/(P_0))
-# from isentropic flow tables
-M = .68
-print("The P to P0 ratio is thus .7338, and so the mach number is .68 in this case.")
-         """,
+       "code": "\nimport numpy as np\np = 56.355 # initial pressure, Kpa\nT = 245.85 # initial temperature, C\np_0_lbft = 1604 #stagnation temperature pulled from pitot tube, lb/ft\n                \np_0 = (p_0_lbft*47.880208) = 76.799 #unit conversion\nP_ratio = (P/(P_0))\n# from isentropic flow tables\nM = .68\nprint("The P to P0 ratio is thus .7338, and so the mach number is .68 in this case.")\n         ",
     "explanation": "This code calculates the Mach number using isentropic flow tables and an understanding of pitot tubes to find a stagnation pressure value."
     }
 },
 {
     "question": "On mars, water flows out of the bottom of a rectangular tank through a hole in the center of the bottom side at 12 m/s. Given that the density of water is 1000kg/m^3, determine the height from the top of the water to the source of the leak (the hole)",
     "answer": {
-       "code": """
-import numpy as np
-rho = 1000 #constant density, kg/m^3
-V2 = 12 #velocity at exit, m/s
-gMars = 3.71 #gravity on mars
-# use berenoulli's principle, (v1^2/2) + (g*h1) + (P1/ρ) = (v2^2/2) + (gh2) + (P2/ρ) (energy state at 1 and 2 is the same, so equal)
-v1 = 0 # velocity at surface
-h2 = 0 # height with respect to top of the tank
-# h1 = ??
-# P1-P2 = 0
-#(gMars*h1)=(v2^2/2)
-h1 = (v2^2)/(2*gMars)
-print("The height of the tank is thus", h1, "m")
-         """,
+       "code": "\nimport numpy as np\nrho = 1000 #constant density, kg/m^3\nV2 = 12 #velocity at exit, m/s\ngMars = 3.71 #gravity on mars\n# use berenoulli's principle, (v1^2/2) + (g*h1) + (P1/ρ) = (v2^2/2) + (gh2) + (P2/ρ) (energy state at 1 and 2 is the same, so equal)\nv1 = 0 # velocity at surface\nh2 = 0 # height with respect to top of the tank\n# h1 = ??\n# P1-P2 = 0\n#(gMars*h1)=(v2^2/2)\nh1 = (v2^2)/(2*gMars)\nprint("The height of the tank is thus", h1, "m")\n         ",
      "explanation": "This problem uses the idea of berenoulli's principle, and how since it is a constant can be set equal to itself for a second state to solve for any unknown variables."
     }
 },
 {
     "question": "3 kg of a gas with a molecular weight of .28kg is heated from 34 degrees C to 394 degrees K. If the Cv is a constant value of 1 J/mol*K, what is the minimum required heat for an isochoric process?",
     "answer": {
-       "code": """
-import numpy as np
-m = 3 # mass of the gas kg
-M = .28 # molar mass of the gas kg
-T1 = 34 # Initial temperature C
-T2 = 394-273.15 # Final temperature C
-Cv = 1 # Cv value, J/mol*K
-# using ideal gas, derive to Q = nCv(dt)
-n = m/M #n, moles
-Q = n*Cv*(T2-T1)
-print("The required heat is ", Q, "KJ")
-         """,
+       "code": "\nimport numpy as np\nm = 3 # mass of the gas kg\nM = .28 # molar mass of the gas kg\nT1 = 34 # Initial temperature C\nT2 = 394-273.15 # Final temperature C\nCv = 1 # Cv value, J/mol*K\n# using ideal gas, derive to Q = nCv(dt)\nn = m/M #n, moles\nQ = n*Cv*(T2-T1)\nprint("The required heat is ", Q, "KJ")\n         ",
          "explanation": "This code describes a problem where the volume is constant, in other words an isochoric process. Using the equation Q=nCvdT one can find the Q required for this equation to be true"
     }
 },
@@ -203,14 +75,7 @@ Vi = 1.6    # initial volume, m^3
 Vf = 2.5    # final volume, m^3
 W = P * Vi * np.log(Vf/Vi)
 print("The work done is thus", W, "J")
-     """,
-    "explanation": "This problem uses the definitive knowledge of isothermal processes and the ideal gas law to create the equation for work"
-    }
-},
-{
-    "question": "How much mass is needed to fill a 500 liter tank of xenon kept at 200 bar? Assuming standard temperature, and given that the molecular weight of 131.293g/mol.”,
-    "answer": {
-         "code": """
+     ",\n    "explanation": "This problem uses the definitive knowledge of isothermal processes and the ideal gas law to create the equation for work"\n    }\n},\n{\n    "question": "How much mass is needed to fill a 500 liter tank of xenon kept at 200 bar? Assuming standard temperature, and given that the molecular weight of 131.293g/mol.”,\n    "answer": {\n         "code": "
 import numpy as np
 # Use ideal gas law, Pv=nRT
 P = 2000000 #initial pressure, pa
@@ -221,14 +86,7 @@ M = .131293 # molar mass of xenon
 n = (P*V)/(R*T)
 m = n*M #mass calculation
 print("The required mass is ", m , "kg")
-          """,
-    "explanation": "This problem uses the ideal gas law as xenon is an ideal gas, along with the knowledge of standard temperature and molar mass of xenon to find the required mass."
-   }
-},
-{
-    "question": "Air is flowing at a mach number of 1.6 and experiences a concave corner with a theta of 22 degrees. Using the Prandtl-Meyer function, calculate the mach number after the oblique shocks. Assume gamma = 1.4.",
-    "answer": {
-        "code": """
+          ",\n    "explanation": "This problem uses the ideal gas law as xenon is an ideal gas, along with the knowledge of standard temperature and molar mass of xenon to find the required mass."\n   }\n},\n{\n    "question": "Air is flowing at a mach number of 1.6 and experiences a concave corner with a theta of 22 degrees. Using the Prandtl-Meyer function, calculate the mach number after the oblique shocks. Assume gamma = 1.4.",\n    "answer": {\n        "code": "
 import numpy as np
 import math
 M1 = 1.6 # initial mach number

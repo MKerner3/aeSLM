@@ -39,206 +39,49 @@
     {
         "question": "Calculate the gauge pressure 12 m below the surface in a tank that has 10 m of water (density = 1000 kg/m^3) and 5 m of oil (density = 750 kg/m^3).",
         "answer": {
-            "code": """
-class Liquid:
-    def __init__(self, density, depth):
-        self.density = density
-        self.depth = depth
-
-liquid1 = Liquid(1000, 10)
-liquid2 = Liquid(750, 5)
-Fluids = [liquid1, liquid2]
-desired_depth = 12
-pg = 0
-g = 9.81
-Fluids = sorted(Fluids, key = lambda Liquid: Liquid.density)
-
-while desired_depth > 0:
-    for Fluid in Fluids:
-        if Fluid.depth <= desired_depth:
-            pg = pg + Fluid.depth*g*Fluid.density
-            desired_depth = desired_depth - Fluid.depth
-        else:
-            pg = pg + desired_depth*g*Fluid.density
-            desired_depth = desired_depth - desired_depth
-
-print("The gauge pressure is", pg, "Pa")
-            """,
+            "code": "\nclass Liquid:\n    def __init__(self, density, depth):\n        self.density = density\n        self.depth = depth\n\nliquid1 = Liquid(1000, 10)\nliquid2 = Liquid(750, 5)\nFluids = [liquid1, liquid2]\ndesired_depth = 12\npg = 0\ng = 9.81\nFluids = sorted(Fluids, key = lambda Liquid: Liquid.density)\n\nwhile desired_depth > 0:\n    for Fluid in Fluids:\n        if Fluid.depth <= desired_depth:\n            pg = pg + Fluid.depth*g*Fluid.density\n            desired_depth = desired_depth - Fluid.depth\n        else:\n            pg = pg + desired_depth*g*Fluid.density\n            desired_depth = desired_depth - desired_depth\n\nprint("The gauge pressure is", pg, "Pa")\n            ",
         "explanation": "This solution takes advantage of the fact that hydrostatic pressure due to a fluid is equal to the density of the fluid times the acceleration due to gravity times the depth of the fluid. To find the pressure at a depth in a fluid we simply find the weight of the fluid above it per area. In this case, at a depth of 12 meters, we have 5 meters of oil and 7 meters of water. Therefore, p = rhowater*depthwater*g + rhooil*depthoil*g = 1000*7*9.81 + 750*5*9.81 = 105457.5 Pa."
         }
     },
     {
         "question": "Calculate the momentum flux of a fluid moving through a cylinder of radius R, with a velocity profile v(r) = Vo(1-(r/R)^2) where R = 1 m, density = 1000 kg/m^3, and Vo = 10 m/s.",
         "answer": {
-            "code": """
-import math
-
-R = 1
-rho = 1000
-Vo = 10
-
-flux = math.pi/3*rho*(Vo**2)*R**2
-
-print("The momentum flux is", flux, "kg*m/s^2")
-
-            """,
+            "code": "\nimport math\n\nR = 1\nrho = 1000\nVo = 10\n\nflux = math.pi/3*rho*(Vo**2)*R**2\n\nprint("The momentum flux is", flux, "kg*m/s^2")\n\n            ",
         "explanation": "Momentum flux is equal to the integral of density times velocity squared times the area. In this case we can write v(r) = Vo(1-(r/R)^2) and da = 2*pi*r*dr and rho = 1000 kg/m^3 where Vo = 10 m/s and R = 1m. Solving the integral from r=0 to r=R of (Vo(1-(r/R)^2))^2*rho*2*pi*r*dr, we get pi/3*rho*Vo^2*R^2 = pi/3*1000*10^2*1 = 104.72 kN."
         }
     },
     {
         "question": "An engine takes heat from a thermal reservoir at a rate of 2 kW at 102 degrees Celsius and from a cold place at 12 degrees Celsius and rejects heat to the environment at 30 degrees Celsius. Determine the minimum rate of heat transfer from the cold space.",
         "answer": {
-            "code": """
-Q1 = 2
-T1 = 102
-T2 = 12
-T3 = 30
-
-T1 = T1 + 273.15
-T2 = T2 + 273.15
-T3 = T3 + 273.15
-
-Q2 = (T3*T2)/(T2-T3) * (Q1/T1 - Q1/T3)
-
-print("The minimum rate of heat transfer from the cold place is ", Q2, " kW")
-
-            """,
+            "code": "\nQ1 = 2\nT1 = 102\nT2 = 12\nT3 = 30\n\nT1 = T1 + 273.15\nT2 = T2 + 273.15\nT3 = T3 + 273.15\n\nQ2 = (T3*T2)/(T2-T3) * (Q1/T1 - Q1/T3)\n\nprint("The minimum rate of heat transfer from the cold place is ", Q2, " kW")\n\n            ",
         "explanation": "In order to solve problems involving heat transfer in 3 body systems, we can use Clausius inequality and conservation of energy. First by conservation of energy we know that Q1 + Q2 + Q3 = 0. Therefore we can say that Q3 = -(Q1 + Q2). Next, the Clausius inequality tells us that Q1/T1 + Q2/T2 + Q3/T3 <= 0. Substituting for Q3, we get Q1/T1 + Q2/T2 -(Q1 + Q2)/T3 <=0. Substituting Q1 = 2 kW, T1 = 375.15 K, T2 = 285.15 K, T3 = 303.15 K, the maximum Q2 is 6.08 kW."
         }
     },
     {
         "question": "Air flows steadily through a converging-diverging nozzle. The area at the throat of the nozzle (where the flow is choked) is 1/2 the inlet area. Determine the Mach number at the inlet of the nozzle. Plot the Mach number as the area changes from inlet to throat.",
         "answer": {
-            "code": """
-import numpy
-import matplotlib.pyplot as pl
-
-M2 = 1
-
-Ms = []
-for i in range(1, 101):
-    Ms.append(i/100)
-
-#I ran a linear regression to find non-dimensional mass flow rate as a function of Mach Number. The result was the polynomial ndm(M) = 6.53763187e-01(M^4) + -1.64823282e+00(M^3) + 6.70739635e-02(M^2) + 2.20868819e+00(M) + 6.33202794e-05
-def M2Ndm(M):
-    return 6.53763187e-01*M**4 + -1.64823282e+00*M**3 + 6.70739635e-02*M**2 + 2.20868819e+00*M + 6.33202794e-05
-
-ndms = []
-for M in Ms:
-    ndms.append(M2Ndm(M))
-
-ndm2 = M2Ndm(M2)
-Aratio = .5
-
-ndm1 = ndm2*Aratio
-
-arr = numpy.polyfit(ndms, Ms, 7)
-def Ndm2M(ndm):
-    return arr[0]*ndm**7 + arr[1]*ndm**6 + arr[2]*ndm**5 + arr[3]*ndm**4 + arr[4]*ndm**3 + arr[5]*ndm**2 + arr[6]*ndm + arr[7]
-
-M1 = Ndm2M(ndm1)
-
-print("The input Mach number at the inlet is", M1)
-
-fig, ax = pl.subplots()
-As = []
-A2 = 1
-relndms = []
-for ndm in ndms:
-    if ndm > ndm1:
-    relndms.append(ndm)
-
-relMs = []
-for M in Ms:
-    if M > M1:
-    relMs.append(M)
-
-for ndm in relndms:
-    As.append(ndm2/ndm*A2)
-
-ax.plot(As, relMs)
-ax.set_xlabel("Area Ratio")
-ax.set_ylabel("Mach Number")
-ax.set_title("Mach Number vs Area Ratio")
-ax.text(As[0],M1,"inlet")
-ax.text(1,M2,"throat")
-
-            """,
+            "code": "\nimport numpy\nimport matplotlib.pyplot as pl\n\nM2 = 1\n\nMs = []\nfor i in range(1, 101):\n    Ms.append(i/100)\n\n#I ran a linear regression to find non-dimensional mass flow rate as a function of Mach Number. The result was the polynomial ndm(M) = 6.53763187e-01(M^4) + -1.64823282e+00(M^3) + 6.70739635e-02(M^2) + 2.20868819e+00(M) + 6.33202794e-05\ndef M2Ndm(M):\n    return 6.53763187e-01*M**4 + -1.64823282e+00*M**3 + 6.70739635e-02*M**2 + 2.20868819e+00*M + 6.33202794e-05\n\nndms = []\nfor M in Ms:\n    ndms.append(M2Ndm(M))\n\nndm2 = M2Ndm(M2)\nAratio = .5\n\nndm1 = ndm2*Aratio\n\narr = numpy.polyfit(ndms, Ms, 7)\ndef Ndm2M(ndm):\n    return arr[0]*ndm**7 + arr[1]*ndm**6 + arr[2]*ndm**5 + arr[3]*ndm**4 + arr[4]*ndm**3 + arr[5]*ndm**2 + arr[6]*ndm + arr[7]\n\nM1 = Ndm2M(ndm1)\n\nprint("The input Mach number at the inlet is", M1)\n\nfig, ax = pl.subplots()\nAs = []\nA2 = 1\nrelndms = []\nfor ndm in ndms:\n    if ndm > ndm1:\n    relndms.append(ndm)\n\nrelMs = []\nfor M in Ms:\n    if M > M1:\n    relMs.append(M)\n\nfor ndm in relndms:\n    As.append(ndm2/ndm*A2)\n\nax.plot(As, relMs)\nax.set_xlabel("Area Ratio")\nax.set_ylabel("Mach Number")\nax.set_title("Mach Number vs Area Ratio")\nax.text(As[0],M1,"inlet")\nax.text(1,M2,"throat")\n\n            ",
         "explanation": "To solve this problem, we use the gas flow properties tables. First, we use the table to find the non-dimensional mass flow rate at the throat where we know the mach number is 1. Looking at the table, we see that the non-dimensional mass flow rate is 1.2810 when the Mach number is 1. In this code, I use a regression fit model to find mach number from non-dimensional mass flow rate and vice versa created from the data in the table. Then we use the area ratio from throat to inlet to find the non-dimensional mass flow rate at the inlet. We know that the stagnation pressure is constant in the converging section of the nozzle and Cp, To, and mdot are constant as well, therefore we can take mdot*sqrt(Cp*To)/(Athroat*Po) = 1.2810 and multiply by Athroat/Ainlet to find the non-dimensional mass flow rate at the inlet. 1.2810 * 1/2 = .6405, so the non-dimensional mass flow rate at the inlet is .6405. Looking at the table, the corresponding mach number is around .304. I also included a plot to show how the mach number changes as the area changes from throat to inlet."
         }
     },
     {
         "question": "Air driven by a fan flows through a frictionless pipe from station A to station B. After reaching station B, the air flows through a curved section of pipe with an inner radius of 5 m and outer radius of 10 m. At station A, the velocity is 20 m/s and the pressure is 20 Pa. At station B, the velocity is 15 m/s. Assuming the air enters the curved section with uniform velocity and pressure, what is the pressure of the air on the outside of the curve as the air exits the bend? The density of air is 1.225 kg/m^3.",
         "answer": {
-            "code": """
-import math
-
-v1 = 20
-p1 = 20
-v2 = 15
-rho = 1.225
-R2 = 10
-R1 = 5
-
-p2 = p1 + .5*rho*(v1**2 - v2**2)
-
-deltaP = rho*(v2**2)*math.log(R2/R1)
-
-final_pressure = p2 + deltaP
-
-print("the pressure is", final_pressure, "Pa")
-
-            """,
+            "code": "\nimport math\n\nv1 = 20\np1 = 20\nv2 = 15\nrho = 1.225\nR2 = 10\nR1 = 5\n\np2 = p1 + .5*rho*(v1**2 - v2**2)\n\ndeltaP = rho*(v2**2)*math.log(R2/R1)\n\nfinal_pressure = p2 + deltaP\n\nprint("the pressure is", final_pressure, "Pa")\n\n            ",
         "explanation": "To solve this problem we first find the pressure at station B using Bernoulli's equation and then we use the equation to find the change in pressure across curved streamlines. Bernoulli's equation tells us that p1 + 1/2*rho*v1^2 = p2 + 1/2*rho*v2^2 where p1 and v1 are the pressure and velocity at station A and p2 and v2 are the pressure and velocity at station B. Solving this for p2 with the values given v1 = 20 m/s, p1 = 20 Pa, rho = 1.225 kg/m^3, and v2 = 15 m/3, we find that p2 = 127 Pa. Next we find the pressure change across the curved section of the tube. To do this, we use the equation dp/dn = p*V^2/R and we integrate p*V^2/(R+n)dn to find the change in pressure from the inside to the outside of the curve. Then, we add this change in pressure to the pressure at station B, to find the pressure on the outside of the curve. This change is approximately 191 Pa, so the pressure on the outside of the curve is around 318 Pa."
         }
     },
     {
         "question": "A piston-cylinder device contains 0.5 kg of air at an initial pressure of 200 kPa and a volume of 0.1 m^3. The air undergoes an isothermal compression process to a final volume of 0.05 m^3. Calculate the final pressure of the air if the temperature remains constant at 300 K. Plot the pressure vs volume diagram for this process.",
         "answer": {
-            "code": """
-import matplotlib.pyplot as pl
-
-p1 = 200
-v1 = .1
-v2 = .05
-
-p2 = (p1*v1)/v2
-
-print("The final pressure is", p2, "kPa")
-
-vs = []
-ps = []
-vi = v1*1000
-vf = v2*1000
-for v in range(int(vi),int(vf)):
-    v = v/1000
-    vs.append(v)
-    p = p1*v1/v
-    ps.append(p)
-
-fig, ax = pl.subplots()
-ax.plot(ps, vs)
-ax.set_xlabel("pressure")
-ax.set_ylabel("volume")
-ax.set_title("pressure vs volume")
-ax.text(p1,v1,"A")
-ax.text(p2,v2,"B")
-
-            """,
+            "code": "\nimport matplotlib.pyplot as pl\n\np1 = 200\nv1 = .1\nv2 = .05\n\np2 = (p1*v1)/v2\n\nprint("The final pressure is", p2, "kPa")\n\nvs = []\nps = []\nvi = v1*1000\nvf = v2*1000\nfor v in range(int(vi),int(vf)):\n    v = v/1000\n    vs.append(v)\n    p = p1*v1/v\n    ps.append(p)\n\nfig, ax = pl.subplots()\nax.plot(ps, vs)\nax.set_xlabel("pressure")\nax.set_ylabel("volume")\nax.set_title("pressure vs volume")\nax.text(p1,v1,"A")\nax.text(p2,v2,"B")\n\n            ",
         "explanation": "This solution relies on the ideal gas law, PV = nRT. Because temperature in this process is constant, R is constant, and the amount of gas is constant, nRT is constant. Therefore, p1v1 = p2v2 because p1v1 = nRT and p2v2 = nRT. Substituting v1 = .1 m^3 and p1 = 200 kPa into the equation we find that pv = 20 kPa*m^3 for the duration of the process. We can plot p = 20/v from vi = .1 m^3 to vf = .05 m^3 to give a pressure vs volume diagram for this process. At vf = .05 m^3, p = 20/.05 = 400 kPa."
         }
     },
     {
         "question": "Air is flowing across steady, incompressible, streamlines. The pressure measured at station A is 200 kPa, and the pressure measured at station B is 100 kPa. Calculate the change in specific kinetic energy from station A to B.",
         "answer": {
-            "code": """
-            p1 = 200
-            p2 = 100
-
-            KEChange = p1 - p2
-
-            print("The change in specific KE from station A to station B is", KEChange, "kJ/m^3")
-            """,
+            "code": "\n            p1 = 200\n            p2 = 100\n\n            KEChange = p1 - p2\n\n            print("The change in specific KE from station A to station B is", KEChange, "kJ/m^3")\n            ",
         "explanation": "This solution uses Bernoulli's Equation, p1 + 1/2*rho*v1^2 = p2 + 1/2*rho*v2^2. Rearranging, we find that p1 - p2 = 1/2*rho(v2^2 - v1^2). Recognizing that 1/2*rho*(v2^2-v1^2) = the change in specific KE, we recognize that the change is equal to the pressure at station A, p1, minus the pressure at station B, p2. In this case, the change in specific KE is 200 kPa - 100 kPa = 100 kJ/m^3."
         }
     }

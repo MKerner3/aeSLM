@@ -38,109 +38,49 @@
     {
         "question": "A rectangular window of height 4m and unknown width is used to seal up a tank of water. The top of the window is 3m deep in the tank. What is the ratio of the the total force due to pressure on the bottom half of the window over the top half?",
         "answer": {
-            "code": """
-            h = 4  # height of window
-            i = 3  # depth of top of window
-            h1 = h/2  # height of each of the two pieces of window after being split in half
-            i1 = i + h1  # depth of top of lower half of window
-            F1 = h1 * h1 * (i + (h1/2))  # top half force, equation found by solving out integral in the explanation
-            F2 = h1 * h1 * (i1 + (h1/2))  # bottom half force
-            ratio = F2/F1  # ratio of bottom half force to top half force
-            print("The ratio of force on the bottom half of window over the top half of window is:", ratio)
-            """,
+            "code": "\n            h = 4  # height of window\n            i = 3  # depth of top of window\n            h1 = h/2  # height of each of the two pieces of window after being split in half\n            i1 = i + h1  # depth of top of lower half of window\n            F1 = h1 * h1 * (i + (h1/2))  # top half force, equation found by solving out integral in the explanation\n            F2 = h1 * h1 * (i1 + (h1/2))  # bottom half force\n            ratio = F2/F1  # ratio of bottom half force to top half force\n            print("The ratio of force on the bottom half of window over the top half of window is:", ratio)\n            ",
             "explanation": "In order to figure out the ratio, we can split the window into two separate windows and calculate the force on them equally. The force of pressure on a window can be found by the summation of force on all small sections of the window. For a single window, this can be shown by rgh times the integral of z dz along the path from i to i + h, where r is the density, g is gravity, i is the depth of the top of the window, and h is the height of the window. r and g can be ignored because they are constants and will divide out in the ratio regardless."
         }
     },
     {
         "question": "An aircraft moving at Mach 3 with an atmospheric temperature of 217K. What is the stagnation temperature of the flow of air at the inlet of the engine?",
         "answer": {
-            "code": """
-            M = 3  # Mach Number
-            y = 1.4  # Gamma value for air
-            T = 217  # Atmospheric Temperature
-            ratio = 1 + (y-1)/2 * (M**2)
-            print("The stagnation temperature at the inlet of engine flow is:", round(T * ratio,3))
-            """,
+            "code": "\n            M = 3  # Mach Number\n            y = 1.4  # Gamma value for air\n            T = 217  # Atmospheric Temperature\n            ratio = 1 + (y-1)/2 * (M**2)\n            print("The stagnation temperature at the inlet of engine flow is:", round(T * ratio,3))\n            ",
             "explanation": "This can be solved using the equation T0/T = 1 + (y-1)M^2/2, where T0 is the stagnation temperature, M is the mach number, and y is the ratio of cp/cv for the fluid, where in this case it can be assumed as 1.4 for air."
         }
     },
     {
         "question": "Water is flowing into a tank with an area of 3 m^2 and an inlet velocity of 10 m/s, and an outlet area of 2 m^2 and an outlet velocity of 5 m/s. What is the rate of mass accumulation in the tank?",
         "answer": {
-            "code": """
-            Ain = 3  # Area of inlet pipe
-            Vin = 10  # Velocity of inlet flow
-            Aout = 2  # Area of outlet pipe
-            Vout = 5  # Velocity of outlet flow
-            p = 1000  # Density of water
-            mIN = p * Ain * Vin  # Massflow rate in
-            mOUT = p * Aout * Vout  # Massflow rate out
-            mA = mIN - mOUT  # Mass accumulation
-            print("The mass accumulation rate is:", mA,"kg/s")
-            """,
+            "code": "\n            Ain = 3  # Area of inlet pipe\n            Vin = 10  # Velocity of inlet flow\n            Aout = 2  # Area of outlet pipe\n            Vout = 5  # Velocity of outlet flow\n            p = 1000  # Density of water\n            mIN = p * Ain * Vin  # Massflow rate in\n            mOUT = p * Aout * Vout  # Massflow rate out\n            mA = mIN - mOUT  # Mass accumulation\n            print("The mass accumulation rate is:", mA,"kg/s")\n            ",
             "explanation": "We can use the equation mf = pAv for both the inflow and the outflow, and then we can subtract the outflow from the inflow to find the mass accumulation in the tank. We can assume p is 1000 kg/m^3"
         }
     },
     {
         "question": "1000 kJ of energy is added to 2m^3 of air at a pressure of 10 bar. The temperature of the system is 100K, and the specific heat at constant volume is 0.74 kJ/(kgK). What is the change in temperature of the system?",
         "answer": {
-            "code": """
-            import numpy as np
-            cv = 0.74  # specific heat at constant volume
-            Q = 1000  # Added heat
-            V = 2  # Volume of air
-            T = 100  # Temperature in Kelvin
-            p = 10  # Pressure
-            R = 287  # Constant
-            m = (p * (10**5) * V/(R * T))  # mass from ideal gas law
-            dT = Q/(m * cv) # change in temperature
-            print("The change in temperature is: ", round(dT,3),"K")
-            """,
+            "code": "\n            import numpy as np\n            cv = 0.74  # specific heat at constant volume\n            Q = 1000  # Added heat\n            V = 2  # Volume of air\n            T = 100  # Temperature in Kelvin\n            p = 10  # Pressure\n            R = 287  # Constant\n            m = (p * (10**5) * V/(R * T))  # mass from ideal gas law\n            dT = Q/(m * cv) # change in temperature\n            print("The change in temperature is: ", round(dT,3),"K")\n            ",
             "explanation": "First, we use pV = mRT to find the mass of the air in the system. Then we use the Q - W = dU, and set du equal to mcvdT and solve for dT"
         }
     },
     {
         "question": "At mach 1.050, a skin friction coefficient of 0.05, and a diameter of 2m, what length of pipe is needed to choke a viscous flow?",
         "answer": {
-            "code": """
-            cf = 0.05  # skin frction coefficient
-            D = 2  # Diameter of pipe
-            Val = 0.0027  # value of 4cfL/D for mach 1.050
-            L = Val * D/(4 * cf)  # length to chock pipe
-            print("The length of pipe needed to choke the flow would be:", L,"m")
-            """,
+            "code": "\n            cf = 0.05  # skin frction coefficient\n            D = 2  # Diameter of pipe\n            Val = 0.0027  # value of 4cfL/D for mach 1.050\n            L = Val * D/(4 * cf)  # length to chock pipe\n            print("The length of pipe needed to choke the flow would be:", L,"m")\n            ",
             "explanation": "We can use the supersonice mach relation tables to find the value of 4cfL/D. This is 0.0027, we can use this to solve for L."
         }
     },
     {
         "question": "A system extracts heat from a heat source at 1000K and the atmosphere at 200K in order to deliver 13kW of energy to a building at 500K. What rate is the heat being extracted from the heat source?",
         "answer": {
-            "code": """
-            T1 = 1000  # Temperature of source 1
-            T2 = 200  # Temperature of source 2
-            T3 = 500  # Temperature of source 3
-            Q3 = 13  # Rate of heat transfer
-            ratio = (1/T2 - 1/T1)/(1/T2 - 1/T3)  # ratio of Q3/Q1
-            print("The rate of heat extraction from the heat source is:", round(Q3/ratio,3),"kW")
-            """,
+            "code": "\n            T1 = 1000  # Temperature of source 1\n            T2 = 200  # Temperature of source 2\n            T3 = 500  # Temperature of source 3\n            Q3 = 13  # Rate of heat transfer\n            ratio = (1/T2 - 1/T1)/(1/T2 - 1/T3)  # ratio of Q3/Q1\n            print("The rate of heat extraction from the heat source is:", round(Q3/ratio,3),"kW")\n            ",
             "explanation": "We can use the Clausius inequality to solve for Q1 in Q1 + Q2 = Q3, and Q1/T1 + Q2/T2 - Q3/T3 <= 0. By doing some algebra on these equations, we can set Q2 = Q3 - Q1 and solve for the ratio of Q3/Q1 and then divide the value of Q3 to get Q1."
         }
     },
     {
         "question": "Water is flowing through a tube with an area of π/4m^2 at a rate of 2m^3/s and a pressure of 80 kPa. What is the pressure after the area becomes π/16 m^2?",
         "answer": {
-            "code": """
-            import numpy as np
-            vF = 2 # Volumetric flow rate
-            p = np.pi # pi
-            Ain = p/4 # Area of inlet
-            Aout = p/16 # Area of second point
-            pIn = 80 # Pressure of inlet
-            v1 = vF/Ain # Velocity at point one
-            v2 = vF/Aout # Velocity at point two
-            p2 = (80 * 1000) + (0.5 * 1000 * ((v1**2) - (v2**2))) # Pressure at point two
-            print("The pressure at the second point is:", round(p2/1000,3),"kPa")
-            """,
+            "code": "\n            import numpy as np\n            vF = 2 # Volumetric flow rate\n            p = np.pi # pi\n            Ain = p/4 # Area of inlet\n            Aout = p/16 # Area of second point\n            pIn = 80 # Pressure of inlet\n            v1 = vF/Ain # Velocity at point one\n            v2 = vF/Aout # Velocity at point two\n            p2 = (80 * 1000) + (0.5 * 1000 * ((v1**2) - (v2**2))) # Pressure at point two\n            print("The pressure at the second point is:", round(p2/1000,3),"kPa")\n            ",
             "explanation": "Use bernoulli's equation, assuming a steady, incompressible, and inviscid flow as it is not mentioned. the rgz component can also be neglected as no change in height is mentioned. First, use the volumetric flow rate to find the velocity at both points by dividing by area. Then, simply solve for the constant at the initial point and use the value to find the pressure at the second point. "
         }
     }

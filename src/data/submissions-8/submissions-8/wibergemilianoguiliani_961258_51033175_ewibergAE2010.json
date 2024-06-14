@@ -2,19 +2,7 @@
 {
     "question": "What is the Reynolds number for a flow with a velocity of 5 m/s, characteristic length of 0.2 m, and kinematic viscosity of 1e-6 m^2/s?",
     "answer": {
-        "code": """
-            import numpy as np
-
-            velocity = 5 # velocity of flow (m/s)
-            length = 0.2 # characteristic length (m)
-            viscosity = 1 * 10**-6 # Kinematic viscosity (m^2/s)
-
-            # Calculate Reynolds number using the formula: Re = (velocity * length) / viscosity
-
-            Re = (velocity * length) / viscosity
-
-            print("The Reynolds number for this flow is :", Re)
-            """,
+        "code": "\n            import numpy as np\n\n            velocity = 5 # velocity of flow (m/s)\n            length = 0.2 # characteristic length (m)\n            viscosity = 1 * 10**-6 # Kinematic viscosity (m^2/s)\n\n            # Calculate Reynolds number using the formula: Re = (velocity * length) / viscosity\n\n            Re = (velocity * length) / viscosity\n\n            print("The Reynolds number for this flow is :", Re)\n            ",
             "explanation": "This code calculates the Reynolds number for a flow using the formula, which relates flow velocity, characteristic length, and kinematic viscosity. The Reynolds number is a dimensionless quantity used to characterize the flow regime.",
             "references": ["Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill."]
     }
@@ -22,20 +10,7 @@
 {
     "question": "A fluid with a density of 900 kg/m^3 flows through a pipe with a diameter of 0.1 m at a velocity of 4 m/s. What is the dynamic viscosity of the fluid if the Reynolds number is 1440?",
     "answer": {
-        "code": """
-		    import numpy as np
-			
-			rho = 900 # Density of fluid (kg/m^3)
-			diameter = 0.1 # Diameter of pipe (m)
-			velocity = 4 # Velocity of flow (m/s)
-			Re = 1440 # Reynolds number
-			
-			# Calculate dynamic viscosity using the formula: Re = (density * velocity * diameter) / viscosity
-			
-			viscosity = (rho * velocity * diameter) / Re
-			
-			print("Dynamic viscosity of the fluid is:", viscosity, "Pa*s")
-			"""
+        "code": "\n		    import numpy as np\n			\n			rho = 900 # Density of fluid (kg/m^3)\n			diameter = 0.1 # Diameter of pipe (m)\n			velocity = 4 # Velocity of flow (m/s)\n			Re = 1440 # Reynolds number\n			\n			# Calculate dynamic viscosity using the formula: Re = (density * velocity * diameter) / viscosity\n			\n			viscosity = (rho * velocity * diameter) / Re\n			\n			print("Dynamic viscosity of the fluid is:", viscosity, "Pa*s")\n			"
 			"explanation": "This code calculates the dynamic viscosity of the fluid using the formula derived from the Reynolds number equation. It rearranges the equation to solve for viscosity, which is a measure of the resistance to flow.",
 			"references": []
 	}
@@ -43,20 +18,7 @@
 {
     "question": "A tank contains 300 liters of air at a pressure of 200 kPa and temperature of 300 K. What is the mass of the air in the tank? (Assume ideal gas behavior)",
     "answer": {
-		"code": """
-		    import numpy as np
-			
-			volume = 300 / 1000 # Convert liters to cubic meters
-			pressure = 200 # Pressure (kPa)
-			R_specific = 287 # Specific gas constant for air (J/kg*K)
-			temperature = 400 # Temperature (K)
-			
-			# Calculate mass using PV=mRT
-			
-			mass = pressure * volume / (R_specific * temperature)
-			
-			print("Mass of air in the tank:", mass, "kg")
-		    """
+		"code": "\n		    import numpy as np\n			\n			volume = 300 / 1000 # Convert liters to cubic meters\n			pressure = 200 # Pressure (kPa)\n			R_specific = 287 # Specific gas constant for air (J/kg*K)\n			temperature = 400 # Temperature (K)\n			\n			# Calculate mass using PV=mRT\n			\n			mass = pressure * volume / (R_specific * temperature)\n			\n			print("Mass of air in the tank:", mass, "kg")\n		    "
 			"explanation": "This code calculates the mass of air in the tank using the ideal gas law, which relates pressure, volume, temperature, and the gas constant. It rearranges the ideal gas law equation to solve for mass.",
 			"references": []
 	}
@@ -64,20 +26,7 @@
 {
     "question": "Calculate the power required to pump water through a pipe at a rate of 0.05 m^3/s against a head of 30 meters. (Assume water density = 1000 kg/m^3 and acceleration due to gravity = 9.81 m/s^2)",
     "answer": {
-		"code": """
-		    import numpy as np
-			
-			flow_rate = 0.005 # Flow rate (m^3/s)
-			head = 30 # Head (m)
-			rho_water = 1000 # Density of water (kg/m^3)
-			g = 9.81 # (m/s^2)
-			
-			# Calculate power using the formula: Power = flow rate * head * density * gravity
-			
-			power = flow_rate * head * rho_water * g
-			
-			print("Power required to pump water:", power, "Watts")
-		    """
+		"code": "\n		    import numpy as np\n			\n			flow_rate = 0.005 # Flow rate (m^3/s)\n			head = 30 # Head (m)\n			rho_water = 1000 # Density of water (kg/m^3)\n			g = 9.81 # (m/s^2)\n			\n			# Calculate power using the formula: Power = flow rate * head * density * gravity\n			\n			power = flow_rate * head * rho_water * g\n			\n			print("Power required to pump water:", power, "Watts")\n		    "
 			"explanation": "This code calculates the power required to pump water through a pipe using the formula for hydraulic power, which relates flow rate, head, density, and acceleration due to gravity.",
 			"references": []
 	}
@@ -85,19 +34,7 @@
 {
     "question": "An ideal gas undergoes an isentropic process where the initial temperature is 300 K and the final temperature is 200 K. If the initial volume is 0.5 m^3, what is the final volume of the gas?",
     "answer": {
-		"code": """
-		    import numpy as np
-			
-			T_0 = 300 # Initial temperature (K)
-			T = 200 # Final temperature (K)
-			V_0 = 0.5 # Initial volume (m^3)
-			
-			# Calculate final volume using the ideal gas law for isentropic process
-			
-			V = V_0 * (T_0 / T)
-			
-			print("Final volume of the gas", V, "m^3")
-		    """
+		"code": "\n		    import numpy as np\n			\n			T_0 = 300 # Initial temperature (K)\n			T = 200 # Final temperature (K)\n			V_0 = 0.5 # Initial volume (m^3)\n			\n			# Calculate final volume using the ideal gas law for isentropic process\n			\n			V = V_0 * (T_0 / T)\n			\n			print("Final volume of the gas", V, "m^3")\n		    "
 			"explanation": "This code calculates the final volume of the gas undergoing an isentropic process using the ideal gas law for adiabatic processes, where temperature and volume are inversely proportional.",
 			"references": []
 	}
@@ -105,24 +42,7 @@
 {
     "question": "Calculate the Mach number of a gas flowing at a velocity of 300 m/s in air at standard conditions (temperature = 273 K, pressure = 101325 Pa).",
     "answer": {
-		"code": """
-		    import numpy as np
-			
-			velocity = 300 # Flow velocity (m/s)
-			temperature = 273 # Standard temperature (K)
-			pressure = 101325 # Standard pressure (Pa)
-			gamma = 1.4 # Ratio of specific heats for air
-			
-			# Calculate speed of sound using ideal gas law for air
-			
-			speed_of_sound = np.sqrt(gamma * 287 * temperature)
-			
-			# Calculate Mach number using the formula: Mach = velocity / speed_of_sound
-			
-			mach_number = velocity / speed_of_sound
-			
-			print("Mach number:", mach_number)
-		    """
+		"code": "\n		    import numpy as np\n			\n			velocity = 300 # Flow velocity (m/s)\n			temperature = 273 # Standard temperature (K)\n			pressure = 101325 # Standard pressure (Pa)\n			gamma = 1.4 # Ratio of specific heats for air\n			\n			# Calculate speed of sound using ideal gas law for air\n			\n			speed_of_sound = np.sqrt(gamma * 287 * temperature)\n			\n			# Calculate Mach number using the formula: Mach = velocity / speed_of_sound\n			\n			mach_number = velocity / speed_of_sound\n			\n			print("Mach number:", mach_number)\n		    "
 			"explanation": "This code calculates the Mach number of a gas flow by first determining the speed of sound using the ideal gas law for air, then dividing the flow velocity by the speed of sound.",
 			"references": []
 	}
@@ -130,26 +50,7 @@
 {
     "question": "Determine the angle of an oblique shock wave produced by a flow with a Mach number of 2.5 and an incident flow angle of 20 degrees with respect to the normal.",
     "answer": {
-		"code": """
-		    import numpy as np
-			
-			mach_number = 2.5 # Mach number of the flow
-			incident_angle_deg = 20 # Incident flow angle in degrees
-			
-			# Convert incident angle to radians
-			
-			incident_angle_rad = np.deg2rad(incident_angle_deg)
-			
-			# Calculate the angle of thee oblique shock using the oblique shock relations
-			
-			theta = np.arcsin(1 / mach_number * np.sqrt(((gamma + 1) / (gamma - 1)) * (mach_number**2 * np.sin(incident_angle_rad)**2 - 1)))
-			
-			# Convert angle from radians to degrees
-			
-			theta_deg = np.rad2deg(theta)
-			
-			print("Angle of the oblique shock (degrees):", theta_deg)
-		    """
+		"code": "\n		    import numpy as np\n			\n			mach_number = 2.5 # Mach number of the flow\n			incident_angle_deg = 20 # Incident flow angle in degrees\n			\n			# Convert incident angle to radians\n			\n			incident_angle_rad = np.deg2rad(incident_angle_deg)\n			\n			# Calculate the angle of thee oblique shock using the oblique shock relations\n			\n			theta = np.arcsin(1 / mach_number * np.sqrt(((gamma + 1) / (gamma - 1)) * (mach_number**2 * np.sin(incident_angle_rad)**2 - 1)))\n			\n			# Convert angle from radians to degrees\n			\n			theta_deg = np.rad2deg(theta)\n			\n			print("Angle of the oblique shock (degrees):", theta_deg)\n		    "
 			"explanation": "This code calculates the angle of an oblique shock wave using the oblique shock relations, which describe the relationship between the incident flow angle, Mach number, and shock angle for compressible flow.",
 			"references": []
 	}
@@ -193,28 +94,7 @@
 {
     "question": "Generate a plot showing the variation of pressure along the length of a pipe for laminar and turbulent flow conditions.",
     "answer": {
-		"code": """
-		    import numpy as np
-			import matplotlib.pyplot as plt
-			
-			# Define pipe length and pressure profiles for laminar and turbulent flows
-			
-			pipe_length = np.linspace(0, 10, 100)
-			pressure_laminar = np.sin(pipe_length) # Example pressure profile for laminar flow
-			pressure_turbulent = np.cos(pipe_length) # Example pressure profile for turbulent flow
-			
-			# Plot pressure variation along the length of the pipe
-			
-			plt.figure(figsize=(10, 6))
-			plt.plot(pipe_length, pressure_laminar, label='Laminar Flow')
-			plt.plot(pipe_length, pressure_turbulent, label='Turbulent Flow')
-			plt.xlabel('Pipe Length')
-			plt.ylabel('Pressure')
-			plt.title('Pressure Variation in Pipe')
-			plt.legend()
-			plt.grid(True)
-			plt.show()
-		    """
+		"code": "\n		    import numpy as np\n			import matplotlib.pyplot as plt\n			\n			# Define pipe length and pressure profiles for laminar and turbulent flows\n			\n			pipe_length = np.linspace(0, 10, 100)\n			pressure_laminar = np.sin(pipe_length) # Example pressure profile for laminar flow\n			pressure_turbulent = np.cos(pipe_length) # Example pressure profile for turbulent flow\n			\n			# Plot pressure variation along the length of the pipe\n			\n			plt.figure(figsize=(10, 6))\n			plt.plot(pipe_length, pressure_laminar, label='Laminar Flow')\n			plt.plot(pipe_length, pressure_turbulent, label='Turbulent Flow')\n			plt.xlabel('Pipe Length')\n			plt.ylabel('Pressure')\n			plt.title('Pressure Variation in Pipe')\n			plt.legend()\n			plt.grid(True)\n			plt.show()\n		    "
 			"explanation": "This code generates a plot illustrating the variation of pressure along the length of a pipe for laminar and turbulent flow conditions. It defines hypothetical pressure profiles for laminar and turbulent flows and plots them against the pipe length.",
 			"references": []
 	}
@@ -222,29 +102,7 @@
 {
     "question": "Plot the velocity distribution in a Couette flow between two parallel plates with a given velocity gradient.",
     "answer": {
-		"code": """
-		    import numpy as np
-			import matplotlib.pyplot as plt
-			
-			# Define parameters
-			
-			h = np.linspace(0, 1, 100) # Distance between plates (normalized)
-			velocity_gradient = 2 # Given velocity gradient
-			
-			# Calculate velocity distribution using linear profile for Couette flow
-			
-			velocity = velocity_gradient * h
-			
-			# Plot velocity distribution
-			
-			plt.figure(figsize=(10, 6))
-			plt.plot(h, velocity)
-			plt.xlabel('Distance between Plates (Normalized)')
-			plt.ylabel('Velocity')
-			plt.title('Velocity Distribution in Couette Flow')
-			plt.grid(True)
-			plt.show()
-		    """
+		"code": "\n		    import numpy as np\n			import matplotlib.pyplot as plt\n			\n			# Define parameters\n			\n			h = np.linspace(0, 1, 100) # Distance between plates (normalized)\n			velocity_gradient = 2 # Given velocity gradient\n			\n			# Calculate velocity distribution using linear profile for Couette flow\n			\n			velocity = velocity_gradient * h\n			\n			# Plot velocity distribution\n			\n			plt.figure(figsize=(10, 6))\n			plt.plot(h, velocity)\n			plt.xlabel('Distance between Plates (Normalized)')\n			plt.ylabel('Velocity')\n			plt.title('Velocity Distribution in Couette Flow')\n			plt.grid(True)\n			plt.show()\n		    "
 			"explanation": "This code generates a plot illustrating the velocity distribution in Couette flow between two parallel plates with a given velocity gradient. It defines a normalized distance between the plates and calculates the corresponding velocity using a linear profile for Couette flow.",
 			"references": []
 	}
