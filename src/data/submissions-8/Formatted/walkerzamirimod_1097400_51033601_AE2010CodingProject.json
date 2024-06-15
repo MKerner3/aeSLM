@@ -1,0 +1,98 @@
+[
+{
+  "question": "When will a cyclic heat engine experience it’s maximum efficiency?",
+  "answer": "A cyclic heat engine will experience its maximum efficiency when the system is reversible. This is explained in Carnot's theorem, where assuming the opposite was true will violate the conservation of energy.",
+  "explanation":"",
+  "reference": "https://en.wikipedia.org/wiki/Carnot's_theorem_(thermodynamics)"
+},
+{
+  "question": "How is pressure from a fluid affected by wall shape?",
+  "answer": "The pressure on the wall supporting the fluid depends solely on the current depth, and it has a linear relationship with depth (p = ρgz).",
+  "explanation":"",
+  "reference": ""
+},
+{
+  "question": "What are the primary differences between normal shocks, oblique shocks, and expansion fans?",
+  "answer": "Oblique shocks are similar to normal shocks, but they occur when the flow hits an incline. Expansion fans occur when the flow drops at an angle. The characteristics across the shock wave are the same for normal shocks and oblique shocks, while it is the opposite for expansion fans. While normal shocks and oblique shocks have similar characteristics, the calculations for the relationships (p, ρ, p0, and h) are different.",
+  "explanation":"",
+  "reference": ""
+},
+{
+  "question": "What are the distinctions between perfect gases and non-perfect gases?",
+  "answer": "A feature that perfect gases have that non-perfect gases lack are constant values for cp and cv. If a gas isn’t perfect, it’s specific heat capacities will vary with temperature and volume, making problem solving more tedious. Most problems you will encounter will assume the gas you’re working with is ideal and/or perfect..",
+  "explanation":"",
+  "reference": ""
+},  
+{
+  "question": "What conditions must be met for a process to be isentropic?",
+  "answer": "For a process to be isentropic, it must also be reversible and adiabatic. For a process to be reversible, it must be able to return to its initial state. This means there can’t be any dissipative effects in the system (such as shear) implying that dSirrev = 0. For a process to be adiabatic there cannot be any heat transfers, so Q = 0. Processes that occur quickly are typically adiabatic. If two of the three are true (isentropic, reversible, or adiabatic) are true then the other is also true.",
+  "explanation":"",
+  "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill"
+},
+{
+  "question": "Why can there only be processes that increase entropy in an isolated system?",
+  "answer": "The full second law of Thermodynamics is dS = dq/T +dsirrev. dSirrev can only increase entropy, and in a closed system there is no heat transfer, so dq = 0. The second law gets turned into dS ≥ 0, showing that only processes that increase entropy can take place.",
+  "explanation":"",
+  "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill"
+},   
+{
+  "question": "When is Bernoulli's Equation to be applicable",
+  "answer": "The Bernoulli's Equation (p+ ρgz+0.5ρv^2 = constant) can only be used across a streamline in inviscid, incompressible flow. It can only be used in inviscid incompressible flow because Bernoulli derived from the momentum equation, which uses those assumptions.",
+  "explanation":"",
+  "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill"
+},
+{
+  "question": "Why are there two types of oblique shocks and which one is used?",
+  "answer": "There are two types of shock solutions than can occur when the angle of the inclined surface is less than the max angle.  On β-θ graphs there will be two β’s for every θ. The smaller one is called the weak shock and the larger one is called the strong shock. In nature the weak shock occurs the majority of the time, so it should be used in problem solving.",
+  "explanation":"",
+  "reference": "John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill"
+},
+{
+  "question": "What are the common thermodynamic processes?.",
+  "answer": "\n      import numpy as np\n      import matplotlib.pyplot as plt\n      #Isobaric\n      x1 = np.linspace(1, 10, 10)\n      y1 = x1*0 +5\n      plt.plot(x1,y1,'r')\n      #Isochoric\n      y2 = np.linspace(0, 10, 10)\n      x2 = y2*0 + 5\n      plt.plot(x2,y2,'g')\n      #Isothermal\n      x3 = np.linspace(1, 10, 20)\n      y3 = 10/x3\n      plt.plot(x3,y3,'b')\n      #Isentropic\n      x4 = np.linspace(1, 10, 20)\n      y4 = 10/(x4**1.4)\n      plt.plot(x4,y4,'c')\n      #Set up the plot\n      plt.xlabel('V')\n      plt.ylabel('p')\n      plt.xticks([])\n      plt.yticks([])\n      plt.show()\n      ",
+  "explanation": "The common thermodynamic processes you’ll encounter are the following: Isochoric (green) means the volume is constant, Isobaric (red) means the pressure is constant, Isothermal (blue) means the temperature is constant, and Isentropic (cyan) means there is no change in entropy. Here are the processes on a p-V diagram. Following the polytropic relationship (pV^n = C), the isentropic curve is steeper because n = y instead of n = 0 for a isothermal process. These relationships assume that the gas is perfect.",
+  "reference": "https://en.wikipedia.org/wiki/Polytropic_process"
+},
+{
+  "question": "What is the final temperature of an isentropic system when the initial temperature is 400K, the initial pressure is 610 Pa, the final pressure is 920Pa, and y = 1.67? Assume the gas is ideal.",
+  "answer": "\n      T1 = 400 #Initial Temp (K)\n      P1 = 610 #Initial Pressure (Pa)\n      P2 = 920 #Final Pressure (Pa)\n      y = 1.67 #Heat Capacity Ratio\n\n      #New temperature of an isentropc process\n      T2 = T1*((P2/P1)**((y-1)/y))\n      print('Final temperature of the gas is:', T2, 'K')\n      ",
+  "explanation": "The isentropic relation for p and T is given by (p2/p1) = (T2/T1)^y/(y-1). Rearranging this yields T2 = T1(p2/p1)^(y-1)/y. ",
+  "reference":""
+},
+{
+  "question": "Calculate the stagnation temperature if the initial temperature is 220K, R = 287 J/Kg*K, and velocity is 3 km/s.",
+  "answer": "\n      T1 = 220 #Inital Temp (K)\n      v = 3000 #velocity (m/s)\n      R = 287 #Specific Gas Constant (J/kg*K)\n      y = 1.4 #Specific Heat Capacity Ratio\n\n      #speed of sound\n      a = (y*R*T1)**0.5\n      #Mach Number\n      M = v/a\n      #Stagnation Temp\n      T01 = T1*(1+(((y-1)**2)/2)*(M**2))\n      print('The stagnation temperature of the gas is:', T01, 'K')\n      ",
+  "explanation": "The speed of sound squared is given by the equation a^2=yRT. Taking the square root of it gives the speed of sound, and the Mach number can be calculated with the speed of sound and velocity, M = v/a. From there the stagnation temperature is given by the equation (T01/T1) = 1+ (y-1)*M^2/2. Multiplying both sides by the initial temperature will provide the stagnation temperature",
+  "reference":""
+},
+{
+  "question": "What is the heat addition in an isochoric process that goes from 500Pa to 750Pa? R = 287, m = 60kg, V = 10m^3, cv = 717.7 J/(kg·K), and assume it is a perfect gas",
+  "answer": "\n      #inital conditions\n      p1 = 500 #Initial Pressure (Pa)\n      p2 = 750 #Final Pressure (Pa)\n      V = 10 #Volume (m^3)\n      m = 60 #mass (kg)\n      R = 287 #Specific Gas Constant (J/kg*K)\n      cv = 717.7 #Specefic heat (J/(kg·K))\n\n      #calculate the inital temperature\n      T1 = (p1*V)/(m*R)\n      #calculate the final temperature\n      T2 = (p2*V)/(m*R)\n      #calculate the heat\n      Q = m*cv*(T2-T1)\n      print('The heat addition to the system is:', Q, 'J')\n      ",
+  "explanation": "An isochoric process means the volume is constant. Using the ideal gas formula the initial temperature can be found, T1=p1v/mR. Because the volume is constant, the final temperature can also be found using the same method. The first law of Thermodynamics applied to isochoric processes is Q=m*cv(T2-T1), giving you the heat addition to the system.",
+  "reference":""
+},
+{
+  "question": "What is the change of internal energy of a isochoric process that changes from 330K to 520K? cv = 717.7 J/(kg·K), and m = 27kg. Assume the gas is perfect.",
+  "answer": "\n      #initial conditions\n      T1 = 330 #Temperature (K)\n      T2 = 520 #Temperature (K)\n      cv = 717.7 #Specefic heat (J/(kg·K))\n      m = 27 #Mass (kg)\n\n      #change of internal energy\n      dU = m*cv*(T2-T1)\n      print('The change of internal energy is:', dU, 'J')\n      ",
+  "explanation": "The definition of the specific heat at constant volume is cv = du/dT. Rearranging and multiplying mass will give dU =mcvdT.",
+  "reference":""
+},
+{
+  "question": "Calculate the Mach number behind a normal shockwave from a fighter jet traveling at 536 m/s at a temperature of 190K. Assume the air acts as a perfect gas, R = 287 J/kg*K, and y = 1.4.",
+  "answer": "\n      import numpy as np\n      import matplotlib.pyplot as plt\n      #inital conditions\n      T = 190 #Inital Temp (K)\n      v = 536 #velocity (m/s)\n      R = 287 #Specific Gas Constant (J/kg*K)\n      y = 1.4 #Specific Heat Capacity Ratio\n\n      #speed of sound\n      a = (y*R*T)**0.5\n      #Mach number\n      M1 = v/a\n\n      #New Mach number\n      M2 = ((1+((y-1)*M1**2)/2)/(y*M1**2-(y-1)/2))**2\n      print('The Mach number is:', M2)\n\n      #graph of the mach number\n      x = np.linspace(1,9,20)\n      y = ((1+((y-1)*x**2)/2)/(y*x**2-(y-1)/2))**2\n      plt.plot(x,y,'b')\n      plt.xlabel('M1')\n      plt.ylabel('M2')\n      plt.title('M1 vs M2')\n      ",
+  "explanation": "To find the Mach number behind the normal shock, the current Mach number is needed, which can be calculated by M = v/a. The speed of sound, a can be found by a=(yRT)^0.5, giving a = 276.3 m/s. The Mach number then, is 1.94. The normal shock equation for the Mach number behind the shock wave is M2^2 = (1+(y-1)M1^2/2)/(yM1^2-(y01)/2). Plugging in the values and taking the square root of the answer gives M2 = 0.12. When the Mach number is above Mach 1, the Mach number behind the shock wave rapidly decreases, and is subsonic. The graph displays this relationship.",
+  "reference":""
+},
+{
+  "question": "What is the pressure after an oblique shock wave given that M1 = 3, θ = 26, p1 = 900Pa, and y = 1.4.",
+  "answer": "\n      import numpy as np\n      import matplotlib.pyplot as plt\n      #initial conditions\n      M1 = 3 #Mach number\n      theta = 26 #Incline angle (degrees)\n      p1 = 900 #initial pressure (Pa)\n      y = 1.4 #Specific Heat Capacity Ratio\n      beta = 45.55 #Oblique shock angle (from table)\n\n      #calculate the oblique shock Mach number\n      Mn1 = M1*np.sin(beta)\n      #calculate the pressure\n      p2 = p1*(1+(2*y*((Mn1**2)-1))/(y+1))\n      print('The pressure after the shockwave is:', p2, 'Pa')\n\n      #graph the pressure\n      x=np.linspace(1,9,20)\n      y = p1*(1+(2*y*((x**2)-1))/(y+1))\n      plt.plot(x,y,'r')\n      plt.xlabel('Mn1')\n      plt.ylabel('p')\n      plt.title('Mn1 vs p')\n      ",
+  "explanation": "According to the weak oblique shock wave angle table, given the initial conditions, β = 45.55. From there the oblique shock wave Mach number can be calculated by Mn1 = M1sinβ. From there the oblique shock relation for pressure can be used, p2/p1 = 1+2y(Mn1^2-1)/(y+1), giving p2 = 9300. Unlike expansion fans, the pressure increases after the oblique shock, and increases as the Mach number increases as shown in the graph.",
+  "reference": "https://www.iist.ac.in/sites/default/files/people/IN12177/Gas%20tables_v2.pdf"
+},
+   {
+  "question": "Find T2 if w = 3000 J/s, Q1 = 1820J, and T1 = 425K for a reversible, cyclic heat engine..",
+  "answer": "\n      #inital conditions\n      W = 3000 #Work (J/s)\n      Q1 = 1820 #Heat (J)\n      T1 = 425 #Temperature\n      #calculate Q2\n      Q2 = Q1-W\n      #calculate T2\n      T2 = Q2*T1/Q1\n      print('T2 equals:', T2, 'K')\n      ",
+  "explanation": "For a cyclic heat engine, w =Q1-Q2, so Q2 equals Q1 – W. Since the heat engine is also reversible the relationship Q2/Q1=T2/T1 can be used. Multiplying both sides by T1 will grant T2 = -276K.",
+  "reference":""
+}
+]
