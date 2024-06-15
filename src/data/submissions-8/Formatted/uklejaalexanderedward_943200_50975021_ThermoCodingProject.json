@@ -1,0 +1,98 @@
+[
+    {
+        "question": "How do you determine the forces acting on a submerged wedge?",
+        "answer": "First define your coordinate system. Then consider the two type of forces acting on the wedge: the pressure forces acting on each surface and the weight of the wedge. For a fully submerged wedge the pressure forces acting in all directions will be equal.",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What are the different types of pressure?",
+        "answer": "The gauge pressure is the relative pressure with respect to the atmosphere. Stagnation pressure is the pressure of a fluid when the velocity is 0. Static pressure is a general term used to describe the relative pressure at any point in a fluid. Dynamic pressure is the pressure dependent on flow velocity represented as q=(1/2)(rho)(v^2)",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What assumptions must we make to apply Bernoulli's equation?",
+        "answer": "Flow must be inviscid. We neglect the effect of gravity. And there is no fluid motion (acceleration).",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What is the correct definition of temperature?",
+        "answer": "Bodies that are in thermal equilibrium with one another must share a common property which we call temperature.",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What does it mean if a process is isentropic?",
+        "answer": "It means that the total change in entropy of a system is equal to 0 and that the process is both reversible and adiabatic (heat exchange is equal to 0).",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What are the Tds equations and how are they used?",
+        "answer": "The integration of the Tds equations can be used to calculate the change in entropy. Tds = dU + pdV. Tds = dH - Vdp",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What are some of the relationships between c_p, c_v, and gamma?",
+        "answer": "c_p/c_v = gamma. c_p - c_v = R (gas constant). gamma = 1.4 under standard conditions.",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What are the different types of variable nozzle flows?",
+        "answer": "When the area is increasing in a nozzle and the mach number is less than 1, the velocity decreases in a subsonic diffuser. When the mach number is greater than one with an increasing area, the velocity increases in a supersonic nozzle. When the area decreases with the flow and the mach number is less than 1, the velocity increases in a subsonic nozzle. When the area decreases at a mach number greater than 1, the change in velocity decreases at a supersonic diffuser.",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "What is choked flow and why does it happen?",
+        "answer": "Choked flow means that the mass flow rate through a converging nozzle will not increase no matter how much the exit static pressure is reduced. This happens at the speed of sound (Mach 1) because the lines of communication between the entry and exit static pressures are lost.",
+        "explanation": "",
+        "reference": ""
+    },
+    {
+        "question": "Upstream of an airfoil, flow has a velocity of 20 m/s and a temperature of 200 K. There is no external work and no heat transfer in the flow. What is the stagnation temperature at the airfoil. Assume c_p = 100.",
+        "answer": "\n            import numpy as np\n            \n            v1 = 20 # velocity (m/s)\n            t1 = 200 # temperature (K)\n            c_p = 100 #molar heat capacity at constant pressure\n            \n            # start with the steady flow energy equation\n            # q - w = (h_2 + (1/2)((v_2)^2+)+(gz_2))-(h_1 + (1/2)((v_1)^2+)+(gz_1))\n            # we know q, w, effects of gravity, and v_2 are all equal to 0.\n            # we are left with h_2 = h_1 + (1/2)(v_1)^2\n            # we know that enthalpy (h) is equal to T(c_p)\n            # substituting in, we have T_2 = T_1 + ((v_1)^2)/(2*(c_p))\n            t2 = t1 + ((v_1**2) / (2 * c_p))\n            \n            print('Stagnation temperature at the airfoil:' t2, 'Kelvin')\n            ",
+        "explanation": "This code calculates the stagnation temperature at an airfoil in steady flow using the steady flow energy equation and known temperature, velocity, and specific heat capacity of the flow under constant pressure at some distance upstream of the airfoil.",
+        "reference": ""
+    },
+    {
+        "question": "Consider a control volume with an inlet area double that of it's exit area. If the velocity of the flow going into the control volume is 25 m/s, what is the velocity of the flow exiting the tube. Assume the flow is inviscid",
+        "answer": "\n            import numpy as np\n            \n            v1 = 25 #inlet velocity (m/s)\n            \n            # mass flow in is equal to mass flow out\n            # rho * v1 * A1 = rho * v2 * A2 (conservation of mass)\n            # rho * v1 * (2A) = rho * v2 * A\n            v2 = 2 * v1 #canceling rho and A on both sides\n            \n            print('The velocity of the flow exiting the tube:', v2, 'm/s')\n            ",
+        "explanation": "This code utilizes the conservation of mass equation stating that the mass flow in is equal to the mass flow out. Then recognizing that mass flow is equal to (density) * (area) * (velocity)",
+        "reference": ""
+    },
+    {
+        "question": "Consider a pitot-static tube in incompressible flow. The static pressure is 1 bar, the fluid velocity is 20 m/s and the density is 1.2 kg/m^3. Calculate the velocity and pressure measured by the pitot-static tube whe the flow is moving perpendicular to the tube's opening and when the flow is moving parallel to the tube's opening.",
+        "answer": "\n            import numpy as np\n            \n            v0 = 20 #velocity m/s\n            p = 1 #pressure is 1 bar\n            rho = 1.2\n            \n            pressure = p + ((1/2) * (v0**2) * rho) # pressure read by the tube when the flow is parallel calculated due to Bernoulli's principle\n            \n            print('Velocity when flow is perpendicular:', v0, 'm/s. Pressure when flow is perpendicular:', p, 'bar') \n            print('Velocity when flow is parallel: 0 m/s. Pressure when flow is parallel:', pressure, 'bar.')\n            ",
+        "explanation": "This code calculates the pressure and velocity measured by a pitot-static tube in two different flow conditions. When the flow is moving perpendicular to the tube, the velocity measured is the velocity of the flow and the pressure measured is the static pressure. However, when the flow is moving parallel to the tube's opening the velocity stagnates and is 0 while the pressure can be worked out using Bernoulli's principle.",
+        "reference": ""
+    },
+    {
+        "question": "Consider a process in which 100J of heat is added to a system and 250J of work is done on a system. Calculate the change in energy of the system.",
+        "answer": "\n            import numpy as np\n            \n            Q = 100 # positive because heat is being added to the system (Joules)\n            W = -250 # negative because work is being done on the system (Joules)\n            \n            # First law of thermodynamics\n            dE = Q - W\n            \n            print('The total change in energy of the system:', dE, 'Joules')\n            ",
+        "explanation": "This code calculates the change in energy of a system using the first law of thermodynamics: dE = Q - W where Q is heat exchange and W is work done.",
+        "reference": ""
+    },
+    {
+        "question": "A cyclic heat engine receives 600J of heat from a hot body while discharging 200J of heat to a cold body. Assume there is no change in internal energy of the system. What is the efficiency of this heat engine?",
+        "answer": "\n            import numpy as np\n            \n            Q1 = 600 # energy entering the heat engine (Joules)\n            Q2 = 200 # energy leaving the heat engine (Joules)\n            \n            # Because there is no change in internal energy, we can write work = dQ from the first law of thermodynamics\n            W = Q1 - Q2\n            # efficiency of a system is given as:\n            efficiency = W/Q1\n            \n            print('The efficiency of the cyclic heat engine:', efficiency)\n            ",
+        "explanation": "This code calculates the efficiency of a cyclic heat engine using the fact that: efficiency = work / Q1. We were able to find the work done by using the first law of the thermodynamics: dE = Q - W. Noting that dE equals 0, we are left with dQ = W.",
+        "reference": ""
+    },
+    {
+      "question": "A system starts at 300K and increasing in temperature to 600K. The change in entropy of the system is found to be 50 J/K and changes linearly with temperature. What is the change in heat energy of the system?",
+      "answer": "\n          import numpy as np\n          \n          T1 = 300 # initial temperature of the system (Kelvin)\n          T2 = 600 # final temperature of the system (kelvin)\n          dS = 50 # change in entropy of the system (Joules/Kelvin)\n          \n          dT = T2 - T1 # change in temperature of the system\n          # the change in heat energy is found by taking the area under the curve of a T-S diagram\n          top_part = (1/2) * dT * dS # triangular part of the graph\n          bottom_part = T1 * dS\n          total_heat = top_part + bottom_part\n          \n          print('Change in heat energy of the system:', total_heat, 'Joules')\n          ",
+      "explanation": "This code calculates the change in heat energy of a system utilizing the fact the change in heat energy can be calculated by finding the area under a T-S curve. We found the area under the triangular part of the curve and then the area under the rectangular part of th curve and added them together to find the total.",
+      "reference":""
+    },
+    {
+        "question": "Consider flow with a mach number of 1.2 traveling at 400 m/s. What is the temperature of the flow? Assume gamma is 1.4.",
+        "answer": "\n            import numpy as np\n            \n            M = 1.2 # mach number\n            v = 400 # velocity of the flow (m/s)\n            gamma = 1.4\n            R = 8.3145 # specific gas constant\n            \n            # velocity is equal to mach number times the speed of sound (a)\n            # a = sqrt(gamma * R * T)\n            a = v / M # a is the speed of sound\n            T = (a**2)/(gamma * R)\n            \n            print('The temperature of the flow:', T, 'Kelvin')\n            ",
+        "explanation": "This code calculates the temperature of flow recognizing that: mach number = velocity/speed of sound, and that: speed of sound = sqrt(gamma * R * temperature).",
+        "reference": ""
+    }
+]
