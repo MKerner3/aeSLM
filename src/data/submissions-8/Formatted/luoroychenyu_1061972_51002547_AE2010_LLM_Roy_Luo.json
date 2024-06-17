@@ -1,0 +1,98 @@
+[
+    {
+        "question": "What is the difference in velocity profile of water and blood in a pipe, assuming viscous flow?",
+        "answer": "\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nviscosity_1 = 1.0           # viscosity of the water\nvisocsity_2 = 4.0           # viscosity of honey\npressure_drop_1 = 1.0       # pressure drop across the pipe\npressure_drop_2 = 2.0       #\nradius = 5.0                # radius of the pipe\ny_center = 5.0              # center of the pipe\n\ny = np.linspace(0, 10, 100)\n\n# Calculate the velocity profile using the Poiseuille equation\n# 1. Comparing changes in visocisty\nvelocity_profile_1 = (pressure_drop_1 / (2 * viscosity_1)) * (radius**2 - (y - y_center)**2)\nvelocity_profile_2 = (pressure_drop_1 / (2 * visocsity_2)) * (radius**2 - (y - y_center)**2)\n\nplt.plot(velocity_profile_1, y, label='Water')\nplt.plot(velocity_profile_2, y, label='Blood')\nplt.xlabel('Velocity')\nplt.ylabel('Pipe length')\nplt.title('Velocity Profile of Poiseuille Flow with different viscosity')\nplt.legend()\nplt.grid(False)\nplt.axhline(y=0, color='black', linestyle='-', linewidth=2)\nplt.axhline(y=10, color='black', linestyle='-', linewidth=2)\nplt.show()\n        ",
+        "explanation":"When we talk about viscous flow, we look at Poiseuille flow and the Poiseuille flow equation. When comparing the viscosity of blood to water, blood is approximately 4 times more viscous than water. hence, with a pipe of the same diameter and the same pressure drop along the pipe, the velocity of blood will be lower than that of water flowing through the same pipe. This visualization clearly shows the the Poiseuille flow variation for 2 fluids with different viscosities.",
+        "reference": "https://hyperphysics.phy-astr.gsu.edu/hbase/Tables/viscosity.html"
+    },
+    {
+        "question": "How do you determine the reservoir pressure and temperature to create a wind tunnel that has a Mach 2 flow at standard sea-level conditions at the exit?",
+        "answer": "\nimport numpy as np\n\nM_exit = 2              # Mach no. at exit (no units)\np_exit = 1.01 * 10**5   # Pressure at exit (N/m^2)\nt_exit = 288.16         # Temperature at exit (K)\ngamma = 1.4             # gamma (no units)\n\n# Using stagnation temperature equation\nt_0 = t_exit * (1 + (gamma - 1)/2 * M_exit**2 )\nprint('Reservoir temperature:', t_0, 'Kelvin')\n\n# Using stagnation pressure equation\np_0 = p_exit * (1 + (gamma - 1)/2 * M_exit**2)**(gamma/(gamma-1))\nprint('Reservoir pressure:', p_0, 'N/m^2')\n                ",
+        "explanation":"Clearly, this question requires the use of compressible flow equations. In the wind tunnel, we can assume that the there is steady and isentropic flow. We can then apply the stagnation temperature and pressure equations knowing the exit conditions are sea level conditions.",
+        "reference": "Anderson, J. D., Jr. (2015). Introduction to flight. McGraw-Hill Education. Example 4.33"
+    },
+    {
+        "question": "Consider an airfoil where far upstream, the pressure, velocity, and density are 2116 lb/ft^2, 146.7 ft/s, and 0.002377 slug/ft^3, respectively. How would you find the velocity at point A, given the pressure at point A is 2070 lb/ft^2 ?",
+        "answer": "\nimport numpy as np\n\nv_1 = 146.7         # velocity upstream (ft/s)\np_1 = 2116          # pressure upstream (lb/ft^2)\nrho = 0.002377      # density (slug/ft^3) constant, since incompressible\np_a = 2070          # pressure at poitn A (lb/ft^2)\n\n#Using Bernoulli's equation across a streamline: p_1 + (rho*v_1**2)/2 = p_a + (rho*v_a**2)/2 \nv_a = (2 * (p_1 - p_a)/rho + v_1**2)**0.5\nprint('Velocity at point A:', v_a, 'ft/s')\n                ",
+        "explanation": "Since 146.7 ft/s is low enough compared to the speed of sound (1125 ft/s) to assume incompressible flow, we can use Bernoulli's equation here, since point A and the point far upstream are on the same streamline.",
+        "reference": "Anderson, J. D., Jr. (2015). Introduction to flight. McGraw-Hill Education. Example 4.3"
+    },
+    {
+        "question": "Air enters the diffuser of a jet engine operating at steady state at 18 kPa, 216 K, and a velocity of 265 m/s. The air flows adiabatically through the diffuser and is at a temperature of 250 K at the diffuser exit. Assuming an ideal gas model for air, what is the velocity of the air at the diffuser exit?",
+        "answer": "\nimport numpy as np\n\np_1 = 18            # pressure in (kPa)\nv_1 = 265           # velocity in (m/s)\nT_1 = 216           # Temperature inlet (K)\nT_2 = 250           # Temperature exit (K)\ncp = 1005           # J/(kg K)\n\n# Using steady flow energy equation: q - w = (h2 + v2^2/2 + gz2) - (h1 + v1^2/2 + gz1)\nv_2 = (2*cp*(T_1-T_2) + v_1**2)**0.5\nprint('Velocity at diffuser:', v_2, 'm/s')\n                ",
+        "explanation": "Using the steady flow energy equation, Q = 0 since it is adiabatic, W = 0 as no work is done on the fluid, and there is a negligible change in altitude, hence simplyfing the equation to: h2-h1 = 0.5(v1^2 - v2^2). Assuming a calorically perfect gas, h2-h1 = cp*(T2-T1).",
+        "reference":""
+        },
+    {
+        "question": "A mercury U-tube manometer is inserted in a water pipe with varying diameter carrying water at 20 degrees Celsius. One end of the manometer is placed with its opening facing the incoming flow at a section of the pipe where diameter = 10cm. The other end of the manometer is placed with its opening perpendicular to the flow at a downstream section of the pipe where diameter = 6cm. If the pressure at the pipe with diameter = 10cm is 170 kPa and the difference in height of the manometer is 8cm, what is the flow rate? The density of mercury is 1360 kg/m^3, and that of water is 998.2 kg/m^3 at 20 degrees Celsius.",
+        "answer": "\nimport numpy as np\n\nD_1 = 10            # diameter upstream (cm)\nD_2 = 6             # diameter downstream (cm)\nrho_M = 1360        # density of mercury (kg/m^3)\nrho_W = 998.2       # density of water (kg/m^3)\np_1 = 170000        # pressure upstream at D_1 (Pa)\ndelta_h = 8         # manometer height difference (cm)\ng = 9.81            # acceleration due to gravity (m/s^2)\n\n# Using manometer height difference and pressure upstream, we can calculate pressure downstream\np_2 = p_1 - (rho_M - rho_W)* g * (delta_h * 10**-2)\nprint('Pressure downstream at D_2:',p_2,'Pa')\n\n# Using Bernoulli's equation, we can find the velocity downstream\nv_2 = (2*(p_1-p_2)/rho_W)**0.5\nprint('Velocity downstream:',v_2,'m/s')\n\n# Find flow rate using Q = V * A\nQ = v_2 * (D_2 * 10**-2)**2 * 3.14 /4\nprint('Flow rate:',Q,'m^3/s')\n        ",
+        "explanation": "Firstly, we have to figure out the pressure downstream. Using the U-tube manometer heigh difference, we can find the pressure difference by subtracting the weight of the water from the weight of the mercury. Next, knowing that there is a pressure difference between upstream and downstream, we can use bernoulli's equation to calculate the velocity downstream. Using the downstream velocity and the diameter of the pipe downstream (6cm), we can multiply them together to get the flow rate through the pipe downstream.",
+        "reference": "University of Iowa. Mechanics of Fluids and Transport. Fall 2007 Exam 1"
+    },
+    {
+        "question": "The velocity and temperature of the flow ahead of a normal shock wave are 1215 m/s and 300 K, respectively. Calculate the velocity of the flow behind the shock.",
+        "answer": "\nimport numpy as np\n\ngamma = 1.4         # gamma (no units)\nR = 287             # specific gas constant (J/kg K)\nv_1 = 1215          # velocity upstream (m/s)\nT_1 = 300           # temperature upstream (K)\n\n# Find speed of sound at T_1 = 300K\na_1 = (gamma * R * T_1)**0.5\n\n# Find mach number before normal shock\nM_1 = v_1 / a_1\nprint ('Mach number before normal shock:', M_1)\n\n# From gas properties table: at Mach number = 3.5:\nM_2 = 0.4512        # Mach number after normal shock\nT_21 = 3.315        # ratio of post shock temperature to pre shock\n\n# Calculate post shock temperature\nT_2 = T_21 * T_1\n\n# Calculate speed of sound at T_2\na_1 = (gamma * R * T_2)**0.5\n\n# Calculate velocity of flow using speed of sound and mach number\nv_2 = M_2 * a_1\n\nprint('Velocity of flow behind normal shock:',v_2,'m/s')\n        ",
+        "explanation": "In this question, it is given that there a normal shock exists, hence the normal shock relations and tables will be used. Firstly, the mach number before the shock needs to be calculated. Using the temperature given, the speed of sound can be calculated, and used with the speed of the flow to calculate the Mach number of the flow before the shock. Using the Mach number and searching for the corresponding Mach number and Temperature ratios in the gas properties table, the post shock temperature can be calculated. Next, the speed of sound and hence the velocity of flow behind the normal shock can be calculated.",
+        "reference": "Anderson, J. D., Jr. (2017). Fundamentals of Aerodynamics. McGraw-Hill Education. Example 8.18"
+    },
+    {
+        "question": "Consider a low-speed subsonic wind tunnel with a resrvoir cross-sectional area A_1 = 2m^2 and a test-section cross-sectional area A_2 = 0.5m^2. The pressure in the test section is p_2 = 1 atm, and the density is constant at rho = 1.23 kg/m^3. What is the pressure required in the reservoir p_1 to achieve a flow velocity v_2 = 40m/s in the test section?",
+        "answer": "\nimport numpy as np\n\nA_1 = 2             # reservoir cross-sectional area (m^2)\nA_2 = 0.5           # test-section cross-sectional area (m^2)\np_2 = 1.01 * 10**5  # pressure in test-section (N/m^2)\nrho = 1.23          # density (kg/m^3)\nv_2 = 40            # given desired test-section flow velocity (m/s)\n\n# Find velocity required in reservoir, using continuity: A1*V1 = A2*V2\nv_1 = v_2 * (A_2/A_1)\n\n# Using bernoulli's equation: p1 + 0.5*rho*v1^2 = p2 + 0.5*rho*v2^2 \n# Manipulated equation: p1 = p2 + 0.5*rho*(v2^2 - v1^2)\np_1 = p_2 + 0.5 * rho * (v_2**2 - v_1**2)\n\nprint('Pressure required at reservoir:',p_1,'N/m^2')\n        ",
+        "explanation": "Since it is given that the scenario occurs in a low-speed subsonic wind tunnel, the fluid can be considered incompressible, and the continuity equation can be simplified to remove the density. The velocity required at the reservoir to achieve the desired flow velocity in the test-section can be calculated first using continuity equation. Next, Bernoulli's equation can be used across a streamline since the fluid is incomrpessible. Both velocities and the pressure at the test-section are known, and the pressure at the reservoir can be hence calculated.",
+        "reference": "Anderson, J. D., Jr. (2015). Introduction to flight. McGraw-Hill Education. Example 4.21"
+    },
+    {
+        "question": "What does the aera-velocity equation tell us about the change in flow velocity with changing area at different mach numbers?",
+        "answer": "If the flow is subsonic (M < 1), for the velocity to increase, the area must decrease, like a converging nozzle. However, if the flow is supersonic (M > 1), for the velocity to increase, the area must increase, like a diverging diffuser.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "A piston–cylinder assembly contains a fixed mass of air. The air undergoes a finite process from state 1 to state 2. The piston moves such that the final volume of the air is several times larger than the initial volume. The process occurs at constant temperature. Describe what happens to the pressure and internal energy of the system, and if heat is added or removed to the system.",
+        "answer": "Since the process occurs at constant temperature, we can conclude that the gas undergoes an isothermal process. In an isothermal process, the internal energy of the gas remains constant (delta U = 0) because the temperature does not change. This implies that the heat added to the gas (Q) is equal to the work done by the gas (W). In an expansion process, the work done by the gas is negative (W < 0) because the gas is doing work on the surroundings. Therefore, the heat added to the gas is negative as well, meaning heat is removed from the gas. As a result, the pressure of the system decreases as the gas expands and the volume increases.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "A pitot inserted in an airflow where static pressure = 1 atm measures measures a pressure = 2.714 atm. Is the flow supersonic or subsonic, and what is the Mach number of the flow?",
+        "answer": "Firstly, we must determine if the flow is subsonic or supersonic. At Mach 1, P / P_0 = 0.528, and 1/2.714 = 0.36845 is LESS than 0.528, hence the flow is supersonic. This means the pitot tube is measuring the total pressure AFTER a shock wave, and using the gas properties table, P_0s / P = 2.714 corresponds to a Mach number of approximately 1.3",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What are the differences between stagnation pressure, static pressure, and dynamic pressure?",
+        "answer": "Stagnation pressure, also known as total pressure, includes both the pressure due to the fluid's velocity (dynamic pressure) and the pressure exerted by the fluid molecules (static pressure). Stagnation pressure is the pressure that would be measured by a pitot tube facing directly into the flow, where the fluid is brought to zero speed by a steady isentropic process with no external work done. Static pressure is the pressure exerted by a fluid on a surface when the fluid is not in motion relative to the surface. Dynamic pressure is the pressure difference between the stagnation pressure and the static pressure, and it is the pressure that is used to calculate airspeed.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What is the magnus effect?",
+        "answer": "The Magnus effect is a phenomenon where a spinning object experiences a sideways force perpendicular to both the direction of the fluid flow and the axis of rotation. The rotation of the object creates a difference in velocity between the fluid on one side of the object and the fluid on the other side. The fluid on the side moving in the same direction as the spin travels faster relative to the object, while the fluid on the opposite side moves slower. This velocity difference results in a pressure difference between the two sides of the object, and hence a sideways force.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What is the coanda effect?",
+        "answer": "The Coanda effect describes the tendency of a fluid jet to adhere to and flow along a nearby surface, rather than detaching and flowing freely. When a fluid flows over a surface, it creates a thin layer of slow-moving fluid molecules close to the surface called the boundary layer. The boundary layer has lower velocity due to friction and lower pressure compared to the faster-moving fluid outside the boundary layer. As a result, the higher-pressure fluid outside the boundary layer pushes the jet towards the surface, causing it to adhere to and follow the contour of the surface.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What are the assumptions made in using Bernoulli's equation?",
+        "answer": "To apply Bernoulli's equation, the flow must be steady, incompressible, and inviscid (no friction by viscous forces). While no flow is really incompressible, flows with M<0.3 can be treated as incompressible, as the end result is usually within 5% compared to treating the M<0.3 flow as compressible.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What happens to a shock wave when a supersonic stream encounters a physical object with an angle greater than the maximum deflection angle?",
+        "answer": "If the phsyical geometry is such that the angle is greater than the maximum deflection angle, then no solution exists for a straight oblique shock wave. Instead, nature establishes a curved shock wave, detached from the corner or the nose of a body. This is also what causes a bow-wave to be observed in front of pitot-tubes in certain conditions.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "Why are expansion fans considered isentropic?",
+        "answer": "Expansion fans typically occur adiabatically, meaning there is no heat transfer between the fluid and its surroundings during the expansion. There is usually no external work being done on or by the fluid. The expansion occurs due to a decrease in pressure or an increase in volume without any external force acting on the fluid. Without external work being done, the energy of the fluid remains constant, preserving the isentropic condition when we assume they are frictionless and reversible. ",
+        "explanation":"",
+        "reference":""
+    }
+]

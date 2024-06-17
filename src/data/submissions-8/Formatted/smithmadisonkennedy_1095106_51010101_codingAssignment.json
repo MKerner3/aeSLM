@@ -1,0 +1,101 @@
+[
+    {
+        "question": "How can we define incompressible flow, is it real in nature? If not, why can we apply incompressible flow to aerospace?",
+        "answer": "Incompressible flow is defined as having constant density and negligible viscosity (inviscid). In reality there will always be some amount of friction meaning that there is no such thing as true inviscid flow. In addition to this every flow has some level of compressibility, therefore there is no true incompressible fluid. We are allowed to apply incompressible ideas to certain aerospace applications because they are so close to being inviscid and incompressible that we can obtain accurate results with these assumptions.  ",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What must stand true for the use of Bernoulli’s principle to be valid, how do we obtain it, and why is this equation so important for understanding incompressible flow?",
+        "answer": "For Bernoulli’s equation to be valid, flow must be steady, incompressible and inviscid (usually true along streamlines). It is derived from the momentum equation and Newton's second law. It is one of the most important expressions in fluid mechanics as it relates pressure variation along streamlines as a function of the change in velocity. In simpler terms, it tells us that velocity and pressure have an inverse relationship, when velocity increases from point A to point B, pressure decreases and vice versa.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "Describe the difference between Lagrangian and Eurlerian descriptions. When is it helpful to use one over the other?",
+        "answer": "The Langrangian and Eulerian descriptions are both used to describe fluid motion, but they differ in approach and application. The Lagrangian description describes the entire flow by focusing on individual fluid particles (described using position of the particle and time) while the Eularian description is more concerned with a fixed field and how the substance moves through it (the field is described using a function of position and time). With that being said, the Lagrangian method is most useful when tracking the properties of a specific fluid as it moves and the Eulerian method is the most useful when studying velocity variation at specific points over time.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What causes choked flow and what is its significance in compressible fluid mechanics?",
+        "answer": "Choked flow occurs when velocity reaches the speed of sound causing the flow to become sonic (mach number = 1). It is significant because an increase in pressure would not increase flow rate as one would presume, but rather it would increase the density of the fluid.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "Explain the difference between normal shocks, oblique shocks and expansion fans. Include how they form, any changes in flow properties, and instances where they can be applied to aerospace.",
+        "answer":  "Normal shocks form when a supersonic flow (mach number > 1) experiences an unexpected decrease in area causing a sudden increase in pressure, temperature and density, and a decrease in velocity. The flow also experiences a change in direction causing it to be subsonic (mach number < 1) downstream from the shock. These shocks can be observed when working with high speed propulsion systems. Oblique shocks are formed when a supersonic flow flows into an object at an angle (such as a concave corner) causing a deflection in the flow. They are similar to normal shocks as they also have an increase in pressure, density, and temperature. However, they vary with normal shocks because flow remains supersonic downstream. An aerospace application for oblique shocks is high speed flow over airfoils and wings. Expansion fans happen when supersonic flow encounters a convex corner (opposite to oblique in this sense). Expansion fans are unique in regard to changes in flow propertiesas they experience a decrease in pressure, density, and temperature rather than an increase. Similar to oblique shocks the flow remains supersonic downstream of the shock. Expansion fans can be encountered when working with supersonic aircrafts.",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "What exactly is mach number, what is it used for and how is it derived?",
+        "answer": "Mach number is the ratio of the speed of an object and the speed of sound it is encountering. (M = v/a where v is velocity and a is the speed of sound). It helps to define the movement of a flow and helps to explain flow properties. A flow is incompressible when M < 0.3, subsonic when M < 1, transonic when 0.8 < M < 1.2, sonic when M = 1, supersonic when M > 1, and hypersonic when M > 5. It is used to predict wave propagation, shock formation, and other compressibility effects. For an ideal gas, the a in the mach number question is derived from the ideal gas equation (p = ρRT) and adiabatic assumptions (p𝒗^𝛾 = constant and 𝛾 = cp /cv = 1.4), therefore a = sqrt(𝛾RT).",
+        "explanation":"",
+        "reference":""
+       },
+       {
+        "question": "Explain the difference between an adiabatic and an isothermal process.",
+        "answer": "In an adiabatic process there is no heat transfer between the system and its surroundings so Q = 0. This process likely leads to changes in temperature. An example of this would be compression or expansion at constant pressure in a perfectly insulated system. However in an isothermal process, the temperature remains constant in the system. This means that there must be heat transfer between the system and its surroundings. An example of this would be the expansion or compression of a gas in contact with a heat or cooling reservoir at a constant temperature. ",
+        "explanation":"",
+        "reference":""
+       },
+       {
+        "question": "Why is a steady, adiabatic and reversible flow automatically considered an isentropic process?",
+        "answer": "To understand this concept we must break down each case. A steady flow is one where the conditions remain constant throughout time. An adiabatic process is a process that has no heat transfer between the system and its surroundings meaning Q = 0. A reversible process is a process that can be reversed with its system and surroundings being returned to their initial states. This means it must be in quasi equilibrium with only small departures from equilibrium. We also know that an isentropic process is one in which entropy remains constant meaning delta(S) = 0. For this to occur there needs to be no heat transfer to change the entropy of the system therefore it must be adiabatic. In addition to this there needs to be no irreversibilities that would cause entropy to change, therefore it must also be a reversible process. And lastly, other properties must remain constant hence the need for it to be a steady flow. ",
+        "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "Explain the clausius statement in greater detail than the statement 'it is impossible to constuct a cyclic device whose sole effect is the transfer of hear from a cooler to a hotter body'",
+        "answer": "This statement means that heat cannot magically pass from a cooler body to a hotter body without work input. Heat transfer occurs when there is a temperature difference between two bodies. The heat flows from the hotter body to the cooler one until equalibrium is reached. This type of transfer cannot just happen spontaneously and that is what the clausius statement is trying to address.",
+        "explanation":"",
+        "reference":""   
+    },
+    {
+        "question": "Consider an airfoil at standard sea level conditions with a freestream velocity of 33 m/s. At a certain point on the airfoil, the pressure is 0.3*10^5 N/m^2. First derive Bernoulli's equation from the momentum principle then find the velocity at this point.",
+        "answer": "\n          import numpy as np\n\n          pInf = 101000 # standard sea level in N/m^2\n          rho = 1.23 # standard sea level in kg/m^3\n          vInf = 33 # m/s \n          p = 30000 # N/m^3\n          # use bernoulli's equation (pInf + .5*rho*vInf^2 = p + .5*rho*v^2) and simplify to isolate v\n          v = np.sqrt((2 * (pInf-p) / rho)+ 33*33)\n\n          print('velocity at this point is:', str(v), 'm/s')\n               ",
+        "explanation":"",
+        "reference":""
+    },
+    {
+       "question": "Consider the inviscid, incompressible flow of air along a streamline. The air density along the streamline is 0.002456 slug/ft^3. At the point 1 on the streamline, the pressure and velocity are 2010 lb/ft^2 and 10 ft/s, respectively. Further downstream, at point 2 on the streamline, the velocity is 180 ft/s. Find the pressure at point 2. What can be said about the change in pressure from point 1 to point 2 compared to the corresponding change in velocity. ",
+       "answer": "\n         import numpy as np\n\n         # we can use bernoulli's equation since the flow is steady, incompressible, and inviscid\n         p_1 = 2010 # lb/ft^2\n         rho = 0.002345 # slug/ft^3\n         v_1 = 10 # m/s\n         v_2 = 180 # m/s\n         # bernoulli's (p_1 + .5*rho*v_1^2 = p_2 + .5*rho*v_2^2)\n         p_2 = p_1 + .5*rho*(v_1 * v_1 - v_2 * v_2) # isolate p_2\n         print('the pressure at point 2 is:', str(p_2), 'lb/ft^2')\n              ",
+        "explanation": "Velocity increases from point 1 to point 2 while pressure decreases which aligns with bernoulli's equation",
+        "reference":""
+    },
+    {
+       "question": "Find the mass and density of 3 liters of air at 1.033 bar and 33 degrees celcius given that the gas constant is 287 J/kg*K",
+       "answer": "\n         import numpy as np\n\n                       # assume ideal gas \n         R = 287 # 287 J/kg*K\n         p = 1.033 # bar\n         T = 33 + 273.15 # convert celcius to Kelvin\n         v = 3 * (0.001 / 1) # convert liters to m^3\n         m = (p * v) / (R * T) # manipulated form of ideal gas law equation in kg\n         rho = m / v # calcuates density in kg/m^3\n         print('The mass of the air is:', m, 'kg. The density of the air is:', rho, 'kg/m^3.')\n              ",
+       "explanation":"",
+        "reference":""
+    },
+    {
+       "question": "calculate the mach number downstream of a shock with the following upstream properites: mach 1 = 1.3, pressure 1 = 93 kPa, and temperature 1 = 333K",
+       "answer": "\n         import numpy as np\n\n         m_1 = 1.3 # mach 1\n         p_1 = 93 # kPa\n         T_1 = 333 # K\n         gamma = 1.4 # assumption \n                       # we can use the equation m_2^2 = (1+((gamma-1)/2)*m_1^2)/(gamma*(m_1^2)-(gamma-1)/2)\n         m_2 = np.sqrt((1+((gamma-1)/2)*m_1*m_1)/((gamma*m_1*m_1)-(gamma-1)/2))\n         print('mach downstream is:', m_2)\n                                     ",
+       "explanation":"",
+        "reference":""
+    },
+    {
+       "question": "Calculate the static temperature and pressure of a flow downstream of a shock with the mach number 1.5, pressure of 200 kPa and temperature of 200 K.",
+       "answer": "\n         import numpy as np\n\n         m_1 = 1.5 \n         gamma = 1.4 # assume isentropic\n         T_1 = 200 #K\n         p_1 = 200 #kPa\n         p_2 = ((2*gamma/(gamma+1))*m_1*m_1 - (gamma-1)*(gamma+1))*p_1 # manipulation of continuity, momentum and energy equation for isentropic flow\n         T_2 = ((1+ ((gamma-1)/2)*m_1*m_1) * (((2*gamma)/(gamma-1))*m_1*m_1) - 1)/ (((gamma-1)*(gamma-1))/(2*(gamma-1)*m_1*m_1))*T_1\n         print('The static pressure is:', p_2, 'kPa. The static temperatre is:', T_2,'K.')\n                                      ",
+       "explanation":"",
+        "reference":""
+    },
+    {
+       "question": "At a point in an airflow the temperature is 333 K and the velocity is 3333 m/s. Find the total temperature at this point.",
+       "answer": "\n         import numpy as np\n\n         T = 333 # K\n         v = 3333 # m/s\n         gamma = 1.4 # assume isentropic\n         R = 287 # J/kg*K\n                       # we can use the equation h+ v^2/2 = h_0\n                       # we know h = c_p * T so c_p = gamma * R /(gamma - 1)\n                       # putting these equations together we get c_p * T + v^2 / 2 = c_pT_0 \n                       # manipulate to get T_0 = T + (v*v)/(2*c_p) and sub c_p\n         T_0 = T + v*v*(gamma-1)/(2*gamma*R)\n         print('the total temperature is:', T_0, 'K.')\n",
+       "explanation":"",
+        "reference":""
+    },
+    {
+        "question": "Find the mach number of an ideal gas travelling at 20 m/s at a temperature of 100 K and define its flow.",
+        "answer": "\n         import numpy as np\n         gamma = 1.4 # assume isentropic flow\n         v = 20 # m/s\n         T = 100 # K\n         R = 2.87 # gas constant in J/kg*K\n         a = np.sqrt(gamma*R*T) # because this is an ideal gas\n         m = v/a # known mach number equation \n         print('the mach number is', m, 'since m < 1 the flow is subsonic.'')\n",
+        "explanation":"",
+        "reference":""
+    }
+]
+
+ 
+
