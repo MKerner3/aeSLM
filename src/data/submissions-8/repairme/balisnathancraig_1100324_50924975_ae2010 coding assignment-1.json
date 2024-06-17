@@ -1,0 +1,351 @@
+[
+{
+  "question": "A pilot flying a mission over Germany in a Supermarine Spitfire has to manually convert the pressure measured by the pitot tube to velocity, as the transducer is broken. He is flying at an altitude of 15,000 feet and reads a pressure of 66.538 kPa. 2 Bf-109’s are quickly closing in and he needs to know if he has sufficient velocity to perform a special manoeuvre. What is the Spitfire’s velocity?",
+  "answer": {
+      "code": """
+
+	import numpy as np
+
+	ps = 57.157 # Pressure at 15000 feet (kPa)
+	p0 = 66.538 # Measured pressure (kPa)
+	rho = 0.771 # Air density at 15000 feet (kg / m^3)
+      
+	# Static, Dynamic, and Stagnation pressures relationship
+	# ps + (1/2) * rho * v^2 = p0
+
+	# Solve for v
+	v = ((2*(p0 - ps)*1000) / rho)**(1/2)
+
+	print("Spitfire's velocity:", v, "m/s")
+      """,
+      "explanation": "This code utilizes the relationship between the dynamic, static, and total/stagnation pressures. The equation ps + (1/2) * rho * v^2 = p0 expresses this. It is important to understand that the pressure measured by the pitot tube is the stagnation pressure, as it measures the pressure of the fluid when it is brought to rest.“,
+      "references": [
+          "Fundamentals of Aerodynamics, 5th Edition, John D. Anderson, Jr"
+	]
+  }
+}
+{
+	"question": "Air enters a compressor at with zero velocity and leaves with a mass flow 	rate of 9 kg/s and velocity of 25 m/s. The power input to the compressor is 450 kW. The air 	flowing into the compressor has a temperature of 280 K, and the air flowing out has a temperature of 300 K. We may assume the flow is steady and a cp of 1005 J/kg-K. Find the rate of 	heat transfer.",
+	"answer": {
+      "code": """
+	import numpy as np
+
+	Ti = 280 # Temperature before entering the compressor (K)
+	Te = 300 # Temperature after exiting the compressor (K)
+	Wdot = -45000 # Power input (W)
+	mdot = 9 # Mass flow rate (kg/s)
+	ve = 25 # Exit velocity (m/s)
+	cp = 1005 # Specific heat capacity at constant pressure (J/kg-K)
+      
+	# Steady Flow Energy Equation reduces to: Qdot - Wdot = mdot * ((1/2) * ve ** 2) + (he - 	hi)
+
+	# With:
+	deltah = cp * (Te - Ti)
+
+	# We arrive at:
+
+	Qdot = Wdot + mdot * ((1/2) * (ve ** 2)) + (deltah)
+
+	print("Rate of heat transfer:", Qdot, "J/s")
+	""",
+      "explanation": "This code calculates the rate of heat transfer using the Steady Flow Energy Equation, which states that Qdot - Wdot = mdot * ((he + (1/2) * ve ** 2 + (g * ze) - (hi + (1/2) * vi ** 2 + (g * zi)).”,
+      "references": [
+          "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+      ]
+  }
+}
+{
+	"question": "During the hot summer in Atlanta, in order to cool a bottle of water, it is placed in a freezer for a certain period. If the room temperature is 25°C and the cooled beverage is at a final temperature of 5°C, determine the change in specific entropy of the water.",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	T1 = 25 + 273.15 # Initial temperature (K)
+	T2 = 5 + 273.15 # Final temperature (K)
+	cp = 4.18 # Water specific heat capacity at constant pressure (J/(g-K))
+
+	# Apply the perfect gas relations to the Tds equations
+
+	deltas = cp * np.log(T2 / T1)
+
+	print("Change in specific entropy:", deltas, "kJ/kg-K")
+ 	""",
+      "explanation": "This code calculates the change in specific entropy, utilizing the perfect gas relations and the Tds equations which yield s2 - s1 = cp * ln(T2 / T1), where s2 - s1 is the change in specific entropy between the initial and final states.",
+      "references": [
+          "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+      ]
+  }
+}
+{
+	"question": "Water flows through a pipe with different inlet and outlet areas. The velocity at the inlet is 2 m/s and the velocity at the exit is 6 m/s. The pressure at the inlet is 120 kPa. If the water enters and exits the pipe at the same height, and it can be assumed to have steady, incompressible, and inviscid flow, what is the pressure at the outlet?",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	v1 = 2 # Inlet velocity (m/s)
+	v2 = 6 # Outlet velocity (m/s)
+	p1 = 120000 # Pressure at inlet (Pa)
+	rho = 1000 # Water density (kg/m^3)
+
+	# Apply Bernoulli’s equation along streamlines
+
+	# p1 + (1/2)*rho*(v1**2) = p2 + (1/2)*rho*(v2**2)
+
+	# Solve for p2
+
+	p2 = p1 + (1/2)*rho*((v1**2)-(v2**2))
+
+	print("Pressure at outlet:", p2, "Pa")
+ 	""",
+      "explanation": "This code utilises Bernoulli’s equation along streamlines for steady, incompressible and inviscid flow to calculate the pressure at the outlet of the pipe.",
+      "references": [
+          "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+      ]
+  }
+}
+{
+	"question": "A British Airways Concorde is flying at 417 m/s over the Atlantic Ocean, on its way to JFK from LHR. If the outdoor temperature is 220 K, what is the Mach number?",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	v = 417 # Velocity (m/s)
+	gamma = 1.4 # Ratio of specific heats, cp/cv
+	T = 220 # Temperature (K)
+	R = 287 # Gas constant (J/kg-K)
+
+	# Using the definition of the Mach number
+
+	# M = v/a
+
+	# And the definition of the speed of the speed of sound
+
+	# a = np.sqrt(gamma*R*T)
+
+	M = v/(np.sqrt(gamma*R*T))
+
+	print("Concorde’s Mach number:", M)
+	""",
+      "explanation": "This code utilises the definitions for the Mach number and speed of sound to calculate the Mach number of the Concorde.",
+      "references": [
+          "https://en.wikipedia.org/wiki/Stagnation_pressure", "Fundamentals of Aerodynamics,
+5th Edition, John D. Anderson, Jr"
+      ]
+  }
+}
+{
+	"question": "A Boeing 747 is cruising at an altitude of 35000 feet at a speed of 550 mph. The external temperature is 220 K. When looking at a streamline that flows up to the 747’s nose, what is the stagnation temperature? Assume a steady, isentropic process with no external work done.",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	v = 245.9 # Velocity (m/s)
+	cp = 1005 # (J/kg-K)
+	T1 = 220 # Temperature (K)
+
+	# Using the definition of the stagnation temperature.
+
+	T01 = T1 + (v**2)/(2*cp)
+
+	print("Stagnation temperature on nose of 747:", T01, "K")
+	""",
+      "explanation": "This code utilizes the definition of the stagnation temperature for a fluid if it were to be brought to rest by a steady isentropic process with no external work.",
+      "references": [
+          "https://psesh.github.io/ae2010-11/"
+      ]
+  }
+}
+{
+	"question": "An F-15 Eagle is flying at a speed of 1500 mph over the Mojave desert. What is the Mach angle, mu, of the generated wave? If the wave were to hit a concave corner, what can be said about the pre-shock and post-shock tangential velocity components?",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	v = 670.6 # Velocity (m/s)
+	a = 328.4 # Speed of sound at altitude (m/s)
+
+	# Calculate the Mach number
+
+	M = v/a
+
+	# Using the formula for the Mach angle
+
+	mu = np.arcsin(1/M)
+
+	# The pre- and post-shock tangential velocities are the same.
+
+	print("Mach angle:", mu)
+	print("The tangential velocity components do no change across the shock.")
+	""",
+      "explanation": "This code utilizes the definitions of the Mach number and Mach angle to calculate the Mach angle.",
+      "references": [
+          "https://psesh.github.io/ae2010-11/"
+      ]
+  }
+}
+{
+	"question": "A cyclic heat engine operates a process between a heat source of 900 K and a heat sink of certain temperature. If the cycle is reversible, and the thermal efficiency is 45%, what is the heat sink temperature?",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	T1 = 900 # Temperature (K)
+	eff = 0.4 # Thermal efficiency
+
+	# Thermal efficiency equation (1st Law applied to Heat Engines)
+
+	# eff = 1 - (T2/T1)
+
+	# Solve for T2
+
+	T2 = (1 - eff)*T1
+
+	print("Heat sink temperature:", T2, "K")
+	""",
+      "explanation": "This code calculates the heat sink temperature using the formula for thermal efficiency, which is derived from the First Law, which states that W = Qhot - Qcold.",
+      "references": [
+          "https://psesh.github.io/ae2010-11/"
+      ]
+  }
+}
+{
+	"question": "Water is flowing through a pipe with a constant bulk velocity and zero mean acceleration. If the cross-sectional diameter is 0.8 m, the mass flow rate is 750 kg/s, and water has a density of 1000 kg/m^3, what is the pressure drop over a length of 20 m? Assume a dynamic viscosity of 8.90 * 10^-4 Pa-s.",
+	"answer": {
+		"code": """
+	import numpy as np
+
+	mdot = 750 # Mass flow rate (kg/s)
+	rho = 1000 # Water density (kg/m^3)
+	D = 0.8 # Diameter (m)
+	L = 20 # Length (m)
+	mu = 8.90 * 10**(-4) # Dynamic viscosity of water (Pa-s)
+
+	# Find volumetric flow rate
+
+	Q = mdot / rho
+
+	# Radius = Diameter/2
+
+	# Hagen-Poiseuille Equation
+
+	deltap = (8 * mu * Q * L)/(np.pi * (D/4)**4)
+
+
+	print("Pressure drop over 10 meters:", deltap, "Pa")
+	""",
+      "explanation": "This code calculates the pressure drop using the Hagen-Poiseuille equation, which describes situations where the pressure loss can be directly related to the friction force by the walls.",
+      "references": [
+          "https://psesh.github.io/ae2010-11/"
+      ]
+  }
+}
+{
+	"question": "Extra credit. Plot a cycle. A certain mass of air undergoes 3 different processes in the cycle. 
+1. Isobaric expansion to double the volume.
+2. Isochoric cooling.
+3. Isothermal compression to the initial state.
+You may choose arbitrary values for the temperature and mass, but the graph shape and therefore relationships between variables must be correct.",
+	"answer": {
+		"code": """
+
+	import matplotlib.pyplot as plt
+	import numpy as np
+
+	R = 8.314
+	m = 1.0
+	T1 = 300.0
+
+	# Process 1: Isobaric expansion
+
+	V1 = 1.0
+	V2 = 2.0 * V1
+	P1 = R * T1 / V1
+	P2 = P1
+	workexp = P1 * (V2 - V1)
+
+	# Process 3: Isothermal compression
+
+	V3 = np.linspace(V2, V1, 100)
+	P4 = R * T1 / V3
+	workcomp = np.trapz(P4, V3)
+
+	# Process 2: Isochoric cooling
+
+	T2 = 200.0
+	index = np.where(np.isclose(V3, V2))[0][0]
+	P3 = P4[index]
+
+	# Total work done
+
+	total_work = workexp + workcomp
+
+	# Plot diagram
+
+	plt.plot([V1, V2, V1], [P1, P2, P1], label='Process 1')
+	plt.plot([V2, V2], [P1, P3], linestyle='--', color='red', label='Process 2')
+	plt.plot(V3, P4, label='Process 3')
+	plt.xlabel('Volume (m^3)')
+	plt.ylabel('Pressure (Pa)')
+	plt.title('p-v Diagram')
+	plt.xticks([])
+	plt.yticks([])
+	plt.legend()
+	plt.grid(False)
+	plt.show()
+	 """,
+      "explanation": "This code plots a p-v diagram showing the cycle consisting of 3 processes. It is based off of linear relationships for Processes 1 and 2, and an inverse relationship for Process 3.",
+      "references": [
+          "https://psesh.github.io/ae2010-11/", "https://www.khanacademy.org/science/physics/thermodynamics/laws-of-thermodynamics/a/what-are-pv-diagrams"
+      ]
+  }
+}
+{
+  "question": "What exactly is shaft work and how does one identify it?",
+  "answer": "Shaft work refers to the work done by a rotating shaft or a similar mechanical device on a system, or the work done by the system on the surroundings through a rotating shaft. It can be identified by considering the mechanical energy exchanged between the system and its surroundings due to the rotation of a shaft. If a system involves rotating machinery or if there's mechanical motion involved in the system's operation, one may have to consider shaft work."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://www.sciencedirect.com/topics/engineering/shaft-work", "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/DeVoes_Thermodynamics_and_Chemistry/03%3A_The_First_Law/3.07%3A_Shaft_Work"
+      ]
+},
+{
+  "question": "It is stated that for an irreversible process, one cannot set dW = pdV and dQ = TdS. How does one distinguish between a reversible and irreversible process?",
+  "answer": "If a process occurs quasi-statically – that is, it passes through a continuous sequence of thermodynamic equilibrium states – it is reversible. If a process involves taking a specific path that cannot be retraced, it is irreversible. Reversible processes follow a well-defined and retraceable path between the initial and final states. If a process produces entropy between the initial and final states, it is irreversible. If a process involves dissipative effects such as friction, it is irreversible. These lead to energy losses and irreversibilities within the system."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://en.wikipedia.org/wiki/Irreversible_process"
+      ]
+},
+{
+  "question": "When a supersonic aircraft travels at high speeds, the air entering the engine's inlet experiences a rapid change in pressure and velocity. The airflow ahead of the engine is compressed due to the shockwaves generated by the aircraft's forward motion. If, in this compression process, the airflow experiences a rapid change in pressure and velocity without significant heat exchange with the surroundings, is the process adiabatic or not? Why?",
+  "answer": "This process can be considered adiabatic. By definition, adiabatic processes are characterized by the absence of heat transfer into or out of the system. If the compression occurs sufficiently rapidly that there is not have enough time for significant heat exchange between the air and the surroundings, it is adiabatic."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://www.britannica.com/technology/jet-engine/Ramjets-and-supersonic-combustion-ramjets"
+      ]
+},
+{
+  "question": "What differentiates the Lagrangian and Eulerian descriptions and how is this applied to flow mechanics?",
+  "answer": "The Lagrangian description tracks the motion of individual fluid particles. Each particle is assigned a trajectory and describes its motion in terms of position as a function of time. It is useful when applied to highly unsteady or transient flows, such as turbulent flows. The Euelerian description tracks fixed points in space and their flow properties, such as the velocity, pressure and density. It is used to analyze steady flows, focusing on the overall behavior of the flow."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://en.wikipedia.org/wiki/Lagrangian_and_Eulerian_specification_of_the_flow_field", "https://web.mit.edu/fluids-modules/www/basic_laws/1-1-LagEul.pdf"
+      ]
+},
+{
+  "question": "What differentiates Couette and Poiseuille flow and how do favorable and unfavorable pressure gradients relate to these?",
+  "answer": "Couette and Poiseuille flow are two distinct types of viscous flow. Couette flow occurs between two parallel plates, with one stationary and the other moving at a constant velocity, whereas Poiseuille flow occurs in a long, straight pipe with constant cross-sectional area, where a pressure difference is applied along the length of the pipe. It is also important to note that in Couette flow, the velocity gradient arises due to the relative motion of the plates, creating a shearing motion within the fluid. The velocity profile in Couette flow is linear, with the velocity increasing linearly from zero at the stationary plate to a maximum value at the moving plate. In Poiseuille flow, the pressure difference drives the flow, moving from high to low pressure. The velocity profile in Poiseuille flow is parabolic, with the maximum velocity occurring at the centerline of the pipe and decreasing towards the walls. In a favorable pressure gradient, the pressure decreases in the direction of flow, meaning that fluid increases in velocity along the flow direction. In an adverse pressure gradient, the pressure increases in the direction of flow, so the fluid decreases in velocity along the flow direction."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://ocw.mit.edu/courses/2-25-advanced-fluid-mechanics-fall-2013/1a114d602956fa0dd328155f9b45f93d_MIT2_25F13_Couet_and_Pois.pdf", "https://en.wikipedia.org/wiki/Couette_flow"
+      ]
+},
+{
+  "question": "How does one distinguish between the static, stagnation, and total pressure, and what equations can be used to calculate them?",
+  "answer": "The static pressure, p, can be described as the actual pressure at any given point in the flow. It represents the pressure that a fluid exerts perpendicular to any surface when the fluid is not in motion relative to the surface. It is the pressure that one would measure with a sensor at a fixed point in the flow, without altering its velocity. The stagnation pressure, p0, can be described as the pressure a fluid would have if it were brought to rest. In other words, it is the static pressure at a stagnation point – where the local velocity of the fluid is zero. It can be calculated using the following equation, which sums the free-stream static and dynamic pressures: p0 = p + (1/2)*rho*v^2. The total pressure, pt, sometimes used interchangeably with the stagnation pressure, differentiates itself from the stagnation pressure in situations where the effects of gravity need to be taken into consideration. It can be calculated using the following equation: p + (1/2)*rho*v^2 + rho*g*h."
+ "references": [
+          "https://psesh.github.io/ae2010-11/", "https://en.wikipedia.org/wiki/Stagnation_pressure", "https://www.aft.com/learning-center-2/application-topics/692-stagnation-vs-static-pressure"
+      ]
+},
+{
+  "question": "In a converging-diverging nozzle, what happens to the flow depending on whether the flow is subsonic or supersonic, and how does exit static pressure affect the flow behavior?",
+  "answer": "If the flow entering the nozzle is subsonic, the flow velocity will increase and static pressure decrease in the converging section, and the flow velocity will decrease and static pressure increase in the diverging section. If the flow entering the nozzle is supersonic, it behaves in the opposite way. The flow velocity will decrease and static pressure increase in the converging section, and the flow velocity will increase and static pressure decrease in the diverging section. Regarding shocks, if the flow remains supersonic through the nozzle and a shock develops in the diverging section, decreasing the exit static pressure decreases the pressure ratio across the shock, causing the shock to move downstream through the nozzle. In certain extreme cases when the exit static pressure is sufficiently reduced, the shock can even leave the exit of the nozzle."
+ "references": [
+          "https://psesh.github.io/ae2010-11/"
+      ]
+},
+]

@@ -1,0 +1,192 @@
+[
+ {
+   "" "question": "Define the difference between stagnation and static pressure and explain how they differ across a shock and across an expansion fan",
+    "answer": "Stagnation pressure is the total pressure of a fluid, consisting of both its static and dynamic components. Across a shock wave, there is an instantaneous increase in static pressure, but a decrease in stagnation pressure. This decrease occurs because some of the fluid's kinetic energy is converted into pressure, leading to a reduction in stagnation pressure. Across an expansion fan, stagnation pressure remains constant, while static pressure decreases due to fluid expansion."
+  },
+  {
+    "question": "What causes flow separation on an airfoil, where does it occur, and what are the negative effects that are caused by it?",
+    "answer": "Flow separation on an airfoil occurs when airflow detaches from its surface, typically near the trailing edge at high angles of attack. This leads to decreased lift, increased drag, and loss of control, negatively affecting an aircraft's performance, stability, and efficiency."
+  },
+  {
+    "question": "Describe why/how you would apply the Navier-Stokes equation to model the fluid flow through a pipe, taking into account the changes in diameter and the possible changes in flow velocity and pressure.",
+    "answer": "We apply the Navier-Stokes equation to understand how fluid velocity and pressure change in response to varying pipe diameters. By defining the problem's geometry and boundary conditions, and using numerical methods to solve the equation, we gain insights into flow behavior. This approach helps optimize systems by predicting how fluids adapt to different pipe sections."
+  },
+  {
+    "question": "When does momentum transport within a flow field occur and how can viscosity be connected to this concept?",
+    "answer": "Momentum transport occurs in a fluid when fast-moving fluid parcels interact with slower ones, leading to the transfer of momentum. Viscosity, a measure of a fluid's resistance to flow, plays a crucial role in this process by determining the rate at which momentum is transferred through the fluid."
+    "refrences": ["Jerry Seitzmen AE 2010 Thermo and Fluid notes" "Page - 66"]
+  },
+  {
+    "question": "What are the side-effects of an object moving through a fluid at supersonic speed? Explain how the flow field is affected, particularly considering changes in pressure and temperature.",
+    "answer": "When an object moves through a fluid at supersonic speed, it generates a shock wave known as a bow shock. This results in a sudden increase in pressure and temperature upstream of the shock, accompanied by significant flow deflection around the object. These effects alter the flow field, leading to a gradual decrease in pressure and temperature rise downstream of the shock."
+  },
+  {
+    "question": "What is the difference between a strong and weak oblique shock? Which one are you more likely to see in supersonic flow and why?",
+    "answer": "A strong oblique shock has a higher deflection angle and occurs at higher Mach numbers, while a weak oblique shock has a smaller deflection angle and forms at lower Mach numbers. In supersonic flow, you are more likely to encounter weak oblique shocks because they require lower Mach numbers, which are more common in practical scenarios."
+  },
+  {
+    "question": "What does a vertical shift in one of the curves on the T-S graph represent?",
+    "answer": "A vertical shift in a curve on a T-S (temperature-entropy) diagram indicates a change in specific volume while entropy remains constant. This shift typically occurs during processes like phase changes or reversible adiabatic processes where there's no heat exchange with the surroundings."
+  },
+  {
+    "question": "You are at the CRC’s aquatic center conducting experiments for AE 2010. One such experiment you place a tube in the pool. The pressure on the outside of the pool is standard atmospheric pressure, and on the inside, you create a vacuum. Will the water level rise or fall and by how much?",
+    "answer": "The water level will rise due to the vacuum conditions created in the tube. The water in the tube will rise until the pressure inside the tube is equal to the pressure outside the tube."
+  },
+  {
+    "question": "There is a body of water at an unknown temperature. Two blocks of different temperatures are placed in the body, and both come into thermal equilibrium with the body of water separately from each other. Are we able to figure out whether or not the two blocks are in equilibrium with each other? If so, how?",
+    "answer": "According to the 'Zeroth Law' of thermodynamics, if two systems are individually in thermal equilibrium with a third system, they are also in thermal equilibrium with each other."
+  },
+  {
+  "question": "Consider a steady flow of an incompressible fluid through a pipe with a sudden expansion. The diameter of the pipe changes from 10 cm to 20 cm. If the velocity of the fluid at the entrance of the pipe is 5 m/s and the pressure is 2 atm, calculate the velocity and pressure at the exit of the pipe. Assume the flow is adiabatic and neglect friction losses.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+d1 = 0.1  # Initial diameter (m)
+d2 = 0.2  # Final diameter (m) 
+v1 = 5    # Velocity at entrance (m/s)
+P1 = 2    # Pressure at entrance (atm)
+# Formulas
+area1 = np.pi * (d1 / 2) ** 2
+area2 = np.pi * (d2 / 2) ** 2
+# Calculations
+velocity_at_exit = (area1 * v1) / area2
+pressure_at_exit = P1 + 0.5 * (v1 ** 2 - velocity_at_exit ** 2)
+# Explaination: We find the areas of the two section and using those values and the givens in the question we are able to calculate the area and pressures at the exit. 
+# Print the results
+print('Velocity at exit:', velocity_at_exit, 'm/s')
+print('Pressure at exit:', pressure_at_exit, 'atm')
+}
+},
+{
+    "question": "A cyclic heat engine being used on a spacecraft is opperating between two heat basins a hot body (500K) and a cold body (300K) calcualte the efficiency of the engine and the heat transfer"
+ # Temperatures of the hot and cold reservoirs (in Kelvin)
+T_hot = 500  # Temperature of the hot reservoir
+T_cold = 300  # Temperature of the cold reservoir
+# Calculate the efficiency of the engine based on the temperatures
+efficiency = 1 - (T_cold / T_hot)
+# Print the calculated efficiency
+print("Calculated efficiency:", efficiency)
+# Heat transfer calculation
+heat_in = efficiency * T_hot
+heat_out = efficiency * T_cold
+total_heat_transfer = heat_in - heat_out
+# Explaination: We first found efficiency by using the temperature efficiency equation, then by mutiplying the efficiency value with the hot and cold bodies and combines those two values to get the heat transfer.
+# Print the total heat transfer
+print("Total heat transfer:", total_heat_transfer, "joules")
+"refrences": ["Saeed Farokhi (2014) Aircraft Propulsion" "Page - 20 Question - 1.1"]
+},
+{
+  "question": "A monoatomic gas flows through a converging-diverging nozzle with the following conditions: Inlet pressure (P1) = 3 MPa, Inlet temperature (T1) = 400 K, Inlet velocity (V1) = 200 m/s, Exit pressure (P2) = 0.5 MPa, Constant heat capacity (C_p, and C_v). Determine: 1. The Mach number at the exit (M2). 2. The exit velocity (V2). 3. The temperature at the exit (T2). Assume the flow is adiabatic and frictionless.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+P1 = 3      # Inlet pressure (MPa)
+T1 = 400    # Inlet temperature (K)
+V1 = 200    # Inlet velocity (m/s)
+P2 = 0.5    # Exit pressure (MPa)
+C_p = 1.68  # Heat capacity at constant pressure
+C_v = 1.2   # Heat capacity at constant volume
+# Constants
+R = 287     # Gas constant (J/kg-K)
+# Calculations
+gamma = (C_p/C_v)
+M2 = np.sqrt((2/(gamma-1)) * ((P1/P2)**((gamma-1)/gamma) - 1))
+T2 = T1 * ((1 + ((gamma - 1) / 2) * M2**2) / (1 + ((gamma - 1) / 2)))
+V2 = M2 * np.sqrt(gamma * R * T2)
+# Explaination: First we were given C_p and C_v so we were able to calculate the gamma for this equation and then using the isentropic flow relations and some manipulation with the ideal gas lab and the M = (velocity)/(speed of sound) we arrive at the equations above to calculate the down stream values.
+# Results
+results = {
+    "M2": M2,
+    "V2": V2,
+    "T2": T2
+}
+print('Mach number at exit (M2):', M2)
+print('Exit velocity (V2):', V2)
+print('Temperature at exit (T2):', T2)
+print('Gamma value:', gamma)
+},
+{
+  "question": "Georgia Tech just purchased land that will become a future testing site for ecological research. Tech decides to create a dam on a river that passes through the land they purchased to study ecological effects regarding cutting the water flow. Calculate the vertical and horizontal components of the force exerted by water on the dam. The dam is 10 meters high, 20 meters wide, and a reservoir filled to 8 meters above the dam. Fluid is incompressible.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+density_water = 1000  # Density of water (kg/m^3)
+gravity = 9.81        # Acceleration due to gravity (m/s^2)
+z_0 = 10              # Height of the dam (m)
+x_0 = 6               # Width of the dam (m)
+# Define the range of x values
+x = np.linspace(0, x_0, 100)
+# Equations
+P_top = density_water * gravity * z_0
+P_avg = (P_top + 0) / 2
+z = z_0 * (x / x_0) ** 2
+F_vertical = np.trapz(P_avg * z, x)
+F_horizontal = np.trapz(P_avg * (1 - (x / x_0) ** 2), x)
+# Explaination: In this problem required a little bit of manipulation after summing the forces and then integration along the height of the dam to get the full vertical force on the dam.
+# Print the results
+print('Vertical force exerted by water on the dam:', F_vertical, 'N')
+print('Horizontal force exerted by water on the dam:', F_horizontal, 'N')
+}
+},
+{
+  "question": "A hypersonic wind tunnel operates with a Mach number of 4 at the entrance and a Mach number of 3 downstream at the exit. The tunnel has a throat area of 0.5 m^2. Additionally, the specific heat ratio (gamma) of the gas is 1.35. Calculate the following ratios before and after the throat: 1. Area ratio (A/A*). 2. Pressure ratio (P/P*). 3. Temperature ratio (T/T*). Assume the flow is isentropic and ideal gas behavior.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+M1 = 4           # Mach number at entrance
+M2 = 3           # Mach number at exit
+A_star = 0.5     # Throat area (m^2)
+gamma = 1.35     # Specific heat ratio
+# Equations 
+A_A_star = (1 / M1) * ((2 / (1 + (gamma - 1) * M1 ** 2)) ** ((gamma + 1) / (2 * (gamma - 1))) / (2 / (1 + (gamma - 1) * M2 ** 2)) ** ((gamma + 1) / (2 * (gamma - 1))))
+P_P_star = (1 + (gamma - 1) / 2 * M1 ** 2) ** (gamma / (gamma - 1)) / (1 + (gamma - 1) / 2 * M2 ** 2) ** (gamma / (gamma - 1))
+T_T_star = (1 + (gamma - 1) / 2 * M1 ** 2) / (1 + (gamma - 1) / 2 * M2 ** 2)
+# The equations above are derived from the isentropic flow relations for compressible flow. We use these because they are the core pieces of understanding how flow is moving. That is why with a little bit of algrebra we can get all the ratios we need.
+# Print the results
+print('Area ratio (A/A*):', A_A_star)
+print('Pressure ratio (P/P*):', P_P_star)
+print('Temperature ratio (T/T*):', T_T_star)
+}
+}
+},
+{
+  "question": "A tube is experiencing Fanno flow with a given skin friction length (l_f). Calculate the length of the tube required for this flow condition. Assume the flow is adiabatic and there are no changes in elevation.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+l_f = 0.05
+D = 0.1     # Tube diameter (m)
+gamma_inlet = 1.4  # Initial specific heat ratio
+gamma_exit = 1.35  # Final specific heat ratio
+# Calculate the length of the tube using the Fanno flow equation
+L = l_f / (4 * ((gamma_exit - gamma_inlet) / (gamma_inlet * (1 - (gamma_exit / gamma_inlet)) * np.log(gamma_exit / gamma_inlet))) ** 0.5)
+#explaination: This question involves fanno flow so we are going to to use the fanno flow equation. With some algrabreic manipulation we arrive at the equation above which gives us the length L of the tube in meters 
+# Print the results
+print('Length of the tube (L):', L, 'm')
+}
+},
+{
+  "question": "Consider the flow of an incompressible fluid around a pipe. Determine the gauge pressure on the solid surface of the pipe at different radial positions from the center to the pipe wall.",
+  "answer": {
+      "code": 
+import numpy as np
+# Given data
+D = 0.1        # Diameter of the pipe (m)
+V_inlet = 1    # Inlet velocity (m/s)
+rho = 1000     # Density of the fluid (kg/m^3)
+# Define radial positions, (this equation is usually used for creating graphs due to it being used to make arrays but it can also be used for numerical compuatations)
+r = np.linspace(0, D/2, 100)
+# Calculate gauge pressure using Bernoulli's equation
+P_gauge = 0.5 * rho * V_inlet ** 2 * (1 - (r / (D/2)) ** 2)
+# Explaination: Bernoulli's equation is used in this  problem because it describes the conservation of energy in fluid flow, by using this equation we can account for changes in pressure in the pipe due to viscous flow.
+# Integrate the gauge pressure to get the total pressure
+total_pressure = np.trapz(P_gauge, r)
+print('Total gauge pressure on the pipe surface:', total_pressure, 'Pa')
+}
+}
+]

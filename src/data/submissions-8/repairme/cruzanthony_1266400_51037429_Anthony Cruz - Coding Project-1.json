@@ -1,0 +1,178 @@
+[
+{
+  "question": "Air flows steadily from a large pressurized tank at pressure P0 into a converging duct that is open to another large tank at pressure Pb. The duct is insulated and we ignore friction. We measure: P0 = 158.0 kPa (Stagnation pressure) Pb = 101.3 kPa (Back pressure) Is the flow at the exit subsonic, sonic, or supersonic?",
+  "answer": {
+      "code": """
+import numpy as np
+
+P0 = 158.0 # Stagnation pressure (kPa)
+Pb = 101.3 # Back pressure (kPa)
+
+# Calculate the ratio between the exit static pressure and stagnation pressure
+pressure_ratio = Pb/P0
+
+if pressure_ratio < 0.5283:
+	print("The flow is sonic")
+elif pressure_ratio > 0.5283:
+	print("The flow is subsonic everywhere and not choked")
+
+      "",
+      "explanation": "At Mach 1, the pressure ratio of static pressure to stagnation pressure is given by the following equation P/P0 = (1 + (y - 1)/2 * M^2)^-y/(y-1) where y is gamma = 1.4 for air and M is the Mach number. At Mach 1, this ratio is equal to 0.5283 and less than 0.5283 at Mach greater than 1. Therefore, if this ratio is less than 0.5283 the flow is subsonic at the exit and does not get choked.",
+      "references": ["John M. Cimbala, The Pennsylvania State University: https://www.me.psu.edu/cimbala/me320/Lesson_Notes/Fluid_Mechanics_Lesson_15B.pdf"]
+  }
+},
+{
+  "question": "Air flows steadily from a large pressurized tank at pressure P0 into a converging duct that is open to another large tank at pressure Pb. The duct is insulated and we ignore friction. We measure: P0 = 158.0 kPa (Stagnation pressure) T0 = 520.0 K (Stagnation temperature) Pb = 101.3 kPa (Back pressure) Calculate the exit Mach number and static temperature at the exit.",
+  "answer": {
+	"code": """
+import numpy as np
+
+P0 = 158.0 # Stagnation pressure (kPa)
+T0 = 520.0 # Stagnation temperature (K)
+Pb = 101.3 # Back pressure (kPa)
+y = 1.4 # Gamma value = 1.4 for air
+
+M_exit = np.sqrt(2/(y -1) * ((P0/Pb)**((y-1)/y) - 1))
+T_exit = T0/(1 + (y - 1)/2 * M_exit**2)
+
+print("The Mach number at the exit is", M_exit, "and the static temperature at the exit is", T_exit, "K")
+      "",
+      "explanation": "This code utilizes the principle that along a streamline, stagnation pressure and temperature are conserved. These principles are expressed in the following equations P/P0 = (1 + (y - 1)/2 * M^2)^-y/(y-1) and T/T0 = (1 + (y - 1)/2 * M^2)^-1 where P is static pressure, P0 is stagnation pressure, T is static temperature, T0 is stagnation temperature, y is gamma = 1.4 for air, and M is the Mach number. This code uses the pressure ratio to solve for the Mach number at the exit and subsequently using that value to find the static temperature at the exit.",
+      "references": ["John M. Cimbala, The Pennsylvania State University: https://www.me.psu.edu/cimbala/me320/Lesson_Notes/Fluid_Mechanics_Lesson_15B.pdf"]
+  }
+},
+{
+  "question": "Why does the change in velocity of flow in a variable nozzle behave in a manner not expected when the flow is supersonic?",
+  "answer": "At speeds above Mach 1, the change in velocity of the flow is directly proportional to the changing cross-sectional area of the nozzle. This is given by the equation 1/v * dv/dx = 1/(M^2 - 1) * 1/A * dA/dx where v is the flow velocity, x is the position along the nozzle, M is the Mach number, and A is the cross-sectional area of the nozzle. For instance, if the nozzle is diverging (dA/dx > 0), the fluid's velocity increases as it flows through that portion of the nozzle. This is due to the expansion of the flow area, which causes a decrease in static pressure and an increase in flow velocity to maintain mass conservation."
+},
+{
+  "question": "How does a shock form in flow and what properties of the flow change as a result? Why?",
+  "answer": "A shock forms in flow when the local flow velocity exceeds the speed of sound, causing a sudden increase in static pressure, static density, and static temperature across the shock front. This occurs because the flow cannot react quickly enough to changes in its environment, leading to compression and increased energy dissipation. This results in the total pressure downstream of the shock always being less than the total pressure upstream of the shock."
+},
+{
+  "question": "Can you elaborate upon Fanno flow? What key parameters influence Fanno flow?",
+  "answer": "Fanno flow occurs in adiabatic, friction-dominated, constant-area ducts with compressible fluid flow. The phenomenon serves to reduce the effective area within the pipe due to frictional losses. Thus, supersonic flow entering the pipe has its velocity decrease whereas subsonic flow has its velocity increase. The key parameters influencing Fanno flow include the Mach number, duct length, duct diameter, and skin friction coefficient."
+},
+{
+  "question": "Explain the concept of entropy in thermodynamics. How does it relate to the second law of thermodynamics, and what are its implications for heat transfer processes?",
+  "answer": "Entropy is an extensive thermodynamic property which represents the inability of a system to yield useful mechanical work. Entropy is only defined in changes from different states and is expressed as the reversible heat transfer divided by the absolute temperature of the system. Alternatively, for irreversible processes, entropy is defined as the reversible heat transfer divided by the absolute temperature of the system with the addition of the entropy produced due to irreversibility."
+},
+{
+  "question": "What distinguishes reversible processes from irreversible ones? How does the concept of reversibility relate to the efficiency of thermodynamic processes?",
+  "answer": "Reversible processes can proceed both forward and backward without producing any net increase in entropy or don't leave any lasting changes or effects on the environment around them. On the other hand, irreversible processes cannot be undone without leaving an impact on the surroundings. In terms of thermodynamic efficiency, reversible processes achieve maximum efficiency, while real-world processes are less efficient due to irreversibilities such as friction, heat transfer, and fluid mixing."
+},
+{
+  "question": "Could you provide a detailed explanation of how the throttling process works in thermodynamics?",
+  "answer": "The throttling process involves the rapid expansion or compression of a fluid through a restriction, such as a valve or nozzle. Since the flow through the valve is assumed to be adiabatic and have negligible changes in potential and kinetic energy, throttling is isenthalpic and also isothermal for perfect and semi-perfect gases. "
+},
+{
+  "question": "Carbon dioxide contained in a piston–cylinder device is compressed from 0.3 to 0.1 m^3. During the process, the pressure and volume are related by P = aV^-2, where a = 8 kPa * m^6. Calculate the work done on the carbon dioxide during this process.",
+  "answer": {
+      "code": ""
+import numpy as np
+
+V1 = 0.3 # Volume (m^3)
+V2 = 0.1 # Volume (m^3)
+a = 8 # kPa * m^6
+
+# Work done by polytropic process
+W = -a * (1/V1 - 1/V2)
+
+print("The work done on the carbon dioxide during this process is:", W, " kJ")
+      "",
+      "explanation": "This code calculates the work done by a polytropic process in which pressure and volume are related by pV^n = constant. To calculate the work, simply integrate pdV from V1 to V2, where p = aV^-2 as given in the problem description.",
+      "references": ["Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill - Problem 4-21 Page 203"]
+  }
+},
+{
+  "question": "A steam power plant receives heat from a furnace at a rate of 280 GJ/h. Heat losses to the surrounding air from the steam as it passes through the pipes and other components are estimated to be about 8 GJ/h. If the waste heat is transferred to the cooling water at a rate of 145 GJ/h, determine net power output and the thermal efficiency of this power plant.",
+  "answer": {
+      "code": ""
+
+import numpy as np
+
+Qin = 280 # GJ/h
+Qout = 145 # GJ/h
+Qloss = 8 # GJ/h
+
+# Find net work output then convert to power
+W = Qin - Qout - Qloss
+Power = W * 1000/3600 # MW = GJ/h * 1000/3600
+
+efficiency = W/Qin * 100
+
+print("The net power output is ", Power, "MW and the thermal efficiency is ", efficiency, "%")
+      "",
+      "explanation": "This code calculates the net power output due to heat transfer which utilizes the principle of the first law of thermodynamics Q - W = dE. From the net work output, the code then calculates the power output in megawatts (MW), converting from gigajoules per hour (GJ/h)",
+      "reference": ["Michael A. Boles, Yunus A Çengel, (2024) Thermodynamics: An Engineering Approach, McGraw-Hill - Problem 6-18 Page 317"]
+  }
+},
+{
+  "question": "Could you elaborate on Bernoulli's equation? Specifically, what does the equation express and when is it appropriate to apply the equation?",
+  "answer": "Bernoulli's equation relates the pressure, velocity, and elevation of fluid flow along a streamline. It states that the sum of static pressure, dynamic pressure (associated with velocity), and hydrostatic pressure (associated with elevation), remains constant along a streamline. However, this equation is only applicable when the fluid flow analyzed is along a streamline and is steady, incompressible, and has negligible viscous effects."
+},
+{
+  "question": "What are the differences between a system boundary and a control volume? How do they relate to conservation and mass flow rate?",
+  "answer": "A system boundary encloses a specific region of interest in which we state mass cannot cross the boundary, whereas energy in the form of heat and work can. This serves as a statement on the conservation of mass. A control volume is similar to a system boundary except we state that mass and energy can cross its boundaries. This is used to analyze mass and energy fluxes as the mass entering a control volume must be equal to the mass leaving it."
+},
+{
+  "question": "Can you explain how the curvature of streamlines influence a fluid's flow pattern? What differentiates a curved streamline from ones that are parallel?",
+  "answer": "When streamlines are curved, fluid particles experience centrifugal acceleration due to the change in direction, thus leading to pressure variations across the streamline. This pressure gradient drives the fluid from regions of high pressure to regions of low pressure, causing the fluid to flow around a curved path. To be specific, the pressure gradient across a streamline is inversely proportional to the radius of curvature of the streamline. In contrast, parallel streamlines indicate the fluid particles move in the same direction with uniform velocity, assuming steady, inviscid flow."
+},
+{
+  "question": "Consider the inviscid, incompressible flow of air along a streamline. The air density along the streamline is 0.002377 slug/ft^3. At one point on the streamline, the pressure and velocity are 2116 lb/ft^2 and 10 ft/s, respectively. Further downstream, at another point on the streamline, the velocity is 190 ft/s. Calculate the pressure at the second point.",
+  "answer": {
+      "code": ""
+import numpy as np
+
+rho = 0.002377 # Density (slug/ft^3)
+p1 = 2116 # Pressure 1 (lb/ft^2)
+v1 = 10 # Velocity 1 (ft/s)
+v2 = 190 # Velocity 2 (ft/s)
+
+# Apply Bernoulli's Equation along a streamline to solve for pressure 2 (p1 + 1/2 * rho * v1^2 = p2 + 1/2 * rho * v2^2)
+p2 = p1 + 1/2 * rho * (v1**2 - v2**2)
+
+print("The pressure at the second point is:", p2, "lb/ft^2")
+      "",
+      "explanation": "This code applies Bernoulli's principle along a streamline, which states that the sum of static pressure, dynamic pressure (associated with velocity), and hydrostatic pressure (associated with elevation), remains constant along a streamline. In this case where there is no elevation component, the equation p1 + 1/2 * rho * v1^2 = p2 + 1/2 * rho * v2^2 expresses this, where p, v, and rho represent the pressure, velocity and density of the fluid at the corresponding point.",
+      "references": ["John D. Anderson, Christopher P. Cadou (2024) Fundamentals of Aerodynamics, McGraw-Hill - Example 3.2 Page 213"]
+  }
+},
+{
+  "question": "Fluid is traveling through a pipe with a diameter of 5 ft and a length of 0.5 miles. If the fluid has a bulk velocity of 50 ft/s and there is a pressure drop of 5 lb/f^2 find the viscosity of the fluid.",
+  "answer": {
+      "code": ""
+import numpy as np
+
+R = 5/2 # Radius = Diameter/2
+L = 2640 # 0.5 mile = 2640 ft
+V = 50 # Velocity (ft/s)
+p = 5 # Pressure drop (lb/ft^2)
+
+mu = (P * R**2)/(8 * V * L)
+
+print("The viscosity of the fluid is:", mu, "slugs/(ft * s)")
+      "",
+      "explanation": "This code applies the Hagen-Poiseuille equation for the pressure loss across a pipe to calculate the viscosity of the flowing fluid within the pipe. This calculation is derived from the equation p = (8 * mu * V * L)/R^2 where p represents the pressure loss in the pipe, mu is the fluid viscosity, V is the bulk velocity, L is the pipe length, and R is the pipe radius."
+  }
+},
+{
+  "question": "A U-tube manometer contains fluid with a density of 800 kg/m^3 and has a height difference of 50 cm between the two parallel tubes. Calculate the relative pressure of the fluid with respect to the atmosphere."
+  "answer": {
+      "code": ""
+import numpy as np
+
+rho = 800 # Density (kg/m^3)
+g = 9.8 # Gravitational constant (m/s^2)
+h = 0.5 # Height (m)
+
+# Calculate the gauge pressure in the manometer
+p_gauge = (rho * g * h)/101325
+
+print("The relative pressure of the fluid with respect to the atmosphere is:", p_gauge, "atm")
+      "",
+      "explanation": "This code utilizes the principle that pressure varies as a function of depth within a U-tube manometer to calculate the pressure of the fluid with respect to the atmosphere. This is expressed by the equation p_guage = rho * g * h where p_gauge is the difference between the total pressure exerted by the fluid and the local atmospheric pressure, g is the gravitational constant, and h is the height difference between the fluid levels in the manometer."
+  }
+},
+]

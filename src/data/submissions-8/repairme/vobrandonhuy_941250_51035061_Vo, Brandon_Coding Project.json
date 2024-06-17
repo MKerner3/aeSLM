@@ -1,0 +1,303 @@
+[
+{
+"question": "Given a pipe with incompressible flow inside, how might a change in the diameter of the pipe affect the outbound flow velocity and the pressure inside the pipe?"
+"answer": "This depends on the inbound flow's mach number (M). For widening diamater, if M < 1, the outbound velocity will decrease while outbound pressure will increase. If M > 1, the outbound velocity will increase and pressure will decrease. For narrowing diameter, if M < 1, the outbound velocity will also decrease and pressure will increase; if M > 1, the velocity will decrease and pressure will increase."  
+},
+{
+"question": "Explain what happens to flow properties (i.e., pressure) when the flow goes through an oblique shock versus an expansion fan and compare those changes to that of normal shock."
+"answer": "Flow quantity changes across an oblique shock is in the same direction as across a normal shock. Past the shock, there is a decrease in Mach Number, increase in density, increase in static pressure, and increase in enthalpy. Compared to a normal shock however, these changes in the quantities are less in magnitude for oblique shocks compared to the changes through a normal shock. The flow quantity changes across an expansion fan is in the opposite direction as any shock. Past the fan, there's an increase in Mach number, a decrease in static pressure, decrease in static enthalpy, and decrease in density. However, contrary to shocks, total enthalpy, total/stagnation temperature, and stagnation pressure does not change because expansion fans are isentropic processes."
+},
+{
+"question": "Explain the difference between stagnation pressure, static pressure, and total pressure."
+"answer": "Static pressure is the actual pressure at any given point in the flow, and it is measured by a sensor aligned with the flow direction, which doesn't alter the flow velocity. Stagnation pressure is the sum of static and dynamic pressure and is defined as the pressure that would be conserved for inviscid flow in the absence of gravity effects. Total pressure is a quantity of pressure that is conserved when the work done by gravity is also relevant and is the sum of the gravity-related component of pressure and stagnation pressure. This third value becomes more important when considering pressures at different depths underwater for example."
+},
+{
+"question": "Explain the difference between a pitot-static probe and a pitot probe and how a pitot-static probe can be more useful."
+"answer": "A pitot probe is used to only measure the stagnation pressure of fluid flow. The pitot probe is just a tube with an opening facing towards oncoming flow and when the flow enters the probe, the flow velocity is reduced to zero and therefore stagnation pressure can be determined. A pitot-static probe, on the other hand, has the same opening as the pitot probe, but there is an additional opening on the side of the probe that is perpendicular to the flow. This second opening measures static pressure. The pitot-static probe is useful since with both stagnation pressure and static pressure, the flow velocity can be calculated with the following equation: p_0 = p + (1/2)ρ(V^2)."
+},
+{
+"question": "Explain the three laws of thermodynamics in detail."
+"answer": "The first law of thermodynamics is a statement about the conservation of energy and leads to the definition of energy as a property of systems. It's defined as Q - W = ∆E, where Q represents heat added from surroundings to the system, W is work done by the system on surroundings, and ∆E is change in internal energy. Heat and work are not properties of a system but rather methods of transferring energy. Next, the second law of thermodynamics is about how isolated systems not at equilibrium tend towards increasing entropy, which is the overall randomness and disorder in a system. This relates closely with reversiblity and irreversiblity. Reversible processes involve no increase in entropy and are the theoretical maximum efficiency of a system. On the other hand, irreversible processes lead to an increase in entropy as the system is unable to return to its initial state in the reverse direction after it changes in the forward direction. Lastly, the third law of thermodynamics is tied closely with the zeroth law, upon which the fundamentals of thermodynamics are based. The zeroth law states that over time, two different bodies in contact will reach thermal equilibrium, reaching a common property being temperature. Without the zeroth law, relations between different measurements and quantities have no basis. The third law itself states that absolute zero is the lowest limit of the thermodynamic temperature scale, where enthalpy and entropy of an ideal gas reach their minimum value. That temperature is taken at 0 Kelvin or -273.15°C."
+},
+{
+"question": "Inside a bending pipe/path, why does fluid flow slower as one moves from the inner edge to the outer edge?"
+"answer": "Consider the following equation: (∂p/∂n) = ρ*[(V_s)^2/R], where (∂p/∂n) is the pressure gradient, ρ (rho) is fluid density, V_s is the fluid flow velocity tangential to the streamline, and R is the local radius of curvature (LRoC) of the streamline. Before considering flow around a bend, consider flow along straight streamlines. Since the streamlines are parallel with one another, there is no pressure gradient and as a result, the flow velocity is constant along every streamline. Now, let's consider a bend. Since streamlines running through a bend must follow the path of the bend, each streamline is now bent, with minimum and maximum LRoCs equal to the bounds of the physical pipe/path. Due to the change in radii moving from the inner edge to the outer edge, the gradient pressure is non zero and increases from the smallest radius to the highest. Based on Bernoulli's Equation (p + (1/2)ρ(V^2) = constant c), since c is constant, to compensate for the increase in pressure, velocity must decrease.
+},
+{
+"question": "What is the difference between laminar flow and turbulent flow. Is this the same as steady versus unsteady flow? If not, explain the difference."
+"answer": "Laminar flow consists of smooth streamlines, and the fluid flow travels smoothly along those streamlines. On the contrary, turbulent flow consists of broken streamlines and the fluid flow travels randomly and chaotically along the streamlines. Steady and unsteady flows are defined differently however. Steady flow is flow where the flow conditions are constant with respect to time. The flow conditions with unsteay flow are not constant with respect to time. Turbulent flow can be considered unsteady flow, but not all unsteady flow is turbulent. To summarize, laminar and turbulent flow relates to smoothness of the streamlines and how fluid flow travels along those streamlines. Steady and unsteady flow relates to flow conditions and if they're constant with respect to time."     
+},
+{
+"question": "What is the Coanda Effect, and how does it relate to incompressible flow?"
+"answer": "The Coanda Effect is an effect in fluid dynamics where a jet of fluid moves around a curved surface, like a cylinder, and this jet of fluid tends to follow and stay attached to the surface. Even when the surface curves away from the initial direction of the fluid streamlines, the flow remains attached for some distance around the curve before separating. This occurs because as the fluid flows around the curved surface, according to Bernoulli's Principle, an increase in velocity near the curved surface leads to a decrease in pressure. To balance this out, the velocity away from the surface must decrease while pressure increases. This differential creates a force that pulls the fluid jet towards the lower-pressure region near the surface, thus making the flow attached."
+},
+{
+"question": "What are U-tube manometers, and how do they measure gauge pressure? What is gauge pressure?"
+"answer": "U-tube manometers are one type of pressure-measuring instruments and uses the idea that pressure varies as a function of depth. There are two open-ends at the end of two parallel tubes connected together. One end is open to an unknown pressure (p_m) while the other end sees atmospheric pressure. The tube contains a liquid with a density greater than air. A pressure difference between atmospheric pressure and p_m will cause the liquid to move inside the tube, creating a height difference between the two parallel tubes. This height difference can be used to calculate the gauge pressure, which is pressure relative to atmospheric pressure. If gauge pressure is positive, p_m is greater than atmospheric; if gauge pressure is negative, p_m is less than atmospheric."
+},
+{
+"question": "A garden hose attached with a nozzle is used to fill a 15-gallon bucket. The inner diameter of the hose is 2.5 cm, and it reduces to 1.2 cm at the nozzle exit. If it takes 75 seconds to fill the bucket with water,  determine the volume and mass flow rates of apple juice through the hose. The density of apple juice is 1.05 kg/L, and assume the apple juice is incompressible."
+"answer": {
+	"code": """
+import numpy as np
+
+rho = 1.05  # Density (kg/L)
+V = 15 # Volume (gal)
+t = 75 # Time (seconds)
+
+#Convert volume from gallons to liters
+V1 = V *3.7854 # Volume (Liters)
+
+# Apply volumetric flow rate equation (V_dot = V/t)
+V_dot = V1/t
+
+# Use volumetric flow rate to find the mass flow rate (m_dot = rho * V_dot)
+m_dot = rho * V_dot
+
+print("The volumetric flow rate through the hose is:", V_dot, "L/s")
+print("The mass flow rate through the hose is:", m_dot, "kg/s")
+"explanation": "This code utilizes the concepts of conservation of mass in control volumes and continuity. Knowing that the mass flow rate must be constant for incompressible flow, the end conditions can be used to calculate the flow rates. Therefore, the equations V_dot = V1 / t and subsequently m_dot = ρ * V_dot express this, where ρ represents the fluid density, t represents the time it took to fill the bucket, and V represents the total volume."
+"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill", "https://www.khanacademy.org/science/physics/fluids/fluid-dynamics/a/what-is-volumetric-flow-rate"]
+	}
+},
+{
+"question": "A heat source at 1000 K loses 3000 kJ of heat to a sink at (a) 600 K and (b) 850 K. Determine which heat transfer process is more irreversible."
+"answer": {
+	"code": """
+import numpy as np
+
+Q = 3000 # Heat transfer (kJ)
+T_source = 1000 # Temperature of source (K)
+
+T_sink_a = 600 # Temperature of sink a (K)
+T_sink_b = 850 # Temperature of sink b (K)
+
+# Solving process (a) first
+Delta_Source_a = -Q/T_source
+Delta_Sink_a = Q/T_sink_a
+
+S_gen_a = Delta_Source_a + Delta_Sink_a
+
+# Solving process (b) next
+Delta_Source_b = -Q/T_source
+Delta_Sink_b = Q/T_sink_b
+
+S_gen_b = Delta_Source_b + Delta_Sink_b
+
+# Seeing which is greater and therefore more irreversible
+if(S_gen_b < S_gen_a):
+  print("Process (a) generated ", S_gen_a, " kJ/K of entropy and is more irreversible than process (b), which produced", S_gen_b, " kJ/K.")
+else:
+  print("Process (b) generated ", S_gen_b, " kJ/K of entropy and is more irreversible than process (a), which produced", S_gen_a, " kJ/K.")
+
+"explanation": "To find the magnitude of irreversibility, this code calculated the total entropy change. Since the source-to-sink heat transfer is adiabatic, the total entrop change can be found by summing the changes in entropy in each resevoir. There is also a noteworthy consideration in this question. Since one sink cannot have two different temperatures, that must mean there is a partition separating the two resevoirs, where one side goes to 500 K and the other goes to 750 K. However, the total entropy change in the partition is 0 (the paritition is in a steady state), so it can be negligible in calculations."
+"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill"]
+	}
+},
+{
+"question": "A reservoir contains a volume of water 10 meters in height. Someone has accidentally spilled a significant amount of oil, which floats on top of the water. The oil has a height of 2 meters. Calculate the gauge pressure at the bottom of the reservoir. Assume the following densities for oil and water: ρ_o = 750 kg/m^3 and p_w = 1000 kg/m^3."
+"answer": {
+	"code": """
+import numpy as np
+
+print("Consider the following mental image. At the bottom of the resevoir is the water, however high it might be, and on top of the water is the amount of oil, again however high it might be.")
+
+rho_o = 750 # Density of oil (kg/m^3)
+rho_w = 1000 # Density of water (kg/m^3)
+g = 9.981 # Gravity (m/s^2)
+h_o = 2 # height of oil (m)
+h_w = 10 # height of water (m)
+
+# First calculating pressure at the interface (the border between water and oil) - the equation used is p_2 = p_1 + rho*g*h, but gauge pressure is p_2 - p_1 = rho*g*h
+# In this case, we're omitting p_1 (which is p_atm) since it's undefined and won't work with code - this equation is really: p_i = p_atm + (rho_o * g * h_o)
+p_i = rho_o * g * h_o
+
+# Next calculating the pressure at resevoir bottom, again working around the p_1 component as it isn't as clear with code - this equation is really p = p_i + (rho_w * g * h_w)
+p = rho_w * g * h_w
+
+# Lastly, we can calculate gauge pressure, which is the difference between p and p_atm (p - p_atm) - combining the two equations yields: p = p_atm + (rho_o * g * h_o) + (rho_w * g * h_w)
+p_gauge = p_i + p
+
+print("The gauge pressure at the bottom of the resevoir is", p_gauge, "kg/m*s^2 or", p_gauge, "Pascals (Pa)")
+"explanation": "Again, as mentioned, it's important to visualize the resevoir, with the oil on top and water on the bottom. Since gauge pressure is a pressure measurement relative to atmospheric pressure, written as a difference between p and p_atm, it was tricky to write out the proper form in code. First, the code considered the pressure at the border between the water and oil, and at at level, there is pressure due to hydrostatic pressure and the atmosphere acting on it. At the bottom of the resevoir, the pressure came from pressure at the interface and hydrostatic pressure. The pressure at the interface is found by p_i = p_atm + (ρ_o * g * h_o), where ρ_o is the oil density, g is gravity, and h_o is the height of the oil. Next, the pressure at the bottom is found by p = p_i + (ρ_w * g * h_w), where ρ_w is the density of water and h_w is the height of the water. The first equation can then be plugged into the second and after moving p_atm to the other side of the equation, the result is the equation for gauge pressure."
+"references":["https://psesh.github.io/ae2010-11/sample_problems/lecture_2.html", "https://physics.stackexchange.com/questions/106466/how-to-calculate-gauge-pressure-at-water-depth"]
+	}
+},
+{
+"question": "Consider a 1m section of a supersonic wind tunnel, where the end of this section opens into the test section of the wind tunnel. The choke point of the wind tunnel is at 0.4m into the section. The air properties at the inlet are the following: stagnation pressure = 200 kPa and stagnation temperature = 320 K. Assume the flow is in a frictionless duct and is a perfect gas. Create a plot of Mach numbers along the length of the 1m section."
+"answer": {
+	"code":"""
+
+import numpy as np
+from scipy.optimize import root_scalar # needed in order to not make complex code trying to solve for roots
+import matplotlib.pyplot as plt
+
+
+# create functions for duct curvature and an array of x values to use in graphing 
+x = np.linspace(0, 1, 200)
+alpha = (x/2 - 0.2)**2 + 0.05 
+beta = -alpha
+
+# define given variables and constants 
+p_0i = 200 # kPa
+T_0i = 320 # K
+R = 287 # J/kgK
+c_p = 1006 # J/kgK
+g = 1.4
+throat_x = 0.4
+
+# assume that flow is choked so the throat Mach number can be defined as 1
+M_t = 1
+
+# Define a function that solves for an area per unit width (can also solve for different areas such as circular)
+def area(x):
+    	area = 2 * ((x/2 - 0.2)**2 + 0.05)
+    	return area
+
+# Define the area at the throat, which is needed in order to solve for Mach number
+A_t = area(throat_x)
+
+# Define a mach function to calculate the roots of the area ratio mach relation set to zero
+def mach_function(M, x_pos):
+    	A = area(x_pos)
+    	return np.sqrt((1/M**2)*((2/(g+1))*(1+((g-1)/2)*M**2))**((g+1)/(g-1))) - A/A_t
+
+# Define the Mach number at the shock position, min Mach value at the entrance, and Mach number after shock
+
+M_min_root = root_scalar(mach_function, args = (0), x0 = 0.2, x1 = 1)
+M_min = M_min_root.root
+
+M_at = np.sqrt(((g-1)*M_t**2 + 2)/(2*g*M_t**(2)-(g-1)))
+
+# Define a function to calculate the stagnation pressure
+def stag_pressure(x_pos):
+   	stag_pressure = p_0i       
+    	return stag_pressure
+
+# Define the mass flow rate at the throat where M=1 for ease, this number will remain constant
+m_dot = ((A_t)*(p_0i*1000)/(np.sqrt(T_0i)))*np.sqrt(g/R)*((g+1)/2)**(-(g+1)/(2*(g-1))) 
+
+# p0 is multipled by 1000 because it is given in kPa and we need units of Pa
+
+# Define a function that finds the roots of the mass flow rate equation set to zero
+def mach_function_as(M, x_pos):
+    	A = area(x_pos)
+    	p_0 = stag_pressure(x_pos)*1000
+    	return (A*p_0/np.sqrt(T_0i))*(np.sqrt(g/R))*M*(1+((g-1)/2)*M**2)**(-(g+1)/(2*(g-1))) - m_dot
+
+# Define a function to calculate the Mach value at an x value, x0 and x1 are lower and upper limits on the Mach number that
+# are based on location in the nozzle
+def mach_number(x_pos):
+    	if x_pos <= 0.3:
+        		M_root = root_scalar(mach_function, args = (x_pos), x0 = M_min, x1 = 0.8)
+        		M = M_root.root
+    	elif 0.3 < x_pos <= throat_x: 
+        		M_root = root_scalar(mach_function, args = (x_pos), x0 = M_min, x1 = 1)
+        		M = M_root.root
+    	else: 
+        		M_root = root_scalar(mach_function_as, args = (x_pos), x0 = M_t, x1 = 2.5)
+        		M = M_root.root
+    	return M
+
+M_values = []
+
+for x_val in x:
+    M_values.append(mach_number(x_val))
+# using the dataframe we can also create a plot with a dropdown menu between the fields
+fig = plt.figure()
+
+plt.plot(x, M_values)
+
+plt.xlabel('Mach Number')
+plt.ylabel("X position")
+plt.show()
+
+"explanation": "Firstly, let's consider how a supersonic wind tunnel is constructed: there is an inlet, contraction area, the throat/choke point, diffuser, and a test section. Air comes in through the inlet, is sped up in the contraction area until it reaches the throat, where it hits Mach 1. Past the choke point, since the test section requires higher speeds than Mach 1 (supersonic), the air must then go through a diffuser. The air flow will diffuse, causing it to speed up even more. The longer the diffuser section, the faster the air flow will get and eventually it will exit into the test section where it's then used in experiments, like testing air foils."
+"references": ["https://www.grc.nasa.gov/www/k-12/airplane/tunnozd.html", "https://psesh.github.io/ae2010-11/normal_shocks.html"]
+	} 
+},
+{
+"question": "A heat engine with a thermal efficiency of 24.675% produces 65.75 MW of work. Calculate the following: (a) How much heat is the heat engine taking in to produce the work, and (b) How much heat is rejected by the engine?
+"answer": {
+	"code":"""
+import numpy as np
+
+efficiency = 24.675 # % thermal efficiency
+W_net_out = 65.75 # work produced by heat engine (MW)
+
+# Calculating part (a)
+efficiency = efficiency / 100
+Q_H = W_net_out / efficiency
+
+#Calculating part (b)
+Q_L = Q_H - W_net_work
+
+Q_H = round(Q_H,3)
+Q_L = round(Q_L,3)
+print("(a) The heat engine needs to receive", Q_H, "MW of heat to produce", W_net_out, "MW of useable work.")
+print("(b) The heat engine will reject", Q_L, "MW of heat as a result.")
+
+"explanation": "This code utilizes the expression for thermal efficiency, which is W/Q_H (useful work divided by heat input). The reason this ratio exists is because of the Kelvin-Planck Statement, which states that it is impossible to create a cyclic device (in this case, heat engine) that can produce work while receiving heat from a single thermal resevoir. There is a limit to the efficiency of this process; a completely reversible process would have 100% efficiency, but such a heat engine does not exist. Furthermore, since there needs to be a thermal resevoir that serves as a sink (receives heat waste), useful work is calculated by subtracting the heat waste from the heat input."
+"references": ["Thermodynamics: An Engineering Approach, McGraw-Hill"]
+	}
+},
+{
+"question": "Consider an inviscid, incompressible flow of air along a streamline. The air density along the streamline is 1.225 kg/m³, which is standard atmospheric density at sea level. At point (a) on the streamline, the pressure and velocity are 14,500 Pa and 3 m/s, respectively. Further downstream, at point (b) on the streamline, the pressure is 7250 Pa. Calculate the pressure at point 2.  What can be said about the relative velocity change compared to the change in pressure?"
+"answer": {
+	"code": """
+import numpy as np
+
+rho_air = 1.225 # air density (kg/m^3)
+p_a = 14500 # pressure at point (a) of streamline (Pa)
+v_a = 3 # velocity at point (a) of streamline (m/s)
+p_b = 7250 # pressure at point (b) of streamline (Pa)
+
+# Calculating velocity at point (b)
+v_b = np.sqrt(2*(p_a-p_b)+(rho_air*v_a**2))
+
+print("The velocity at point (b) is", round(v_b, 3), "m/s.")
+
+"explanation": "The code used Bernoulli's Equation to calculate the change in velocity as a result of a change in pressure.  Bernoulli's Equation(p + (1/2)*ρ*(V^2) = constant C) is used if air density is constant, and this relates the velocity and pressure at one point in a streamline to the velocity and pressure of another point (p_1 + (1/2)*ρ*((V_1)^2)) = (p_2 + (1/2)*ρ*((V_2)^2), where p is pressure, ρ is air density, and V is flow velocity. Secondly, note that due to Bernoulli's Equation, velocity and pressure have an inverse relationship, that is if pressure increases, velocity must decrease and vice versa. Therefore, the decrease in pressure from point (a) to (b) resulted in an increase in velocity. Also note that even though pressure decreased by a factor of 2, velocity increased by 40. This is a general characteristic of low-speed flows; small changes in pressure yield big changes in velocity."
+"references":["Fundamentals of Aerodynamics,  McGraw-Hill"]
+	}
+},
+{
+"question": "A plane is flying at about standard sea level. A pitot tube gives a reading of 30,000 Pa. Given that standard sea level pressure is 101325 Pa, what is the airspeed of the plane?"
+"answer":{
+	"code":"""
+import numpy as np
+
+p_0 = 120000 # Pitot tube reading/total pressure (Pa)
+p = 101325 # Standard sea level pressure (Pa)
+rho_air = 1.225 # air density (kg/m^3)
+
+# Calculating plane's airspeed
+v = np.sqrt(2*(p_0-p)/rho_air)
+
+print("The plane's airspeed is", round(v,3), "m/s.")
+"explanation": "This code utilizes Bernoulli's equation with a small adjustment. Bernoulli's Equation(p + (1/2)*ρ*(V^2) = constant C) is used if air density is constant, and this relates the velocity and pressure at one point in a streamline to the velocity and pressure of another point (p_1 + (1/2)*ρ*((V_1)^2)) = (p_2 + (1/2)*ρ*((V_2)^2), where p is pressure, ρ is air density, and V is flow velocity. However, with a pitot tube, one of the velocities goes to 0, representing the stagnation point. The pressure at the stagnation point is called the stagnation pressure (p_0) and is the sum of static pressure and dynamic pressure. By rewriting Bernoulli's Equation with one of the velocities set 0, the equation for calculating pressure and/or velocity given information of a pitot tube is made: p + (1/2)*ρ*(V^2) = p_0."
+	}
+},
+{
+"question": "An aircraft is flying at a cruising speed of 300 m/s at an altitude of 7000 m where the atmospheric pressure is 41.2 kPa and the ambient air temperature is 248 K. The ambient air is first decelerated in a diffuser before it enters the compressor. Approximating both the diffuser and the compressor to be isentropic, determine the stagnation pressure at the compressor inlet."
+"answer":{
+	"code":"""
+import numpy as np
+
+T_1 = 248 # ambient air temperatuer (K)
+p_1 = 41.2 # atmospheric pressure (kPa)
+v_1 = 300 # cruising speed (m/s)
+c_p = 1.005 # constant pressure specific heat capacity (kJ/kg*K)
+g = 1.4 # specific heat ratio
+
+# Calculating stagnation temperature
+T_01 = T_1 + ((v_1)**2)/(2*c_p*1000)
+
+# Calculating stagnation pressure
+p_01 = p_1 * (T_01/T_1)**(g/(g-1))
+
+print("The stagnation temperature at the compressor inlet is", round(p_01,3), "kPa.")
+"explanation": The code makes use of the equations to find stagnation pressure and stagnation temperature. First, stagnation temperature needs to be found since the ratio between p_0 and p depends on the ratio between T_0 and T. Stagnation/total temperature represents the temperature of an ideal gas when it is brought to rest adiabatically. The equation is T_0 = T + (V^2)/(2*C_p), where V is the initial velocity, T is the ambient air temperature, and C_p is the isobaric specific heat capacity. With the stagnation temperature, an isentropic relationship can be used to find the stagnation pressure: p_0/p = (T_0/T)^(γ/γ-1), where p is the initial air pressure and γ is the specific heat ratio."
+	}
+}
+]
