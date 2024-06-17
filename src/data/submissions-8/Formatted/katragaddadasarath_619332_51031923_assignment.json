@@ -1,0 +1,122 @@
+[
+{
+    "question": "Assume a submarine on a different planet is at a depth of 300m, and takes a pressure reading of 6450 kPa. Given that the acceleration due to gravity is 20 m/s, and the ocean density is 820 kg/m^3, find the atmospheric pressure on this planet.",
+    "answer": "\nh = 300 # Depth (m)\nrho = 820 # Density (kg/m^3)\ng = 20 # Acceleration due to gravity (m/s^2)\np = 6450000 # Total Pressure (Pa)\n\n# Rearrangement of fluid pressure equation\npA = p - rho * g * h\npA = pA / 1000\n\nprint('Atmospheric Pressure: %f kPa' % pA)\n        ",
+    "explanation": "This code calculates atmospheric pressure by using a rearrangement of the fluid pressure equation at a certain depth. The equation used is p_i = p_a + rho * g * h, where 'p_i' is total pressure, 'p_a' is atmospheric pressure, 'rho' is density, 'g' is acceleration due to gravity, and 'h' is depth.",
+    "reference":""
+
+},
+{
+    "question": "We are given an oil pipeline for which we observe a pressure loss of 1kPa over a 4km section. The pipeline has a constant radius of 0.5m, and the oil flows at a velocity of 3 m/s. Calculate the viscosity of the oil.",
+    "answer": "\ndeltaP = 1000 # Change in pressure (Pa)\nL = 4000 # Length of Pipe (m)\nr = 0.5 # Radius of pipe (m)\nV = 3 # Flow velocity (m/s)\n\n# Rearrangement of Hagan-Poiseuille pressure loss equation\nmu = deltaP * r**2 / (8 * V * L)\n\nprint('Viscosity of the oil: %f kg/(m*s)' % mu)\n        ",
+    "explanation": "This code calculates the viscosity of a fluid by using a rearrangement of the hagan-poiseuille pressure difference equation. The equation is delta-p = 8 * mu * V * L / R^2, where 'delta-p' is the change in pressure, 'mu' is the viscosity, 'V' is the velocity, and 'L' is the length of pipe.",
+    "reference":""
+
+},
+{
+    "question": "We have a heat engine that taps geothermal reservoirs in the earth's crust to generate electricity. If the engine has access to a heat source of 150 degrees celsius, and the atmospheric temperature is 20 degrees celsius, calculate the maximum efficiency of the engine.",
+    "answer": "\nt1 = 150 + 273.15 # Heat source temperature (Kelvin)\nt2 = 20 + 273.15 # Atmospheric Temperature (Kelvin)\n\n# Maximum thermal efficiency equation\neta = 1 - (t2 / t1)\n\nprint('Maximum efficiency: %f' % eta)\n        ",
+    "explanation": "This code calculates the maximum efficiency of a heat engine by using the maximal efficiency equation. Note that the process must be reversible to reach this efficiency (called Carnot Efficiency). The equation used is eta = 1 - T2/T1, where eta is the efficiency, T2 is the external temperature, and T1 is the source's temperature.",
+    "reference":""
+
+},
+{
+    "question": "We are given an ideal gas at a pressure of 10kPa, and at a temperature of -20 degrees celsius. Calculate the density of the gas. Assume the gas has a molar mass of 4 g/mol, and note that our specific ideal gas constant is R = 2.1.",
+    "answer": "\np = 10000 # Pressure (Pa)\nR = 2.1 # Ideal gas constant (J/(g * K))\nT = -20 + 273.15 # Temperature (Kelvin)\n\n# Rearranged ideal gas equation\nrho = p / (R * T)\n\nprint('Gas Density: %f g/m^3' % rho)\n        ",
+    "explanation": "This code calculates the density of an ideal gas by using a rearranged form of one of the ideal gas equations. The ideal gas equation used is p = rho * R * T, where 'p' is the pressure, 'rho' is the density, 'R' is the gas constant, and 'T' is the temperature.",
+    "reference":""
+
+},
+{
+    "question": "During open heart surgery, surgeons use a cardiac bypass machine which conducts shaft work on the blood to continue circulation. Given that our shaft power is 20W, the density of blood is 1050 kg/m^3, and the volumetric flow rate is 0.2 kg/s, calculate the shaft work conducted by the bypass machine.",
+    "answer": "\nP = 20 # Power (W)\nrho = 1050 # Density (kg/m^3)\nQ = 0.2 # Volumetric Flow Rate (kg/s)\n\n# Rearranged shaft power equation\nw = P / (rho * Q)\n\nprint('Shaft Work: %f J' % w)\n        ",
+    "explanation": "This code calculates shaft work by using a rearranged form of the equation for shaft power. The equation used is P = rho * Q * w, where 'P' is shaft power, 'rho' is density, 'Q' is volumetric flow rate, and 'w' is shaft work.",
+    "reference":""
+},
+{
+    "question": "We have a pitot tube attached to an airplane that outputs a stagnation pressure of 35kPa and a static pressure of 19 kPa. Given a gamma value of 1.4, calculate the aircraft's mach number.",
+    "answer": "\nimport numpy as np\n\np0 = 35000 # Stagnation Pressure (Pa)\np = 19000 # Static Pressure (Pa)\ngamma = 1.4 # Heat Capacity Ratio\n\n# Pitot-Static Tube Mach Number Equation\nM_Squared = 2/(gamma - 1) * ((p0/p)**((gamma - 1)/gamma) - 1)\nM = np.sqrt(M_Squared)\n\nprint('Mach Number: %f' % M)\n        ",
+    "explanation": "This code calculates the mach number by using the pitot-static equation which relates stagnation and static pressure to mach number. The equation is M^2 = 2/(gamma - 1) * ((p0/p)**((gamma - 1)/gamma) - 1), where 'M' is mach number, 'gamma' is the heat capacity ratio, 'p0' is the stagnation pressure, and 'p' is the static pressure.",
+    "reference":""
+
+},
+{
+    "question": "We have a supersonic aircraft in a wind tunnel. The temperature inside the tunnel is -10 degrees celsius, and the airspeed is approximately 650 m/s. Assuming a gamma value of 1.4 and an R value of 287, calculate the mach angle.",
+    "answer": "\nimport numpy as np\n\nT = -10 + 273.15 # Temperature (Kelvin)\ngamma = 1.4 # Heat Capacity Ratio\nR = 287 # Ideal gas constant\nv = 650 # Velocity (m/s)\n\n# Mach Cones and Mach angle equation\na = np.sqrt(gamma * R * T)\nmu = np.arcsin(a / v)\n\nprint('Mach Angle: %f radians' % mu)\n        ",
+    "explanation": "This code calculates the mach angle by using the equation for calculating mach angle using mach cones. The equation is mu = sin^-1(at/vt), where 'mu' is the mach angle, 'a' is the speed of sound, 't' is the time elapsed (note that this term cancels), and 'v' is the velocity. We also calculate 'a' with the equation a = sqrt(gamma * R * T), where 'a' is the speed of sound, 'gamma' is the heat capacity ratio, 'R' is the ideal gas constant, and 'T' is the temperature.",
+    "reference":""
+
+},
+
+{
+    "question": "How does a pitot tube measure airspeed just using pressure?",
+    "answer": "A pitot tube is a device that measures airspeed by comparing the static and stagnation pressures of the airflow. It takes readings from a forward facing probe (stagnation pressure) and a side-facing probe (static pressure). The difference in pressures can then be used to calculate relative velocity using the equation p_stagnation - p_static = 1/2 * density * velocity^2.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why does a velocity gradient form when shear stress is applied to a viscous fluid flow?",
+    "answer": "Viscosity is a measure of the amount of internal friction within a fluid. Since this is not effectively infinite in a fluid (like a solid), the shear stress has a larger effect on the fluid closest to where the stress is applied. Shear stress is a measurement of the force per area acting parallel to a fluid. As we travel further away from the stress point, we have less shear stress transferred due to the finite amount of friction. This causes the fluid to form a velocity gradient instead of moving as one single mass, where the velocity is maximal at the point the stress is applied.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Can you elaborate on what causes the Magnus effect?",
+    "answer": "The magnus effect is a phenomenon where a rotating cylinder/sphere in fluid will generate lift. This force will be in the direction of the side rotating with the airflow, as the cylinder is creating the same effect as an airfoil. Since the top and bottom of the cylinder are rotating in opposite directions, one side is accelerating the airflow over it, and one side is slowing it down due to the shear stress applied to the flow by the skin of the cylinder. This results in a pressure differential, where the side rotating against the stream (lower airspeed) has a higher pressure than the side rotating with the stream, and thus generates a lifting force.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "What does it mean when a thermodynamic process is reversible?",
+    "answer": "Assume we have a system that undergoes a process in a certain direction (such as heat flowing from top to bottom). This process is reversible if we are able to change the direction so that we can have heat flow back from the bottom to the top. We know that this is possible when the system passes through infinite infinitessimally small steps, each of which are in thermodynamic equilibrium (or extremely close to equilibrium). The process can be considered quasi-equilibrium, which means that when we increment our process, we allow enough time to pass for everythign to stabilize again in the system.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why can't we return to certain system states adiabatically?",
+    "answer": "An adiabatic process is one in which no heat is added or removed from the system. If we reach a certain system state by conducting work (such as heating water in a kettle), it is not possible to return to our initial state without removing the energy we added to the system. Note that if we achieve a state of higher temperature, but also decrease the volume of our system correspondingly, we can adiabatically return to our initial state. The only scenario where we cannot is if we needed to add or remove energy to reach the current state.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "What are the characteristics of isentropic flow?",
+    "answer": "Isentropic flow is defined as any flow where entropy remains constant. Entropy is defined as the amount of disorder in a system. Isentropic flow has no heat transfer within the flow as well, due to the definition of entropy, which means that the flow is also generally adiabatic (no heat transferred). Since the system is isentropic, we also know that the flow is reversible, as the flow is always at thermodynamic equilibrium. Finally, we know that the flow is steady, which means that there are no losses due to friction, turbulence, or any other disturbances that could cause a change in entropy.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "What causes the condensation over an airfoil at high angles of attack (assuming flow is subsonic)?",
+    "answer": "When an airfoil is held at high angles of attack, assuming that the flow stays attached, it will generate significantly more lift. If the flow over the airfoil stays attached, we know that the pressure differential between the top and bottom of the airfoil increases drastically, as the air travels a much shorter distance over the top versus the bottom. This is due to bernoulli's principle, as we know that pressure and airspeed are inversely related (p + 1/2 * rho * v^2 = constant). This significant drop in pressure will decrease the temperature over the airfoil as well, simply due to the ideal gas law (PV = nRT), as volume is constant in this scenario. Therefore, the drastic drop in pressure will result in condensation forming, as the cooler air cannot hold as much water vapor, causing condensation to form over the airfoil.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why does a converging nozzle accelerate subsonic flow but decelerate supersonic flow?",
+    "answer": "A converging nozzle is simply a nozzle in which the diameter decreases as we travel down the nozzle. When subsonic flow travels through a converging nozzle, we know that the flow will accelerate due to the continuity of mass flow. This states that assuming we have no external losses, the mass flow rate is equal at any point in a flow (m_dot = density * velocity * Area). Thus, as the area decreases, the velocity increases. However, when we have supersonic flow, our molecules downstream are unable to react to the change in flow properties as the nozzle converges. This causes the molecules to build up in a very high pressure wave (also known as a shock). This shock will cause a large amount of energy to be lost by our flow, as the high pressure and temperature will resist the flow. This will cause the downstream velocity to decrease even though the nozzle is converging.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why do rocket engines use smaller nozzles at sea level and larger nozzles in a vacuum?",
+    "answer": "A nozzle works optimally when its exit static pressure (p_exit) is equivalent to the atmospheric pressure (p_atm). However, if we have a nozzle that results in p_exit > p_atm, the flow is considered underexpanded. This means that as the flow exits the nozzle, some of it will be directed horizontally outwards, as the flow will expand to match the atmospheric pressure. Likewise, if we have a nozzle that results in p_exit < p_atm, we consider the flow overexpanded. This causes some of the flow to be directed horizontally inwards, as the flow will compress to math the higher atmospheric pressure. Both of these scenarios will result in efficiency losses, as not all of our flow is pointed in the direction of our desired thrust. Therefore, rockets generally use a smaller nozzle at sea level, since the atmospheric pressure is higher and we don't want to expand the flow as much. Likewise, the vacuum stage of a rocket will use a large nozzle since we would like to expand the flow as much as possible, as atmospheric pressure is effectively 0.",
+    "explanation":"",
+    "reference":""
+},
+
+
+
+{
+    "question": "Given a heat engine with a heat transfer value of 100 J between the heat reservoir and itself (Q1), graph the relationship between efficiency and the heat transfer between the engine and the cold reservoir (Q2).",
+    "answer": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nq1 = 100 # Heat Reservoir Heat Transfer (J)\nq2 = np.linspace(0, 100, 500) # Cold Reservoir Heat Transfer Values (J)\n\nx = q2\ny = 1 - x / q1 # equation for efficiency\n\nfig = plt.figure(figsize = (5, 5))\n\nplt.plot(x, y)\nplt.xlabel('Q2 (Joules)')\nplt.ylabel('Efficiency')\nplt.title('Heat Engine Efficiency')\n\nplt.show()\n        ",
+    "explanation": "We can graph this relationship by simply using the equation for efficiency. The equation is eta = 1 - Q2/Q1, where 'eta' is efficiency, 'Q2' is the heat transfer between the engine and cold reservoir, and 'Q1' is the heat transfer between the heat reservoir and engine.",
+    "reference":""
+
+},
+{
+    "question": "Given a pipe that contains supersonic Fanno flow, graph the relationship between mach number and the skin friction coefficient of the pipe. Assume that the pipe's diameter is 0.5m, the length is 30m, and the gamma value is 1.4.",
+    "answer": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nD = 0.5 # Diameter (m)\nL = 30 # Length (m)\ngamma = 1.4 # Heat Capacity Ratio\nM1 = np.linspace(1.0, 5.0, 500) # Mach Numbers in the supersonic regime\n\nrightSide = (1 - M1**2)/(gamma * M1**2) + (gamma + 1)/(2 * gamma) * np.log((((gamma + 1) / 2) * M1**2) / (1 + ((gamma - 1) / 2) * M1**2)) # Right hand side of skin friction equation\n\nx = M1\ny = rightSide * D / (4 * L) # Isolate skin friction coefficient in equation\n\nfig = plt.figure(figsize = (7, 5))\n\nplt.plot(x, y)\nplt.xlabel('Mach Number')\nplt.ylabel('Skin Friction Coefficient')\nplt.title('Skin Friction Coefficient vs Mach Number')\n\nplt.show()\n        ",
+    "explanation": "We can graph this relationship by using a rearranged form of the equation for the skin friction coefficient. The equation used is (4 * c_f * L)/D = (1 - M^2)/(gamma * M^2) + (gamma + 1)/(2 * gamma) * np.log((((gamma + 1) / 2) * M^2) / (1 + ((gamma - 1) / 2) * M^2)), where 'c_f' is the skin friction coefficient, 'L' is the pipe length, 'D' is the pipe diameter, 'gamma' is the heat capacity ratio, and 'M' is the mach number.",
+    "reference":""
+
+}
+]

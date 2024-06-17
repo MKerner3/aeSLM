@@ -1,10 +1,10 @@
 [
 {
-    "question": "Describe how sound waves propagate through a medium."
+    "question": "Describe how sound waves propagate through a medium.",
     "answer": "Sound waves are longitudinal waves that propagate by expanding or contracting. Expansions are known as rarefactions and contractions are called compressions. This wave is created by some sort of vibrating object that moves back and forth and compresses and expands zones of particles."
 },
 {
-    "question": "When designing a fluid system where you want to maximize the exit fluid static pressure out of the system, what could you do to the tubes to ensure that they have small pressure drops? Assume that you can change the tubes and that the flow is laminar."
+    "question": "When designing a fluid system where you want to maximize the exit fluid static pressure out of the system, what could you do to the tubes to ensure that they have small pressure drops? Assume that you can change the tubes and that the flow is laminar.",
     "answer": "To minimize the pressure drop through a pipe, there are a few things you could do. You can increase tube diameter or length which can reduce shear stress on your flow. Thus, it will decrease your pressure drop. What principle?"
 },
 {

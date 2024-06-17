@@ -1,0 +1,99 @@
+[
+{
+    "question": "What happens to stagnation pressure across an expansion fan and why, and how, does this differ from stagnation pressure ratios across an oblique shock?",
+    "answer": "Across an expansion fan, stagnation pressure stays constant because entropy stays constant, meaning that the flow is isentropic. For a flow to be considered isentropic, the flow must be reversible and adiabatic. Since the flow turns in small angles and changes across each expansion wave are small, the flow can be considered to be in quasi-equilibrium, which means that the flow is adiabatic and reversible, thus isentropic. In an oblique shock however, stagnation pressure decreases across the shock as flow across any shock is non-isentropic, since many of the gas’ properties increase instantaneously during a shock.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why does a violation of the Kelvin-Planck statement also violates the Clausius statement?",
+    "answer": "The Kelvin-Planck statement of the second law of thermodynamics states that it is impossible to construct a cyclic device with the sole effect to produce positive work while receiving heat from a single thermal reservoir, or in other words all heat from a heat reservoir cannot be converted into useful work, meaning there is a max efficiency for said process. Whereas Clausius’ statement states it is impossible to create a cyclic device with the sole effect of transferring heat from a cooler to warmer body. While these two statements refer to different configurations of a cyclic device, the consequences of these statements are equivalent to each other due to the nature of heat engines and irreversibilities from heat transfer. One way to visualize this concurrent violation is consider a violation of the Kelvin-Planck statement, where a heat engine converts all heat into useful work. Now imagine connecting that useful work into a cyclic device, so that it is able to transfer heat from a cooler to warmer body. Since the work came from a device that violates the Kelvin-Planck statement, that cyclic device that transfers heat from cooler to hotter body would also be in violation. Thus, a violation of Kelvin-Planck also violates Clausius statement.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why does Bernouli’s Principle only apply along streamlines, and not across streamlines?",
+    "answer": "Bernoulli’s Principle expresses the pressure variation along streamlines as a function of velocity and height, and is valid for flows that are steady, incompressible, and inviscid. This principle is not valid across streamlines because of the velocity and pressure variations between the streamlines. Since Bernoulli’s assume the flow to be steady, or velocity is fixed, the velocity and pressure gradients across the streamlines makes Bernoulli’s invalid.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Can you elaborate on the two-property rule?",
+    "answer": "The two-property rule states that within a system, two properties must be specified as independent to have the state fixed. In other words, it not possible to vary pressure, temperature, and volume independently at once, rather two of these three properties must be fixed, and the third property must be expressed as an equation of state of the two fixed properties. For example, if volume and pressure are fixed, and temperature needs to be determined, then temperature should be expressed as a function of volume and pressure.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "How is a control volume different from a system boundary and why are control volumes important?",
+    "answer": "System boundaries are often thought of as an imaginary boundary where mass cannot cross the boundary, while energy in the form of work or heat is able to cross. In a system boundary, the volume is not fixed, meaning that if the volume expands or shrinks, then the system boundary would be altered to accommodate the change. Control volumes are similar to a system boundary, but unlike a system boundary, the volume and shape stays fixed in a control volume. Furthermore, mass is permitted to cross its boundaries and since volume is fixed, mass flowing in must be equal to the mass flowing out. Control volumes are important when determining mass flows of inlets and outlets of various sections, since mass is conserved within the control volume, meaning that continuity is applied.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why can’t the isentropic flow relations be applied across a shock?",
+    "answer": "While a shock is adiabatic, since the gas’ properties increase instantaneously in a short period of time where there is no time for heat to be transferred, a shock is an irreversible process, since there is a loss in total press across the shock. This means that flow across a shock is non-isentropic as for flow to be considered as isentropic, the flow must be reversible and adiabatic.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "What's the difference between Fanno and Rayleigh flow?",
+    "answer": "While both flows occur in duct of constant area and are types of adiabatic and steady compressible flows, Fanno flow is flow where viscous effects are present, and Rayleigh flow is flow with heat transfer at the walls of the duct. In addition, Fanno flow is an isothermal process (temperature is constant), whereas Rayleigh flow is an isentropic process (entropy is constant).",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why is only the change in entropy defined and not static entropy?",
+    "answer": "Entropy is defined as a system’s inability to do useful work and is only defined as the change of entropy between two states because there is no method of measuring entropy at certain points of time. Since entropy is a state function, the change in entropy will be the same between two states no matter which path was taken to reach from state one to state two.",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "Why are conservation laws used to form the shock relations?",
+    "answer": "Conservation laws are able to be utilized to form relations for different values across a shock because while the shock itself is not isentropic, flow before and after the shock are in isentropic flow. In addition, mass, momentum, and energy are all conserved throughout the flow before and after a shock since flow still follows the laws of physics. Knowing that conservation laws are valid for flow before and after the shock, relations can be built around the forming of ratios of certain properties of the gas (such as pressure, velocity, and temperature) before and after a shock to tell us how a shock impacts the properties of a gas, as a shock cuts of the line of communication between the entrance and exit of said shock.",
+    "explanation":"",
+    "reference":""
+},
+{ 
+
+    "question": "Consider the isentropic flow over an airfoil at gamma 1.4. The freestream conditions correspond to a standard altitude of 10,000 ft and free stream mach of 0.82. At a given point on the airfoil, M = 1.0. Calculate the static pressure at that point. (Note: You will have to use the standard atmopsheric vs. altitude table.)",
+    "answer": "\n        import numpy as np\n        # Based upon the standard atmosphere vs. altitude table, we get a free stream pressure of 1455.6 lbf/ft^2\n        # Looking at isentropic flow charts at Mach = 0.82, we get a free stream pressure over stagnation pressure ratio value of 0.6430.\n        # For our purposes, we will invert this ratio to now have a stagnation pressure over free stream pressure ratio value of 1.555\n        # Now, look at Mach = 1, and we will get a stagnation pressure over static pressure value of 1.893. This ratio will also need to be inverted so that we can get final static pressure. This static pressure indicates the static pressure where Mach = 1.\n        # Since we have both ratios and the initial free stream pressure, we can now find the final static pressure. This is done by multiplying the ratios and free stream pressure together, as the ratios will cancel out stagnation pressure and the free stream pressures will cancel out as well.\n        p0overp1 = 1.555\n        p2overp0 = 0.528\n        p1 = 1455.6\n        p2 = p2overp0 * p0overp1 * p1\n        print('The static pressure over an airfoil where mach = 1 is:', p2, 'lbf/ft^2')\n        ",
+    "explanation": "For this problem, we utilize the table of values for isentropic, subsonic, flow at gamma = 1.4. Given the intial and final mach numbers, we can find the pressure ratios. From there the pressure ratios can be manipulated in a way to cancel certain pressure values out and to then find the static pressure at the Mach 1 point on the airfoil. In addition the table of standard atmospheric conditions at varying altitudes was necessary to find the free stream pressure.",
+    "reference": "Problem 8.6 | Page 611 from John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"
+},
+{
+    "question": "Consider air at a temp of 330 K and flowing at Mach 1.5, find the velocity of the air.",
+    "answer": "\n        import numpy as np\n        # Recall the following equations: a = sqrt(gamma * R * T) & M = v / a\n        # First need to find speed of sound (a)\n        gamma = 1.4\n        R = 287\n        T = 330\n        a = np.sqrt(gamma * R * T)\n        # Now that we found a, rearrange the latter equation for velocity\n        M = 1.5\n        v = M * a\n        print('The velocity of the air is', v, 'm/s')\n        ",
+    "explanation": "This code calculates the velocity of air by the utilization of the definition of a mach number and definition of speed of sound. For the formulas shown, v is the velocity of the air, R is the gas constant, T is temperature, gamma is the ratios between specific heat capacities of constant pressure and volume, a is speed of sound, and M is mach number",
+    "reference":""
+},
+{
+    "question": "Consider an airfoil in a flow at standard sea level conditions with a freestream velocity of 50 m/s. At a given point on the airfoil, the pressure is 0.9 × 105 Pa. Find the velocity at this given point. (Assume at standard sea level, densitySL = 1.23 kg/m3 and pressureSL = 1.01 × 105 N/m2).",
+    "answer": "\n        import numpy as np\n        # Since flow is in free stream and density is constant, flow is incompressible and thus Bernoulli's Principle can be applied.and\n        rhoSL = 1.23\n        p1 = 1.01 * 10**5\n        v1 = 50\n        p2 = 0.9 * 10 **5\n        # Bernoulli's Principle: p1 + 0.5 * rhoSL * (v1**2) = p2 + 0.5 * rhoSL * (v2**2)\n        # Re-arrange above expression for v2 to find the velocity at that specific point\n        v2 = np.sqrt(((2 * (p1 - p2))/(rhoSL)) + (v1**2))\n        print('The velocity at the point where the pressure is 0.9 x 10^5 N/m^2 is:', v2, 'm/s')\n        ",
+    "explanation": "This code uses Bernoulli's principle to find the velocity at another point along a streamline, since the flow is considered incompressible. Using the given values, the expression can be re-arranged to find the velocity.",
+    "reference": "Example 3.1 | Page 212 John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"
+},
+{
+    "question": "Consider a closed system containing 5 m^3 of air pressurized at 5 x 10^5 Pa and at 350 C. Specific heat at constant volume is  0.74 kJ / Kg*K. If 2500 kJ of heat is added isochorichly, what is the final pressure in the system?",
+    "answer": "\n        import numpy as np\n        #First, we need to find the mass of the air, so that we can then use mass in the first law of thermodynamics expression.\n        #To find mass, we must use the ideal gas relation: pV = mRT and re-arrange to solve for mass.\n        p1 = 5 * 10 ** 5\n        V = 5\n        T1 = 350 + 273.15\n        cv = 0.74\n        Q = 2500\n        R = 287\n        m = (p1 * V) / (R * T1)        \n        # Second, we must find change in temperature, which can be determined by utilizing the first law of thermodyanmics: Q - W = delt(U)\n        # We also need to recognize the following expression only valid for perfect gasses: delt(U) = m * cv * deltT\n        #Subsituting the latter expression into the first law expression, we get the following expression: Q - W = m * cv * deltT\n        # Note that this is a closed system, so there is no work done or being done by the system. Now, re-arrange the expression for deltT\n        deltT = (Q) / (m * cv)\n        # Final temperature can now be found since we already know intiial temperature and change in temperature\n        T2 = T1 + deltT\n        # Since volume remains constant, the process is isochoric, and we can use the isochoric relations to find final pressure\n        #The isochoric relation that will be used is (p2/p1) = (T2/T1), in which we rearrange to solve for p2\n        p2 = (T2 / T1) * p1\n        print('The final pressure in the system is:', p2, 'Pa.')\n        ",
+    "explanation":"",
+    "reference":""
+},
+{
+    "question": "A tank that has two inlets and outlets is filled with a fluid that has a density of 800 kg/m^3 . At one inlet, the fluid enters with a volumetric flow rate of 5 m^3/s, and exits the outlet with a cross-sectional area of 0.125 m^2 at 75 m/s , if the velocity entering the second inlet is 2 m/s, what is the cross-sectional area of that inlet?",
+    "answer": "\n        import numpy as np\n        Q1 = 5\n        rho = 800\n        v3 = 75\n        A3 = 0.125\n        v2 = 2\n        # First, we must find the individual mass flows with given values. The mass flow rate is density * area * velocity. \n        # Recall that volumetric flow rate is equal to area * velocity.\n        # Note that the mass flow rate for inlet 2 will not be found yet, as we do not know the cross-sectional area of that inlet.\n        m1 = Q1 * rho\n        m3 = rho * A3 * v3\n        # Applying the principle of continuity (m1 + m2 = m3), where mass flow in equates to mass flow out, we can then find the cross-sectional area of the second inlet by expanding m2 into A2 * v2. \n        A2 = (m3 - m1) / v2\n        print('The cross-sectional area of the second inlet is:', A2, 'm^2.')\n        ",
+    "explanation": "This code uses the principle of continuity for incompressible flow, which states that the mass flow remains constant throughout the inlets and outlets.",
+    "reference":""
+},
+{
+    "question": "Consider an oblique shock wave with a wave angle of 35 deg, and a pressure ratio (p2/p1) = 3. Calculate the upstream Mach Number.",
+    "answer": "\n        import numpy as np\n        #Using the table of values corresponding to oblique shock waves, we can find that for the pressure ratios, the intiial normal Mach is 1.64.\n        #Using the definition of the normal mach number component seen by a moving observer, we get the expression of normal Mach = Mach * sin(beta).\n        # Re-arranging the above expression to find the initial mach gives us Mach = (normal Mach) / sin(beta).\n        Mn1 = 1.64\n        #Convert beta to radians\n        beta = 35 * ((np.pi) / 180)\n        M1 = (Mn1) / (np.sin(beta))\n        print('The upstream Mach number is:', M1, '.')\n        ",
+    "explanation": "This problem uses the concept of reference frames in oblique shocks, as oblique shocks are simply normal shocks but at an wedge angle and wave angle. The normal mach number is the mach number that is perpendicular to the shock. In addition, the table of values for oblique shocks was used as well in order to find the normal upstream mach number from pressure ratios.",
+    "reference": "Example 9.4 | Page 632 John Anderson, (2023) Fundamentals of Aerodynamics, Seventh Edition, McGraw-Hill"
+},
+{
+    "question": "A gas with a gamma value of 1.89 is initially at  15 kg/m3 and is expanded adiabatically and reversibly to 5 times its initial volume. Find the final density.",
+    "answer": "\n        import numpy as np\n        gamma = 1.89\n        rho1 = 15\n        # Since the gas is being expanded adiabatically, the process is isentropic since it is reversible and adiabatic. From this we can use the isentropic relation between density and volume.\n        # The isentropic relationship between density and volume is: (rho2/rho1) = (V1/V2)^(gamma - 1).\n        # Since the gas was expanded to a volume 5 times the initial volume, we can write the ratio of V1/V2 as 1/5.\n        # Now, we plug in the newfound volume ratio and solve for rho2.\n        rho2 = ((1/5)**(1.89-1)) * rho1\n        print('The final density of the gas after being expanded is:', rho2, 'kg/m^3.')\n        ",
+    "explanation": "This problem utilized the isentropic relations after assuming flow is isentropic due to the gas being expanded adiabatically. The isentropic relation needed is between volume and density, in which volume ratio was given as 1/5 and final density can be solved for.",
+    "reference":""
+}
+]

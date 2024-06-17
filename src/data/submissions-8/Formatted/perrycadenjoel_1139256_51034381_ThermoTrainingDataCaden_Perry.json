@@ -1,0 +1,97 @@
+[
+{
+    "question": "Discuss one method to accurately measure the pressure used in deriving the Bernoulli equation.",
+    "answer": "The pressure used in deriving the Bernoulli equation is the thermodynamic pressure, more commonly referred to as static pressure. This is the pressure experienced by the fluid blobs as they are in motion. Since there is no static pressure variation normal to straight streamlines, a tube with a measuring section aligned with local flow extending out from any near surface with small holes oriented perpendicular to flow direction at a location where streamlines have become parallel to the measuring section can be used when connected to a pressure sensor to accurately determine static pressure at the pressure sensor located at a no flow location inside the tube.",
+    "explanation":"",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+    "question": "What is used in the place of the free body diagrams used in basic mechanics for fluids problems?",
+    "answer": "Instead of using free-body diagrams that rely on identifiable rigid bodies, a set of control surfaces that enclose a control volume is observed. It is a volume in space in which fluid flows that can either be stationary or moving with no net change in the quantity of mass contained. This solves the issue of system boundaries that do not allow any mass crossing system boundaries.",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+    "question": "Why must the hydrostatic force act normal to any surface the fluid is in contact with?",
+    "answer": "The hydrostatic force must act normal to any surface because a static fluid cannot hold any shear stresses.",
+    "explanation":"",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+    "question": "How does torque output relate to conservation of energy in stationary systems?",
+    "answer": "Torque is equal to a force applied multiplied by a distance. The distance this force is applied through is equal to the path traveled s=2*pi*r*n, where n is the revolutions of the shaft being applied a torque. We can then arrive at shaft work which equals torque times 2*pi*n. When converted into an equation of energy per unit time this becomes 2*pi*torque*n_dot, where n_dot is revolutions per unit time. In a stationary system, the total change in energy must equal the change in internal energy. Therefore, the rate of change in internal thermal energy must be equivalent to the shaft work thereby associating torque with conservation of energy.",
+    "explanation":"",
+    "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+},
+{
+    "question": "Describe why a compressed air canister gets cold while in use.",
+    "answer": "When the can is sealed, over time, the temperature of the can reaches the room temperature. When the can is used, the liquid becomes exposed to atmospheric pressure. Since the boiling temperature of the gas is significantly lower than room temperature at this atmospheric pressure, the liquid in the can begins boiling. To be boiling the temperature of the liquid must drop, pulling heat from the can in the amount of the latent heat of vaporization causing it to feel cold.",
+    "explanation":"",
+    "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+},
+{
+    "question": "Why do aircraft engines not have a low temperature sink to satisfy the Kelvin Planck Statement?",
+    "answer": "Aircraft engines are internal combustion engines that bring in air from an external source, and combust with fuel turning some of the increased internal energy into shaft work and other energy into high-velocity air that is output. The high-temperature reservoir comes from the combusting fuel. The acting low-temperature reservoir is how the engine brings in fresh cold air from the environment for every cycle while outputting a relatively small amount of heat to the environment.",
+    "explanation":"", 
+    "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+},
+{
+    "question": "Describe why a converging diverging nozzle is used to accelerate airflow.",
+    "answer": "By analyzing the momentum equation of a differential control volume dp/rho + d(V^2/2) = 0 we can arrive at dV/V = (-dA/A)*(1/(1-M^2)). This equation shows that for subsonic flow M<1, and we reduce the area, the change in velocity is positive. Now if we use supersonic flow M>1, and the area is increased, the change in velocity is positive. This shows that a converging nozzle increases velocity at subsonic velocity and a diverging nozzle increases velocity at supersonic speed. If a converging-diverging nozzle is put together and designed for the velocity to be M=1 at the center, then air can be accelerated from subsonic to supersonic speed.",
+    "explanation":"",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+    "question": "Under what conditions does a normal shock form and what occurs  to the fluid through the shock?",
+    "answer": "When flow is moving at supersonic speed such that a pressure field cannot propagate upstream, then the fluid creates a violent adjustment to the downstream conditions. The pressure suddenly increases over a distance of <2 micrometers, velocity decreases, and temperature increases. These things cause a rise in density and because the shock is adiabatic but irreversible, the entropy increases. These things also cause an increase in the speed of sound causing the Mach number of the flow to decrease.",
+    "explanation":"",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+    "question": "Discuss the effects of heating and cooling on the temperature of the flow using a Ts diagram for frictionless flow in a constant-area duct.",
+    "answer": "The effects of heating and cooling on the temperature can be observed from the shape of the Rayleigh line on the Ts diagram. For every region outside 1/sqrt(k)<M<1, heating causes the temperature to increase, and cooling causes the temperature to decrease. This is because as flow is initially subsonic, heating increases the Mach number until the maximum heat addition without choking is reached at M=1. If the flow is initially supersonic, heating reduces the Mach number to M=1.",
+    "explanation":"",
+    "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+  "question": "Consider steady flow in a water pipe joint with input fluid through A1 at velocity v1, output thorugh A3 at v3, leak through a hole at rate of O. Find the velocity v2 and direction of fluid flowing through the third open part of the joint with area A2.",
+  "answer": "\nimport numpy as np\n\nrho = 999  # Density (kg/m^3)\nA1 = 0.2  # Area 1 (m^2)\nv1 = 5  # Velocity 1 (m/s)\nA2 = 0.2  # Area 2 (m^2)\nv2 = 5  # Velocity 2 (m/s)\nA3 = 0.2  # Area 3 (m^2)\nv3 = 12  # Velocity 3 (m/s)\nO = 0.1 # Volumetric flow rate leakage (m^3/s)\n\n# Make assumption that flow at 2 is outward to solve\n# Assume steady flow, incompressible flow, Uniform Properties at each section\n\n# Apply the principle of continuity (-A1*v1 + A2*v2 + Q = 0)\nv2 = (v1*A1 - v3*A3 - O) / A2  \n\nprint('Velocity at location 2:', v2, 'm/s')\n      ",
+  "explanation": "This code uses the general control volume equation for continuity of incompressible flow. The flow into the joint is negative area * velocity with flow out of the joint being positive. Any known volumetric leaking can be added or subtracted as appropriate with the whole equation equaling to 0. Because the output of v2 is a negative number, we know that our assumption of flow outward was incorrect and it is actually flowing inward.",
+  "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+  "question": "Water flows steadily through a horizontal nozzle, discharging to the atmosphere. At the nozzle inlet the diameter is D1; at the nozzle outlet the diameter id D2. Evaluate the inlet gage pressure with given D1 and D2 and a desired flow rate Q.",
+  "answer": "\nimport numpy as np\n\nD1 = 3  # Nozzle inlet diameter (in)\nD2 = 1 # Nozzle outlet diameter (in)\nQ = 0.7 # Desired output flow rate (ft^3/s)\nrho = 1.94 # Fluid density (slug/ft^3)\npi = 3.1416\n\n# Apply the Bernoulli equation along a streamline to find minimum gage pressure (p1=(rho/2)*(v2^2-v1^2))\n# Apply continuity equation (v1*A1=v2*A2=Q)\n# Combine equations with A=pi*D^2/4\np1 = (8*rho*Q^2 / ((pi^2)*D1^4))*((D1/D2)^4 - 1)\n\nprint('Inlet gage pressure:', p1, 'lbf/in^2')\n      ",
+  "explanation": "This code calculates the minimum inlet gage pressure at the nozzle inlet to produce the desired flow rate. It applies the Bernoulli equation along a streamline to find minimum gage pressure (p1=(rho/2)*(v2^2-v1^2)) then substitutes the continuity equation to get the desired volumetric flow rate into the equation.",
+  "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons." 
+},
+{
+  "question": "Air flows steadily through a converging-diverging duct from P1, T1, v1 to M2 at the outlet, where local isentropic stagnation conditions are known to be P02 and T02. Compute the local isentropic stagnation pressure P01.",
+  "answer": "\nimport numpy as np\n\nP1 = 350 # Pressure inlet (kPa)\nk = 1.4 # Ideal Gas\nR = 287 # Specific Gas Constant (J/kg*K)\nT1 = 60 # Temperature inlet (degrees C)\nv1 = 183 # Velocity inlet (m/s)\n\n\n#Find speed of sound using c=sqrt(kRT)\nc=(k*R*(T1+273))^(1/2)\n\n#Find the Mach number using M=v/c\nM=v1/c\n\n# Use local isentropic stagnation properties\nP01=P1*(1+((k-1)/2)*M^2)^(k*(k-1))\n\nprint('Stagnation pressure at inlet:', P01, 'kPa')\n      ",
+  "explanation": "This code calculates the inlet stagnation pressure after determining the local speed of light and mach number to use the local isentropic stagnation property equation: P01=P1*(1+((k-1)/2)*M^2)^(k*(k-1)).",
+  "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+  "question": "Air flows isentropically through a converging nozzle. At a section where the nozzle area is A1, there is local P1, T1, and M1. The back pressure is P2. Find the mass flow rate at the throat Mdot.",
+  "answer": "\nimport numpy as np\n\nM1 = 0.52 # Mach number at section\nT1 = 40 # Temperature at section (degrees F)\nP1 = 60 # Pressure at section (psia)\nA1 = 0.013 # Area at section (ft^2)\nk = 1.4 # Ideal gas\nP2 = 30 # Back pressure (psia)\nR = 53.3 # Specific Gas Constant (ftlbf/(lbm degree Rankin))\nrho = 0.324 #Density of air (lbm/ft^3)\n\n# Use local isentropic stagnation properties\nP01=P1*(1+((k-1)/2)*M1^2)^(k*(k-1))\n\n#Calculate back pressure ratio\nRatio=P2/P01\n\n#Ratio is less than 0.528 so flow is choked\nM=1\n\n#Calculate velocity using speed of sound and mach number converting degrees F to degrees R\nV1=M*(k*R*(T1+460)*32.2)^(1/2)\n\n#Calculate mass flow rate using rho*V*A\nMdot=rho*V1*A1\n\nprint('Mass flow rate:', Mdot, 'lbm/s')\n      ",
+  "explanation": "This code calculates the mass flow rate of air flow through a converging nozzle with choked flow. Initial conditions are used to determine the back pressure ratio using stagnation equation: P01=P1*(1+((k-1)/2)*M^2)^(k*(k-1)) and check for choking. Once choking was identified, the velocity was found using Msqrt(kRT) and plugged into mdot=rho*V*A.",
+  "reference": "Fox, Robert W., and Alan T. McDonald (2011), Introduction to Fluid Mechanics, 8th ed. John Wiley & Sons."
+},
+{
+  "question": "The gage pressure of an automobile tire is measured to be P1 before a trip and P2 after the trip at a location where the atmospheric pressure is ATM. Assuming the volume of the tire remains constant and the air temperature before the trip is T1, determine air temperature in the tire after the trip.",
+  "answer": "\nimport numpy as np\n\nP1g = 210 # Initial gage tire pressure (kPa)\nP2g = 220 # Final gage tire pressure (kPa)\nATM = 95 # Atmospheric pressure (kPa)\nT1 = 25 # Initial air temperature (degrees C)\n\n# Assume volume of tire remains constant, air is an ideal gas\n# Find initial and final pressures using Pgage +Patm = P\nP1= P1g + ATM\nP2= P2g + ATM\n\n# Calculate final temperature using P1*V1/T1 = P2*V2/T2\nT2=P2*(T1+273)/P1\n\nprint('Final tire temperature:', T2, 'Degrees Kelvin')\n      ",
+  "explanation": "This code determines the final temperature of the tire given initial temperature and pressure and final pressure. The gage pressures are first converted to total pressure then plugged into an application of the ideal gas law to determine final temperature.",
+  "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+},
+{
+  "question": "A car engine with a power output of PWR has thermal efficiency of E. Determine the fuel consumption rate of this car if the fuel has a heating value of HV.",
+  "answer": "\nimport numpy as np\n\nPWR = 65 # Power output (hp)\nE = 0.24 # Thermal Efficiency (%)\nHV = 19000 # Heating value of fuel (Btu/lbm)\n\n# Use definition of thermal efficiency Qdot=Wnet/efficiency and convert to Btu/h\nQdot=(PWR/E)*2545\n\n# Find fuel burn rate mdot=Qdot/HV (energy required/energy supplied per weight of fuel)\nmdot=Qdot/HV\n\nprint('Rate of fuel consumption:', mdot, 'lbm/h')\n      ",
+  "explanation": "This code outputs the rate of fuel consumption of an engine given its efficiency, power output, and the energy density of the fuel itself. Values are first plugged into Qdot=workout/efficiency and convereted to proper units to plug into fuelconsumption=energyrequried/(energy/massoffuel).",
+  "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+},
+{
+  "question": "A Carnot heat engine receives energy E of heat per cycle from high temperature source T1 and rejects heat to a low-temperature sink T2. Determine the thermal efficiency and the amount of heat rejected to the sink per cycle.",
+  "answer": "\nimport numpy as np\n\nE=500 # Energy received (kJ)\nT1 = 652 # Temperature of heat source (degrees C)\nT2 = 30 # Temperature of sink (degrees C)\n\n# Carnot heat engine is reversible so efficiency(N) = 1-lowtemp/hightemp with temperature converted to kelvin\nN= 1-(T2+273)/(T1+273)\n\n# Amount of heat rejected by reversible process given by heatrejected=(lowtemp/hightemp)*heatreceived\nQl=((T2+273)/(T1+273))*E\n\nprint('Thermal efficiency:', N, ' Heat rejected to the sink:', Ql, 'kJ')\n      ",
+  "explanation": "This code outputs both the thermal efficiency and the heat rejected to a sink of a reversible heat engine. The efficiency is calculated by  efficiency(N) = 1-lowtemp/hightemp with temperature converted to kelvin. The heat rejected is calculated by heatrejected=(lowtemp/hightemp)*heatreceived.",
+  "reference": "Michael A. Boles, Yunus A Çengel (2007), Thermodynamics: An Engineering Approach, McGraw-Hill."
+}
+]

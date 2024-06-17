@@ -1,0 +1,105 @@
+[
+    {
+        "question" : "Consider the velocity field given by u = y/(x^2 + y^2) and v = −x/(x^2 + y^2). Calculate the equation of the streamline passing through the point (1,2).",
+        "answer" : "\n                    import numpy as np\n                x = 1 #x coordinate of point streamline passes through\n                y = 2 #y coordinate of point streamline passes through\n                c = x^2 + y^2\n                print('The equation of the streamline passing through point (1,2) is x^2 + y^2 = ',c,'.')\n                ",
+        "explanation" : "This code utilizes the differential equation for a streamline in two dimensions vdx - udy = 0. Substituting the given equations for v and u into this equation gives -xdx = ydy (the 1/(x^2 + y^2) cancels out). After integrating both sides and some rearranging, you get x^2 + y^2 = c (c is the constant of integration), which also means that the streamline is in the shape of a circle. Then to find the value of c, you just plug in the coordinates of the given point the streamline passes through.",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+},
+{
+        "question" : "What is the main issue with using a system boundary to contain continuously flowing liquid?",
+        "answer" : "Since a system boundary is an imaginary barrier where mass cannot enter or exit the system, the only way to conatin continuously flowing liquid is to flollow it. A control volume would be better in this scenario because they allow liquid to flow through them so long as the mass out is equal to the mass in.",
+        "explanation":"",
+        "reference" : "https://psesh.github.io/ae2010-11/"
+     },
+    {
+        "question" : "Consider an air particle moving along a streamline. The streamline follows a path 45 degrees above horizontal at 5 m/s. What is the particles velocity normal to the streamline?",
+        "answer" : "By definition, a streamline is tangent to the local velocity vector. So the velocity of the air particle normal to the streamline would be 0 since it is following the streamline.",
+        "explanation":"",
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+         {
+        "question" : "From your knowledge on curved streamlines, where must the lowest pressure be in a tornado?",
+        "answer" : "From Bernoulli's equation, we know that low pressures are related to high velocities. We also know that the fastest moving air in a curved streamline is on the inside of the streamline, and we can visualize a tornado as a circular streamline. So the lowest pressure in a tornado would be located at the center.",
+        "explanation":"",     
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+         {
+        "question" : "Consider the floor of a race car (the underside of the car). Some aerodynamics engineers want to test a new floor design that is parallel to the road. What type of flow would the air have under the car, and where would the air be moving the fastest under the car?",
+        "answer" : "Since the floor of the car is moving and the ground is stationary, the air would be experiencing couette flow. With couette flow, the fastest moving air would be closest to the moving boundary, so the fastest air would be closest to the car's floor.",
+        "explanation":"", 
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+    {
+        "question" : "Inside of an insulated box, two copper blocks with a finite temperature difference are brought into thermal contact with each other. Is this process adiabatic, reversible, or both? and Explain why.",
+        "answer" : "The system boundary is an insulated box, so there is not heat in or out of the system. When heat is tranfered over a finite temperature difference, the system finds equilibrium afterwards, meaning that the process did not happen in a quasi-equilibrium state. Since there is no heat transfer between the system and its surroundings, the process is adiabatic, but it is irreversible because the process did not occur in quasi-equilibrium.",
+        "explanation":"", 
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+    {
+        "question" : "A car is driving on a beach going 200 km/h. It has a radiator that is 0.3 m by 0.7 m. At sea level, the density of air is approximately 1.225 kg/m3. What is the mass flow of air through the car's radiator in kg/s?",
+        "answer" : "\n                    import numpy as np\n                v = 200 * (1000/3600) #converting km/h to m/s\n                a = 0.3 * 0.7 #the area of the radiator's grill\n                rho = 1.225 #the density of air\n\n                mdot = rho * a * v\n\n                print('The mass flow of air through the cars radiator is ',mdot,' kg/s.')\n                ",
+        "explanation" : "This code utilizes the formula for mass flow through an area which is given by mass flow = density * area * velocity normal to the area (since the velocity is already normal to the area, the normal velocity is equal to the velocity).",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+},
+    {
+        "question" : "Consider an airfoil in a flow at standard sea level conditions with a freestream velocity of 100 m/s. At a given point on the airfoil, the pressure is 0.75E5 N/m^2. At standard sea level conditions, density is 1.23 kg/m^3 and freestream pressure is 1.01E5 N/m^2. Calculate the velocity at this point.",
+        "answer": "\n                    import numpy as np\n                rho = 1.23\n                v1 = 100 #velocity before airfoil\n                p1 = 1.01 * 10**5 #pressure before airfoil\n                p2 = 0.75 * 10**5 #pressure at point on airfoil\n                v2 = ((2 * (p1-p2)/p) + v1**2)**(1/2) #equation for velocity at a point on a streamline derived from Bernoulli's equation relating pressure and velocity at two points on a streamline\n\n                print('The velocity at the point on the airfoil is ',v2,' m/s.')\n                ",
+        "explanation" : "This code utilizes Bernoulli's equation relating pressure and velocity at to points on a streamline: p1 + (1/2) * rho * v1**2 = p2 = (1/2) * rho * v2**2. Rearranging this equation gives a formula for velocity down the streamline.",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+},
+ {
+        "question" : "Consider a Boeing 747 flying at a standard altitude of 12 km. The pressure at a point on the wing is 17 kPa. Assuming isentropic flow over the wing, calculate the temperature at this point.",
+        "answer" : "\n                    import numpy as np\n               p2 = 20000 #pressure on wing\n               t1 = 216.66 #freestream temperature (K) at 12000 m according to appendix D in textbook\n               p1 = 19399 #freestrem pressure (Pa) at 12000 m according to appendix D in textbook\n               gamma = 1.4 #ratio of specific heats of air under standard conditions\n               t2 = t1 * (p2/p1)**((gamma-1)/gamma) #formula for temperature at point on wing from relationship between temperature and pressure for an isentropic process\n\n                print('The temperature at the point on the wing is ',t2,' K.')\n                ",
+        "explanation" : "This code utilizes the equation that relates pressure and temperature for an isentropic process: p2/p1 = (t2/t1)**(gamma/(gamma-1)) where gamma is the ratio of specific heats for air under standard conditions. This equation is then rearranged for t2 which is the temperature at the point on the wing in this problem.",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+},
+     {
+        "question" : "Consider an airplane flying at a velocity of 270 m/s. Calculate its Mach number if it is flying at a standard altitude of 5 km?",
+        "answer" : "\n                    import numpy as np\n               t = 255.7 #freestream temperature in kelvin at 5 km above sea level according to appendix D in the textbook\n               v = 270 #airspeed in m/s\n               gamma = 1.4 #ratio of specific heats of air under standard conditions\n               r = 287 #specific gas constant for air\n               a = (gamma * r * t)**(1/2) #equation for the speed of sound with the given conditions\n               m = v/a #equation for mach number using the previously calculated speed of sound\n\n\n                print('The Mach number of the plane flying at 5 km above sea level is ',m,'.')\n                ",
+        "explanation" : "This code utilizes the equation to find the speed of sound with a given temperature assuming air is a calorically perfect gas. After finding the speed of sound with the current conditions, the equation M = v/a gives the mach number where v is the airspeed and a is the speed of sound.",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+     },
+     {
+        "question" : "Consider an oblique shock wave with a wave angle of 40 degrees. The upstream flow Mach number is 2.2. Calculate the mach number behind the wave.",
+        "answer" : "\n                    import numpy as np\n                    beta = 40 #wave angle in degrees\n                    theta = 14 #using the figure 9.9 in the textbook along with the mach number 2.2 and the wave angle 40 gives the deflection angle theta\n                    m1 = 2.2 #freestream mach number\n                    mn1 = m1 * np.sin(radians(beta)) #this gives a normal mach number of 1.41\n                    mn2 = 0.7314 #using mn1 in appendix B of the textbook\n                    m2 = mn2/np.sin(radians(beta-theta)) #formula for downstream mach number using wave angle, deflection angle, and downstream normal mach number (mn2)\n\n                print('The mach number behind the wave is ',m2,'.')\n                ",
+        "explanation" : "This code utilizes the equation for downstream mach number using wave angle, deflection angle, and downstream normal mach number: downstream normal mach number/sin(wave angle - deflection angle).",
+        "reference" : "Fundamentals of Aerodynamics Sixth Edition by John D. Anderson, Jr."
+},
+     {
+        "question" : "A piston in a circular pipe of diameter 0.2 m is under pressure 5kPa. The pressure in the pipe has displaced the piston 0.5 meters from its original position. What is the work done by the air pressure on the piston?",
+        "answer" : "\n                    import numpy as np\n                    r = 0.2/2 #radius of pipe/piston in m\n                    p = 5000 #pressure in Pa\n                    dx = 0.5 #displacement of piston in m\n                    a = np.pi * r**2 #area of piston/pipe\n                    f = p * a #force on piston due to pressure N\n                    w = f * dx #work due to pressure Nm\n\n                print('The work done my the pressure in the pipe on the piston is ',w,' Nm.')\n                ",
+        "explanation" : "This code utilizes the equation for force of pressure on a piston and the formula for mechanical work.",
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+    
+ {
+        "question" : "Heat is transferred to a heat engine from a furnace at a rate of 100 MW. If the rate of waste heat rejection to a nearby river is 65 MW, determine the net power output and the thermal efficiency for this heat engine.",
+        "answer" : "\n                    import numpy as np\n                    qdotl = 65 #low temerature reservoir heat tranfer in MW\n                    qdoth = 100 #high temerature reservoir heat tranfer in MW\n                    wdotout = qh-ql #net power out of heat engine in MW\n                    n = wdotout/qdoth #thermal efficiency of heat engine\n\n                print('The thermal efficiency of the heat engine is ',n,', and the net power output is ',wdotout,' MW.')\n                ",
+        "explanation" : "This code utilizes the equation for net work output of a heat engine and effieciency of a heat engine. Also heat loss is assumed to be negligible.",
+        "reference" : "Thermodynamics an Engineering Approach 5th Edition by Yunus A. Cengel and Michael A. Boles"
+},
+{
+        "question" : "Explain the signifigance of the Clausius inequality in regards to a reversible cyclic system.",
+        "answer" : "The Clausius inequality states that the cyclic integral of dQ/T is always less than or equal to zero, so for a process that is reversible, the cyclic integral of dQ/T will be zero. This is because when the system reverses, the integral would have to become positive if it was originally negative.",
+        "explanation":"", 
+        "reference" : "Thermodynamics an Engineering Approach 5th Edition by Yunus A. Cengel and Michael A. Boles"
+},
+    {
+        "question" : "Under what conditions is entropy conserved?",
+        "answer" : "Only under idealized reversible processes, so in all irreversible cases entropy increases. Entropy is never conserved in real life.",
+        "explanation":"", 
+        "reference" : "Thermodynamics an Engineering Approach 5th Edition by Yunus A. Cengel and Michael A. Boles"
+},
+    {
+        "question" : "What is a common feature of all reversible processes?",
+        "answer" : "A common feature of all reversible processes is that they must not substantially deviate from equilibrium. To do this, reversible processes occur very slowly in quasi-equilibrium.",
+        "explanation":"", 
+        "reference" : "https://psesh.github.io/ae2010-11/"
+},
+     {
+        "question" : "Consider compressible flow through a very long pipe with friction alonw with the assumptions that the flow is adiabatic and the cross sectional area of the pipe is constant (Fanno Flow). Describe what would happen if subsonic air flowed through the pipe versus supersonic air.",
+        "answer" : "Friction will decrease the effective area in the pipe for the air to flow through in both cases, but for subsonic air this will cause an increase in velocity while supersonic air will decrease in velocity.",
+        "explanation":"", 
+        "reference" : "https://psesh.github.io/ae2010-11/"
+}
+]
