@@ -8,56 +8,56 @@
 {
 	"question": "Air enters a compressor at with zero velocity and leaves with a mass flow rate of 9 kg/s and velocity of 25 m/s. The power input to the compressor is 450 kW. The air flowing into the compressor has a temperature of 280 K, and the air flowing out has a temperature of 300 K. We may assume the flow is steady and a cp of 1005 J/kg-K. Find the rate of heat transfer.",
 	"answer": "\nimport numpy as np\n\nTi = 280 # Temperature before entering the compressor (K)\nTe = 300 # Temperature after exiting the compressor (K)\nWdot = -45000 # Power input (W)\nmdot = 9 # Mass flow rate (kg/s)\nve = 25 # Exit velocity (m/s)\ncp = 1005 # Specific heat capacity at constant pressure (J/kg-K)\n      \n# Steady Flow Energy Equation reduces to: Qdot - Wdot = mdot * ((1/2) * ve ** 2) + (he -    hi)\n\n# With:\ndeltah = cp * (Te - Ti)\n\n# We arrive at:\n\nQdot = Wdot + mdot * ((1/2) * (ve ** 2)) + (deltah)\n\nprint('Rate of heat transfer:', Qdot, 'J/s')\n",
-    "explanation": "This code calculates the rate of heat transfer using the Steady Flow Energy Equation, which states that Qdot - Wdot = mdot * ((he + (1/2) * ve ** 2 + (g * ze) - (hi + (1/2) * vi ** 2 + (g * zi)).",
-    "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+  "explanation": "This code calculates the rate of heat transfer using the Steady Flow Energy Equation, which states that Qdot - Wdot = mdot * ((he + (1/2) * ve ** 2 + (g * ze) - (hi + (1/2) * vi ** 2 + (g * zi)).",
+  "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
 },
 {
 	"question": "During the hot summer in Atlanta, in order to cool a bottle of water, it is placed in a freezer for a certain period. If the room temperature is 25°C and the cooled beverage is at a final temperature of 5°C, determine the change in specific entropy of the water.",
 	"answer": "\nimport numpy as np\n\nT1 = 25 + 273.15 # Initial temperature (K)\nT2 = 5 + 273.15 # Final temperature (K)\ncp = 4.18 # Water specific heat capacity at constant pressure (J/(g-K))\n\n# Apply the perfect gas relations to the Tds equations\n\ndeltas = cp * np.log(T2 / T1)\n\nprint('Change in specific entropy:', deltas, 'kJ/kg-K')\n",
-    "explanation": "This code calculates the change in specific entropy, utilizing the perfect gas relations and the Tds equations which yield s2 - s1 = cp * ln(T2 / T1), where s2 - s1 is the change in specific entropy between the initial and final states.",
-    "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+  "explanation": "This code calculates the change in specific entropy, utilizing the perfect gas relations and the Tds equations which yield s2 - s1 = cp * ln(T2 / T1), where s2 - s1 is the change in specific entropy between the initial and final states.",
+  "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
 },
 {
 	"question": "Water flows through a pipe with different inlet and outlet areas. The velocity at the inlet is 2 m/s and the velocity at the exit is 6 m/s. The pressure at the inlet is 120 kPa. If the water enters and exits the pipe at the same height, and it can be assumed to have steady, incompressible, and inviscid flow, what is the pressure at the outlet?",
 	"answer": "\nimport numpy as np\n\nv1 = 2 # Inlet velocity (m/s)\nv2 = 6 # Outlet velocity (m/s)\np1 = 120000 # Pressure at inlet (Pa)\nrho = 1000 # Water density (kg/m^3)\n\n# Apply Bernoulli’s equation along streamlines\n\n# p1 + (1/2)*rho*(v1**2) = p2 + (1/2)*rho*(v2**2)\n\n# Solve for p2\n\np2 = p1 + (1/2)*rho*((v1**2)-(v2**2))\n\nprint('Pressure at outlet:', p2, 'Pa')\n",
-      "explanation": "This code utilises Bernoulli’s equation along streamlines for steady, incompressible and inviscid flow to calculate the pressure at the outlet of the pipe.",
-      "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
+  "explanation": "This code utilises Bernoulli’s equation along streamlines for steady, incompressible and inviscid flow to calculate the pressure at the outlet of the pipe.",
+  "reference": "Introduction to Fluid Mechanics, 6th Edition, R. Fox, A. McDonald, P. Pritchard"
 },
 {
 	"question": "A British Airways Concorde is flying at 417 m/s over the Atlantic Ocean, on its way to JFK from LHR. If the outdoor temperature is 220 K, what is the Mach number?",
 	"answer": "\nimport numpy as np\n\nv = 417 # Velocity (m/s)\ngamma = 1.4 # Ratio of specific heats, cp/cv\nT = 220 # Temperature (K)\nR = 287 # Gas constant (J/kg-K)\n\n# Using the definition of the Mach number\n\n# M = v/a\n\n# And the definition of the speed of the speed of sound\n\n# a = np.sqrt(gamma*R*T)\n\nM = v/(np.sqrt(gamma*R*T))\n\nprint('Concorde’s Mach number:', M)\n",
-    "explanation": "This code utilises the definitions for the Mach number and speed of sound to calculate the Mach number of the Concorde.",
-    "reference": "https://en.wikipedia.org/wiki/Stagnation_pressure , Fundamentals of Aerodynamics, 5th Edition, John D. Anderson, Jr"
+  "explanation": "This code utilises the definitions for the Mach number and speed of sound to calculate the Mach number of the Concorde.",
+  "reference": "https://en.wikipedia.org/wiki/Stagnation_pressure , Fundamentals of Aerodynamics, 5th Edition, John D. Anderson, Jr"
 },
 {
 	"question": "A Boeing 747 is cruising at an altitude of 35000 feet at a speed of 550 mph. The external temperature is 220 K. When looking at a streamline that flows up to the 747’s nose, what is the stagnation temperature? Assume a steady, isentropic process with no external work done.",
 	"answer": "\nimport numpy as np\n\nv = 245.9 # Velocity (m/s)\ncp = 1005 # (J/kg-K)\nT1 = 220 # Temperature (K)\n\n# Using the definition of the stagnation temperature.\n\nT01 = T1 + (v**2)/(2*cp)\n\nprint('Stagnation temperature on nose of 747:', T01, 'K')\n",
-    "explanation": "This code utilizes the definition of the stagnation temperature for a fluid if it were to be brought to rest by a steady isentropic process with no external work.",
-    "reference": "https://psesh.github.io/ae2010-11/"
+  "explanation": "This code utilizes the definition of the stagnation temperature for a fluid if it were to be brought to rest by a steady isentropic process with no external work.",
+  "reference": "https://psesh.github.io/ae2010-11/"
 },
 {
 	"question": "An F-15 Eagle is flying at a speed of 1500 mph over the Mojave desert. What is the Mach angle, mu, of the generated wave? If the wave were to hit a concave corner, what can be said about the pre-shock and post-shock tangential velocity components?",
 	"answer": "\nimport numpy as np\n\nv = 670.6 # Velocity (m/s)\na = 328.4 # Speed of sound at altitude (m/s)\n\n# Calculate the Mach number\n\nM = v/a\n\n# Using the formula for the Mach angle\n\nmu = np.arcsin(1/M)\n\n# The pre- and post-shock tangential velocities are the same.\n\nprint('Mach angle:', mu)\nprint('The tangential velocity components do no change across the shock.')\n",
-    "explanation": "This code utilizes the definitions of the Mach number and Mach angle to calculate the Mach angle.",
-    "reference": "https://psesh.github.io/ae2010-11/"
+  "explanation": "This code utilizes the definitions of the Mach number and Mach angle to calculate the Mach angle.",
+  "reference": "https://psesh.github.io/ae2010-11/"
 },
 {
 	"question": "A cyclic heat engine operates a process between a heat source of 900 K and a heat sink of certain temperature. If the cycle is reversible, and the thermal efficiency is 45%, what is the heat sink temperature?",
 	"answer": "\nimport numpy as np\n\nT1 = 900 # Temperature (K)\neff = 0.4 # Thermal efficiency\n\n# Thermal efficiency equation (1st Law applied to Heat Engines)\n\n# eff = 1 - (T2/T1)\n\n# Solve for T2\n\nT2 = (1 - eff)*T1\n\nprint('Heat sink temperature:', T2, 'K')\n",
-    "explanation": "This code calculates the heat sink temperature using the formula for thermal efficiency, which is derived from the First Law, which states that W = Qhot - Qcold.",
-    "reference": "https://psesh.github.io/ae2010-11/"
+  "explanation": "This code calculates the heat sink temperature using the formula for thermal efficiency, which is derived from the First Law, which states that W = Qhot - Qcold.",
+  "reference": "https://psesh.github.io/ae2010-11/"
 },
 {
 	"question": "Water is flowing through a pipe with a constant bulk velocity and zero mean acceleration. If the cross-sectional diameter is 0.8 m, the mass flow rate is 750 kg/s, and water has a density of 1000 kg/m^3, what is the pressure drop over a length of 20 m? Assume a dynamic viscosity of 8.90 * 10^-4 Pa-s.",
 	"answer": "\nimport numpy as np\n\nmdot = 750 # Mass flow rate (kg/s)\nrho = 1000 # Water density (kg/m^3)\nD = 0.8 # Diameter (m)\nL = 20 # Length (m)\nmu = 8.90 * 10**(-4) # Dynamic viscosity of water (Pa-s)\n\n# Find volumetric flow rate\n\nQ = mdot / rho\n\n# Radius = Diameter/2\n\n# Hagen-Poiseuille Equation\n\ndeltap = (8 * mu * Q * L)/(np.pi * (D/4)**4)\n\n\nprint('Pressure drop over 10 meters:', deltap, 'Pa')\n",
-    "explanation": "This code calculates the pressure drop using the Hagen-Poiseuille equation, which describes situations where the pressure loss can be directly related to the friction force by the walls.",
-    "reference": "https://psesh.github.io/ae2010-11/"
+  "explanation": "This code calculates the pressure drop using the Hagen-Poiseuille equation, which describes situations where the pressure loss can be directly related to the friction force by the walls.",
+  "reference": "https://psesh.github.io/ae2010-11/"
 },
 {
 	"question": "Extra credit. Plot a cycle. A certain mass of air undergoes 3 different processes in the cycle. 1. Isobaric expansion to double the volume. 2. Isochoric cooling. 3. Isothermal compression to the initial state. You may choose arbitrary values for the temperature and mass, but the graph shape and therefore relationships between variables must be correct.",
 	"answer": "\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nR = 8.314\nm = 1.0\nT1 = 300.0\n\n# Process 1: Isobaric expansion\n\nV1 = 1.0\nV2 = 2.0 * V1\nP1 = R * T1 / V1\nP2 = P1\nworkexp = P1 * (V2 - V1)\n\n# Process 3: Isothermal compression\n\nV3 = np.linspace(V2, V1, 100)\nP4 = R * T1 / V3\nworkcomp = np.trapz(P4, V3)\n\n# Process 2: Isochoric cooling\n\nT2 = 200.0\nindex = np.where(np.isclose(V3, V2))[0][0]\nP3 = P4[index]\n\n# Total work done\n\ntotal_work = workexp + workcomp\n\n# Plot diagram\n\nplt.plot([V1, V2, V1], [P1, P2, P1], label='Process 1')\nplt.plot([V2, V2], [P1, P3], linestyle='--', color='red', label='Process 2')\nplt.plot(V3, P4, label='Process 3')\nplt.xlabel('Volume (m^3)')\nplt.ylabel('Pressure (Pa)')\nplt.title('p-v Diagram')\nplt.xticks([])\nplt.yticks([])\nplt.legend()\nplt.grid(False)\nplt.show()\n",
-    "explanation": "This code plots a p-v diagram showing the cycle consisting of 3 processes. It is based off of linear relationships for Processes 1 and 2, and an inverse relationship for Process 3.",
-    "reference": "https://psesh.github.io/ae2010-11/ , https://www.khanacademy.org/science/physics/thermodynamics/laws-of-thermodynamics/a/what-are-pv-diagrams"
+  "explanation": "This code plots a p-v diagram showing the cycle consisting of 3 processes. It is based off of linear relationships for Processes 1 and 2, and an inverse relationship for Process 3.",
+  "reference": "https://psesh.github.io/ae2010-11/ , https://www.khanacademy.org/science/physics/thermodynamics/laws-of-thermodynamics/a/what-are-pv-diagrams"
 },
 {
   "question": "What exactly is shaft work and how does one identify it?",
