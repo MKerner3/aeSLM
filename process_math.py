@@ -1,4 +1,4 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import re
 
 def is_math_expression(text):
@@ -15,16 +15,23 @@ def evaluate_expression(expression):
 
 def process_response(response):
     # Find all potential math expressions in the response
-    math_expressions = re.findall(r'\b\d+\s*[\+\-\*/]\s*\d+\b', response)
+    math_expressions = re.findall(r'\b\d+\s*[\+\-*/]\s*\d+\b', response)
     for expr in math_expressions:
         result = evaluate_expression(expr)
         response = response.replace(expr, str(result))
     return response
 
-# Load the language model
-model_name_or_path = "path_to_your_model_file.gguf"
-tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-model = AutoModelForCausalLM.from_pretrained(model_name_or_path)
+# Load the language model from local GGUF file
+model_id = "."  # Path to the current directory
+filename = "model-unsloth.Q4_K_M.gguf"  # Your GGUF file name
+
+print("Loading tokenizer...")
+tokenizer = AutoTokenizer.from_pretrained(model_id, gguf_file=filename)
+print("Tokenizer loaded.")
+
+print("Loading model...")
+model = AutoModelForCausalLM.from_pretrained(model_id, gguf_file=filename)
+print("Model loaded.")
 
 # Get user input
 user_input = input("Please enter your question or command: ")
