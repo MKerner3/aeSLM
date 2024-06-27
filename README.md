@@ -1,0 +1,7 @@
+# AE Fine-tuned Small language model (SLM)
+This repository contains all necessary files/scripts used to clean and process JSON data used to train the phi-3 language model, and also contains python scripts that use a language model (in the form of a .gguf file) to generate responses for varying user input.
+
+## Overview and Usage of Post processing scripts
+While it may be easy to simply run the language model through a terminal using Ollama or through docker desktop + openwebUI, one particular problem that arises is the inability of the language model to accurately calculate mathematical expressions. (This is an inherent problem with many language models.) To effectively resolve this issue, python scripts such as process_math.py in this repository can be used which allow a user to interact with a language model, but will intercept the language model's response in a string and verify mathematical operations inside of it to ensure accurate responses. As of this commit, the python script corrects simple mathematical calculations but future commits may see the wolfram API being used to verify the accuracy of more complex math.
+
+The process_math.py file is currently still being developed, so running it as of the current commit may not produce desired results at this time.
